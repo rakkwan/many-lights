@@ -24,8 +24,26 @@ $f3->route('GET /', function () {
     //display the contents of the page
     $view = new Template();
     echo $view->render('views/header.html');
-    echo $view->render("views/home_page.html");
+    echo $view->render("views/homePage.html");
     echo $view->render('views/footer.html');
 });
+
+$f3->route('GET /home', function () {
+    //display the contents of the page
+    $view = new Template();
+    echo $view->render('views/header.html');
+    echo $view->render("views/homePage.html");
+    echo $view->render('views/footer.html');
+});
+
+$f3->route('GET|POST /resources', function () {
+    //display the contents of the page
+    $view = new Template();
+    echo $view->render('views/header.html');
+    echo $view->render("views/resources.html");
+    echo $view->render('views/footer.html');
+});
+
+
 //run Fat-free
 $f3->run();

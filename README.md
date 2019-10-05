@@ -1,2 +1,2 @@
 # many-lights
-Many Lights Foundation
+This site is the home of One Stop Washington.
