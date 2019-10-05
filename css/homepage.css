@@ -1,0 +1,109 @@
+img.img-fluid.d-block.w-100 {
+    padding-top: 3%;
+}
+
+h1.header-title.text-center {
+    margin-top: 30%;
+}
+
+#headTitle {
+    margin-top: 10%;
+    z-index: -1;
+    /* margin-bottom: 44px; */
+    padding: 20px;
+    background-color: #fffcaf;
+    position: sticky;
+}
+
+.col {
+    padding-top: 2%;
+}
+
+.w-50 {
+    z-index: 1;
+    margin: 1rem 1rem 0rem 5rem;
+}
+
+.col-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    z-index: 1;
+    background-size: 50%;
+    /* width: 23%; */
+}
+
+strong {
+    color: slategrey;
+}
+
+.p-0 {
+    max-width: inherit;
+}
+
+img.img-fluid.w-50.float-left.rounded-circle.img-thumbnail {
+    max-width: 33%;
+}
+
+div.carousel-item img {
+    display: none;
+    height: 16rem !important;
+}
+
+img.d-block.w-100 {
+    max-height: 17rem !important;
+    min-height: 17rem !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+#val_stairs {
+    transform: rotate(90deg);
+}
+
+html {
+    /*overflow-y: hidden;*/
+    overflow-x: hidden !important;
+}
+
+/*Sphynx queen css*/
+ol.carousel-indicators {
+    z-index: 3 !important;
+}
+
+#rotated {
+    height: auto;
+    width: 100% !important;
+    padding: 0em 0em 0em 0em;
+    margin: 0px 0px 0px -5px;
+}
+
+card.mx-auto {
+    max-height: 100px !important;
+}
+
+.col-md-8.mx-auto {
+    border-style: solid;
+    border-color: #7289ad;
+}
+
+.card.mb-3.mx-auto.w-75 {
+    margin-top: 3%;
+}
+
+.divider {
+    background-color: #d3d3d3 !important;
+    font-weight: bold;
+    border: none !important;
+}
+
+img#val_stairs {
+    transform: rotate(90deg) scale(1, 1.5);
+    padding: 37px;
+    background: black;
+}
+
+/*care*/
+.care {
+    color: #7289ad;
+}

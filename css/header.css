@@ -1,0 +1,55 @@
+nav.navbar.navbar-expand-lg {
+    background: #7289ad;
+}
+
+a.dropdown-item {
+    background-color: #7289ad;
+    color: #fffcaf;
+}
+
+.dropdown-menu.show {
+    background: white;
+}
+
+footer.page-footer.font-small.special-color-dark.pt-4 {
+    z-index: 4;
+}
+
+.dropdown-divider {
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    border-top: 1px solid #e9ecef;
+}
+
+a.navbar-brand {
+    background: white;
+    width: 9%;
+    max-height: 40% !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fffcaf;
+    font-family: serif;
+    font-size: x-large;
+}
+
+nav.navbar.navbar-expand-lg.navbar-dark {
+    padding: 0%;
+}
+
+body {
+    background: lightgray;
+}
+
+#mt_rainier {
+    width: 34%;
+}
+
+img#mt_rainier {
+    margin: 3%;
+}
+
+
+
+

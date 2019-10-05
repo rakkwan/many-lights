@@ -1,0 +1,12 @@
+{
+  "name": "coderlite/355/oneStopWa/many-lights",
+  "authors": [
+    {
+      "name": "Samantha DeSmul",
+      "email": "sdesmul@greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
