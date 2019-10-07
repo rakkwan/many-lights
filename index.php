@@ -23,17 +23,17 @@ $f3 = Base::instance();
 $f3->route('GET /', function () {
     //display the contents of the page
     $view = new Template();
-    echo $view->render('views/header.html');
+    echo $view->render('views/includes/header.html');
     echo $view->render("views/homePage.html");
-    echo $view->render('views/footer.html');
+    echo $view->render('views/includes/footer.html');
 });
 
 $f3->route('GET /home', function () {
     //display the contents of the page
     $view = new Template();
-    echo $view->render('views/header.html');
+    echo $view->render('views/includes/header.html');
     echo $view->render("views/homePage.html");
-    echo $view->render('views/footer.html');
+    echo $view->render('views/includes/footer.html');
 });
 
 $f3->route('GET /resources', function () {
@@ -42,18 +42,18 @@ $f3->route('GET /resources', function () {
 //        print_r($_POST);
     //display the contents of the page
     $view = new Template();
-    echo $view->render('views/header.html');
+    echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
-    echo $view->render('views/footer.html');
+    echo $view->render('views/includes/footer.html');
 });
 
 // recommended form
 $f3->route('GET|POST /recommended', function () {
 
     $view = new Template();
-    echo $view->render('views/header.html');
+    echo $view->render('views/includes/header.html');
     echo $view->render('views/recommendedForm.html');
-    echo $view->render('views/footer.html');
+    echo $view->render('views/includes/footer.html');
 });
 
 
