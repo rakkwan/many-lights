@@ -1,7 +1,21 @@
+<!--
+    Name: Jittima Goodrich
+    Date: 10/6/2019
+    File: confirmation.html
+    This is the page to display the information that user submitted
+
+-->
+
+
 <div class="container white">
     <div class="jumbotron">
         <h2 class="display-4 text-center">Thank you!</h2>
         <p class="lead text-center">{{ $_SESSION['fname'] }} {{ $_SESSION['lname'] }} for your recommendation!</p>
+        <h3>Your information</h3>
+        <p>name: {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
+        <p>address: {{ @SESSION.address }}</p>
+        <p>email: {{ @SESSION.email }}</p>
+        <p>message: {{ @SESSION.message }}</p>
         <hr class="my-4">
         <p></p>
     </div>

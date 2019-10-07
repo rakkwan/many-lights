@@ -6,6 +6,8 @@
  * Time: 15:09
  */
 
+// Start session
+session_start();
 
 //turn on error reporting
 ini_set('display_errors', 1);
