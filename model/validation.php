@@ -74,13 +74,7 @@ function validAddress($address)
 
 function validEmail($email)
 {
-    global $db;
-    $emailValid = $db->checkEmail($email);
-    if (empty($emailValid))
-    {
-        return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-    return false;
+    return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 /**

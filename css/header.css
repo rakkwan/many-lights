@@ -42,6 +42,10 @@ body {
     background: lightgray;
 }
 
+.err {
+    color: red;
+}
+
 
 
 

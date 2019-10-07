@@ -13,6 +13,7 @@ error_reporting(E_ALL);
 
 //Require autoload file
 require_once('vendor/autoload.php');
+require_once ('model/validation.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
@@ -89,7 +90,7 @@ $f3->route('GET|POST /recommended', function ($f3)
     echo $view->render('views/includes/footer.html');
 });
 
-$f3->route('GET|POST /confirmation', function ()
+$f3->route('GET|POST /confirmation', function ($f3)
 {
     //display the confirmation of the page
     $view = new Template();
