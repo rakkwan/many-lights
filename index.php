@@ -48,7 +48,40 @@ $f3->route('GET /resources', function () {
 });
 
 // recommended form
-$f3->route('GET|POST /recommended', function () {
+$f3->route('GET|POST /recommended', function ($f3)
+{
+
+     //If form has been submitted, validate
+    if(!empty($_POST))
+    {
+        // Get data from form
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $address = $_POST['address'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
+
+        // Add data to hive
+        $f3->set('fname', $fname);
+        $f3->set('lname', $lname);
+        $f3->set('address', $address);
+        $f3->set('email', $email);
+        $f3->set('message', $message);
+
+        // if data is valid
+        if (validForm())
+        {
+            // Write data to session
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+            $_SESSION['address'] = $address;
+            $_SESSION['email'] = $email;
+            $_SESSION['message'] = $message;
+
+            // redirect to profile
+            $f3->reroute('/confirmation');
+        }
+    }
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
