@@ -89,6 +89,15 @@ $f3->route('GET|POST /recommended', function ($f3)
     echo $view->render('views/includes/footer.html');
 });
 
+$f3->route('GET|POST /confirmation', function ()
+{
+    //display the confirmation of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/confirmation.html");
+    echo $view->render('views/includes/footer.html');
+});
+
 
 //run Fat-free
 $f3->run();
