@@ -47,6 +47,15 @@ $f3->route('GET /resources', function () {
     echo $view->render('views/footer.html');
 });
 
+// recommended form
+$f3->route('GET|POST /recommended', function () {
+
+    $view = new Template();
+    echo $view->render('views/header.html');
+    echo $view->render('views/recommendedForm.html');
+    echo $view->render('views/footer.html');
+});
+
 
 //run Fat-free
 $f3->run();
