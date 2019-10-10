@@ -6,7 +6,7 @@
  * Time: 15:09
  */
 
-// Start session
+// Start session!
 session_start();
 
 //turn on error reporting
