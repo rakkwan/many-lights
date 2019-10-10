@@ -7,7 +7,7 @@
 -->
 <div class="jumbotron">
     <div class="contain white">
-        <h2>Please leave your recommendation below</h2>
+        <h2>Please leave your recommendation below.</h2>
     </div>
 
 </div>
@@ -15,9 +15,10 @@
 
 <div class="jumbotron">
     <div class="container white">
-        <h1>Contact Information</h1>
+
         <form action="#" method="post">
-            <div class="">
+            <div class="jumbotron">
+                <h1 class="text-center">Your Contact Information</h1>
 
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
@@ -31,7 +32,7 @@
 
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
-                        <label>First Name</label>
+                        <label> First Name</label>
                         <input type="text" class="form-control" name="fname" value="{{ @fname }}">
                         <check if="{{ isset(@errors['fname']) }}">
                             <span class="text-danger">{{ @errors['fname'] }}</span>
@@ -41,7 +42,7 @@
 
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
-                        <label>Last Name</label>
+                        <label> Last Name</label>
                         <input type="text" class="form-control" name="lname" value="{{ @lname }}">
                         <check if="{{ isset(@errors['lname']) }}">
                             <span class="text-danger">{{ @errors['lname'] }}</span>
@@ -51,47 +52,7 @@
 
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
-                        <label>Source</label>
-                        <input type="text" class="form-control" name="source" value="{{ @source }}" >
-                        <check if="{{ isset(@errors['source']) }}">
-                            <span class="text-danger">{{ @errors['source'] }}</span>
-                        </check>
-                    </div>
-                </div>
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label>Practice Name</label>
-                        <input type="text" class="form-control" name="practice" value="{{ @practice }}" >
-                        <check if="{{ isset(@errors['practice']) }}">
-                            <span class="text-danger">{{ @errors['practice'] }}</span>
-                        </check>
-                    </div>
-                </div>
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label>Office Address</label>
-                        <input type="text" class="form-control" name="address" value="{{ @address }}" >
-                        <check if="{{ isset(@errors['address']) }}">
-                            <span class="text-danger">{{ @errors['address'] }}</span>
-                        </check>
-                    </div>
-                </div>
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
-                        <check if="{{ isset(@errors['phone']) }}">
-                            <span class="text-danger">{{ @errors['phone'] }}</span>
-                        </check>
-                    </div>
-                </div>
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label>Email</label> <label class="orange-text">(john@example.com)</label>
+                        <label> Email</label> <label class="orange-text">(john@example.com)</label>
                         <input type="text" class="form-control" name="email" value="{{ @email }}">
                         <check if="{{ isset(@errors['email']) }}">
                             <span class="text-danger">{{ @errors['email'] }}</span>
@@ -101,120 +62,213 @@
 
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
-                        <label>Website</label>
-                        <input type="text" class="form-control" name="website" value="{{ @website }}" >
-                        <check if="{{ isset(@errors['website']) }}">
-                            <span class="text-danger">{{ @errors['website'] }}</span>
+                        <label> Phone Number</label>
+                        <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
+                        <check if="{{ isset(@errors['phone']) }}">
+                            <span class="text-danger">{{ @errors['phone'] }}</span>
                         </check>
                     </div>
                 </div>
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label>Message</label>
-                        <textarea type="text" class="form-control" name="message" value="{{ @message }}"></textarea>
-                        <check if="{{ isset(@errors['message']) }}">
-                            <span class="text-danger">{{ @errors['message'] }}</span>
-                        </check>
-                    </div>
-                </div>
+            </div>
 
 
 
-                <div class="row ml-4 mt-4">
-                    <div class="col-sm-12 pr-4">
-                        <label>Ages Seen</label>
-                    </div>
 
-                    <div class="col-sm-3 pl-5">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="age[]" value="4"
-                                <check if="{{ @age === '4' }}">checked</check>>0 - 4
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="age[]" value="9"
-                                <check if="{{ @age === '9' }}">checked</check>>5 - 9
-                            </label>
+            <div class="jumbotron">
+                <h1 class="text-center">Provider Contact Information</h1>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Practice Name</label>
+                            <input type="text" class="form-control" name="practice" value="{{ @practice }}" >
+                            <check if="{{ isset(@errors['practice']) }}">
+                                <span class="text-danger">{{ @errors['practice'] }}</span>
+                            </check>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="age[]" value="12"
-                                <check if="{{ @age === '12' }}">checked</check>>10 - 12
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="age[]" value="17"
-                                <check if="{{ @age === '17' }}">checked</check>>13 - 17
-                            </label>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Office Address</label>
+                            <input type="text" class="form-control" name="address" value="{{ @address }}" >
+                            <check if="{{ isset(@errors['address']) }}">
+                                <span class="text-danger">{{ @errors['address'] }}</span>
+                            </check>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="age[]" value="18"
-                                <check if="{{ @age === '18' }}">checked</check>>18+
-                            </label>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Phone</label>
+                            <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
+                            <check if="{{ isset(@errors['phone']) }}">
+                                <span class="text-danger">{{ @errors['phone'] }}</span>
+                            </check>
                         </div>
                     </div>
-                </div>
 
-
-                <div class="row ml-4 mt-4">
-                    <div class="col-sm-12 pr-4">
-                        <label>Office hours</label>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Email</label> <label class="orange-text">(john@example.com)</label>
+                            <input type="text" class="form-control" name="email" value="{{ @email }}">
+                            <check if="{{ isset(@errors['email']) }}">
+                                <span class="text-danger">{{ @errors['email'] }}</span>
+                            </check>
+                        </div>
                     </div>
 
-                    <div class="col-sm-3 pl-5">
-                        <div class="form-check">
-                            <label>Days</label>
-                                <select class="form-control" name="day">
-                                    <option value="monday">Monday</option>
-                                    <option value="tuesday">Tuesday</option>
-                                    <option value="wednesday">Wednesday</option>
-                                    <option value="thursday">Thursday</option>
-                                    <option value="friday">Friday</option>
-                                    <option value="saturday">Saturday</option>
-                                    <option value="sunday">Sunday</option>
-                                </select>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Website</label>
+                            <input type="text" class="form-control" name="website" value="{{ @website }}" >
+                            <check if="{{ isset(@errors['website']) }}">
+                                <span class="text-danger">{{ @errors['website'] }}</span>
+                            </check>
                         </div>
-
                     </div>
 
-                    <div class="col-sm-3">
-                        <label>Time</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="time[]" value="morning"
-                                <check if="{{ @time === 'morning' }}">checked</check>>Morning
-                            </label>
+                    <div class="row ml-4 mt-4">
+                        <div class="col-6">
+                            <label>Message</label>
+                            <textarea type="text" class="form-control" name="message" value="{{ @message }}"></textarea>
+                            <check if="{{ isset(@errors['message']) }}">
+                                <span class="text-danger">{{ @errors['message'] }}</span>
+                            </check>
                         </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="time[]" value="afternoon"
-                                <check if="{{ @time === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="time[]" value="evening"
-                                <check if="{{ @time === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-
                     </div>
-                </div>
+
+
+
+                    <div class="row ml-4 mt-4">
+                        <div class="col-sm-12 pr-4">
+                            <label>Ages Seen</label>
+                        </div>
+
+                        <div class="col-sm-3 pl-5">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="age[]" value="4"
+                                    <check if="{{ @age === '4' }}">checked</check>>0 - 4
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="age[]" value="9"
+                                    <check if="{{ @age === '9' }}">checked</check>>5 - 9
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="age[]" value="12"
+                                    <check if="{{ @age === '12' }}">checked</check>>10 - 12
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="age[]" value="17"
+                                    <check if="{{ @age === '17' }}">checked</check>>13 - 17
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="age[]" value="18"
+                                    <check if="{{ @age === '18' }}">checked</check>>18+
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ml-4 mt-4">
+                        <div class="col-sm-12 pr-4">
+                            <label>Office hours</label>
+                        </div>
+
+                        <div class="col-sm-3 pl-5">
+
+                            <label><strong>Days</strong></label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="monday"
+                                        <check if="{{ @days === 'monday' }}">checked</check>>Monday
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="tuesday"
+                                        <check if="{{ @days === 'tuesday' }}">checked</check>>Tuesday
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="wednesday"
+                                        <check if="{{ @days === 'wednesday' }}">checked</check>>Wednesday
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="thursday"
+                                        <check if="{{ @days === 'thursday' }}">checked</check>>Thursday
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="friday"
+                                        <check if="{{ @days === 'friday' }}">checked</check>>Friday
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="saturday"
+                                        <check if="{{ @days === 'saturday' }}">checked</check>>Saturday
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="days[]" value="sunday"
+                                        <check if="{{ @days === 'sunday' }}">checked</check>>Sunday
+                                    </label>
+                                </div>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label><strong>Time</strong></label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                    <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                    <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                    <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
 
 
                 <div class="row ml-4 mt-4">
