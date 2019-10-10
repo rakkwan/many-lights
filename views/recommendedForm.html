@@ -18,9 +18,10 @@
     <div class="container white">
 
         <form action="#" method="post">
+            <!-- Your Contact Information container -->
             <div class="jumbotron">
                 <h1 class="text-center">Your Contact Information</h1>
-
+                <!-- Date of contact inputs -->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <label>Date of Contact</label> <label class="orange-text">(mm/dd/yyyy)</label>
@@ -31,6 +32,7 @@
                     </div>
                 </div>
 
+                <!-- First name inputs -->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <label> First Name</label>
@@ -41,6 +43,7 @@
                     </div>
                 </div>
 
+                <!-- Last name inputs -->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <label> Last Name</label>
@@ -51,6 +54,7 @@
                     </div>
                 </div>
 
+                <!-- Email inputs -->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <label> Email</label> <label class="orange-text">(john@example.com)</label>
@@ -61,6 +65,7 @@
                     </div>
                 </div>
 
+                <!-- Phone number inputs-->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <label> Phone Number</label>
@@ -74,12 +79,13 @@
 
 
 
-
+            <!-- Provider Contact Information container -->
             <div class="jumbotron">
                 <h1 class="text-center">Provider Contact Information</h1>
+                    <!-- Provider name inputs -->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
-                            <label>Practice Name</label>
+                            <label>Provider Name</label>
                             <input type="text" class="form-control" name="practice" value="{{ @practice }}" >
                             <check if="{{ isset(@errors['practice']) }}">
                                 <span class="text-danger">{{ @errors['practice'] }}</span>
@@ -87,6 +93,7 @@
                         </div>
                     </div>
 
+                    <!-- Office address inputs-->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
                             <label>Office Address</label>
@@ -97,6 +104,7 @@
                         </div>
                     </div>
 
+                    <!-- Phone number inputs-->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
                             <label>Phone</label>
@@ -107,6 +115,7 @@
                         </div>
                     </div>
 
+                    <!-- Email inputs-->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
                             <label>Email</label> <label class="orange-text">(john@example.com)</label>
@@ -117,6 +126,7 @@
                         </div>
                     </div>
 
+                    <!-- Website inputs-->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
                             <label>Website</label>
@@ -127,6 +137,7 @@
                         </div>
                     </div>
 
+                    <!-- Message inputs-->
                     <div class="row ml-4 mt-4">
                         <div class="col-6">
                             <label>Message</label>
@@ -138,7 +149,7 @@
                     </div>
 
 
-
+                    <!-- Ages seen inputs -->
                     <div class="row ml-4 mt-4">
                         <div class="col-sm-12 pr-4">
                             <label>Ages Seen</label>
@@ -187,6 +198,7 @@
                     </div>
 
 
+                    <!-- Office hours inputs -->
                     <div class="row ml-4 mt-4">
                         <div class="col-sm-12 pr-4">
                             <label>Office hours</label>
@@ -272,6 +284,7 @@
                     </div>
 
 
+                <!-- Submit button -->
                 <div class="row ml-4 mt-4">
                     <div class="col-6">
                         <input type="submit" value="Submit" class="btn btn-yellow waves-effect">
