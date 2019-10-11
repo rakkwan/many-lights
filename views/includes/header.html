@@ -11,9 +11,8 @@ Author: Samantha DeSmul
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="../../css/header.css">
-    <link rel="stylesheet" type="text/css" href="../../css/homepage.css">
+    <!-- CSS uncomment below to make it work-->
+    <!--<link rel="stylesheet" type="text/css" href="{{@BASE}}/css/header.css">-->
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -21,8 +20,10 @@ Author: Samantha DeSmul
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
-    <!-- Optional JavaScript -->
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    <script type="text/javascript" src="{{@BASE}}/datatable.js"></script>
     <title>{{@title}}</title>
 
 
@@ -34,7 +35,7 @@ Author: Samantha DeSmul
 
     <!-- Navbar brand -->
     <a class="navbar-brand" href="home"><img src="image/oneStopWaDarkPurpleLogo.png" alt="Logo Image"
-                                                               height="50em" width="80em"></a>
+                                             height="50em" width="80em"></a>
 
     <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -48,7 +49,7 @@ Author: Samantha DeSmul
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{@BASE}}/resources">View All Resources
+                <a class="nav-link err" href="{{@BASE}}/resources">View All Resources
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -58,8 +59,8 @@ Author: Samantha DeSmul
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">Available Resources</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-<!--                    <a class="dropdown-item" href="#">View</a>-->
-                    <a class="dropdown-item" href="recommended">Recommend Resources</a>
+                    <!--                    <a class="dropdown-item" href="#">View</a>-->
+                    <a class="dropdown-item" href="recommended">Recommend a Resource</a>
                 </div>
             </li>
 
@@ -69,11 +70,11 @@ Author: Samantha DeSmul
         </ul>
         <!-- Links -->
 
-<!--        <form class="form-inline">-->
-<!--            <div class="md-form my-0">-->
-<!--                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
-<!--            </div>-->
-<!--        </form>-->
+        <!--        <form class="form-inline">-->
+        <!--            <div class="md-form my-0">-->
+        <!--                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+        <!--            </div>-->
+        <!--        </form>-->
     </div>
     <!-- Collapsible content -->
 
