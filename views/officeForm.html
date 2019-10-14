@@ -1,0 +1,134 @@
+
+<!--
+    Name: Jittima Goodrich
+    Date: 10/6/2019
+    File: officeForm.html
+    This is the form for an adoptive family to share the resources
+
+-->
+<div class="jumbotron">
+    <div class="contain white">
+        <h2>Please leave your recommendation below.</h2>
+    </div>
+</div>
+
+
+<div class="jumbotron">
+    <div class="container white">
+
+        <form action="#" method="post">
+
+            <!-- Provider Contact Information container -->
+            <div class="jumbotron">
+                <h1 class="text-center">Office Contact Information</h1>
+                <!-- Provider name inputs -->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Office Name</label>
+                        <input type="text" class="form-control" name="office" value="{{ @office }}" >
+                        <check if="{{ isset(@errors['office']) }}">
+                            <span class="text-danger">{{ @errors['office'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Office street address inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Street Address</label>
+                        <input type="text" class="form-control" name="address" value="{{ @address }}" >
+                        <check if="{{ isset(@errors['address']) }}">
+                            <span class="text-danger">{{ @errors['address'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Office city inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="city" value="{{ @city }}" >
+                        <check if="{{ isset(@errors['city']) }}">
+                            <span class="text-danger">{{ @errors['city'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Office state inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>State</label>
+                        <input type="text" class="form-control" name="state" value="{{ @state }}" >
+                        <check if="{{ isset(@errors['state']) }}">
+                            <span class="text-danger">{{ @errors['state'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Office zip inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Zip code</label>
+                        <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
+                        <check if="{{ isset(@errors['zip']) }}">
+                            <span class="text-danger">{{ @errors['zip'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Office Phone number inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control" name="officephone" value="{{ @officephone }}" >
+                        <check if="{{ isset(@errors['officephone']) }}">
+                            <span class="text-danger">{{ @errors['officephone'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Email inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Email</label> <label class="orange-text">(john@example.com)</label>
+                        <input type="text" class="form-control" name="officeemail" value="{{ @officeemail }}">
+                        <check if="{{ isset(@errors['officeemail']) }}">
+                            <span class="text-danger">{{ @errors['officeemail'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Website inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Website</label>
+                        <input type="text" class="form-control" name="website" value="{{ @website }}" >
+                        <check if="{{ isset(@errors['website']) }}">
+                            <span class="text-danger">{{ @errors['website'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Message inputs-->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <label>Comments (optional)</label>
+                        <textarea type="text" class="form-control" name="comments" value="{{ @comments }}"></textarea>
+                        <check if="{{ isset(@errors['comments']) }}">
+                            <span class="text-danger">{{ @errors['comments'] }}</span>
+                        </check>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="row ml-4 mt-4">
+                    <div class="col-6">
+                        <input type="submit" value="Submit" class="btn btn-yellow waves-effect">
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+

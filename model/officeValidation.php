@@ -1,13 +1,10 @@
 <?php
 /**
- * Validation file for the form
  * Created by PhpStorm.
- * User: Jittima Goodrich
- * Date: 10/6/2019
- * Time: 7:36 PM
- * @copyright 2019
+ * User: jrakk
+ * Date: 10/13/2019
+ * Time: 5:36 PM
  */
-
 
 /**
  * used to validate the register form
@@ -39,6 +36,46 @@ function validForm()
     }
     return $isValid;
 }
+
+
+function validOfficeForm()
+{
+    global $f3;
+    $isValid = true;
+    if (!validName($f3->get('fname')))
+    {
+        $isValid = false;
+        $f3->set("errors['fname']", "Please enter a valid first name");
+    }
+    if (!validName($f3->get('lname')))
+    {
+        $isValid = false;
+        $f3->set("errors['lname']", "Please enter a valid last name");
+    }
+    if (!validAddress($f3->get('address')))
+    {
+        $isValid = false;
+        $f3->set("errors['address']", "Please enter your address");
+    }
+    if (!validEmail($f3->get('email')))
+    {
+        $isValid = false;
+        $f3->set("errors['email']", "Please enter a valid email address");
+    }
+    if (!validPhone($f3->get('phone')))
+    {
+        $isValid = false;
+        $f3->set("errors['phone']", "Please enter a phone number, must be 10 digits");
+    }
+    if (!validMessage($f3->get('message')))
+    {
+        $isValid = false;
+        $f3->set("errors['message']", "Message can't be empty");
+    }
+    return $isValid;
+}
+
+
 
 /**
  * Checks if the name given was valid

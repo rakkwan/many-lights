@@ -16,6 +16,7 @@ error_reporting(E_ALL);
 //Require autoload file
 require_once('vendor/autoload.php');
 require_once('model/validation.php');
+require_once('model/officeValidation.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
@@ -51,41 +52,54 @@ $f3->route('GET /resources', function ($f3) {
 });
 
 // recommended form
-$f3->route('GET|POST /recommended', function ($f3) {
+$f3->route('GET|POST /recommended', function ($f3)
+{
 
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
-        $address = $_POST['address'];
+        //$address = $_POST['address'];
         $email = $_POST['email'];
-        $message = $_POST['message'];
+        $phone =$_POST['phone'];
+        //$message = $_POST['message'];
 
         // Add data to hive
         $f3->set('fname', $fname);
         $f3->set('lname', $lname);
-        $f3->set('address', $address);
+        //$f3->set('address', $address);
         $f3->set('email', $email);
-        $f3->set('message', $message);
+        $f3->set('phone', $phone);
+        //$f3->set('message', $message);
 
         // if data is valid
-        if (validForm()) {
+        if (validForm())
+        {
             // Write data to session
             $_SESSION['fname'] = $fname;
             $_SESSION['lname'] = $lname;
-            $_SESSION['address'] = $address;
+            //$_SESSION['address'] = $address;
             $_SESSION['email'] = $email;
-            $_SESSION['message'] = $message;
+            $_SESSION['phone'] = $phone;
+            //$_SESSION['message'] = $message;
 
-            // redirect to profile
-            $f3->reroute('/confirmation');
+            // redirect to confirmation
+            $f3->reroute('/provider');
         }
     }
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render('views/recommendedForm.html');
+    echo $view->render('views/includes/footer.html');
+});
+
+$f3->route('GET|POST /provider', function ($f3) {
+    //display the confirmation of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/officeForm.html");
     echo $view->render('views/includes/footer.html');
 });
 
