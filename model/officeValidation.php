@@ -1,77 +1,37 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jrakk
+ * User: Jittima Goodrich
  * Date: 10/13/2019
  * Time: 5:36 PM
  */
 
 /**
- * used to validate the register form
+ * used to validate the office form
  * @return bool if everything was valid or not
  */
-function validForm()
-{
-    global $f3;
-    $isValid = true;
-    if (!validName($f3->get('fname')))
-    {
-        $isValid = false;
-        $f3->set("errors['fname']", "Please enter a valid first name");
-    }
-    if (!validName($f3->get('lname')))
-    {
-        $isValid = false;
-        $f3->set("errors['lname']", "Please enter a valid last name");
-    }
-    if (!validEmail($f3->get('email')))
-    {
-        $isValid = false;
-        $f3->set("errors['email']", "Please enter a valid email address");
-    }
-    if (!validPhone($f3->get('phone')))
-    {
-        $isValid = false;
-        $f3->set("errors['phone']", "Please enter a phone number, must be 10 digits");
-    }
-    return $isValid;
-}
-
 
 function validOfficeForm()
 {
     global $f3;
     $isValid = true;
-    if (!validName($f3->get('fname')))
+    if (!validOffice($f3->get('office')))
     {
         $isValid = false;
-        $f3->set("errors['fname']", "Please enter a valid first name");
+        $f3->set("errors['office']", "Please enter a valid office's name");
     }
-    if (!validName($f3->get('lname')))
+
+    if (!validOfficeEmail($f3->get('office_email')))
     {
         $isValid = false;
-        $f3->set("errors['lname']", "Please enter a valid last name");
+        $f3->set("errors['office_email']", "Please enter a valid email address");
     }
-    if (!validAddress($f3->get('address')))
+    if (!validOfficePhone($f3->get('office_phone')))
     {
         $isValid = false;
-        $f3->set("errors['address']", "Please enter your address");
+        $f3->set("errors['office_phone']", "Please enter a phone number, must be 10 digits");
     }
-    if (!validEmail($f3->get('email')))
-    {
-        $isValid = false;
-        $f3->set("errors['email']", "Please enter a valid email address");
-    }
-    if (!validPhone($f3->get('phone')))
-    {
-        $isValid = false;
-        $f3->set("errors['phone']", "Please enter a phone number, must be 10 digits");
-    }
-    if (!validMessage($f3->get('message')))
-    {
-        $isValid = false;
-        $f3->set("errors['message']", "Message can't be empty");
-    }
+
     return $isValid;
 }
 
@@ -79,23 +39,14 @@ function validOfficeForm()
 
 /**
  * Checks if the name given was valid
- * @param String $name the name given
+ * @param String $office the name of office given
  * @return bool if the name was valid
  */
-function validName($name)
+function validOffice($office)
 {
-    return !empty($name) && ctype_alpha($name);
+    return !empty($office) && ctype_alpha($office);
 }
 
-/**
- * Checks if the address is empty
- * @param String $address the address given
- * @return bool if the address was valid
- */
-function validAddress($address)
-{
-    return !empty($address);
-}
 
 /**
  * Checks if the email is valid
@@ -103,7 +54,7 @@ function validAddress($address)
  * @return bool if the email was valid ot not
  */
 
-function validEmail($email)
+function validOfficeEmail($email)
 {
     return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
 }
@@ -114,17 +65,17 @@ function validEmail($email)
  * @param $phone
  * @return bool
  */
-function validPhone($phone)
+function validOfficePhone($phone)
 {
     return !empty($phone) && ctype_digit($phone) && strlen($phone) == 10;
 }
 
 /**
  * checks if the message is valid, can't be empty
- * @param $message String $message the message given
+ * @param $comments String $message the message given
  * @return bool if the message was valid or not
  */
-function validMessage($message)
+function validComments($comments)
 {
-    return !empty($message);
+    return !empty($comments);
 }

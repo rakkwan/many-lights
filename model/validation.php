@@ -10,7 +10,7 @@
 
 
 /**
- * used to validate the register form
+ * used to validate the recommended form
  * @return bool if everything was valid or not
  */
 function validForm()

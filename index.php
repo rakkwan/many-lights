@@ -54,7 +54,6 @@ $f3->route('GET /resources', function ($f3) {
 // recommended form
 $f3->route('GET|POST /recommended', function ($f3)
 {
-
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -95,8 +94,47 @@ $f3->route('GET|POST /recommended', function ($f3)
     echo $view->render('views/includes/footer.html');
 });
 
-$f3->route('GET|POST /provider', function ($f3) {
-    //display the confirmation of the page
+$f3->route('GET|POST /provider', function ($f3)
+{
+    //If form has been submitted, validate
+    if (!empty($_POST)) {
+
+        // Get data from form
+        $office = $_POST['office'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zip =$_POST['zip'];
+        $office_phone = $_POST['office_phone'];
+        $office_email = $_POST['office_email'];
+        $website = $_POST['website'];
+        $comments = $_POST['comments'];
+
+        // Add data to hive
+        $f3->set('office', $office);
+        $f3->set('address', $address);
+        $f3->set('city', $city);
+        $f3->set('state', $state);
+        $f3->set('zip', $zip);
+        $f3->set('office_phone', $office_phone);
+        $f3->set('office_email', $office_email);
+        $f3->set('website', $website);
+        $f3->set('comments', $comments);
+
+        // if data is valid
+        if (validOfficeForm())
+        {
+            // Write data to session
+            $_SESSION['office'] = $office;
+            $_SESSION['office_email'] = $office_email;
+            $_SESSION['office_phone'] = $office_phone;
+
+            // redirect to confirmation
+            $f3->reroute('/confirmation');
+        }
+    }
+
+    //display the office form of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/officeForm.html");
