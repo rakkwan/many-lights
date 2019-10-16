@@ -1,35 +1,99 @@
 <!--
+   Robert Hill III, CSM @RH3
+   10/05/2019
+   homePage.html
+   This file contains the code for html components used to display the HomePage of
+   One Stop WA. BASIC resource ->  https://mdbootstrap.com/docs/jquery/components/
 
-Robert Hill III, CSM @RH3
-10/05/2019
-homePage.html
-This file contains the code for html components used to display the HomePage of
-One Stop WA. BASIC resource ->  https://mdbootstrap.com/docs/jquery/components/
-
--->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h2 class="display-4">One Stop WA</h2>
-        <hr>
-        <p class="lead">Online convenience for adoptive families of Washington state
-            to view varieties of available resources.</p>
-    </div>
-</div>
+   -->
 <div class="container-fluid">
-    <!--image-->
-    <div class="text-center mh-75">
-        <a href="#">
-            <img src="./image/homePage/oneStopHands.png" class="img-fluid w-75 p-3" alt="One Stop Hands">
-            <a>
-                <div class="mask waves-effect waves-light rgba-yellow-slight"></div>
-            </a>
-        </a>
-    </div>
-    <!--image-->
-    <!--button-->
-    <div class="text-center">
-        <!--Button to Resources-->
-        <a href="resources"><button type="button" class="btn btn-yellow">View Resources</button></a>
-        <!--Button to Resources-->
-    </div><!--image end-->
+    <!-- Main navigation -->
+    <header>
+        <!-- Intro -->
+        <section class="view">
+            <!-- Homepage Content -->
+            <div class="row">
+                <!-- Left side -->
+                <div class="col-md-6">
+                    <!-- FlexBox -->
+                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                        <!--Title & Description-->
+                        <div class="container">
+                            <h1 class="display-4">One Stop WA</h1>
+                            <p class="lead">Convenience for families of Washington
+                                to <em>Share</em> and <em>View</em> various <strong>Resources</strong> to assist adoptive families.
+                            </p>
+                        </div>
+                        <!--Title & Description-->
+                        <!-- Go to Recommendation Content -->
+                        <div class="container">
+                            <!--Grid row-->
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-md-12 mb-4 black-text text-center">
+                                    <div class="mr-auto">
+                                        <a href="recommended" class="btn btn-outline-secondary waves-effect btn-margin btn-rounded align-items-center" data-wow-delay="0.4s">Share
+                                            <i class="fas fa-caret-right ml-3"></i>
+                                        </a>
+                                    </div>
+                                    <h5 class="h5-responsive black-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"
+                                        data-wow-delay="0.3s"><strong>Post</strong> a Resource <br> (on OneStop WA)</h5>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                        </div>
+                        <!-- Go to Recommendation Content -->
+                    </div>
+                    <!-- FlexBox -->
+                </div>
+                <!-- Left Side -->
+                <!-- Right Side -->
+                <div class="col-md-6">
+                    <!--Pic-->
+                    <div class="view">
+                        <img src="./image/homePage/oneStopHands.png" class="img-fluid" alt="OneStopWAHands">
+                        <div class="mask flex-center hm-gradient">
+                        </div>
+                    </div>
+                    <!-- Pic -->
+                    <!-- Mask & Flex box options-->
+                    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+                        <!-- Content -->
+                        <div class="container">
+                            <!--Grid row-->
+                            <div class="row">
+                                <!--Grid column-->
+                                <div class="col-md-12 mb-4 white-text text-center">
+                                    <!--Hack Line up the Buttons on Desktop-->
+                                    <div class="container">
+                                        <h2 class="display-4"><br></h2>
+                                        <p class="lead"><br></p>
+                                    </div>
+                                    <!--Hack Line up the Buttons on Desktop-->
+                                    <!--Go to All Resources Content-->
+                                    <div class="mr-auto">
+                                        <a href="resources">
+                                            <button type="button" class="btn btn-yellow btn-margin btn-rounded align-items-center">View<i class="fas fa-caret-left ml-3"></i></button>
+                                        </a>
+                                    </div>
+                                    <!--Go to All Resources Content-->
+                                    <h4 class="h5-responsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown"
+                                        data-wow-delay="0.3s">(See <strong>Resources</strong>)</h4>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                        </div>
+                        <!-- Content -->
+                    </div>
+                    <!-- Mask & Flex box options-->
+                </div>
+                <!-- Right side -->
+            </div>
+            <!--Homepage Content-->
+        </section>
+        <!-- Intro -->
+    </header>
+    <!-- Main navigation -->
 </div>
