@@ -23,7 +23,6 @@ Author: Samantha DeSmul
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <script type="text/javascript" src="{{@BASE}}/datatable.js"></script>
     <title>{{@title}}</title>
 
 
@@ -54,14 +53,10 @@ Author: Samantha DeSmul
                 </a>
             </li>
 
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Available Resources</a>
-                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <!--                    <a class="dropdown-item" href="#">View</a>-->
-                    <a class="dropdown-item" href="recommended">Recommend a Resource</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link err" href="recommended">Recommend a Resource
+                    <span class="sr-only">(current)</span>
+                </a>
             </li>
 
             <li class="nav-item">
