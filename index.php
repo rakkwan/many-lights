@@ -46,9 +46,9 @@ $f3->route('GET /resources', function ($f3) {
     $view = new Template();
     $f3->set('title', "Resources");
 
-//    echo $view->render('views/includes/header.html');
+    echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
-//    echo $view->render('views/includes/footer.html');
+    echo $view->render('views/includes/footer.html');
 });
 
 // recommended form
