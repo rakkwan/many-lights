@@ -79,7 +79,11 @@ function validEmail($email)
  */
 function validPhone($phone)
 {
-    return !empty($phone) && ctype_digit($phone) && strlen($phone) == 10;
+    //eliminate every char except 0-9
+    $justNums = preg_replace("/[^0-9]/", '', $phone);
+
+    //if we have 10 digits left, it's probably valid.
+    return strlen($justNums) == 10;
 }
 
 /**

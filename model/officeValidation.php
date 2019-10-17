@@ -44,7 +44,7 @@ function validOfficeForm()
  */
 function validOffice($office)
 {
-    return !empty($office) && ctype_alpha($office);
+    return !empty($office) && !ctype_digit($office);
 }
 
 
@@ -56,6 +56,7 @@ function validOffice($office)
 
 function validOfficeEmail($email)
 {
+
     return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
@@ -67,7 +68,11 @@ function validOfficeEmail($email)
  */
 function validOfficePhone($phone)
 {
-    return !empty($phone) && ctype_digit($phone) && strlen($phone) == 10;
+    //eliminate every char except 0-9
+    $justNums = preg_replace("/[^0-9]/", '', $phone);
+
+    //if we have 10 digits left, it's probably valid.
+    return strlen($justNums) == 10;
 }
 
 /**
