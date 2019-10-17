@@ -5,73 +5,76 @@
     This is the form for an adoptive family to share the resources
 
 -->
-<div class="jumbotron">
-    <div class="contain white">
-        <h2>Please leave your recommendation below.</h2>
+<!--<div class="jumbotron">-->
+<!--    <div class="contain white">-->
+<!--        <h2>Please leave your recommendation below.</h2>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Contact Information container -->
+<div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
+    <h1 class="text-center">Your Contact Information</h1>
+    <hr>
+
+    <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
-</div>
-
-
-<div class="jumbotron">
-    <div class="container white">
-
-        <form action="#" method="post">
-            <!-- Your Contact Information container -->
-            <div class="jumbotron">
-                <h1 class="text-center">Your Contact Information</h1>
-
+    <!-- Form container-->
+    <form action="#" method="post">
+        <div class="row ml-4 mt-4">
+            <div class="col-lg-8">
                 <!-- First name inputs -->
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label> First Name</label>
-                        <input type="text" class="form-control" name="fname" value="{{ @fname }}">
-                        <check if="{{ isset(@errors['fname']) }}">
-                            <span class="text-danger">{{ @errors['fname'] }}</span>
-                        </check>
-                    </div>
-                </div>
+                <label class="w-75">
+                    <strong>First Name</strong>
+                    <input type="text" class="form-control" name="fname" value="{{ @fname }}">
+                    <check if="{{ isset(@errors['fname']) }}">
+                        <span class="text-danger">{{ @errors['fname'] }}</span>
+                    </check>
+                </label>
 
                 <!-- Last name inputs -->
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label> Last Name</label>
-                        <input type="text" class="form-control" name="lname" value="{{ @lname }}">
-                        <check if="{{ isset(@errors['lname']) }}">
-                            <span class="text-danger">{{ @errors['lname'] }}</span>
-                        </check>
-                    </div>
-                </div>
+                <label class="w-75">
+                    <strong>Last Name</strong>
+                    <input type="text" class="form-control" name="lname" value="{{ @lname }}">
+                    <check if="{{ isset(@errors['lname']) }}">
+                        <span class="text-danger">{{ @errors['lname'] }}</span>
+                    </check>
+                </label>
 
-                <!-- Email inputs -->
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label> Email</label> <label class="orange-text">(john@example.com)</label>
-                        <input type="text" class="form-control" name="email" value="{{ @email }}">
-                        <check if="{{ isset(@errors['email']) }}">
-                            <span class="text-danger">{{ @errors['email'] }}</span>
-                        </check>
-                    </div>
-                </div>
+                <!-- Email inputs-->
+                <label class="w-75">
+                    <strong>Email</strong>
+                    <label class="orange-text mb-0">(john@example.com)</label>
+                    <input type="text" class="form-control" name="email" value="{{ @email }}">
+                    <check if="{{ isset(@errors['email']) }}">
+                        <span class="text-danger">{{ @errors['email'] }}</span>
+                    </check>
+                </label>
 
                 <!-- Phone number inputs-->
-                <div class="row ml-4 mt-4">
-                    <div class="col-6">
-                        <label> Phone Number</label>
-                        <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
-                        <check if="{{ isset(@errors['phone']) }}">
-                            <span class="text-danger">{{ @errors['phone'] }}</span>
-                        </check>
-                    </div>
-                </div>
+                <label class="w-75">
+                    <strong>Phone Number</strong>
+                    <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
+                    <check if="{{ isset(@errors['phone']) }}">
+                        <span class="text-danger">{{ @errors['phone'] }}</span>
+                    </check>
+                </label>
+            </div>  <!-- end of left column-->
 
-            <!-- Next button -->
-            <div class="row mb-2 pr-2">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-yellow btn-sm float-right">Next></button>
-                </div>
+            <div class="col-lg-4">
+                <p class="bg-light mt-4 mr-5 p-2 rounded">
+                    Please fill out your personal contact information
+                    to recommend a service or support resource.
+                </p>
+            </div>  <!-- end of right column -->
+        </div>  <!-- end of row-->
+
+        <!-- Next button -->
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-yellow btn-sm float-right">Next></button>
             </div>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
