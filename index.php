@@ -59,18 +59,14 @@ $f3->route('GET|POST /recommended', function ($f3)
         // Get data from form
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
-        //$address = $_POST['address'];
         $email = $_POST['email'];
         $phone =$_POST['phone'];
-        //$message = $_POST['message'];
 
         // Add data to hive
         $f3->set('fname', $fname);
         $f3->set('lname', $lname);
-        //$f3->set('address', $address);
         $f3->set('email', $email);
         $f3->set('phone', $phone);
-        //$f3->set('message', $message);
 
         // if data is valid
         if (validForm())
@@ -78,10 +74,8 @@ $f3->route('GET|POST /recommended', function ($f3)
             // Write data to session
             $_SESSION['fname'] = $fname;
             $_SESSION['lname'] = $lname;
-            //$_SESSION['address'] = $address;
             $_SESSION['email'] = $email;
             $_SESSION['phone'] = $phone;
-            //$_SESSION['message'] = $message;
 
             // redirect to confirmation
             $f3->reroute('/provider');
@@ -126,8 +120,15 @@ $f3->route('GET|POST /provider', function ($f3)
         {
             // Write data to session
             $_SESSION['office'] = $office;
-            $_SESSION['office_email'] = $office_email;
+            $_SESSION['address'] = $address;
+            $_SESSION['city'] = $city;
+            $_SESSION['state'] = $state;
+            $_SESSION['zip'] = $zip;
             $_SESSION['office_phone'] = $office_phone;
+            $_SESSION['office_email'] = $office_email;
+            $_SESSION['website'] = $website;
+            $_SESSION['comments'] = $comments;
+
 
             // redirect to confirmation
             $f3->reroute('/confirmation');
