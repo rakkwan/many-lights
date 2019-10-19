@@ -17,6 +17,9 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
+require_once ('model/thereapistValidation.php');
+
+
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
@@ -51,7 +54,7 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-// recommended form
+// personal contact info form route
 $f3->route('GET|POST /recommended', function ($f3)
 {
     //If form has been submitted, validate
@@ -60,7 +63,7 @@ $f3->route('GET|POST /recommended', function ($f3)
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $email = $_POST['email'];
-        $phone =$_POST['phone'];
+        $phone = $_POST['phone'];
 
         // Add data to hive
         $f3->set('fname', $fname);
@@ -88,6 +91,7 @@ $f3->route('GET|POST /recommended', function ($f3)
     echo $view->render('views/includes/footer.html');
 });
 
+// office information form route
 $f3->route('GET|POST /provider', function ($f3)
 {
     //If form has been submitted, validate
@@ -129,9 +133,8 @@ $f3->route('GET|POST /provider', function ($f3)
             $_SESSION['website'] = $website;
             $_SESSION['comments'] = $comments;
 
-
             // redirect to confirmation
-            $f3->reroute('/confirmation');
+            $f3->reroute('/therapist');
         }
     }
 
@@ -142,6 +145,48 @@ $f3->route('GET|POST /provider', function ($f3)
     echo $view->render('views/includes/footer.html');
 });
 
+// therapist form route
+$f3->route('GET|POST /therapist', function ($f3)
+{
+    //If form has been submitted, validate
+    if (!empty($_POST)) {
+        // Get data from form
+        $theraFname = $_POST['theraLname'];
+        $theraLname = $_POST['theraLname'];
+        $theraEmail = $_POST['theraEmail'];
+        $theraPhone = $_POST['thereaPhone'];
+        $theraGender = $_POST['theraGender'];
+
+        // Add data to hive
+        $f3->set('theraFname', $theraFname);
+        $f3->set('theraLname', $theraLname);
+        $f3->set('theraEmail', $theraEmail);
+        $f3->set('theraPhone', $theraPhone);
+        $f3->set('theraGender', $theraGender);
+
+        // if data is valid
+        if (validTherapist())
+        {
+            // Write data to session
+            $_SESSION['theraFname'] = $theraFname;
+            $_SESSION['theraLname'] = $theraLname;
+            $_SESSION['theraEmail'] = $theraEmail;
+            $_SESSION['theraPhone'] = $theraPhone;
+            $_SESSION['theraGender'] = $theraGender;
+
+            // redirect to confirmation
+            $f3->reroute('/confirmation');
+        }
+    }
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render('views/therapistForm.html');
+    echo $view->render('views/includes/footer.html');
+});
+
+
+// Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
     //display the confirmation of the page
     $view = new Template();
@@ -149,7 +194,6 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     echo $view->render("views/confirmation.html");
     echo $view->render('views/includes/footer.html');
 });
-
 
 //run Fat-free
 $f3->run();
