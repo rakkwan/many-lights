@@ -154,7 +154,7 @@ $f3->route('GET|POST /therapist', function ($f3)
         $theraFname = $_POST['theraLname'];
         $theraLname = $_POST['theraLname'];
         $theraEmail = $_POST['theraEmail'];
-        $theraPhone = $_POST['thereaPhone'];
+        $theraPhone = $_POST['theraPhone'];
         $theraGender = $_POST['theraGender'];
 
         // Add data to hive
