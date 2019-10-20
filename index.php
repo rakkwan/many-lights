@@ -195,5 +195,14 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
+//Admin to be able to view recommended resource listings to update listings Status
+$f3->route('GET|POST /admin', function ($f3) {
+    //display the admin page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render('views/adminView.html');
+    echo $view->render('views/includes/footer.html');
+});
+
 //run Fat-free
 $f3->run();
