@@ -111,6 +111,7 @@ $f3->route('GET|POST /provider', function ($f3) {
     if (!empty($_POST)) {
 
         // Get data from form
+        $category = $_POST['category'];
         $office = $_POST['office'];
         $address = $_POST['address'];
         $city = $_POST['city'];
@@ -122,6 +123,7 @@ $f3->route('GET|POST /provider', function ($f3) {
         $comments = $_POST['comments'];
 
         // Add data to hive
+        $f3->set('category', $category);
         $f3->set('office', $office);
         $f3->set('address', $address);
         $f3->set('city', $city);
@@ -135,6 +137,7 @@ $f3->route('GET|POST /provider', function ($f3) {
         // if data is valid
         if (validOfficeForm()) {
             // Write data to session
+            $_SESSION['category'] = $category;
             $_SESSION['office'] = $office;
             $_SESSION['address'] = $address;
             $_SESSION['city'] = $city;

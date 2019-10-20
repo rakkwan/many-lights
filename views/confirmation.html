@@ -18,24 +18,24 @@
 
 <div class="container white mt-4">
     <div class="jumbotron">
-        <h2 class="display-4 text-center"></h2>
-        <h3>Your information</h3>
+        <h3 class="text-center">Your information</h3>
         <p>Name: {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
         <p>Email: {{ @SESSION.email }}</p>
         <p>Phone: {{ @SESSION.phone }}</p>
         <hr class="my-4">
-        <h3> Service or support information </h3>
-        <p>Business/Service: {{ @SESSION.office }}</p>
-        <p>Address: {{ @SESSION.address }}</p>
-        <p>City: {{ @SESSION.city }}</p>
-        <p>State: {{ @SESSION.state }}</p>
-        <p>Zip: {{ @SESSION.zip}}</p>
-        <p>Business Phone: {{ @SESSION.office_phone }}</p>
-        <p>Business Email: {{ @SESSION.office_email }}</p>
-        <p>Business Website: {{ @SESSION.website }}</p>
+        <h3 class="text-center"> Services/Specialties information </h3>
+        <p>Category: {{ @SESSION.category}}</p>
+        <p>Services/Specialties Name: {{ @SESSION.office }}</p>
+        <p>Services/Specialties Address: {{ @SESSION.address }}</p>
+        <p>Services/Specialties City: {{ @SESSION.city }}</p>
+        <p>Services/Specialties State: {{ @SESSION.state }}</p>
+        <p>Services/Specialties Zip: {{ @SESSION.zip}}</p>
+        <p>Services/Specialties Phone: {{ @SESSION.office_phone }}</p>
+        <p>Services/Specialties Email: {{ @SESSION.office_email }}</p>
+        <p>Services/Specialties Website: {{ @SESSION.website }}</p>
         <p>Comments: {{ @SESSION.comments }}</p>
         <hr class="my-4">
-        <h3>Therapist information</h3>
+        <h3 class="text-center">Therapist information</h3>
         <p>Therapist Name: {{ @SESSION.theraFname}} {{ @SESSION.theraLname}}</p>
         <p>Therapist Gender: {{ @SESSION.theraGender}}</p>
         <p>Therapist Email: {{ @SESSION.theraEmail}}</p>
@@ -44,7 +44,7 @@
         <p>Credential: {{ @SESSION.credential}}</p>
         <p>Secondary Credential: {{ @SESSION.secondCredential}}</p>
         <hr class="my-4">
-        <h3>Optional information</h3>
+        <h3 class="text-center">Optional information</h3>
         <p>Ages seen: {{ @SESSION.age}}</p>
         <p>Languages/Interpreter: {{ @SESSION.interpreter}}</p>
         <p>Insurance Accepted: {{ @SESSION.insurance}}</p>
