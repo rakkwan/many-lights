@@ -28,7 +28,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 // arrays of age
-$f3->set('age', array('4', '9', '12', '17', '18'));
+$f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 
 //Define a default root, there can be multiple routes
 
