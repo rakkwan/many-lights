@@ -29,6 +29,20 @@ $f3->set('DEBUG', 3);
 // arrays of age
 $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 
+// arrays of days
+$f3->set('days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday',
+    'saturday', 'sunday'));
+
+// arrays of time of each day
+$f3->set('timesMonday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesTuesday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesWednesday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesThursday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesFriday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesSaturday', array('morning', 'afternoon', 'evening'));
+$f3->set('timesSunday', array('morning', 'afternoon', 'evening'));
+
+
 //Define a default root, there can be multiple routes
 
 //homepage
