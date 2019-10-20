@@ -231,7 +231,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
 
 
             // redirect to confirmation
-            $f3->reroute('/confirmation');
+            $f3->reroute('/dayHour');
         }
     }
     //display the confirmation of the page
@@ -240,6 +240,54 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
     echo $view->render("views/optionalForm.html");
     echo $view->render('views/includes/footer.html');
 });
+
+
+// day and hour information route
+$f3->route('GET|POST /dayHour', function ($f3) {
+
+    /*
+    //If form has been submitted, validate
+    if (!empty($_POST)) {
+        // Get data from form
+        $age = $_POST['age'];
+        $interpreter = $_POST['interpreter'];
+        $insurance = $_POST['insurance'];
+        $fee = $_POST['fee'];
+
+        // Add data to hive
+        $f3->set('age', $age);
+        $f3->set('interpreter', $interpreter);
+        $f3->set('insurance', $insurance);
+        $f3->set('fee', $fee);
+
+        // if data is valid
+        if (!empty($_POST)) {
+            // Write data to session
+            $_SESSION['age'] = $age;
+            $_SESSION['interpreter'] = $interpreter;
+            $_SESSION['insurance'] = $insurance;
+            $_SESSION['fee'] = $fee;
+
+            if (empty($age)) {
+                $_SESSION['age'] = "No age selected";
+            } else {
+                $_SESSION['age'] = implode(', ', $age);
+            }
+
+
+            // redirect to confirmation
+            $f3->reroute('/confirmation');
+        }
+    }
+
+    */
+    //display the day and hour of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/dayHourForm.html");
+    echo $view->render('views/includes/footer.html');
+});
+
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {

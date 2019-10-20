@@ -1,0 +1,289 @@
+<!--
+    Name: Jittima Goodrich
+    Date: 10/19/2019
+    File: dayHourForm.html
+    This is the form for an adoptive family to share the resources
+
+-->
+
+<!-- Contact Information container -->
+<div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
+    <h1 class="text-center">Days and Hours of Operation</h1>
+    <hr>
+
+    <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <!-- Form container-->
+    <form action="#" method="post">
+
+        <!-- Office hours inputs -->
+        <div class="row ml-4 mt-4">
+            <div class="col-sm-12 pr-4">
+                <h3>Choose Days and Hours</h3>
+            </div>
+
+            <div class="col-sm-6 pl-5">
+
+                <label><strong>Week days</strong></label>
+
+                <!--Monday-->
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="monday"
+                        <check if="{{ @days === 'monday' }}">checked</check>>Monday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+
+                <!--Tuesday-->
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="tuesday"
+                        <check if="{{ @days === 'tuesday' }}">checked</check>>Tuesday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+                <!-- Wednesday-->
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="wednesday"
+                        <check if="{{ @days === 'wednesday' }}">checked</check>>Wednesday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+
+                <!-- Thursday-->
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="thursday"
+                        <check if="{{ @days === 'thursday' }}">checked</check>>Thursday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+
+                <!--Friday-->
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="friday"
+                        <check if="{{ @days === 'friday' }}">checked</check>>Friday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 pl-5">
+                <label><strong>Weekends</strong></label>
+
+                <!--Saturday-->
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="saturday"
+                        <check if="{{ @days === 'saturday' }}">checked</check>>Saturday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+
+                <!--Sunday-->
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="days[]" value="sunday"
+                        <check if="{{ @days === 'sunday' }}">checked</check>>Sunday
+                    </label>
+
+                    <!-- Time-->
+                    <div class="col-sm-3">
+                        <label><strong></strong></label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="morning"
+                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="afternoon"
+                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="times[]" value="evening"
+                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
+                            </label>
+                        </div>
+
+                    </div>  <!-- end of time column-->
+                </div>
+
+
+            </div>
+
+
+
+        </div>  <!-- end of row-->
+
+        <!-- Next button -->
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="optionalInfo" class="btn btn-outline-purple btn-sm waves-effect">Back</a>
+                <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
+            </div>
+        </div>
+    </form>
+</div>
