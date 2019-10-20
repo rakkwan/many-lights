@@ -8,7 +8,7 @@
 
 <!-- Contact Information container -->
 <div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
-    <h1 class="text-center">Other Informations</h1>
+    <h1 class="text-center">Other Information</h1>
     <hr>
 
     <div class="progress">
@@ -27,31 +27,15 @@
             <div class="col-sm-3 pl-5">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="4"
-                        <check if="{{ @age === '4' }}">checked</check>>0 - 4
+                        <input class="form-check-input" type="checkbox" name="age[]" value="0-4"
+                        <check if="{{ @age === '0-4' }}">checked</check>>0 - 4
                     </label>
                 </div>
 
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="9"
-                        <check if="{{ @age === '9' }}">checked</check>>5 - 9
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="12"
-                        <check if="{{ @age === '12' }}">checked</check>>10 - 12
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="17"
-                        <check if="{{ @age === '17' }}">checked</check>>13 - 17
+                        <input class="form-check-input" type="checkbox" name="age[]" value="5-9"
+                        <check if="{{ @age === '5-9' }}">checked</check>>5 - 9
                     </label>
                 </div>
             </div>
@@ -59,8 +43,24 @@
             <div class="col-sm-3">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="18"
-                        <check if="{{ @age === '18' }}">checked</check>>18+
+                        <input class="form-check-input" type="checkbox" name="age[]" value="10-12"
+                        <check if="{{ @age === '10-12' }}">checked</check>>10 - 12
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="13-17"
+                        <check if="{{ @age === '13-17' }}">checked</check>>13 - 17
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="18+"
+                        <check if="{{ @age === '18+' }}">checked</check>>18+
                     </label>
                 </div>
             </div>
