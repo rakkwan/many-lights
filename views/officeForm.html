@@ -17,7 +17,7 @@
     <hr>
 
     <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
     <!-- Form container -->
@@ -28,6 +28,7 @@
                 <!-- Office name inputs -->
                 <label class="w-75">
                     <strong>Business/Service Name</strong>
+                    <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office" value="{{ @office }}" >
                     <check if="{{ isset(@errors['office']) }}">
                         <span class="text-danger">{{ @errors['office'] }}</span>
@@ -37,6 +38,7 @@
                 <!-- Office street address inputs-->
                 <label class="w-75">
                     <strong>Business Street Address</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="address" value="{{ @address }}" >
                     <check if="{{ isset(@errors['address']) }}">
                         <span class="text-danger">{{ @errors['address'] }}</span>
@@ -46,6 +48,7 @@
                 <!-- Office city inputs-->
                 <label class="w-75">
                     <strong>Business City</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="city" value="{{ @city }}" >
                     <check if="{{ isset(@errors['city']) }}">
                         <span class="text-danger">{{ @errors['city'] }}</span>
@@ -55,6 +58,7 @@
                 <!-- Office state inputs-->
                 <label class="w-75">
                     <strong>Business State</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <br>
 
                     <select class="form-control" name="state">
@@ -116,6 +120,7 @@
                 <!-- Office zip inputs-->
                 <label class="w-75">
                     <strong>ZIP Code</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
                     <check if="{{ isset(@errors['zip']) }}">
                         <span class="text-danger">{{ @errors['zip'] }}</span>
@@ -125,6 +130,7 @@
                 <!-- Office Phone number inputs-->
                 <label class="w-75">
                     <strong>Business Phone Number</strong>
+                    <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office_phone" value="{{ @office_phone }}" >
                     <check if="{{ isset(@errors['office_phone']) }}">
                         <span class="text-danger">{{ @errors['office_phone'] }}</span>
@@ -134,7 +140,8 @@
                 <!-- Email inputs-->
                 <label class="w-75">
                     <strong>Business Email</strong>
-                    <label class="orange-text mb-0">(john@example.com)</label>
+                    <label class="red-text mb-0">*</label>
+                    <label class="blue-text mb-0">(john@example.com)</label>
                     <input type="text" class="form-control" name="office_email" value="{{ @office_email }}">
                     <check if="{{ isset(@errors['office_email']) }}">
                         <span class="text-danger">{{ @errors['office_email'] }}</span>
@@ -144,6 +151,7 @@
                 <!-- Website inputs-->
                 <label class="w-75">
                     <strong>Business Website</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="website" value="{{ @website }}" >
                     <check if="{{ isset(@errors['website']) }}">
                         <span class="text-danger">{{ @errors['website'] }}</span>
@@ -152,7 +160,8 @@
 
                 <!-- Message inputs-->
                 <label class="w-75">
-                    <strong>Comments (optional)</strong>
+                    <strong>Comments</strong>
+                    <label class="orange-text mb-0">(optional)</label>
                     <textarea type="text" class="form-control" name="comments" value="{{ @comments }}"></textarea>
                     <check if="{{ isset(@errors['comments']) }}">
                         <span class="text-danger">{{ @errors['comments'] }}</span>
@@ -171,7 +180,8 @@
         <!-- Next button -->
         <div class="row">
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-yellow btn-sm float-right">Next></button>
+                <a href="recommended"  class="btn btn-outline-purple btn-sm waves-effect">Back</a>
+                <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
             </div>
         </div>
     </form>

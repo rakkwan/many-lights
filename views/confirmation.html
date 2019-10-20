@@ -34,7 +34,28 @@
         <p>Business Email: {{ @SESSION.office_email }}</p>
         <p>Business Website: {{ @SESSION.website }}</p>
         <p>Comments: {{ @SESSION.comments }}</p>
+        <hr class="my-4">
+        <h3>Therapist information</h3>
+        <p>Therapist Name: {{ @SESSION.theraFname}} {{ @SESSION.theraLname}}</p>
+        <p>Therapist Gender: {{ @SESSION.theraGender}}</p>
+        <p>Therapist Email: {{ @SESSION.theraEmail}}</p>
+        <p>Therapist Phone Number: {{ @SESSION.theraPhone}}</p>
+        <p>Therapist Secondary Phone Number: {{ @SESSION.secondPhone}}</p>
+        <p>Credential: {{ @SESSION.credential}}</p>
+        <p>Secondary Credential: {{ @SESSION.secondCredential}}</p>
+        <hr class="my-4">
+        <h3>Optional information</h3>
+        <p>Ages seen: {{ @SESSION.age}}</p>
+        <p>Languages/Interpreter: {{ @SESSION.interpreter}}</p>
+        <p>Insurance Accepted: {{ @SESSION.insurance}}</p>
+        <p>Fees: {{ @SESSION.fee}}</p>
 
+    </div>
+    <!-- Next button -->
+    <div class="row">
+        <div class="col-sm-12">
+            <a href=""  class="btn btn-outline-purple btn-sm waves-effect">Back</a>
+        </div>
     </div>
 </div>
 </div>

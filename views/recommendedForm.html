@@ -22,6 +22,7 @@
                 <!-- First name inputs -->
                 <label class="w-75">
                     <strong>First Name</strong>
+                    <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="fname" value="{{ @fname }}">
                     <check if="{{ isset(@errors['fname']) }}">
                         <span class="text-danger">{{ @errors['fname'] }}</span>
@@ -31,6 +32,7 @@
                 <!-- Last name inputs -->
                 <label class="w-75">
                     <strong>Last Name</strong>
+                    <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="lname" value="{{ @lname }}">
                     <check if="{{ isset(@errors['lname']) }}">
                         <span class="text-danger">{{ @errors['lname'] }}</span>
@@ -40,7 +42,8 @@
                 <!-- Email inputs-->
                 <label class="w-75">
                     <strong>Email</strong>
-                    <label class="orange-text mb-0">(john@example.com)</label>
+                    <label class="red-text mb-0">*</label>
+                    <label class="blue-text mb-0">(john@example.com)</label>
                     <input type="text" class="form-control" name="email" value="{{ @email }}">
                     <check if="{{ isset(@errors['email']) }}">
                         <span class="text-danger">{{ @errors['email'] }}</span>
@@ -50,6 +53,7 @@
                 <!-- Phone number inputs-->
                 <label class="w-75">
                     <strong>Phone Number</strong>
+                    <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="phone" value="{{ @phone }}" >
                     <check if="{{ isset(@errors['phone']) }}">
                         <span class="text-danger">{{ @errors['phone'] }}</span>
@@ -68,7 +72,7 @@
         <!-- Next button -->
         <div class="row">
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-yellow btn-sm float-right">Next></button>
+                <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
             </div>
         </div>
     </form>

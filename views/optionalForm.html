@@ -1,0 +1,103 @@
+<!--
+    Name: Jittima Goodrich
+    Date: 10/19/2019
+    File: optionalForm.html
+    This is the form for an adoptive family to share the resources
+
+-->
+
+<!-- Contact Information container -->
+<div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
+    <h1 class="text-center">Other Information</h1>
+    <hr>
+
+    <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <!-- Form container-->
+    <form action="#" method="post">
+
+        <!-- Age seen -->
+        <div class="row ml-4 mt-4">
+            <div class="col-sm-12 pr-4">
+                <label><strong>Ages Seen</strong></label>
+            </div>
+
+            <div class="col-sm-3 pl-5">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="0-4"
+                        <check if="{{ @age === '0-4' }}">checked</check>>0 - 4
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="5-9"
+                        <check if="{{ @age === '5-9' }}">checked</check>>5 - 9
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="10-12"
+                        <check if="{{ @age === '10-12' }}">checked</check>>10 - 12
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="13-17"
+                        <check if="{{ @age === '13-17' }}">checked</check>>13 - 17
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]" value="18+"
+                        <check if="{{ @age === '18+' }}">checked</check>>18+
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row ml-4 mt-4">
+            <div class="col-lg-8">
+                <!-- Languages/interpreter -->
+                <label class="w-75">
+                    <strong>Languages/interpreter</strong>
+                    <label class="orange-text mb-0">(optional)</label>
+                    <input type="text" class="form-control" name="interpreter" value="{{ @interpreter }}">
+                </label>
+
+                <!-- Insurance Accepted -->
+                <label class="w-75">
+                    <strong>Insurance accepted</strong>
+                    <label class="orange-text mb-0">(optional)</label>
+                    <input type="text" class="form-control" name="insurance" value="{{ @insurance }}">
+                </label>
+
+                <!-- Fees -->
+                <label class="w-75">
+                    <strong>Fees</strong>
+                    <label class="orange-text mb-0">(optional)</label>
+                    <input type="text" class="form-control" name="fee" value="{{ @fee }}">
+                </label>
+            </div>  <!-- end of left column-->
+
+        </div>  <!-- end of row-->
+
+        <!-- Next button -->
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="therapist" class="btn btn-outline-purple btn-sm waves-effect">Back</a>
+                <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
+            </div>
+        </div>
+    </form>
+</div>

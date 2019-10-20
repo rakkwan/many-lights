@@ -24,6 +24,12 @@ require_once ('model/thereapistValidation.php');
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
 
+//Turn on Fat-Free error reporting
+$f3->set('DEBUG', 3);
+
+// arrays of age
+$f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
+
 //Define a default root, there can be multiple routes
 
 //homepage
@@ -154,7 +160,7 @@ $f3->route('GET|POST /therapist', function ($f3)
         $theraFname = $_POST['theraLname'];
         $theraLname = $_POST['theraLname'];
         $theraEmail = $_POST['theraEmail'];
-        $theraPhone = $_POST['thereaPhone'];
+        $theraPhone = $_POST['theraPhone'];
         $theraGender = $_POST['theraGender'];
 
         // Add data to hive
@@ -175,13 +181,60 @@ $f3->route('GET|POST /therapist', function ($f3)
             $_SESSION['theraGender'] = $theraGender;
 
             // redirect to confirmation
-            $f3->reroute('/confirmation');
+            $f3->reroute('/optionalInfo');
         }
     }
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render('views/therapistForm.html');
+    echo $view->render('views/includes/footer.html');
+});
+
+// optional information route
+$f3->route('GET|POST /optionalInfo', function ($f3) {
+
+    //If form has been submitted, validate
+    if (!empty($_POST)) {
+        // Get data from form
+        $age = $_POST['age'];
+        $interpreter = $_POST['interpreter'];
+        $insurance = $_POST['insurance'];
+        $fee = $_POST['fee'];
+
+        // Add data to hive
+        $f3->set('age', $age);
+        $f3->set('interpreter', $interpreter);
+        $f3->set('insurance', $insurance);
+        $f3->set('fee', $fee);
+
+        // if data is valid
+        if (!empty($_POST))
+        {
+            // Write data to session
+            $_SESSION['age'] = $age;
+            $_SESSION['interpreter'] = $interpreter;
+            $_SESSION['insurance'] = $insurance;
+            $_SESSION['fee'] = $fee;
+
+            if(empty($age))
+            {
+                $_SESSION['age'] = "No age selected";
+            }
+            else
+            {
+                $_SESSION['age'] =  implode(', ', $age);
+            }
+
+
+            // redirect to confirmation
+            $f3->reroute('/confirmation');
+        }
+    }
+    //display the confirmation of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/optionalForm.html");
     echo $view->render('views/includes/footer.html');
 });
 
