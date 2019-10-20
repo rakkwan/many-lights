@@ -175,13 +175,39 @@ $f3->route('GET|POST /therapist', function ($f3)
             $_SESSION['theraGender'] = $theraGender;
 
             // redirect to confirmation
-            $f3->reroute('/confirmation');
+            $f3->reroute('/optionalInfo');
         }
     }
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render('views/therapistForm.html');
+    echo $view->render('views/includes/footer.html');
+});
+
+// optional information route
+$f3->route('GET|POST /optionalInfo', function ($f3) {
+
+    //If form has been submitted, validate
+    if (!empty($_POST)) {
+        // Get data from form
+        //$theraFname = $_POST['theraLname'];
+        $interpreter = $_POST['interpreter'];
+        $insurance = $_POST['insurance'];
+        $fee = $_POST['fee'];
+
+        // Add data to hive
+        //$f3->set('theraFname', $theraFname);
+        $f3->set('interpreter', $interpreter);
+        $f3->set('insurance', $insurance);
+        $f3->set('fee', $fee);
+
+        $f3->reroute('/confirmation');
+        }
+    //display the confirmation of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/optionalForm.html");
     echo $view->render('views/includes/footer.html');
 });
 
