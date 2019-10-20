@@ -17,8 +17,7 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
-require_once ('model/thereapistValidation.php');
-
+require_once('model/thereapistValidation.php');
 
 
 //create an instance of the Base class/ fat free object
@@ -60,9 +59,19 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
+$f3->route('GET /resource/service/*', function ($f3) {
+
+    //display the contents of the page
+    $view = new Template();
+    $f3->set('title', "Service");
+    echo '';
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/resources.html");
+    echo $view->render('views/includes/footer.html');
+});
+
 // personal contact info form route
-$f3->route('GET|POST /recommended', function ($f3)
-{
+$f3->route('GET|POST /recommended', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -78,8 +87,7 @@ $f3->route('GET|POST /recommended', function ($f3)
         $f3->set('phone', $phone);
 
         // if data is valid
-        if (validForm())
-        {
+        if (validForm()) {
             // Write data to session
             $_SESSION['fname'] = $fname;
             $_SESSION['lname'] = $lname;
@@ -98,8 +106,7 @@ $f3->route('GET|POST /recommended', function ($f3)
 });
 
 // office information form route
-$f3->route('GET|POST /provider', function ($f3)
-{
+$f3->route('GET|POST /provider', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
 
@@ -108,7 +115,7 @@ $f3->route('GET|POST /provider', function ($f3)
         $address = $_POST['address'];
         $city = $_POST['city'];
         $state = $_POST['state'];
-        $zip =$_POST['zip'];
+        $zip = $_POST['zip'];
         $office_phone = $_POST['office_phone'];
         $office_email = $_POST['office_email'];
         $website = $_POST['website'];
@@ -126,8 +133,7 @@ $f3->route('GET|POST /provider', function ($f3)
         $f3->set('comments', $comments);
 
         // if data is valid
-        if (validOfficeForm())
-        {
+        if (validOfficeForm()) {
             // Write data to session
             $_SESSION['office'] = $office;
             $_SESSION['address'] = $address;
@@ -152,8 +158,7 @@ $f3->route('GET|POST /provider', function ($f3)
 });
 
 // therapist form route
-$f3->route('GET|POST /therapist', function ($f3)
-{
+$f3->route('GET|POST /therapist', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -171,8 +176,7 @@ $f3->route('GET|POST /therapist', function ($f3)
         $f3->set('theraGender', $theraGender);
 
         // if data is valid
-        if (validTherapist())
-        {
+        if (validTherapist()) {
             // Write data to session
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
@@ -209,21 +213,17 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $f3->set('fee', $fee);
 
         // if data is valid
-        if (!empty($_POST))
-        {
+        if (!empty($_POST)) {
             // Write data to session
             $_SESSION['age'] = $age;
             $_SESSION['interpreter'] = $interpreter;
             $_SESSION['insurance'] = $insurance;
             $_SESSION['fee'] = $fee;
 
-            if(empty($age))
-            {
+            if (empty($age)) {
                 $_SESSION['age'] = "No age selected";
-            }
-            else
-            {
-                $_SESSION['age'] =  implode(', ', $age);
+            } else {
+                $_SESSION['age'] = implode(', ', $age);
             }
 
 
@@ -238,13 +238,21 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
     //display the confirmation of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/confirmation.html");
+    echo $view->render('views/includes/footer.html');
+});
+
+//Admin to be able to view recommended resource listings to update listings Status
+$f3->route('GET|POST /admin', function ($f3) {
+    //display the admin page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render('views/adminView.html');
     echo $view->render('views/includes/footer.html');
 });
 
