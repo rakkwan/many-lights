@@ -1,0 +1,298 @@
+<!--
+   Robert Hill III, CSM @RH3
+   10/15/2019
+   v1.1.0
+   homePage.html
+   This file contains the code for html components used to display the HomePage of
+   One Stop WA. BASIC resource ->  https://mdbootstrap.com/docs/jquery/components/
+   -->
+<div class="container-fluid">
+    <!-- Main navigation -->
+    <header>
+        <!-- Intro -->
+        <section class="view">
+            <!-- Homepage Content -->
+            <div class="row min-vh-100 d-flex p-2 col-example">
+                <!-- Left side -->
+                <div class="col-md-6">
+                    <!-- Title & Description -->
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container text-center">
+                            <h2 class="display-5">
+                                Admin Review
+                            </h2>
+                            <p class="lead">View
+                                <strong><em>Pending</em> Recommended</strong>
+                                <em>Resources</em>
+                                for OneStop WA listing.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Title & Description -->
+
+                    <!-- View Resource Table -->
+                    <!-- Table with panel -->
+                    <div class="card card-cascade narrower z-depth-2">
+
+                        <!--Card image-->
+                        <div class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center z-depth-1-half">
+
+                            <div>
+<!--                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light">-->
+<!--                                    <i class="fas fa-th-large mt-0"></i>-->
+<!--                                </button>-->
+                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light">
+                                    <i class="fas fa-columns mt-0"></i>
+                                </button>
+                            </div>
+
+                            <a href="" class="white-text mx-3">Recommended Resources</a>
+
+                            <div>
+<!--                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light">-->
+<!--                                    <i class="fas fa-pencil-alt mt-0"></i>-->
+<!--                                </button>-->
+<!--                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light">-->
+<!--                                    <i class="far fa-trash-alt mt-0"></i>-->
+<!--                                </button>-->
+<!--                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light">-->
+<!--                                    <i class="fas fa-info-circle mt-0"></i>-->
+<!--                                </button>-->
+                            </div>
+
+                        </div>
+                        <!--/Card image-->
+
+                        <div class="px-4">
+
+                            <div class="table-wrapper">
+                                <!--Table-->
+                                <table id="dtHorizontalVerticalExample" class="table table-hover mb-0 table-responsive">
+
+                                    <!--Table head-->
+                                    <thead>
+                                    <tr>
+                                        <!-- Head of Check Boxes -->
+                                        <th>
+<!--                                            <input class="form-check-input" type="checkbox" id="checkbox">-->
+<!--                                            <label class="form-check-label" for="checkbox"></label>-->
+                                        </th>
+                                        <!-- Head of Check Boxes -->
+                                        <!--Resources Columns-->
+                                            <!-- Resource Name -->
+                                            <th class="th-lg">
+                                                <a href="">Resource<br>Name
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Resource Name -->
+                                            <!-- Resource Phone Number -->
+                                            <th class="th-lg">
+                                                <a href="">Resource<br>Phone Number
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Resource Phone Number -->
+                                            <!-- Resource Email -->
+                                            <th class="th-lg">
+                                                <a href="">Resource<br>Email
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Resource Email -->
+                                        <!--Resources Columns-->
+                                        <!--Referrer/Recommended Columns-->
+                                            <!-- Referrer Contact Name Column tag -->
+                                            <th class="th-lg">
+                                                <a>Referrer<br>Name
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Referrer Contact Name Column tag -->
+                                            <!-- Referrer Email Column tag -->
+                                            <th class="th-lg">
+                                                <a href="">Referrer<br>Email
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Referrer Email Column tag -->
+                                            <!-- Referrer Phone Column tag -->
+                                            <th class="th-lg">
+                                                <a href="">Referrer<br>Phone
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Referrer Phone Column tag -->
+                                        <!--Referrer/Recommended Columns-->
+                                        <!--Therapist Required Columns-->
+                                            <!-- Therapist Name Column tag -->
+                                            <th class="th-lg">
+                                                <a>Therapist<br>Name
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Therapist Name Column tag -->
+                                            <!-- Therapist Gender Column tag -->
+                                            <th class="th-lg">
+                                                <a href="">Therapist<br>Gender
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Therapist Gender Column tag -->
+                                            <!-- Therapist Email Column tag -->
+                                            <th class="th-lg">
+                                                <a href="">Therapist<br> Email
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Therapist Email Column tag -->
+                                            <!-- Therapist Phone Column tag -->
+                                            <th class="th-lg">
+                                                <a href="">Therapist<br>Phone
+                                                    <i class="fas fa-sort ml-1"></i>
+                                                </a>
+                                            </th>
+                                            <!-- Therapist Phone Column tag -->
+                                        <!--Therapist Required Columns-->
+                                    </tr>
+                                    </thead>
+                                    <!--Table head-->
+
+                                    <!--Table body-->
+                                    <tbody>
+                                    <!-- Data -->
+                                    <tr>
+                                        <th scope="row" class="text-center">
+<!--                                            <input class="form-check-input" type="checkbox" id="checkbox1" name="groupOfDefaultRadios">-->
+<!--                                            <label class="form-check-label" for="checkbox1"></label>-->
+                                        </th>
+                                        <td>Resource Name </td>
+                                        <td>0987654321</td>
+                                        <td>Resource@test.com</td>
+                                        <td>Recommended by Mark Laster</td>
+                                        <td>mlaster@refer.com</td>
+                                        <td>1234567890</td>
+                                        <td>DR. Phil</td>
+                                        <td>Female</td>
+                                        <td>drphil@email.com</td>
+                                        <td>2062531234</td>
+                                    </tr>
+                                    <!-- Data -->
+                                    </tbody>
+                                    <!--Table body-->
+                                </table>
+                                <!--Table-->
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- Table with panel -->
+                    <!-- View Resource Table -->
+                </div>
+                <!-- Left Side -->
+                <!-- Right Side -->
+                <div class="col-md-6">
+                <!--WIP 10/20/2019-->
+<!--*  ? (isset information) show : hide-->
+                <!-- PREVIEW Pane                   -->
+                    <!-- Jumbotron -->
+                    <div class="jumbotron jumbotron-fluid text-center z-depth-5">
+<!-- Resource Info                        -->
+                    <!-- Resource Name info Title -->
+                        <h2 class="purple-text text-left ml-3 card-title h2">
+                            @ResourceName
+                        </h2>
+                    <!-- Resource Name info Title-->
+                        <!-- *Resource Address -->
+                        <p class="my-3 text-left ml-2">
+                            @ResourceAddress1, @ResourceAddress2,
+                            <!--                            <br>-->
+                            @ResourceCity, @ResourceState, @ResourceZip
+                        </p>
+                        <!-- *Resource Address -->
+                    <!-- Resource Phone & Email Information-->
+                        <p class="lead my-3 font-weight-bold">
+                            <a href="tel:@resourcePhone">
+                                <i class="fas fa-phone"></i>
+                                @ResourcePhone
+                            </a>
+                             |
+                            <a href="mailto:@email?Subject=OneStop%20WA%20Recommendation%20" target="_top">
+                                <i class="fas fa-envelope"></i>
+                                @ResourceEmail
+                            </a>
+                        </p>
+                    <!-- Resource Phone & Email Information-->
+                        <!-- *Comment Information-->
+                        <p class="lead">@ResourceComment</p>
+                        <!-- *Comment Information-->
+<!-- Resource Info                      -->
+                        <hr class="my-4">
+<!-- Referrer Info -->
+<!--                        &lt;!&ndash; Referrer Name &ndash;&gt;-->
+<!--                        <p class="purple-text my-4 font-weight-bold ml-2 text-left">-->
+<!--                            <span class="badge badge-warning">@ReferrerName</span>-->
+<!--                        </p>-->
+<!--                        &lt;!&ndash; Referrer Name &ndash;&gt;-->
+                        <!-- Referrer Phone & Email Information-->
+                        <p class="lead my-3 font-weight-lighter text-left ml-3">
+                            <span class="badge badge-warning">@ReferrerName</span>
+                            |
+                            <a href="tel:@referrerPhone">
+                                <i class="fas fa-phone"></i>
+                                @ReferrerPhone
+                            </a>
+                            |
+                            <a href="mailto:@referrerEmail?Subject=OneStop%20WA%20Recommendation%20" target="_top">
+                                <i class="fas fa-envelope"></i>
+                                @ReferrerEmail
+                            </a>
+                        </p>
+                        <!-- Referrer Phone & Email Information-->
+                        <!-- Grid row -->
+                        <div class="row d-flex justify-content-center">
+
+                            <!-- Grid column -->
+                            <div class="col-xl-7 pb-2">
+
+                                <p class="card-text">
+                                    @Therapist information
+
+                                    @Therapist Name: Hill Hill
+
+                                    @Therapist Gender: Female
+
+                                    @Therapist Email: test@mail.com
+
+                                    @Therapist Phone Number: 1234567890
+                                </p>
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                        <hr class="my-4">
+
+                        <div class="pt-2">
+                            <button type="button" class="btn btn-yellow waves-effect">
+                                Further Review<i class="fas fa-download ml-1"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-purple waves-effect">
+                                Approve <span class="far fa-gem ml-1"></span> Listing
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Jumbotron -->
+                <!-- REVIEW Pane                   -->
+                </div>
+                <!-- Right side -->
+            </div>
+            <!--Homepage Content-->
+        </section>
+        <!-- Intro -->
+    </header>
+    <!-- Main navigation -->
+</div>
