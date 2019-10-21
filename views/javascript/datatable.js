@@ -98,4 +98,53 @@ $(document).ready(function () {
         ]
     });
     console.log("JS loaded");
+
+    //     Reroute to a new page
+    $('#resources tbody').on('click', 'tr', function () {
+        // console.log($(this)[0].cells[0].textContent);
+        let serviceName = $(this)[0].cells[0].textContent;
+
+
+        let reroute = "https://coderlite.greenriverdev.com/IT355/oneStopWa/resources/service/" + serviceName;
+
+        console.log(reroute);
+
+        //reroute manually
+        window.location = reroute;
+
+        //send with ajax
+        $.ajax({
+            type: "POST",
+            url: reroute,
+            data: {name: serviceName},
+
+            success: function (data) {
+
+                // do stuff
+
+                // call next ajax function
+                console.log(data);
+            }
+
+
+        });
+
+    });
+
+
+    /*
+    * pop-up modal information
+    *
+    * */
+    // $('#resources tbody').on('click', 'tr', function () {
+    //
+    //     let serviceName = $(this)[0].cells[0].textContent;
+    //
+    //     console.log(serviceName);
+    //
+    //     // Fill modal with content from link href
+    //
+    //
+    // });
+
 });
