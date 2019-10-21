@@ -99,12 +99,10 @@ $(document).ready(function () {
     });
     console.log("JS loaded");
 
-    //     Reroute to a new page
+    //     Reroute to a new page with clickable rows
     $('#resources tbody').on('click', 'tr', function () {
         // console.log($(this)[0].cells[0].textContent);
         let serviceName = $(this)[0].cells[0].textContent;
-
-
         let reroute = "https://coderlite.greenriverdev.com/IT355/oneStopWa/resources/service/" + serviceName;
 
         console.log(reroute);
