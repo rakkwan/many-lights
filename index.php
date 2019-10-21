@@ -22,6 +22,10 @@ require_once('model/thereapistValidation.php');
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
 
+// Set days array
+$f3->set('day', array('Sunday', 'Monday', 'Tuesday', 'Wednesday',
+    'Thursday', 'Friday', 'Saturday'));
+
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 

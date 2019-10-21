@@ -12,289 +12,44 @@
     <hr>
 
     <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
     <!-- Form container-->
-    <form action="#" method="post">
+    <form action="#" method="post" id="businessHours">
+        <h3 class="mt-3">Please select all that apply</h3>
+        <hr>
 
-        <!-- Office hours inputs -->
-        <div class="row ml-4 mt-4">
-            <div class="col-sm-12 pr-4">
-                <h3>Choose Days and Hours <label class="orange-text mb-0">(optional)</label></h3>
-            </div>
+        <!-- Day selection inputs-->
+        <div class="row">
+            <repeat group="{{@day}}" value="{{@date}}">
+                <label class="col-sm">
+                    <input type="checkbox" name="days[]" value="{{@date}}"
+                    <check if="{{ !empty(@SESSION.days) && in_array(@date, @_POST['days']) }}">
+                        checked
+                    </check>
+                    > {{@date}}
+                    <!-- Time selection inputs-->
+                    <div class="form-group" id="{{@date}}" style="display: none">
+                        <label>
+                            <small>From</small>
+                            <input type="time" name="{{@date}}FromTime" step="900">
+                        </label>
+                        <label>
+                            <small>To</small>
+                            <input type="time" name="{{@date}}ToTime" step="900">
+                        </label>
+                    </div>
+                </label>
+            </repeat>
+        </div>  <!-- End of day selection input -->
 
-            <div class="col-sm-6 pl-5">
+        <hr>
 
-                <label><strong>Week days</strong></label>
+        <h3>County of Services, Specialties or Therapists <span class="orange-text mb-0">(optional)</span></h3>
+        <div class="row">
 
-                <!--Monday-->
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="monday"
-                        <check if="{{ @days === 'monday' }}">checked</check>>Monday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesMonday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesMonday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesMonday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-
-                <!--Tuesday-->
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="tuesday"
-                        <check if="{{ @days === 'tuesday' }}">checked</check>>Tuesday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesTuesday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="timesTuesday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesTuesday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-                <!-- Wednesday-->
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="wednesday"
-                        <check if="{{ @days === 'wednesday' }}">checked</check>>Wednesday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesWednesday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesWednesday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesWednesday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-
-                <!-- Thursday-->
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="thursday"
-                        <check if="{{ @days === 'thursday' }}">checked</check>>Thursday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesThursday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesThursday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesThursday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-
-                <!--Friday-->
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="friday"
-                        <check if="{{ @days === 'friday' }}">checked</check>>Friday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesFriday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesFriday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesFriday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-            </div>
-
-            <div class="col-sm-6 pl-5">
-                <label><strong>Weekends</strong></label>
-
-                <!--Saturday-->
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="saturday"
-                        <check if="{{ @days === 'saturday' }}">checked</check>>Saturday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSaturday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSaturday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSaturday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-
-                <!--Sunday-->
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="sunday"
-                        <check if="{{ @days === 'sunday' }}">checked</check>>Sunday
-                    </label>
-
-                    <!-- Time-->
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSunday[]" value="morning"
-                                <check if="{{ @times === 'morning' }}">checked</check>>Morning
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSunday[]" value="afternoon"
-                                <check if="{{ @times === 'afternoon' }}">checked</check>>Afternoon
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="timesSunday[]" value="evening"
-                                <check if="{{ @times === 'evening' }}">checked</check>>Evening
-                            </label>
-                        </div>
-
-                    </div>  <!-- end of time column-->
-                </div>
-
-
-                <!-- County inputs -->
-                <div class="row ml-4 mt-4">
-                    <h3>County of Services, Specialties or Therapists <label class="orange-text mb-0">(
-                        optional)</label></h3>
-
-                    <!-- County1 inputs -->
-                    <label class="w-75">
-                        <strong>County 1</strong>
-                        <input type="text" class="form-control" name="countyOne" value="{{ @countyOne }}" >
-                    </label>
-
-                    <!-- County2 inputs -->
-                    <label class="w-75">
-                        <strong>County 2</strong>
-                        <input type="text" class="form-control" name="countyTwo" value="{{ @countyTwo }}" >
-                    </label>
-
-                    <!-- County3 inputs -->
-                    <label class="w-75">
-                        <strong>County 3</strong>
-                        <input type="text" class="form-control" name="countyThree" value="{{ @countyThree }}" >
-                    </label>
-
-                </div>
-
-
-            </div>
-
-
-
-        </div>  <!-- end of row-->
+        </div>
 
         <!-- Next button -->
         <div class="row">
@@ -305,3 +60,22 @@
         </div>
     </form>
 </div>
+
+<!-- Script for checkbox event -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $('#businessHours :checkbox').change(function() {
+        let day;
+        // this will contain a reference to the checkbox
+        if ($(this).is(':checked')) {
+            console.log($(this).val() + ' is now checked');
+            day = $(this).val();
+            $("#" + day).show();
+        }
+        else {
+            console.log($(this).val() + ' is now unchecked');
+            day = $(this).val();
+            $("#" + day).hide();
+        }
+    });
+</script>
