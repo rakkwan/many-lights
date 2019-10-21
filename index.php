@@ -260,6 +260,8 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
+
+
 // day and hour information route
 $f3->route('GET|POST /dayHour', function ($f3) {
 
@@ -375,6 +377,8 @@ $f3->route('GET|POST /dayHour', function ($f3) {
     echo $view->render("views/dayHourForm.html");
     echo $view->render('views/includes/footer.html');
 });
+
+
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
