@@ -19,7 +19,6 @@ require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
 
-
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
 
@@ -41,7 +40,6 @@ $f3->set('timesThursday', array('morning', 'afternoon', 'evening'));
 $f3->set('timesFriday', array('morning', 'afternoon', 'evening'));
 $f3->set('timesSaturday', array('morning', 'afternoon', 'evening'));
 $f3->set('timesSunday', array('morning', 'afternoon', 'evening'));
-
 
 //Define a default root, there can be multiple routes
 
@@ -73,14 +71,17 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-$f3->route('GET /resource/service/*', function ($f3) {
+/*
+ * Clickable row route
+ */
+$f3->route('GET /resources/service/@type', function ($f3) {
 
     //display the contents of the page
     $view = new Template();
-    $f3->set('title', "Service");
-    echo '';
+    $f3->set('title', 'Service');
+    $f3->set('resource', $f3->get('PARAMS.type'));
     echo $view->render('views/includes/header.html');
-    echo $view->render("views/resources.html");
+    echo $view->render("views/serviceResource.html");
     echo $view->render('views/includes/footer.html');
 });
 
@@ -255,7 +256,6 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-
 // day and hour information route
 $f3->route('GET|POST /dayHour', function ($f3) {
 
@@ -304,80 +304,58 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             $_SESSION['countyThree'] = $countyThree;
 
             // days array
-            if (empty($days))
-            {
+            if (empty($days)) {
                 $_SESSION['days'] = "No days selected";
             } else {
                 $_SESSION['days'] = implode(', ', $days);
             }
 
             //times array for Monday
-            if (empty($timesMonday))
-            {
+            if (empty($timesMonday)) {
                 $_SESSION['timesMonday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesMonday'] = implode(', ', $timesMonday);
             }
 
             //times array for Tuesday
-            if (empty($timesTuesday))
-            {
+            if (empty($timesTuesday)) {
                 $_SESSION['timesTuesday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesTuesday'] = implode(', ', $timesTuesday);
             }
 
             //times array for Wednesday
-            if (empty($timesWednesday))
-            {
+            if (empty($timesWednesday)) {
                 $_SESSION['timesWednesday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesWednesday'] = implode(', ', $timesWednesday);
             }
 
             //times array for Thursday
-            if (empty($timesThursday))
-            {
+            if (empty($timesThursday)) {
                 $_SESSION['timesThursday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesThursday'] = implode(', ', $timesThursday);
             }
 
             //times array for Friday
-            if (empty($timesFriday))
-            {
+            if (empty($timesFriday)) {
                 $_SESSION['timesFriday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesFriday'] = implode(', ', $timesFriday);
             }
 
             //times array for Saturday
-            if (empty($timesSaturday))
-            {
+            if (empty($timesSaturday)) {
                 $_SESSION['timesSaturday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesSaturday'] = implode(', ', $timesSaturday);
             }
 
             //times array for Sunday
-            if (empty($timesSunday))
-            {
+            if (empty($timesSunday)) {
                 $_SESSION['timesSunday'] = "No times selected";
-            }
-            else
-            {
+            } else {
                 $_SESSION['timesSunday'] = implode(', ', $timesSunday);
             }
 
@@ -393,7 +371,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
     echo $view->render("views/dayHourForm.html");
     echo $view->render('views/includes/footer.html');
 });
-
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
