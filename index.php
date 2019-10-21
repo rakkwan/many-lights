@@ -71,6 +71,9 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
+/*
+ * Clickable row route
+ */
 $f3->route('GET /resources/service/@type', function ($f3) {
 
     //display the contents of the page
@@ -79,7 +82,6 @@ $f3->route('GET /resources/service/@type', function ($f3) {
     $f3->set('resource', $f3->get('PARAMS.type'));
     echo $view->render('views/includes/header.html');
     echo $view->render("views/serviceResource.html");
-
     echo $view->render('views/includes/footer.html');
 });
 
