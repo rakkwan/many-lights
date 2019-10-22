@@ -1,3 +1,11 @@
+/*
+Datatable.js
+
+this file will include the data table and the clickable row functionality
+
+TODO: Insert PDO
+TODO: Fill Modal with pulled data
+ */
 $(document).ready(function () {
     $('#resources').DataTable({
         "data": [
@@ -131,7 +139,7 @@ $(document).ready(function () {
 
 
     /*
-    * pop-up modal information
+    * pop-up modal information will be filled
     *
     * */
     $('#resources tbody').on('click', 'tr', function () {
@@ -148,8 +156,6 @@ $(document).ready(function () {
         // console.log($(this)[0].text);
         $(this).attr("data-toggle", "modal");
         $(this).attr("data-target", "#centralModalSuccess");
-
-
 
         // $("#centralModalSuccess").modal(serviceName);
 
