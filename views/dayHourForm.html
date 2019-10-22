@@ -25,9 +25,7 @@
             <repeat group="{{@day}}" value="{{@date}}">
                 <label class="col-sm">
                     <input type="checkbox" name="days[]" value="{{@date}}"
-                    <check if="{{ !empty(@SESSION.days) && in_array(@date, @_POST['days']) }}">
-                        checked
-                    </check>
+
                     > {{@date}}
                     <!-- Time selection inputs-->
                     <div class="form-group" id="{{@date}}" style="display: none">
