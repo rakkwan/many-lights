@@ -52,13 +52,41 @@
         <hr class="my-4">
         <h3 class="text-center">Days and Hours of Operation</h3>
         <p><strong>Days Operation:</strong> {{ @SESSION.days}}</p>
-        <p><strong>Monday Hours Operation:</strong> {{ @SESSION.timesMonday}}</p>
-        <p><strong>Tuesday Hours Operation:</strong> {{ @SESSION.timesTuesday}}</p>
-        <p><strong>Wednesday Hours Operation:</strong> {{ @SESSION.timesWednesday}}</p>
-        <p><strong>Thursday Hours Operation:</strong> {{ @SESSION.timesThursday}}</p>
-        <p><strong>Friday Hours Operation:</strong> {{ @SESSION.timesFriday}}</p>
-        <p><strong>Saturday Hours Operation:</strong> {{@SESSION.timesSaturday}}</p>
-        <p><strong>Sunday Hours Operation:</strong> {{ @SESSION.timesSunday}}</p>
+        <p><strong>Monday Hours Operation:</strong> {{@SESSION.MondayNoTime}}
+            <check if="{{isset(@SESSION.MondayFromTime, @SESSION.MondayToTime)}}">
+                <small>From-</small>{{@SESSION.MondayFromTime}} <small>To-</small>{{@SESSION.MondayToTime}}
+            </check></p>
+
+        <p><strong>Tuesday Hours Operation:</strong> {{@SESSION.TuesdayNoTime}}
+            <check if="{{isset(@SESSION.TuesdayFromTime, @SESSION.TuesdayToTime)}}">
+                <small>From-</small>{{@SESSION.TuesdayFromTime}} <small>To-</small>{{@SESSION.TuesdayToTime}}
+            </check></p>
+
+        <p><strong>Wednesday Hours Operation:</strong> {{@SESSION.WednesdayNoTime}}
+            <check if="{{isset(@SESSION.WednesdayFromTime, @SESSION.WednesdayToTime)}}">
+                <small>From-</small>{{@SESSION.WednesdayFromTime}} <small>To-</small>{{@SESSION.WednesdayToTime}}
+            </check></p>
+
+        <p><strong>Thursday Hours Operation:</strong> {{@SESSION.ThursdayNoTime}}
+            <check if="{{isset(@SESSION.ThursdayFromTime, @SESSION.ThursdayToTime)}}">
+                <small>From-</small>{{@SESSION.ThursdayFromTime}} <small>To-</small>{{@SESSION.ThursdayToTime}}
+            </check></p>
+
+        <p><strong>Friday Hours Operation:</strong> {{@SESSION.FridayNoTime}}
+            <check if="{{isset(@SESSION.FridayFromTime, @SESSION.FridayToTime)}}">
+                <small>From-</small>{{@SESSION.FridayFromTime}} <small>To-</small>{{@SESSION.FridayToTime}}
+            </check></p>
+
+        <p><strong>Saturday Hours Operation:</strong> {{@SESSION.SaturdayNoTime}}
+            <check if="{{isset(@SESSION.SaturdayFromTime, @SESSION.SaturdayToTime)}}">
+                <small>From-</small>{{@SESSION.SaturdayFromTime}} <small>To-</small>{{@SESSION.SaturdayToTime}}
+            </check></p>
+
+        <p><strong>Sunday Hours Operation:</strong> {{@SESSION.SundayNoTime}}
+            <check if="{{isset(@SESSION.SundayFromTime, @SESSION.SundayToTime)}}">
+                <small>From-</small>{{@SESSION.SundayFromTime}} <small>To-</small>{{@SESSION.SundayToTime}}
+            </check></p>
+
         <p><strong>County 1:</strong> {{ @SESSION.countyOne}}</p>
         <p><strong>County 2:</strong> {{ @SESSION.countyTwo}}</p>
         <p><strong>County 3:</strong> {{ @SESSION.countyThree}}</p>
