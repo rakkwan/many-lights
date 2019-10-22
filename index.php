@@ -313,21 +313,19 @@ $f3->route('GET|POST /confirmation', function ($f3) {
         }
     }
     else {
-        foreach($_SESSION['days'] as $day) {
-            foreach($f3->get('day') as $value) {
-                if($day != $value) {
-                    $_SESSION[$value.'NoTime'] = 'No time selected';
-                }
+        foreach($f3->get('day') as $date) {
+            if(!in_array($date, $_SESSION['days'])) {
+                $_SESSION[$date.'NoTime'] = 'No time selected';
             }
         }
     }
-
 
     //display the confirmation of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/confirmation.html");
     echo $view->render('views/includes/footer.html');
+    session_destroy();
 });
 
 //Admin to be able to view recommended resource listings to update listings Status
