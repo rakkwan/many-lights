@@ -18,9 +18,13 @@ require_once('vendor/autoload.php');
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
+require_once ('model/database.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
+
+//create instance of Database
+$db = new database();
 
 // Set days array
 $f3->set('day', array('Sunday', 'Monday', 'Tuesday', 'Wednesday',
@@ -331,10 +335,16 @@ $f3->route('GET|POST /confirmation', function ($f3) {
 //Admin to be able to view recommended resource listings to update listings Status
 $f3->route('GET|POST /admin', function ($f3) {
     //display the admin page
-    $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render('views/adminView.html');
-    echo $view->render('views/includes/footer.html');
+
+    //Get the DB instance
+    global $db;
+    //Proof the db is connected
+    $db->connect();
+
+//    $view = new Template();
+//    echo $view->render('views/includes/header.html');
+//    echo $view->render('views/adminView.html');
+//    echo $view->render('views/includes/footer.html');
 });
 
 //run Fat-free
