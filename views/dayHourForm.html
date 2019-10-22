@@ -25,9 +25,7 @@
             <repeat group="{{@day}}" value="{{@date}}">
                 <label class="col-sm">
                     <input type="checkbox" name="days[]" value="{{@date}}"
-                    <check if="{{ !empty(@SESSION.days) && in_array(@date, @_POST['days']) }}">
-                        checked
-                    </check>
+
                     > {{@date}}
                     <!-- Time selection inputs-->
                     <div class="form-group" id="{{@date}}" style="display: none">
@@ -48,11 +46,27 @@
 
         <h3>County of Services, Specialties or Therapists <span class="orange-text mb-0">(optional)</span></h3>
         <div class="row">
+            <!-- County1 inputs -->
+            <label class="col-sm">
+                <strong>County 1</strong>
+                <input type="text" class="form-control" name="countyOne" value="{{ @countyOne }}" >
+            </label>
 
+            <!-- County2 inputs -->
+            <label class="col-sm">
+                <strong>County 2</strong>
+                <input type="text" class="form-control" name="countyTwo" value="{{ @countyTwo }}" >
+            </label>
+
+            <!-- County3 inputs -->
+            <label class="col-sm">
+                <strong>County 3</strong>
+                <input type="text" class="form-control" name="countyThree" value="{{ @countyThree }}" >
+            </label>
         </div>
 
         <!-- Next button -->
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-sm-12">
                 <a href="optionalInfo" class="btn btn-outline-purple btn-sm waves-effect">Back</a>
                 <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
@@ -63,19 +77,4 @@
 
 <!-- Script for checkbox event -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script>
-    $('#businessHours :checkbox').change(function() {
-        let day;
-        // this will contain a reference to the checkbox
-        if ($(this).is(':checked')) {
-            console.log($(this).val() + ' is now checked');
-            day = $(this).val();
-            $("#" + day).show();
-        }
-        else {
-            console.log($(this).val() + ' is now unchecked');
-            day = $(this).val();
-            $("#" + day).hide();
-        }
-    });
-</script>
+<script src="views/javascript/checkboxEvent.js"></script>

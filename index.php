@@ -32,19 +32,6 @@ $f3->set('DEBUG', 3);
 // arrays of age
 $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 
-// arrays of days
-$f3->set('days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday',
-    'saturday', 'sunday'));
-
-// arrays of time of each day
-$f3->set('timesMonday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesTuesday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesWednesday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesThursday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesFriday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesSaturday', array('morning', 'afternoon', 'evening'));
-$f3->set('timesSunday', array('morning', 'afternoon', 'evening'));
-
 //Define a default root, there can be multiple routes
 
 //homepage
@@ -57,6 +44,8 @@ $f3->route('GET /', function () {
 });
 
 $f3->route('GET /home', function () {
+    session_destroy();
+
     //display the contents of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -269,101 +258,37 @@ $f3->route('GET|POST /dayHour', function ($f3) {
     if (!empty($_POST)) {
         // Get data from form
         $days = $_POST['days'];
-        $timesMonday = $_POST['timesMonday'];
-        $timesTuesday = $_POST['timesTuesday'];
-        $timesWednesday = $_POST['timesWednesday'];
-        $timesThursday = $_POST['timesThursday'];
-        $timesFriday = $_POST['timesFriday'];
-        $timesSaturday = $_POST['timesSaturday'];
-        $timesSunday = $_POST['timesSunday'];
+        $_SESSION['days'] = $days;
+
+        if(!empty($days)) {
+            // loop through and check which days are checked
+            foreach($_SESSION['days'] as $day) {
+                if (isset($day)) {
+                    // Add data to hive and set session for time
+                    $_SESSION[$day.'FromTime'] = date('h:i A', strtotime($_POST[$day.'FromTime']));
+                    $f3->set($day.'FromTime', $_POST[$day.'FromTime']);
+
+                    $_SESSION[$day.'ToTime'] = date('h:i A', strtotime($_POST[$day.'ToTime']));
+                    $f3->set($day.'ToTime', $_POST[$day.'ToTime']);
+                }
+            }
+        }
+
         $countyOne = $_POST['countyOne'];
         $countyTwo = $_POST['countyTwo'];
         $countyThree = $_POST['countyThree'];
 
         // Add data to hive
-        $f3->set('days', $days);
-        $f3->set('timesMonday', $timesMonday);
-        $f3->set('timesTuesday', $timesTuesday);
-        $f3->set('timesWednesday', $timesWednesday);
-        $f3->set('timesThursday', $timesThursday);
-        $f3->set('timesFriday', $timesFriday);
-        $f3->set('timesSaturday', $timesSaturday);
-        $f3->set('timesSunday', $timesSunday);
         $f3->set('countyOne', $countyOne);
         $f3->set('countyTwo', $countyTwo);
         $f3->set('countyThree', $countyThree);
 
-
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
-            $_SESSION['days'] = $days;
-            $_SESSION['timesMonday'] = $timesMonday;
-            $_SESSION['timesTuesday'] = $timesTuesday;
-            $_SESSION['timesWednesday'] = $timesWednesday;
-            $_SESSION['timesThursday'] = $timesThursday;
-            $_SESSION['timesFriday'] = $timesFriday;
-            $_SESSION['timesSaturday'] = $timesSaturday;
-            $_SESSION['timesSunday'] = $timesSunday;
             $_SESSION['countyOne'] = $countyOne;
             $_SESSION['countyTwo'] = $countyTwo;
             $_SESSION['countyThree'] = $countyThree;
-
-            // days array
-            if (empty($days)) {
-                $_SESSION['days'] = "No days selected";
-            } else {
-                $_SESSION['days'] = implode(', ', $days);
-            }
-
-            //times array for Monday
-            if (empty($timesMonday)) {
-                $_SESSION['timesMonday'] = "No times selected";
-            } else {
-                $_SESSION['timesMonday'] = implode(', ', $timesMonday);
-            }
-
-            //times array for Tuesday
-            if (empty($timesTuesday)) {
-                $_SESSION['timesTuesday'] = "No times selected";
-            } else {
-                $_SESSION['timesTuesday'] = implode(', ', $timesTuesday);
-            }
-
-            //times array for Wednesday
-            if (empty($timesWednesday)) {
-                $_SESSION['timesWednesday'] = "No times selected";
-            } else {
-                $_SESSION['timesWednesday'] = implode(', ', $timesWednesday);
-            }
-
-            //times array for Thursday
-            if (empty($timesThursday)) {
-                $_SESSION['timesThursday'] = "No times selected";
-            } else {
-                $_SESSION['timesThursday'] = implode(', ', $timesThursday);
-            }
-
-            //times array for Friday
-            if (empty($timesFriday)) {
-                $_SESSION['timesFriday'] = "No times selected";
-            } else {
-                $_SESSION['timesFriday'] = implode(', ', $timesFriday);
-            }
-
-            //times array for Saturday
-            if (empty($timesSaturday)) {
-                $_SESSION['timesSaturday'] = "No times selected";
-            } else {
-                $_SESSION['timesSaturday'] = implode(', ', $timesSaturday);
-            }
-
-            //times array for Sunday
-            if (empty($timesSunday)) {
-                $_SESSION['timesSunday'] = "No times selected";
-            } else {
-                $_SESSION['timesSunday'] = implode(', ', $timesSunday);
-            }
 
             // redirect to confirmation
             $f3->reroute('/confirmation');
@@ -382,11 +307,25 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
+    if(empty($_SESSION['days'])) {
+        foreach($f3->get('day') as $day) {
+            $_SESSION[$day.'NoTime'] = 'No time selected';
+        }
+    }
+    else {
+        foreach($f3->get('day') as $date) {
+            if(!in_array($date, $_SESSION['days'])) {
+                $_SESSION[$date.'NoTime'] = 'No time selected';
+            }
+        }
+    }
+
     //display the confirmation of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/confirmation.html");
     echo $view->render('views/includes/footer.html');
+    session_destroy();
 });
 
 //Admin to be able to view recommended resource listings to update listings Status
