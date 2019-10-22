@@ -13,7 +13,7 @@
 <!--</div>-->
 
 <div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
-    <h1 class="text-center">Business/Service Contact Information</h1>
+    <h1 class="text-center">Services/Specialties Contact Information</h1>
     <hr>
 
     <div class="progress">
@@ -25,9 +25,22 @@
         <div class="row ml-4 mt-4">
             <!-- Provider Contact Information container -->
             <div class="col-lg-8">
+                <!-- Office category inputs -->
+
+                <label class="w-75">
+                    <strong>Category</strong>
+                    <label class="red-text mb-0">*</label>
+                    <br>
+
+                    <select class="form-control" name="category">
+                        <option value="Services">Services</option>
+                        <option value="Specialties">Specialties</option>
+                    </select>
+                </label>
+
                 <!-- Office name inputs -->
                 <label class="w-75">
-                    <strong>Business/Service Name</strong>
+                    <strong>Services/Specialties Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office" value="{{ @office }}" >
                     <check if="{{ isset(@errors['office']) }}">
@@ -37,7 +50,7 @@
 
                 <!-- Office street address inputs-->
                 <label class="w-75">
-                    <strong>Business Street Address</strong>
+                    <strong>Services/Specialties Street Address</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="address" value="{{ @address }}" >
                     <check if="{{ isset(@errors['address']) }}">
@@ -47,7 +60,7 @@
 
                 <!-- Office city inputs-->
                 <label class="w-75">
-                    <strong>Business City</strong>
+                    <strong>Services/Specialties City</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="city" value="{{ @city }}" >
                     <check if="{{ isset(@errors['city']) }}">
@@ -57,7 +70,7 @@
 
                 <!-- Office state inputs-->
                 <label class="w-75">
-                    <strong>Business State</strong>
+                    <strong>Services/Specialties State</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <br>
 
@@ -119,7 +132,7 @@
 
                 <!-- Office zip inputs-->
                 <label class="w-75">
-                    <strong>ZIP Code</strong>
+                    <strong>Services/Specialties ZIP Code</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
                     <check if="{{ isset(@errors['zip']) }}">
@@ -129,7 +142,7 @@
 
                 <!-- Office Phone number inputs-->
                 <label class="w-75">
-                    <strong>Business Phone Number</strong>
+                    <strong>Services/Specialties Phone Number</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office_phone" value="{{ @office_phone }}" >
                     <check if="{{ isset(@errors['office_phone']) }}">
@@ -139,7 +152,7 @@
 
                 <!-- Email inputs-->
                 <label class="w-75">
-                    <strong>Business Email</strong>
+                    <strong>Services/Specialties Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
                     <input type="text" class="form-control" name="office_email" value="{{ @office_email }}">
@@ -150,7 +163,7 @@
 
                 <!-- Website inputs-->
                 <label class="w-75">
-                    <strong>Business Website</strong>
+                    <strong>Services/Specialties Website</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="website" value="{{ @website }}" >
                     <check if="{{ isset(@errors['website']) }}">

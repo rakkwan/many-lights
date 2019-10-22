@@ -18,43 +18,56 @@
 
 <div class="container white mt-4">
     <div class="jumbotron">
-        <h2 class="display-4 text-center"></h2>
-        <h3>Your information</h3>
-        <p>Name: {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
-        <p>Email: {{ @SESSION.email }}</p>
-        <p>Phone: {{ @SESSION.phone }}</p>
+        <h3 class="text-center">Your information</h3>
+        <p><strong>Name:</strong> {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
+        <p><strong>Email:</strong> {{ @SESSION.email }}</p>
+        <p><strong>Phone:</strong> {{ @SESSION.phone }}</p>
         <hr class="my-4">
-        <h3> Service or support information </h3>
-        <p>Business/Service: {{ @SESSION.office }}</p>
-        <p>Address: {{ @SESSION.address }}</p>
-        <p>City: {{ @SESSION.city }}</p>
-        <p>State: {{ @SESSION.state }}</p>
-        <p>Zip: {{ @SESSION.zip}}</p>
-        <p>Business Phone: {{ @SESSION.office_phone }}</p>
-        <p>Business Email: {{ @SESSION.office_email }}</p>
-        <p>Business Website: {{ @SESSION.website }}</p>
-        <p>Comments: {{ @SESSION.comments }}</p>
+        <h3 class="text-center"> Services/Specialties information </h3>
+        <p><strong>Category:</strong> {{ @SESSION.category}}</p>
+        <p><strong>Services/Specialties Name:</strong> {{ @SESSION.office }}</p>
+        <p><strong>Services/Specialties Address:</strong> {{ @SESSION.address }}</p>
+        <p><strong>Services/Specialties City:</strong> {{ @SESSION.city }}</p>
+        <p><strong>Services/Specialties State:</strong> {{ @SESSION.state }}</p>
+        <p><strong>Services/Specialties Zip:</strong> {{ @SESSION.zip}}</p>
+        <p><strong>Services/Specialties Phone:</strong> {{ @SESSION.office_phone }}</p>
+        <p><strong>Services/Specialties Email:</strong> {{ @SESSION.office_email }}</p>
+        <p><strong>Services/Specialties Website:</strong> {{ @SESSION.website }}</p>
+        <p><strong>Comments:</strong> {{ @SESSION.comments }}</p>
         <hr class="my-4">
-        <h3>Therapist information</h3>
-        <p>Therapist Name: {{ @SESSION.theraFname}} {{ @SESSION.theraLname}}</p>
-        <p>Therapist Gender: {{ @SESSION.theraGender}}</p>
-        <p>Therapist Email: {{ @SESSION.theraEmail}}</p>
-        <p>Therapist Phone Number: {{ @SESSION.theraPhone}}</p>
-        <p>Therapist Secondary Phone Number: {{ @SESSION.secondPhone}}</p>
-        <p>Credential: {{ @SESSION.credential}}</p>
-        <p>Secondary Credential: {{ @SESSION.secondCredential}}</p>
+        <h3 class="text-center">Therapist information</h3>
+        <p><strong>Therapist Name:</strong> {{ @SESSION.theraFname}} {{ @SESSION.theraLname}}</p>
+        <p><strong>Therapist Gender:</strong> {{ @SESSION.theraGender}}</p>
+        <p><strong>Therapist Email:</strong> {{ @SESSION.theraEmail}}</p>
+        <p><strong>Therapist Phone Number:</strong> {{ @SESSION.theraPhone}}</p>
+        <p><strong>Therapist Secondary Phone Number:</strong> {{ @SESSION.secondPhone}}</p>
+        <p><strong>Credential:</strong> {{ @SESSION.credential}}</p>
+        <p><strong>Secondary Credential:</strong> {{ @SESSION.secondCredential}}</p>
         <hr class="my-4">
-        <h3>Optional information</h3>
-        <p>Ages seen: {{ @SESSION.age}}</p>
-        <p>Languages/Interpreter: {{ @SESSION.interpreter}}</p>
-        <p>Insurance Accepted: {{ @SESSION.insurance}}</p>
-        <p>Fees: {{ @SESSION.fee}}</p>
+        <h3 class="text-center">Optional information</h3>
+        <p><strong>Ages seen:</strong> {{ @SESSION.age}}</p>
+        <p><strong>Languages/Interpreter:</strong> {{ @SESSION.interpreter}}</p>
+        <p><strong>Insurance Accepted:</strong> {{ @SESSION.insurance}}</p>
+        <p><strong>Fees:</strong> {{ @SESSION.fee}}</p>
+        <hr class="my-4">
+        <h3 class="text-center">Days and Hours of Operation</h3>
+        <p><strong>Days Operation:</strong> {{ @SESSION.days}}</p>
+        <p><strong>Monday Hours Operation:</strong> {{ @SESSION.timesMonday}}</p>
+        <p><strong>Tuesday Hours Operation:</strong> {{ @SESSION.timesTuesday}}</p>
+        <p><strong>Wednesday Hours Operation:</strong> {{ @SESSION.timesWednesday}}</p>
+        <p><strong>Thursday Hours Operation:</strong> {{ @SESSION.timesThursday}}</p>
+        <p><strong>Friday Hours Operation:</strong> {{ @SESSION.timesFriday}}</p>
+        <p><strong>Saturday Hours Operation:</strong> {{@SESSION.timesSaturday}}</p>
+        <p><strong>Sunday Hours Operation:</strong> {{ @SESSION.timesSunday}}</p>
+        <p><strong>County 1:</strong> {{ @SESSION.countyOne}}</p>
+        <p><strong>County 2:</strong> {{ @SESSION.countyTwo}}</p>
+        <p><strong>County 3:</strong> {{ @SESSION.countyThree}}</p>
 
     </div>
     <!-- Next button -->
     <div class="row">
         <div class="col-sm-12">
-            <a href=""  class="btn btn-outline-purple btn-sm waves-effect">Back</a>
+            <a href="dayHour"  class="btn btn-outline-purple btn-sm waves-effect">Back</a>
         </div>
     </div>
 </div>
