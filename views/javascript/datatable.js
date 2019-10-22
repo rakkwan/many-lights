@@ -150,6 +150,7 @@ $(document).ready(function () {
         $(this).attr("data-target", "#centralModalSuccess");
 
 
+
         // $("#centralModalSuccess").modal(serviceName);
 
         // Fill modal with content from link href
