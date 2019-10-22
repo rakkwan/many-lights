@@ -39,8 +39,10 @@ Author: Samantha DeSmul
 
 
 <!-- Large modal Testign for id -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSuccess">Large modal
-</button>
+
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSuccess">Large modal
+</button>-->
+
 <!--<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">-->
 <!--<div class="modal-dialog modal-lg" role="document">-->
 <!--<div class="modal-content">-->
@@ -50,38 +52,196 @@ Author: Samantha DeSmul
 <!--</div>-->
 
 
-<!-- Central Modal Medium Success -->
+<!-- Central Modal-->
 <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-success" role="document">
+    <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
             <div class="modal-header">
-                <p class="heading lead">Modal Success</p>
+                <p class="heading lead">Browse Resource</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="white-text">&times;</span>
                 </button>
             </div>
 
-            <!--Body-->
+            <!--Modal body-->
             <div class="modal-body">
                 <div class="text-center">
-                    <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
-                        ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
-                        ab officiis totam.</p>
-                </div>
+
+                    <div class="container">
+                        <!--Recommended Resource information-->
+                        <h3 class="bg-light">Resource Information</h3>
+                        <div class="row">
+
+                            <div class="col">
+                                <h5>Resource Type</h5>
+                                <p>Therapist</p>
+                            </div>
+                            <div class="col">
+                                <h5>Business Name</h5>
+                                <p>Business Name L.L.C.</p>
+                            </div>
+                            <div class="col">
+                                <h5>Website</h5>
+                                <p>www.example.com</p>
+                            </div>
+                            <div class="col">
+                                <h5>Provider Name</h5>
+                                <p>Jane Doe</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Email <a href="mailto:Johndoe@gmail.com?Subject=OneStop%20WA%20Recommendation%20"
+                                             target="_top">
+                                    <i class="fas fa-envelope"></i>
+                                </a></h5>
+                                <p>Johndoe@gmail.com</p>
+                            </div>
+                            <div class="col">
+                                <h5>Phone <a href="tel:{{@phoneNumber}}">
+                                    <i class="fas fa-phone"></i>
+                                </a></h5>
+                                <p>(111)222-3333</p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Phone <a href="tel:{{@phoneNumber}}">
+                                    <i class="fas fa-phone"></i>
+                                </a></h5>
+                                <p>(111)222-3333</p>
+                            </div>
+                            <div class="col">
+                                <h5>County</h5>
+                                <p>King</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Resource Address</h5>
+                                <p>200 Griffin ave #000</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource City</h5>
+                                <p>Enumclaw</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource State</h5>
+                                <p>WA</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource Zip</h5>
+                                <p>98022</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Provider Gender</h5>
+                                <p>Female</p>
+                            </div>
+                            <div class="col">
+                                <h5>Ages Seen</h5>
+                                <p>0-4, 10-12</p>
+                            </div>
+                            <div class="col">
+                                <h5>Credentials</h5>
+                                <p>PhD</p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Credentials</h5>
+                                <p>Licensed Clinical Social Worker</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Languages/Interpreter</h5>
+                                <p>English, Spanish</p>
+                            </div>
+                            <div class="col">
+                                <h5>Insurance Accepted</h5>
+                                <p>Medicaid, Washington Apple Health</p>
+                            </div>
+                            <div class="col">
+                                <h5>Fees</h5>
+                                <p>$100 No insurance</p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Credentials</h5>
+                                <p>Licensed Clinical Social Worker</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Monday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Tuesday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Wednesday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Thursday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Friday</h5>
+                                <p>9:00am-4:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Saturday</h5>
+                                <p>Closed</p>
+                            </div>
+                            <div class="col">
+                                <h5>Sunday</h5>
+                                <p>Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Contact info for user who referred resource-->
+                 <!--   <h3 class="bg-light">Referee Information</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Name</h5>
+                            <p>John Doe</p>
+                        </div>
+                        <div class="col">
+                            <h5>Email <a href="mailto:Johndoe@gmail.com?Subject=OneStop%20WA%20Recommendation%20"
+                                         target="_top">
+                                <i class="fas fa-envelope"></i>
+                            </a></h5>
+                            <p>Johndoe@gmail.com</p>
+                        </div>
+                        <div class="col">
+                            <h5>Phone <a href="tel:{{@phoneNumber}}">
+                                <i class="fas fa-phone"></i>
+                            </a></h5>
+                            <p>(111)222-3333</p>
+                        </div>
+                    </div>
+                </div>-->
+
             </div>
 
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a type="button" class="btn btn-success">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
-                <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
+                <p>NOTICE There is no guarantee on quality of service, or that this resource's information is
+                    current</p>
             </div>
         </div>
-        <!--/.Content-->
     </div>
+    <!--/.Content-->
+</div>
 </div>
 <!-- Central Modal Medium Success-->
