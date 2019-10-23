@@ -27,7 +27,7 @@
             <div class="col-lg-8">
                 <!-- Office category inputs -->
 
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Category</strong>
                     <label class="red-text mb-0">*</label>
                     <br>
@@ -36,40 +36,40 @@
                         <option value="Services">Services</option>
                         <option value="Specialties">Specialties</option>
                     </select>
-                </label>
+                </p>
 
                 <!-- Office name inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office" value="{{ @office }}" >
                     <check if="{{ isset(@errors['office']) }}">
                         <span class="text-danger">{{ @errors['office'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Office street address inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties Street Address</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="address" value="{{ @address }}" >
                     <check if="{{ isset(@errors['address']) }}">
                         <span class="text-danger">{{ @errors['address'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Office city inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties City</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="city" value="{{ @city }}" >
                     <check if="{{ isset(@errors['city']) }}">
                         <span class="text-danger">{{ @errors['city'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Office state inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties State</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <br>
@@ -128,30 +128,30 @@
                         <option value="WV">West Virginia</option>
                         <option value="WY">Wyoming</option>
                     </select>
-                </label>
+                </p>
 
                 <!-- Office zip inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties ZIP Code</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
                     <check if="{{ isset(@errors['zip']) }}">
                         <span class="text-danger">{{ @errors['zip'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Office Phone number inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties Phone Number</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office_phone" value="{{ @office_phone }}" >
                     <check if="{{ isset(@errors['office_phone']) }}">
                         <span class="text-danger">{{ @errors['office_phone'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Email inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
@@ -159,27 +159,20 @@
                     <check if="{{ isset(@errors['office_email']) }}">
                         <span class="text-danger">{{ @errors['office_email'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Website inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Services/Specialties Website</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="website" value="{{ @website }}" >
                     <check if="{{ isset(@errors['website']) }}">
                         <span class="text-danger">{{ @errors['website'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Message inputs-->
-                <label class="w-75">
-                    <strong>Comments</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <textarea type="text" class="form-control" name="comments" value="{{ @comments }}"></textarea>
-                    <check if="{{ isset(@errors['comments']) }}">
-                        <span class="text-danger">{{ @errors['comments'] }}</span>
-                    </check>
-                </label>
+
             </div>  <!-- end of left column-->
 
             <div class="col-lg-4">

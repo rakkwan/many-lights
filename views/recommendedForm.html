@@ -17,13 +17,14 @@
     </div>
 
 
-    <form action="#" method="post">
+    <form action="recommended" method="post">
         <div class="row ml-4 mt-4">
             <div class="col-lg-8">
 
                 <p class="w-75">
                     <strong>First Name</strong><label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="fname" value="{{ $_SESSION['RecommendedInfo'] }}">
+                    <input type="text" class="form-control" name="fname"
+                           value="{{ @fname }}">
                     <check if="{{ isset(@errors['fname']) }}">
                         <span class="text-danger">{{ @errors['fname'] }}</span>
                     </check>
@@ -35,7 +36,8 @@
                 <p class="w-75">
                     <strong>Last Name</strong>
                     <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="lname" value="{{  $_SESSION['RecommendedInfo'] }}">
+                    <input type="text" class="form-control" name="lname"
+                           value="{{ @lname }}">
                     <check if="{{ isset(@errors['lname']) }}">
                         <span class="text-danger">{{ @errors['lname'] }}</span>
                     </check>
@@ -47,7 +49,8 @@
                     <strong>Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
-                    <input type="text" class="form-control" name="email" value="{{ $_SESSION['RecommendedInfo'] }}">
+                    <input type="text" class="form-control" name="email"
+                           value="{{ @email }}">
                     <check if="{{ isset(@errors['email']) }}">
                         <span class="text-danger">{{ @errors['email'] }}</span>
                     </check>
@@ -57,7 +60,8 @@
                 <p class="w-75">
                     <strong>Phone Number</strong>
                     <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="phone" value="{{ $_SESSION['RecommendedInfo'] }}" >
+                    <input type="text" class="form-control" name="phone"
+                           value="{{ @phone }}" >
                     <check if="{{ isset(@errors['phone']) }}">
                         <span class="text-danger">{{ @errors['phone'] }}</span>
                     </check>

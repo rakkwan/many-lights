@@ -113,7 +113,6 @@ $f3->route('GET|POST /recommended', function ($f3) {
             $f3->reroute('/provider');
         }
     }
-    //$_SESSION['RecommendedInfo'] = new RecommendedInfo('', '', '', '');
 
     $view = new Template();
     echo $view->render('views/includes/header.html');

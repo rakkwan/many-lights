@@ -12,27 +12,27 @@
         <div class="row ml-4 mt-4">
             <div class="col-lg-8">
                 <!-- First name inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Therapist First Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="theraFname" value="{{ @theraFname }}">
                     <check if="{{ isset(@errors['theraFname']) }}">
                         <span class="text-danger">{{ @errors['theraFname'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Last name inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Therapist Last Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="theraLname" value="{{ @theraLname }}">
                     <check if="{{ isset(@errors['theraLname']) }}">
                         <span class="text-danger">{{ @errors['theraLname'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Gender inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Therapist Gender</strong>
                     <label class="red-text mb-0">*</label>
                     <br>
@@ -60,10 +60,10 @@
                     <check if="{{ isset(@errors['theraGender']) }}">
                         <span class="text-danger">{{ @errors['theraGender'] }}</span>
                     </check>
-                </label>  <!-- End of gender inputs -->
+                </p>  <!-- End of gender inputs -->
 
                 <!-- Email inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Therapist Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
@@ -71,38 +71,38 @@
                     <check if="{{ isset(@errors['theraEmail']) }}">
                         <span class="text-danger">{{ @errors['theraEmail'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Phone number inputs-->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Therapist Phone Number</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="theraPhone" value="{{ @theraPhone }}" >
                     <check if="{{ isset(@errors['theraPhone']) }}">
                         <span class="text-danger">{{ @errors['theraPhone'] }}</span>
                     </check>
-                </label>
+                </p>
 
                 <!-- Secondary phone number inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Secondary Phone Number</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="secondPhone" value="{{ @secondPhone }}" >
-                </label>
+                </p>
 
                 <!-- Credential inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Credential</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="credential" value="{{ @credential }}" >
-                </label>
+                </p>
 
                 <!-- Secondary credential inputs -->
-                <label class="w-75">
+                <p class="w-75">
                     <strong>Secondary Credential</strong>
                     <label class="orange-text mb-0">(optional)</label>
                     <input type="text" class="form-control" name="secondCredential" value="{{ @secondCredential }}" >
-                </label>
+                </p>
             </div>  <!-- end of left column-->
 
             <div class="col-lg-4">
