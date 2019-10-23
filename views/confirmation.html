@@ -19,9 +19,9 @@
 <div class="container white mt-4">
     <div class="jumbotron">
         <h3 class="text-center">Your information</h3>
-        <p><strong>Name:</strong> {{ @SESSION.fname }} {{ @SESSION.lname }}</p>
-        <p><strong>Email:</strong> {{ @SESSION.email }}</p>
-        <p><strong>Phone:</strong> {{ @SESSION.phone }}</p>
+        <p><strong>Name:</strong> {{ @SESSION.RecommendedInfo->getFname() }} {{ @SESSION.RecommendedInfo->getLname() }} </p>
+        <p><strong>Email:</strong> {{ @SESSION.RecommendedInfo->getEmail() }}</p>
+        <p><strong>Phone:</strong> {{ @SESSION.RecommendedInfo->getPhone() }}</p>
         <hr class="my-4">
         <h3 class="text-center"> Services/Specialties information </h3>
         <p><strong>Category:</strong> {{ @SESSION.category}}</p>

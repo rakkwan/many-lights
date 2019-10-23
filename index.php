@@ -1,4 +1,8 @@
 <?php
+
+
+require_once('vendor/autoload.php');
+
 /**
  * Created by PhpStorm.
  * User: samantha
@@ -14,7 +18,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Require autoload file
-require_once('vendor/autoload.php');
+
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
@@ -41,6 +45,9 @@ $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 //homepage
 $f3->route('GET /', function () {
     //display the contents of the page
+    session_destroy();
+    session_start();
+
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/homePage.html");
@@ -85,6 +92,8 @@ $f3->route('GET /resources/service/@type', function ($f3) {
 // personal contact info form route
 $f3->route('GET|POST /recommended', function ($f3) {
     //If form has been submitted, validate
+
+
     if (!empty($_POST)) {
         // Get data from form
         $fname = $_POST['fname'];
@@ -98,6 +107,8 @@ $f3->route('GET|POST /recommended', function ($f3) {
         $f3->set('email', $email);
         $f3->set('phone', $phone);
 
+        $_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
+
         // if data is valid
         if (validForm()) {
             // Write data to session
@@ -107,12 +118,19 @@ $f3->route('GET|POST /recommended', function ($f3) {
             $_SESSION['phone'] = $phone;
 
             // save data
-            $_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
+
+            //$_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
 
             // redirect to provider
             $f3->reroute('/provider');
         }
     }
+
+    if(!isset($_SESSION['RecommendedInfo']))
+    {
+        $_SESSION['RecommendedInfo'] = new RecommendedInfo('', '', '', '');
+    }
+
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -123,6 +141,7 @@ $f3->route('GET|POST /recommended', function ($f3) {
 // office information form route
 $f3->route('GET|POST /provider', function ($f3) {
     //If form has been submitted, validate
+
     if (!empty($_POST)) {
 
         // Get data from form
@@ -216,6 +235,8 @@ $f3->route('GET|POST /therapist', function ($f3) {
 // optional information route
 $f3->route('GET|POST /optionalInfo', function ($f3) {
 
+    session_destroy();
+    session_start();
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -230,6 +251,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $f3->set('insurance', $insurance);
         $f3->set('fee', $fee);
 
+        $_SESSION['OptionalInfo'] = new RecommendedInfo($age, $interpreter, $insurance, $fee);
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
@@ -245,10 +267,22 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
             }
 
 
+            // save data
+            //$_SESSION['OptionalInfo'] = new RecommendedInfo($age, $interpreter, $insurance, $fee);
+
             // redirect to confirmation
             $f3->reroute('/dayHour');
         }
     }
+
+
+    if(!isset($_SESSION['OptionalInfo']))
+    {
+        $_SESSION['OptionalInfo'] = new OptionalInfo('', '', '', '');
+    }
+
+
+
     //display the confirmation of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');

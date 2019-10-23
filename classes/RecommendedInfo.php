@@ -21,17 +21,17 @@ class RecommendedInfo
 
     /**
      * RecommendedInfo constructor.
-     * @param $_fname String first name
-     * @param $_lname String last name
-     * @param $_email String email address
-     * @param $_phone String phone number
+     * @param $fname String first name
+     * @param $lname String last name
+     * @param $email String email address
+     * @param $phone String phone number
      */
-    public function __construct($_fname, $_lname, $_email, $_phone)
+    public function __construct($fname, $lname, $email, $phone)
     {
-        $this->_fname = $_fname;
-        $this->_lname = $_lname;
-        $this->_email = $_email;
-        $this->_phone = $_phone;
+        $this->_fname = $fname;
+        $this->_lname = $lname;
+        $this->_email = $email;
+        $this->_phone = $phone;
     }
 
     /**

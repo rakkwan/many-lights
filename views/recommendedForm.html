@@ -17,14 +17,14 @@
     </div>
 
 
-    <form action="recommended" method="post">
+    <form action="#" method="post">
         <div class="row ml-4 mt-4">
             <div class="col-lg-8">
 
                 <p class="w-75">
                     <strong>First Name</strong><label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="fname"
-                           value="{{ @fname }}">
+                           value="{{ $_SESSION['RecommendedInfo']->getFname() }}">
                     <check if="{{ isset(@errors['fname']) }}">
                         <span class="text-danger">{{ @errors['fname'] }}</span>
                     </check>
@@ -37,7 +37,7 @@
                     <strong>Last Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="lname"
-                           value="{{ @lname }}">
+                           value="{{ $_SESSION['RecommendedInfo']->getLname() }}">
                     <check if="{{ isset(@errors['lname']) }}">
                         <span class="text-danger">{{ @errors['lname'] }}</span>
                     </check>
@@ -50,7 +50,7 @@
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
                     <input type="text" class="form-control" name="email"
-                           value="{{ @email }}">
+                           value="{{ $_SESSION['RecommendedInfo']->getEmail() }}">
                     <check if="{{ isset(@errors['email']) }}">
                         <span class="text-danger">{{ @errors['email'] }}</span>
                     </check>
@@ -61,7 +61,7 @@
                     <strong>Phone Number</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="phone"
-                           value="{{ @phone }}" >
+                           value="{{ $_SESSION['RecommendedInfo']->getPhone() }}" >
                     <check if="{{ isset(@errors['phone']) }}">
                         <span class="text-danger">{{ @errors['phone'] }}</span>
                     </check>
