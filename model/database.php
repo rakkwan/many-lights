@@ -7,6 +7,7 @@
  * This Class connects the db and runs Read queries
  */
 
+/*
 //universal database connection
 $user = $_SERVER['USER'];
 if($user == 'slegreen') {
@@ -22,6 +23,7 @@ else {
     // samantha
 }
 
+*/
 
 
 
