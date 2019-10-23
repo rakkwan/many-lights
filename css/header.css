@@ -46,6 +46,13 @@ body {
     color: red;
 }
 
+/*The image in NavBar*/
+/*Use the # to target an ID of an html element*/
+#pic1 {
+    height: 50em;
+    width: 80em;
+}
+
 
 
 
