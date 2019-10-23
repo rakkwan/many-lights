@@ -106,10 +106,14 @@ $f3->route('GET|POST /recommended', function ($f3) {
             $_SESSION['email'] = $email;
             $_SESSION['phone'] = $phone;
 
-            // redirect to confirmation
+            // save data
+            $_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
+
+            // redirect to provider
             $f3->reroute('/provider');
         }
     }
+    //$_SESSION['RecommendedInfo'] = new RecommendedInfo('', '', '', '');
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
