@@ -7,7 +7,20 @@
  * This Class connects the db and runs Read queries
  */
 
-require_once '/home/jgoodri1/config.php';
+//universal database connection
+$user = $_SERVER['USER'];
+if($user == 'slegreen') {
+//    require_once '/home/$user/config.php';
+}
+else if($user == 'jgoodri1') {
+    require_once '/home/jgoodri1/config.php';
+}
+else if($user == '') {
+    // robert
+}
+else {
+    // samantha
+}
 
 
 
