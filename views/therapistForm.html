@@ -11,56 +11,6 @@
     <form action="#" method="post">
         <div class="row ml-4 mt-4">
             <div class="col-lg-8">
-                <!-- First name inputs -->
-                <p class="w-75">
-                    <strong>Therapist First Name</strong>
-                    <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="theraFname" value="{{ @theraFname }}">
-                    <check if="{{ isset(@errors['theraFname']) }}">
-                        <span class="text-danger">{{ @errors['theraFname'] }}</span>
-                    </check>
-                </p>
-
-                <!-- Last name inputs -->
-                <p class="w-75">
-                    <strong>Therapist Last Name</strong>
-                    <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="theraLname" value="{{ @theraLname }}">
-                    <check if="{{ isset(@errors['theraLname']) }}">
-                        <span class="text-danger">{{ @errors['theraLname'] }}</span>
-                    </check>
-                </p>
-
-                <!-- Gender inputs -->
-                <p class="w-75">
-                    <strong>Therapist Gender</strong>
-                    <label class="red-text mb-0">*</label>
-                    <br>
-                    <label class="radio-inline">
-                        <check if="{{@POST['theraGender'] == 'Male'}}">
-                            <true>
-                                <input type="radio" name="theraGender" value="Male" checked> Male
-                            </true>
-                            <false>
-                                <input type="radio" name="theraGender" value="Male"> Male
-                            </false>
-                        </check>
-                    </label>
-
-                    <label class="radio-inline">
-                        <check if="{{@POST['theraGender'] == 'Female'}}">
-                            <true>
-                                <input type="radio" name="theraGender" value="Female" checked> Female
-                            </true>
-                            <false>
-                                <input type="radio" name="theraGender" value="Female"> Female
-                            </false>
-                        </check>
-                    </label>
-                    <check if="{{ isset(@errors['theraGender']) }}">
-                        <span class="text-danger">{{ @errors['theraGender'] }}</span>
-                    </check>
-                </p>  <!-- End of gender inputs -->
 
                 <!-- Email inputs-->
                 <p class="w-75">

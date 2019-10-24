@@ -145,7 +145,7 @@ $f3->route('GET|POST /provider', function ($f3) {
     if (!empty($_POST)) {
 
         // Get data from form
-        $category = $_POST['category'];
+        $service = $_POST['service'];
         $office = $_POST['office'];
         $address = $_POST['address'];
         $city = $_POST['city'];
@@ -157,7 +157,7 @@ $f3->route('GET|POST /provider', function ($f3) {
         $comments = $_POST['comments'];
 
         // Add data to hive
-        $f3->set('category', $category);
+        $f3->set('service', $service);
         $f3->set('office', $office);
         $f3->set('address', $address);
         $f3->set('city', $city);
@@ -171,7 +171,7 @@ $f3->route('GET|POST /provider', function ($f3) {
         // if data is valid
         if (validOfficeForm()) {
             // Write data to session
-            $_SESSION['category'] = $category;
+            $_SESSION['service'] = $service;
             $_SESSION['office'] = $office;
             $_SESSION['address'] = $address;
             $_SESSION['city'] = $city;
@@ -182,8 +182,8 @@ $f3->route('GET|POST /provider', function ($f3) {
             $_SESSION['website'] = $website;
             $_SESSION['comments'] = $comments;
 
-            // redirect to confirmation
-            $f3->reroute('/therapist');
+
+            $f3->reroute('/location');
         }
     }
 
@@ -195,40 +195,16 @@ $f3->route('GET|POST /provider', function ($f3) {
 });
 
 // therapist form route
-$f3->route('GET|POST /therapist', function ($f3) {
+$f3->route('GET|POST /location', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
-        // Get data from form
-        $theraFname = $_POST['theraLname'];
-        $theraLname = $_POST['theraLname'];
-        $theraEmail = $_POST['theraEmail'];
-        $theraPhone = $_POST['theraPhone'];
-        $theraGender = $_POST['theraGender'];
-
-        // Add data to hive
-        $f3->set('theraFname', $theraFname);
-        $f3->set('theraLname', $theraLname);
-        $f3->set('theraEmail', $theraEmail);
-        $f3->set('theraPhone', $theraPhone);
-        $f3->set('theraGender', $theraGender);
-
-        // if data is valid
-        if (validTherapist()) {
-            // Write data to session
-            $_SESSION['theraFname'] = $theraFname;
-            $_SESSION['theraLname'] = $theraLname;
-            $_SESSION['theraEmail'] = $theraEmail;
-            $_SESSION['theraPhone'] = $theraPhone;
-            $_SESSION['theraGender'] = $theraGender;
-
-            // redirect to confirmation
-            $f3->reroute('/optionalInfo');
-        }
+       // do something
+        $f3->reroute('/optionalInfo');
     }
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
-    echo $view->render('views/therapistForm.html');
+    echo $view->render('views/locationForm.html');
     echo $view->render('views/includes/footer.html');
 });
 

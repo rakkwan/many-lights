@@ -25,22 +25,33 @@
         <div class="row ml-4 mt-4">
             <!-- Provider Contact Information container -->
             <div class="col-lg-8">
-                <!-- Office category inputs -->
-
+                <!-- Resource service inputs -->
                 <p class="w-75">
-                    <strong>Category</strong>
+                    <strong>Service</strong>
                     <label class="red-text mb-0">*</label>
                     <br>
 
-                    <select class="form-control" name="category">
-                        <option value="Services">Services</option>
-                        <option value="Specialties">Specialties</option>
+                    <select class="form-control" name="service">
+                        <option value="Therapy">Therapy</option>
+                        <option value="Food">Food</option>
+                        <option value="Crisis">Crisis</option>
+                        <option value="Other">Other</option>
                     </select>
                 </p>
 
-                <!-- Office name inputs -->
+                <!-- Resource specialties inputs -->
                 <p class="w-75">
-                    <strong>Services/Specialties Name</strong>
+                    <strong>Specialties</strong>
+                    <label class="red-text mb-0">*</label>
+                    <br>
+
+                    <input type="text" class="form-control" name="specialties" value="{{@specialties}}">
+                    <!-- do validation -->
+                </p>
+
+                <!-- Resource name inputs -->
+                <p class="w-75">
+                    <strong>Resource Name</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office" value="{{ @office }}" >
                     <check if="{{ isset(@errors['office']) }}">
@@ -48,101 +59,9 @@
                     </check>
                 </p>
 
-                <!-- Office street address inputs-->
+                <!-- Resource phone number inputs-->
                 <p class="w-75">
-                    <strong>Services/Specialties Street Address</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="address" value="{{ @address }}" >
-                    <check if="{{ isset(@errors['address']) }}">
-                        <span class="text-danger">{{ @errors['address'] }}</span>
-                    </check>
-                </p>
-
-                <!-- Office city inputs-->
-                <p class="w-75">
-                    <strong>Services/Specialties City</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="city" value="{{ @city }}" >
-                    <check if="{{ isset(@errors['city']) }}">
-                        <span class="text-danger">{{ @errors['city'] }}</span>
-                    </check>
-                </p>
-
-                <!-- Office state inputs-->
-                <p class="w-75">
-                    <strong>Services/Specialties State</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <br>
-
-                    <select class="form-control" name="state">
-                        <option value="AK">Alaska</option>
-                        <option value="AL">Alabama</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DC">District of Columbia</option>
-                        <option value="DE">Delaware</option>
-                        <option value="FL">Florida</option>
-                        <option value="GA">Georgia</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="IA">Iowa</option>
-                        <option value="ID">Idaho</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IN">Indiana</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
-                        <option value="MA">Massachusetts</option>
-                        <option value="MD">Maryland</option>
-                        <option value="ME">Maine</option>
-                        <option value="MI">Michigan</option>
-                        <option value="MN">Minnesota</option>
-                        <option value="MO">Missouri</option>
-                        <option value="MS">Mississippi</option>
-                        <option value="MT">Montana</option>
-                        <option value="NC">North Carolina</option>
-                        <option value="ND">North Dakota</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NH">New Hampshire</option>
-                        <option value="NJ">New Jersey</option>
-                        <option value="NM">New Mexico</option>
-                        <option value="NV">Nevada</option>
-                        <option value="NY">New York</option>
-                        <option value="OH">Ohio</option>
-                        <option value="OK">Oklahoma</option>
-                        <option value="OR">Oregon</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="PR">Puerto Rico</option>
-                        <option value="RI">Rhode Island</option>
-                        <option value="SC">South Carolina</option>
-                        <option value="SD">South Dakota</option>
-                        <option value="TN">Tennessee</option>
-                        <option value="TX">Texas</option>
-                        <option value="UT">Utah</option>
-                        <option value="VA">Virginia</option>
-                        <option value="VT">Vermont</option>
-                        <option value="WA" selected>Washington</option>
-                        <option value="WI">Wisconsin</option>
-                        <option value="WV">West Virginia</option>
-                        <option value="WY">Wyoming</option>
-                    </select>
-                </p>
-
-                <!-- Office zip inputs-->
-                <p class="w-75">
-                    <strong>Services/Specialties ZIP Code</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
-                    <check if="{{ isset(@errors['zip']) }}">
-                        <span class="text-danger">{{ @errors['zip'] }}</span>
-                    </check>
-                </p>
-
-                <!-- Office Phone number inputs-->
-                <p class="w-75">
-                    <strong>Services/Specialties Phone Number</strong>
+                    <strong>Resource Phone Number</strong>
                     <label class="red-text mb-0">*</label>
                     <input type="text" class="form-control" name="office_phone" value="{{ @office_phone }}" >
                     <check if="{{ isset(@errors['office_phone']) }}">
@@ -150,9 +69,9 @@
                     </check>
                 </p>
 
-                <!-- Email inputs-->
+                <!-- Resource email inputs-->
                 <p class="w-75">
-                    <strong>Services/Specialties Email</strong>
+                    <strong>Resource Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
                     <input type="text" class="form-control" name="office_email" value="{{ @office_email }}">
@@ -161,18 +80,54 @@
                     </check>
                 </p>
 
-                <!-- Website inputs-->
+                <!-- First name inputs -->
                 <p class="w-75">
-                    <strong>Services/Specialties Website</strong>
-                    <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="website" value="{{ @website }}" >
-                    <check if="{{ isset(@errors['website']) }}">
-                        <span class="text-danger">{{ @errors['website'] }}</span>
+                    <strong>Therapist First Name</strong>
+                    <input type="text" class="form-control" name="theraFname" value="{{ @theraFname }}">
+                    <check if="{{ isset(@errors['theraFname']) }}">
+                        <span class="text-danger">{{ @errors['theraFname'] }}</span>
                     </check>
                 </p>
 
-                <!-- Message inputs-->
+                <!-- Last name inputs -->
+                <p class="w-75">
+                    <strong>Therapist Last Name</strong>
+                    <input type="text" class="form-control" name="theraLname" value="{{ @theraLname }}">
+                    <check if="{{ isset(@errors['theraLname']) }}">
+                        <span class="text-danger">{{ @errors['theraLname'] }}</span>
+                    </check>
+                </p>
 
+                <!-- Gender inputs -->
+                <p class="w-75">
+                    <strong>Therapist Gender</strong>
+                    <label class="red-text mb-0">*</label>
+                    <br>
+                    <label class="radio-inline">
+                        <check if="{{@POST['theraGender'] == 'Male'}}">
+                            <true>
+                                <input type="radio" name="theraGender" value="Male" checked> Male
+                            </true>
+                            <false>
+                                <input type="radio" name="theraGender" value="Male"> Male
+                            </false>
+                        </check>
+                    </label>
+
+                    <label class="radio-inline">
+                        <check if="{{@POST['theraGender'] == 'Female'}}">
+                            <true>
+                                <input type="radio" name="theraGender" value="Female" checked> Female
+                            </true>
+                            <false>
+                                <input type="radio" name="theraGender" value="Female"> Female
+                            </false>
+                        </check>
+                    </label>
+                    <check if="{{ isset(@errors['theraGender']) }}">
+                        <span class="text-danger">{{ @errors['theraGender'] }}</span>
+                    </check>
+                </p>  <!-- End of gender inputs -->
             </div>  <!-- end of left column-->
 
             <div class="col-lg-4">
@@ -183,8 +138,7 @@
             </div>  <!-- end of right column -->
         </div>  <!-- end of row-->
 
-        <!-- Next button -->
-
+            <!-- Next button -->
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
             </div>
