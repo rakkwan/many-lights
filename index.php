@@ -107,6 +107,7 @@ $f3->route('GET|POST /recommended', function ($f3) {
         $f3->set('email', $email);
         $f3->set('phone', $phone);
 
+        // save data in class session
         $_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
 
         // if data is valid
@@ -117,12 +118,8 @@ $f3->route('GET|POST /recommended', function ($f3) {
             $_SESSION['email'] = $email;
             $_SESSION['phone'] = $phone;
 
-            // save data
-
-            //$_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
-
             // redirect to provider
-            $f3->reroute('/provider');
+            $f3->reroute('/resourceContact');
         }
     }
 
@@ -139,58 +136,65 @@ $f3->route('GET|POST /recommended', function ($f3) {
 });
 
 // office information form route
-$f3->route('GET|POST /provider', function ($f3) {
+$f3->route('GET|POST /resourceContact', function ($f3) {
     //If form has been submitted, validate
 
     if (!empty($_POST)) {
 
         // Get data from form
         $service = $_POST['service'];
+        $specialty = $_POST['specialty'];
         $office = $_POST['office'];
-        $address = $_POST['address'];
-        $city = $_POST['city'];
-        $state = $_POST['state'];
-        $zip = $_POST['zip'];
-        $office_phone = $_POST['office_phone'];
-        $office_email = $_POST['office_email'];
-        $website = $_POST['website'];
-        $comments = $_POST['comments'];
+        $officePhone = $_POST['officePhone'];
+        $officeEmail = $_POST['officeEmail'];
+        $theraFname = $_POST['theraFname'];
+        $theraLname = $_POST['theraLname'];
+        $theraGender = $_POST['theraGender'];
+
+
 
         // Add data to hive
         $f3->set('service', $service);
+        $f3->set('specialty', $specialty);
         $f3->set('office', $office);
-        $f3->set('address', $address);
-        $f3->set('city', $city);
-        $f3->set('state', $state);
-        $f3->set('zip', $zip);
-        $f3->set('office_phone', $office_phone);
-        $f3->set('office_email', $office_email);
-        $f3->set('website', $website);
-        $f3->set('comments', $comments);
+        $f3->set('officePhone', $officePhone);
+        $f3->set('officeEmail', $officeEmail);
+        $f3->set('theraFname', $theraFname);
+        $f3->set('theraLname', $theraLname);
+        $f3->set('theraGender', $theraGender);
+
+        // save data in class session
+        $_SESSION['ResourceContact'] = new ResourceContact($service, $specialty, $office, $officePhone,
+            $officeEmail, $theraFname, $theraLname, $theraGender);
+
 
         // if data is valid
         if (validOfficeForm()) {
             // Write data to session
             $_SESSION['service'] = $service;
+            $_SESSION['specialty'] = $specialty;
             $_SESSION['office'] = $office;
-            $_SESSION['address'] = $address;
-            $_SESSION['city'] = $city;
-            $_SESSION['state'] = $state;
-            $_SESSION['zip'] = $zip;
-            $_SESSION['office_phone'] = $office_phone;
-            $_SESSION['office_email'] = $office_email;
-            $_SESSION['website'] = $website;
-            $_SESSION['comments'] = $comments;
+            $_SESSION['officePhone'] = $officePhone;
+            $_SESSION['officeEmail'] = $officeEmail;
+            $_SESSION['theraFname'] = $theraFname;
+            $_SESSION['theraLname'] = $theraLname;
+            $_SESSION['theraGender'] = $theraGender;
 
-
+            // reroute to location
             $f3->reroute('/location');
         }
+    }
+
+    if (!isset($_SESSION['ResourceContact']))
+    {
+        $_SESSION['ResourceContact'] = new ResourceContact('', '', '', '',
+            '', '', '', '');
     }
 
     //display the office form of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
-    echo $view->render("views/officeForm.html");
+    echo $view->render("views/resourceContactForm.html");
     echo $view->render('views/includes/footer.html');
 });
 

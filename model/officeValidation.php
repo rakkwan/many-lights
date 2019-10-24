@@ -21,15 +21,15 @@ function validOfficeForm()
         $f3->set("errors['office']", "Please enter a valid office's name");
     }
 
-    if (!validOfficeEmail($f3->get('office_email')))
+    if (!validOfficeEmail($f3->get('officeEmail')))
     {
         $isValid = false;
-        $f3->set("errors['office_email']", "Please enter a valid email address");
+        $f3->set("errors['officeEmail']", "Please enter a valid email address");
     }
-    if (!validOfficePhone($f3->get('office_phone')))
+    if (!validOfficePhone($f3->get('officePhone')))
     {
         $isValid = false;
-        $f3->set("errors['office_phone']", "Please enter a phone number, must be 10 digits");
+        $f3->set("errors['officePhone']", "Please enter a phone number, must be 10 digits");
     }
 
     return $isValid;
