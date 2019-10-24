@@ -44,6 +44,18 @@ class OptionalInfo
         return $this->_age;
     }
 
+    public function containsAge($age)
+    {
+        foreach ($this->_age as $value)
+        {
+            if($value == $age)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Setter that sets the age
      * @param mixed $age

@@ -211,8 +211,8 @@ $f3->route('GET|POST /location', function ($f3) {
 // optional information route
 $f3->route('GET|POST /optionalInfo', function ($f3) {
 
-    session_destroy();
-    session_start();
+    //session_destroy();
+    //session_start();
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -220,6 +220,12 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $interpreter = $_POST['interpreter'];
         $insurance = $_POST['insurance'];
         $fee = $_POST['fee'];
+        //print_r($age);
+
+        if(sizeof($age) == 0)
+        {
+            $age = array('1', '2');
+        }
 
         // Add data to hive
         $f3->set('age', $age);
@@ -227,7 +233,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $f3->set('insurance', $insurance);
         $f3->set('fee', $fee);
 
-        $_SESSION['OptionalInfo'] = new RecommendedInfo($age, $interpreter, $insurance, $fee);
+        $_SESSION['OptionalInfo'] = new OptionalInfo($age, $interpreter, $insurance, $fee);
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
@@ -254,7 +260,8 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
 
     if(!isset($_SESSION['OptionalInfo']))
     {
-        $_SESSION['OptionalInfo'] = new OptionalInfo('', '', '', '');
+        $dummy = array('1', '2');
+        $_SESSION['OptionalInfo'] = new OptionalInfo($dummy, '', '', '');
     }
 
 

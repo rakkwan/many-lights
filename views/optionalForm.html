@@ -28,31 +28,16 @@
                 <div class="form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox" name="age[]"
-                               value="{{ $_SESSION['OptionalInfo']->getAge() }}"
-                        <check if="{{ @age === '0-4' }}">checked</check>>0 - 4
+                               value="0-4"
+                        <check if="{{ $_SESSION['OptionalInfo']->containsAge('0-4') }}">checked</check>>0 - 4
                     </label>
                 </div>
 
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="$_SESSION['OptionalInfo']->getAge()"
-                        <check if="{{ @age === '5-9' }}">checked</check>>5 - 9
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="$_SESSION['OptionalInfo']->getAge()"
-                        <check if="{{ @age === '10-12' }}">checked</check>>10 - 12
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="$_SESSION['OptionalInfo']->getAge()"
-                        <check if="{{ @age === '13-17' }}">checked</check>>13 - 17
+                        <input class="form-check-input" type="checkbox" name="age[]"
+                               value="5-9"
+                        <check if="{{ $_SESSION['OptionalInfo']->containsAge('5-9') }}">checked</check>>5 - 9
                     </label>
                 </div>
             </div>
@@ -60,8 +45,27 @@
             <div class="col-sm-3">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="age[]" value="$_SESSION['OptionalInfo']->getAge()"
-                        <check if="{{ @age === '18+' }}">checked</check>>18+
+                        <input class="form-check-input" type="checkbox" name="age[]"
+                               value="10-12"
+                        <check if="{{ $_SESSION['OptionalInfo']->containsAge('10-12') }}">checked</check>>10 - 12
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]"
+                               value="13-17"
+                        <check if="{{ $_SESSION['OptionalInfo']->containsAge('13-17') }}">checked</check>>13 - 17
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="age[]"
+                               value="18+"
+                        <check if="{{ $_SESSION['OptionalInfo']->containsAge('18+') }}">checked</check>>18+
                     </label>
                 </div>
             </div>
@@ -73,21 +77,24 @@
                 <p class="w-75">
                     <strong>Languages/interpreter</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="interpreter" value="{{ $_SESSION['OptionalInfo']->getInterpreter() }}">
+                    <input type="text" class="form-control" name="interpreter"
+                           value="{{ $_SESSION['OptionalInfo']->getInterpreter() }}">
                 </p>
 
                 <!-- Insurance Accepted -->
                 <p class="w-75">
                     <strong>Insurance accepted</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="insurance" value="{{ $_SESSION['OptionalInfo']->getInsurance() }}">
+                    <input type="text" class="form-control" name="insurance"
+                           value="{{ $_SESSION['OptionalInfo']->getInsurance() }}">
                 </p>
 
                 <!-- Fees -->
                 <p class="w-75">
                     <strong>Fees</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="fee" value="{{  $_SESSION['OptionalInfo']->getFee()  }}">
+                    <input type="text" class="form-control" name="fee"
+                           value="{{  $_SESSION['OptionalInfo']->getFee()  }}">
                 </p>
             </div>  <!-- end of left column-->
 
