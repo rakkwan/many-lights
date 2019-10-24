@@ -202,8 +202,31 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
 $f3->route('GET|POST /location', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
-       // do something
+
+        // Get data from form
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zip = $_POST['zip'];
+        $website = $_POST['website'];
+
+
+       // do data to hive
+        $f3->set('address', $address);
+        $f3->set('city', $city);
+        $f3->set('state', $state);
+        $f3->set('zip', $zip);
+        $f3->set('website', $website);
+
+        // save data in class session
+        $_SESSION['LocationForm'] = new LocationForm($address, $city, $state, $zip, $website);
+
         $f3->reroute('/optionalInfo');
+    }
+
+    if (!isset($_SESSION['LocationForm']))
+    {
+        $_SESSION['LocationForm'] = new LocationForm('', '', '', '', '');
     }
 
     $view = new Template();

@@ -113,7 +113,7 @@
                         <strong>Therapist Gender</strong>
                         <br>
                         <label class="radio-inline">
-                            <check if="{{@POST['theraGender'] == 'Male'}}">
+                            <check if="{{ $_SESSION['ResourceContact']->getTheraGender() === 'Male'}}">
                                 <true>
                                     <input type="radio" name="theraGender" value="Male" checked> Male
                                 </true>
@@ -124,7 +124,7 @@
                         </label>
 
                         <label class="radio-inline">
-                            <check if="{{@POST['theraGender'] == 'Female'}}">
+                            <check if="{{ $_SESSION['ResourceContact']->getTheraGender() === 'Female'}}">
                                 <true>
                                     <input type="radio" name="theraGender" value="Female" checked> Female
                                 </true>

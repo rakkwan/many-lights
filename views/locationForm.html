@@ -15,7 +15,7 @@
                 <p class="w-75">
                     <strong>Resource Street Address</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="address" value="{{ @address }}" >
+                    <input type="text" class="form-control" name="address" value="{{ $_SESSION['LocationForm']->getAddress() }}" >
                     <check if="{{ isset(@errors['address']) }}">
                         <span class="text-danger">{{ @errors['address'] }}</span>
                     </check>
@@ -25,7 +25,7 @@
                 <p class="w-75">
                     <strong>Resource City</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="city" value="{{ @city }}" >
+                    <input type="text" class="form-control" name="city" value="{{ $_SESSION['LocationForm']->getCity() }}" >
                     <check if="{{ isset(@errors['city']) }}">
                         <span class="text-danger">{{ @errors['city'] }}</span>
                     </check>
@@ -97,7 +97,7 @@
                 <p class="w-75">
                     <strong>Resource ZIP Code</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="zip" value="{{ @zip }}" >
+                    <input type="text" class="form-control" name="zip" value="{{ $_SESSION['LocationForm']->getZip() }}" >
                     <check if="{{ isset(@errors['zip']) }}">
                         <span class="text-danger">{{ @errors['zip'] }}</span>
                     </check>
@@ -107,7 +107,7 @@
                 <p class="w-75">
                     <strong>Resource Website</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="website" value="{{ @website }}" >
+                    <input type="text" class="form-control" name="website" value="{{ $_SESSION['LocationForm']->getWebsite() }}" >
                     <check if="{{ isset(@errors['website']) }}">
                         <span class="text-danger">{{ @errors['website'] }}</span>
                     </check>
