@@ -247,7 +247,6 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $interpreter = $_POST['interpreter'];
         $insurance = $_POST['insurance'];
         $fee = $_POST['fee'];
-        //print_r($age);
 
         if(sizeof($age) == 0)
         {
@@ -275,11 +274,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
                 $_SESSION['age'] = implode(', ', $age);
             }
 
-
-            // save data
-            //$_SESSION['OptionalInfo'] = new RecommendedInfo($age, $interpreter, $insurance, $fee);
-
-            // redirect to confirmation
+            // redirect to datHour page
             $f3->reroute('/dayHour');
         }
     }
@@ -291,15 +286,12 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $_SESSION['OptionalInfo'] = new OptionalInfo($dummy, '', '', '');
     }
 
-
-
     //display the confirmation of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/optionalForm.html");
     echo $view->render('views/includes/footer.html');
 });
-
 
 
 // day and hour information route
