@@ -18,17 +18,17 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Require autoload file
-
+//require_once ('vendor/autoload.php');
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
-require_once ('model/database.php');
+require_once ('model/dataBase.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
 
 //create instance of Database
-$db = new database();
+$db = new Databases();
 
 // Set days array
 $f3->set('day', array('Sunday', 'Monday', 'Tuesday', 'Wednesday',
@@ -378,7 +378,21 @@ $f3->route('GET|POST /admin', function ($f3) {
     //Get the DB instance
     global $db;
     //Proof the db is connected
-    $db->connect();
+:
+    $fields =  $db->getResource();
+
+    //var dumps the resources. DUMMY Test data alot!!!
+    foreach($fields as $outer_key => $array){
+        foreach($array as $inner_key => $value){
+
+            if ($inner_key === 'Field'){
+                if (!(int)$inner_key){
+                    $this->column_names[] = $value;
+                }
+            }
+        }
+    }
+    var_dump($fields);
 
 //    $view = new Template();
 //    echo $view->render('views/includes/header.html');
