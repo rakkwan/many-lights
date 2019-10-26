@@ -26,6 +26,8 @@ a.navbar-brand {
     background: white;
     width: 9%;
     max-height: 40% !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -49,8 +51,12 @@ body {
 /*The image in NavBar*/
 /*Use the # to target an ID of an html element*/
 #pic1 {
-    height: 50em;
-    width: 80em;
+    height: 4em;
+    /*width: 10em;*/
+}
+
+#basicExampleNav {
+    font-family: Roboto,sans-serif;
 }
 
 
