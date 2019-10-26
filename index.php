@@ -378,7 +378,7 @@ $f3->route('GET|POST /admin', function ($f3) {
     //Get the DB instance
     global $db;
     //Proof the db is connected
-:
+
     $fields =  $db->getResource();
 
     //var dumps the resources. DUMMY Test data alot!!!
