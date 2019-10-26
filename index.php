@@ -5,7 +5,7 @@ require_once('vendor/autoload.php');
 
 /**
  * Created by PhpStorm.
- * User: samantha
+ * User: samantha, Jittima, Robert, Sang
  * Date: 2019-10-04
  * Time: 15:09
  */
@@ -22,7 +22,7 @@ error_reporting(E_ALL);
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
-require_once ('model/dataBase.php');
+require_once ('model/database.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
@@ -112,11 +112,14 @@ $f3->route('GET|POST /recommended', function ($f3) {
 
         // if data is valid
         if (validForm()) {
-            // Write data to session
-            $_SESSION['fname'] = $fname;
-            $_SESSION['lname'] = $lname;
-            $_SESSION['email'] = $email;
-            $_SESSION['phone'] = $phone;
+
+            //insert the recommendedInfo into the database
+            $recommendedInfo = new RecommendedInfo($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['phone']);
+
+
+            global $db;
+            $db->recommendedInfo($recommendedInfo);
+            $_SESSION['recommendedInfo_ID'] = $f3->get('recommendedInfo_ID');
 
             // redirect to provider
             $f3->reroute('/resourceContact');
@@ -362,6 +365,12 @@ $f3->route('GET|POST /confirmation', function ($f3) {
             }
         }
     }
+
+    global $db;
+
+    //retrieve the recomendedInfo
+    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfo_ID']);
+    $f3->set('recommendedInfo', $recommendedInfo);
 
     //display the confirmation of the page
     $view = new Template();
