@@ -163,8 +163,6 @@ CREATE TABLE `waMap` (
 //$user = $_SERVER['USER'];
 require_once '/home/jgoodri1/config.php';
 
-
-
 class Databases
 {
 

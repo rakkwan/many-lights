@@ -56,7 +56,6 @@ $f3->route('GET /', function () {
 
 $f3->route('GET /home', function () {
     session_destroy();
-
     //display the contents of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -79,7 +78,6 @@ $f3->route('GET /resources', function ($f3) {
  * Clickable row route
  */
 $f3->route('GET /resources/service/@type', function ($f3) {
-
     //display the contents of the page
     $view = new Template();
     $f3->set('title', 'Service');
@@ -154,8 +152,6 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         $theraLname = $_POST['theraLname'];
         $theraGender = $_POST['theraGender'];
 
-
-
         // Add data to hive
         $f3->set('service', $service);
         $f3->set('specialty', $specialty);
@@ -169,7 +165,6 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         // save data in class session
         $_SESSION['ResourceContact'] = new ResourceContact($service, $specialty, $office, $officePhone,
             $officeEmail, $theraFname, $theraLname, $theraGender);
-
 
         // if data is valid
         if (validOfficeForm()) {
@@ -401,6 +396,7 @@ $f3->route('GET|POST /admin', function ($f3) {
             }
         }
     }
+
     var_dump($fields);
 
 //    $view = new Template();
