@@ -22,7 +22,7 @@ error_reporting(E_ALL);
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
-require_once ('model/database.php');
+require_once('model/database.php');
 
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
@@ -64,6 +64,16 @@ $f3->route('GET /home', function () {
 });
 
 $f3->route('GET /resources', function ($f3) {
+
+    //load with DB values with array
+    global $db;
+    //Proof the db is connected
+
+    $resources_data = $db->getResourcesMain();
+
+    echo "<pre>" . $resources_data . "</pre>";
+    var_dump($resources_data);
+
 
     //display the contents of the page
     $view = new Template();
@@ -124,8 +134,7 @@ $f3->route('GET|POST /recommended', function ($f3) {
         }
     }
 
-    if(!isset($_SESSION['RecommendedInfo']))
-    {
+    if (!isset($_SESSION['RecommendedInfo'])) {
         $_SESSION['RecommendedInfo'] = new RecommendedInfo('', '', '', '');
     }
 
@@ -183,8 +192,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         }
     }
 
-    if (!isset($_SESSION['ResourceContact']))
-    {
+    if (!isset($_SESSION['ResourceContact'])) {
         $_SESSION['ResourceContact'] = new ResourceContact('', '', '', '',
             '', '', '', '');
     }
@@ -209,7 +217,7 @@ $f3->route('GET|POST /location', function ($f3) {
         $website = $_POST['website'];
 
 
-       // do data to hive
+        // do data to hive
         $f3->set('address', $address);
         $f3->set('city', $city);
         $f3->set('state', $state);
@@ -222,8 +230,7 @@ $f3->route('GET|POST /location', function ($f3) {
         $f3->reroute('/optionalInfo');
     }
 
-    if (!isset($_SESSION['LocationForm']))
-    {
+    if (!isset($_SESSION['LocationForm'])) {
         $_SESSION['LocationForm'] = new LocationForm('', '', '', '', '');
     }
 
@@ -246,8 +253,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $insurance = $_POST['insurance'];
         $fee = $_POST['fee'];
 
-        if(sizeof($age) == 0)
-        {
+        if (sizeof($age) == 0) {
             $age = array('1', '2');
         }
 
@@ -278,8 +284,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
     }
 
 
-    if(!isset($_SESSION['OptionalInfo']))
-    {
+    if (!isset($_SESSION['OptionalInfo'])) {
         $dummy = array('1', '2');
         $_SESSION['OptionalInfo'] = new OptionalInfo($dummy, '', '', '');
     }
@@ -301,16 +306,16 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $days = $_POST['days'];
         $_SESSION['days'] = $days;
 
-        if(!empty($days)) {
+        if (!empty($days)) {
             // loop through and check which days are checked
-            foreach($_SESSION['days'] as $day) {
+            foreach ($_SESSION['days'] as $day) {
                 if (isset($day)) {
                     // Add data to hive and set session for time
-                    $_SESSION[$day.'FromTime'] = date('h:i A', strtotime($_POST[$day.'FromTime']));
-                    $f3->set($day.'FromTime', $_POST[$day.'FromTime']);
+                    $_SESSION[$day . 'FromTime'] = date('h:i A', strtotime($_POST[$day . 'FromTime']));
+                    $f3->set($day . 'FromTime', $_POST[$day . 'FromTime']);
 
-                    $_SESSION[$day.'ToTime'] = date('h:i A', strtotime($_POST[$day.'ToTime']));
-                    $f3->set($day.'ToTime', $_POST[$day.'ToTime']);
+                    $_SESSION[$day . 'ToTime'] = date('h:i A', strtotime($_POST[$day . 'ToTime']));
+                    $f3->set($day . 'ToTime', $_POST[$day . 'ToTime']);
                 }
             }
         }
@@ -345,18 +350,16 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 });
 
 
-
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
-    if(empty($_SESSION['days'])) {
-        foreach($f3->get('day') as $day) {
-            $_SESSION[$day.'NoTime'] = 'No time selected';
+    if (empty($_SESSION['days'])) {
+        foreach ($f3->get('day') as $day) {
+            $_SESSION[$day . 'NoTime'] = 'No time selected';
         }
-    }
-    else {
-        foreach($f3->get('day') as $date) {
-            if(!in_array($date, $_SESSION['days'])) {
-                $_SESSION[$date.'NoTime'] = 'No time selected';
+    } else {
+        foreach ($f3->get('day') as $date) {
+            if (!in_array($date, $_SESSION['days'])) {
+                $_SESSION[$date . 'NoTime'] = 'No time selected';
             }
         }
     }
@@ -383,14 +386,14 @@ $f3->route('GET|POST /admin', function ($f3) {
     global $db;
     //Proof the db is connected
 
-    $fields =  $db->getResource();
+    $fields = $db->getResource();
 
     //var dumps the resources. DUMMY Test data alot!!!
-    foreach($fields as $outer_key => $array){
-        foreach($array as $inner_key => $value){
+    foreach ($fields as $outer_key => $array) {
+        foreach ($array as $inner_key => $value) {
 
-            if ($inner_key === 'Field'){
-                if (!(int)$inner_key){
+            if ($inner_key === 'Field') {
+                if (!(int)$inner_key) {
                     $this->column_names[] = $value;
                 }
             }
