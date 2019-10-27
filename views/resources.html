@@ -6,14 +6,17 @@ file: header.html
 Author: Samantha DeSmul
 -->
 
+<!--Page specific styles-->
+<link rel="stylesheet" href="./css/resources.css">
+<div class="row">
+    <div class="col-12 text-center bg-white mb-3 pt-2">
 
-<div class="jumbotron">
-    <div class="contain white">
         <h2>Browse post adoption resources</h2>
     </div>
-
 </div>
-<div class="container">
+
+<div class="container bg-light p-4 m-1 text-center mx-auto">
+
     <table id="resources" class="display" style="width:100%">
         <thead>
         <tr>
@@ -25,6 +28,7 @@ Author: Samantha DeSmul
             <th>Address</th>
         </tr>
         </thead>
+
         <tfoot>
         <tr>
             <th>Service</th>
@@ -40,13 +44,12 @@ Author: Samantha DeSmul
 
 
 <!-- Central Modal-->
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
-            <div class="modal-header">
+            <div class="modal-header purple text-white">
                 <p class="heading lead">Browse Resource</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -55,6 +58,7 @@ Author: Samantha DeSmul
             </div>
 
             <!--Modal body-->
+            <!--TODO: Update with DB information -->
             <div class="modal-body">
                 <div class="text-center">
 
@@ -218,13 +222,15 @@ Author: Samantha DeSmul
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center">
-                <p>NOTICE There is no guarantee on quality of service, or that this resource's information is
-                    current</p>
+            <div class="modal-footer justify-content-center bg-light">
+                <h6 class=""><b class="text-warning"><i class="fa fa-exclamation-circle text-warning"
+                                                        aria-hidden="true"></i>NOTE:
+                </b>There is no guarantee on quality of service, or that this
+                    resource's information is
+                    current!</h6>
             </div>
         </div>
     </div>
