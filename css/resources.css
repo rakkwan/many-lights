@@ -5,3 +5,24 @@ h6 {
     letter-spacing: 0.1pt;
     font-family: inherit;
 }
+
+/*Cells*/
+/*table td {*/
+/*background-color: #feffd9;*/
+/*}*/
+
+tbody tr:hover {
+    background-color: #9e9f80 !important;
+}
+
+tbody tr:hover td.sorting_1 {
+    background-color: #7c7b5b !important;
+}
+
+th:hover {
+    background: darkgray;
+}
+
+/*td.sorting_1 {*/
+/*background-color: #a2a87e !important;*/
+/*}*/
