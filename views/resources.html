@@ -6,14 +6,18 @@ file: header.html
 Author: Samantha DeSmul
 -->
 
+<!--Page specific styles-->
+<link rel="stylesheet" href="./css/resources.css">
 
-<div class="jumbotron">
-    <div class="contain white">
+<div class="row">
+    <div class="col-12 text-center bg-white mb-3 pt-2">
+
         <h2>Browse post adoption resources</h2>
     </div>
-
 </div>
-<div class="container">
+
+<div class="container bg-light p-4 m-1 text-center mx-auto">
+
     <table id="resources" class="display" style="width:100%">
         <thead>
         <tr>
@@ -25,6 +29,7 @@ Author: Samantha DeSmul
             <th>Address</th>
         </tr>
         </thead>
+
         <tfoot>
         <tr>
             <th>Service</th>
@@ -38,29 +43,13 @@ Author: Samantha DeSmul
     </table>
 </div>
 
-
-<!-- Large modal Testign for id -->
-
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSuccess">Large modal
-</button>-->
-
-<!--<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">-->
-<!--<div class="modal-dialog modal-lg" role="document">-->
-<!--<div class="modal-content">-->
-<!--...-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
 <!-- Central Modal-->
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
-            <div class="modal-header">
+            <div class="modal-header purple text-white">
                 <p class="heading lead">Browse Resource</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -69,6 +58,7 @@ Author: Samantha DeSmul
             </div>
 
             <!--Modal body-->
+            <!--TODO: Update with DB information -->
             <div class="modal-body">
                 <div class="text-center">
 
@@ -211,42 +201,7 @@ Author: Samantha DeSmul
                     </div>
 
                     <!--Contact info for user who referred resource-->
-<<<<<<< HEAD
-                       <h3 class="bg-light">Referee Information</h3>
-                       <div class="row">
-                           <div class="col">
-                               <h5>Name</h5>
-                               <p>John Doe</p>
-                           </div>
-                           <div class="col">
-                               <h5>Email <a href="mailto:Johndoe@gmail.com?Subject=OneStop%20WA%20Recommendation%20"
-                                            target="_top">
-                                   <i class="fas fa-envelope"></i>
-                               </a></h5>
-                               <p>Johndoe@gmail.com</p>
-                           </div>
-                           <div class="col">
-                               <h5>Phone <a href="tel:{{@phoneNumber}}">
-                                   <i class="fas fa-phone"></i>
-                               </a></h5>
-                               <p>(111)222-3333</p>
-                           </div>
-                       </div>
-                   </div>
-
-                </div>
-
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                    <p>NOTICE There is no guarantee on quality of service, or that this resource's information is
-                        current</p>
-                </div>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-=======
-                 <!--   <h3 class="bg-light">Referee Information</h3>
+                    <h3 class="bg-light">Referee Information</h3>
                     <div class="row">
                         <div class="col">
                             <h5>Name</h5>
@@ -266,19 +221,18 @@ Author: Samantha DeSmul
                             <p>(111)222-3333</p>
                         </div>
                     </div>
-                </div>-->
-
+                </div>
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center">
-                <p>NOTICE There is no guarantee on quality of service, or that this resource's information is
-                    current</p>
+            <div class="modal-footer justify-content-center purple">
+                <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
+                                          aria-hidden="true"></i><b class="text-warning">NOTE:
+                </b>There is no guarantee on quality of service, or that this
+                    resource's information is
+                    current!</h6>
             </div>
         </div>
     </div>
     <!--/.Content-->
 </div>
->>>>>>> 83cefc95338c365b2a39fc1a935edaebda36c57f
-</div>
-<!-- Central Modal Medium Success-->

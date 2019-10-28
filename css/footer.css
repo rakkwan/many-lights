@@ -1,22 +1,13 @@
 
 footer {
-    background: #7289ad;
-    font-family: serif;
-    font-size: x-large;
-    margin-top: 20px;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
-    max-height: 40% !important;
+    max-height: 4rem;
+    margin-top: 5px;
 }
 
-.footer-text {
-    color: #fffcaf;
-    font-family: serif;
-    font-size: x-large;
-}
 
 /* Style all font awesome icons */
 .fa {
@@ -25,34 +16,4 @@ footer {
     width: 50px;
     text-align: center;
     text-decoration: none;
-}
-
-/* Add a hover effect if you want */
-/*.fa:hover
-{
-    opacity: 0.7;
-    color: #fffcaf;
-}*/
-
-body {
-    position: relative;
-    min-height: 100vh;
-    padding-bottom: 10%; /* Should be equal to the height of your footer */
-}
-
-img.rounded.float-left {
-    max-width: 13%;
-}
-
-img#hcm {
-    margin-top: 2%;
-
-}
-
-.fa-instagram:before {
-    color: black;
-}
-
-li.list-inline-item {
-    padding-right: 21%;
 }

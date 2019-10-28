@@ -163,8 +163,6 @@ CREATE TABLE `waMap` (
 //$user = $_SERVER['USER'];
 require_once '/home/jgoodri1/config.php';
 
-
-
 class Databases
 {
 
@@ -184,13 +182,13 @@ class Databases
     public function connect()
     {
         //Connect to DB
-        try{
+        try {
             //Instantiate a database object
-            $this->_dbh = new PDO(DB_DSN,DB_USERNAME,DB_PASSWORD );
+            $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
 //            $user = $_SERVER['USER'];
 //            echo "Connected to DB with $user";
 
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             $this->_errorMessage = $e->getMessage();
 
             echo $this->_errorMessage;
@@ -204,6 +202,26 @@ class Databases
     {
         //Define Query
         $sql = "SELECT * FROM resourcesContact LIMIT 5";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //execute statement
+        $statement->execute();
+
+        //Process the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    /**
+     * Function to get all the resources
+     */
+    public function getResourcesMain()
+    {
+        //Define Query
+        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
