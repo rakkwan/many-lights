@@ -23,22 +23,24 @@
         <!-- Day selection inputs-->
         <div class="row">
             <repeat group="{{@day}}" value="{{@date}}">
-                <label class="col-sm">
+                <fieldset class="col-sm">
                     <input type="checkbox" name="days[]" value="{{@date}}"
 
                     > {{@date}}
-                    <!-- Time selection inputs-->
+
+                <!-- Time selection inputs-->
                     <div class="form-group" id="{{@date}}" style="display: none">
                         <label>
                             <small>From</small>
                             <input type="time" name="{{@date}}FromTime" step="900">
                         </label>
+                        <br>
                         <label>
                             <small>To</small>
                             <input type="time" name="{{@date}}ToTime" step="900">
                         </label>
                     </div>
-                </label>
+                </fieldset>
             </repeat>
         </div>  <!-- End of day selection input -->
 
