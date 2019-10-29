@@ -9,7 +9,7 @@
 
 <div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
     <h1 class="text-center">Thank you!</h1>
-    <p class="lead text-center">{{ $_SESSION['fname'] }} {{ $_SESSION['lname'] }} for your recommendation!</p>
+    <p class="lead text-center">{{ @recommendedInfo['firstName'] }} {{ @recommendedInfo['lastName'] }} for your recommendation!</p>
     <hr>
 
 <div class="progress">
@@ -19,7 +19,7 @@
 <div class="container white mt-4">
     <div class="jumbotron">
         <h3 class="text-center">Your information</h3>
-        <p><strong>Name:</strong> {{ @recommendedInfo['fname'] }} {{ @recommendedInfo['lname'] }} </p>
+        <p><strong>Name:</strong> {{ @recommendedInfo['firstName'] }} {{ @recommendedInfo['lastName'] }} </p>
         <p><strong>Email:</strong> {{ @recommendedInfo['email'] }}</p>
         <p><strong>Phone:</strong> {{ @recommendedInfo['phone'] }}</p>
         <hr class="my-4">
