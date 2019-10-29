@@ -23,22 +23,24 @@
         <!-- Day selection inputs-->
         <div class="row">
             <repeat group="{{@day}}" value="{{@date}}">
-                <label class="col-sm">
+                <fieldset class="col-sm">
                     <input type="checkbox" name="days[]" value="{{@date}}"
 
-                    > {{@date}}
-                    <!-- Time selection inputs-->
-                    <div class="form-group" id="{{@date}}" style="display: none">
-                        <label>
-                            <small>From</small>
-                            <input type="time" name="{{@date}}FromTime" step="900">
-                        </label>
-                        <label>
-                            <small>To</small>
-                            <input type="time" name="{{@date}}ToTime" step="900">
-                        </label>
-                    </div>
-                </label>
+                        > {{@date}}
+
+                        <!-- Time selection inputs-->
+                        <div class="form-group" id="{{@date}}" style="display: none">
+                            <label>
+                                <small>From</small>
+                                <input type="time" name="{{@date}}FromTime" step="900">
+                            </label>
+                            <br>
+                            <label>
+                                <small>To</small>
+                                <input type="time" name="{{@date}}ToTime" step="900">
+                            </label>
+                        </div>
+                </fieldset>
             </repeat>
         </div>  <!-- End of day selection input -->
 
@@ -66,17 +68,17 @@
         </div>
 
         <!-- Next button -->
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
-            </div>
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-purple btn-sm float-right">Next></button>
+        </div>
 
     </form>
 
 
-<!-- Back Button -->
-<form method="get" action="optionalInfo">
-    <button type="submit" class="btn btn-outline-purple btn-sm waves-effect">Back</button>
-</form>
+    <!-- Back Button -->
+    <form method="get" action="optionalInfo">
+        <button type="submit" class="btn btn-outline-purple btn-sm waves-effect">Back</button>
+    </form>
 
 </div>
 

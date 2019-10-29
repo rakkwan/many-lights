@@ -320,6 +320,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             }
         }
 
+
         $countyOne = $_POST['countyOne'];
         $countyTwo = $_POST['countyTwo'];
         $countyThree = $_POST['countyThree'];
@@ -352,17 +353,25 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
+
+
+    echo print_r($f3->get('day'));
+
+
     if (empty($_SESSION['days'])) {
         foreach ($f3->get('day') as $day) {
             $_SESSION[$day . 'NoTime'] = 'No time selected';
+
         }
     } else {
         foreach ($f3->get('day') as $date) {
             if (!in_array($date, $_SESSION['days'])) {
                 $_SESSION[$date . 'NoTime'] = 'No time selected';
             }
+
         }
     }
+
 
     global $db;
 
