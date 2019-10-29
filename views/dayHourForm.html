@@ -25,6 +25,7 @@
             <repeat group="{{@day}}" value="{{@date}}">
                 <fieldset class="col-sm">
                     <input type="checkbox" name="days[]" value="{{@date}}"
+                    <check if="{{ $_SESSION['DayHourInfo']->containsDay(@date) }}">checked</check>
 
                         > {{@date}}
 
@@ -51,19 +52,19 @@
             <!-- County1 inputs -->
             <label class="col-sm">
                 <strong>County 1</strong>
-                <input type="text" class="form-control" name="countyOne" value="{{ @countyOne }}" >
+                <input type="text" class="form-control" name="countyOne" value="{{ $_SESSION['DayHourInfo']->getCountyOne() }}" >
             </label>
 
             <!-- County2 inputs -->
             <label class="col-sm">
                 <strong>County 2</strong>
-                <input type="text" class="form-control" name="countyTwo" value="{{ @countyTwo }}" >
+                <input type="text" class="form-control" name="countyTwo" value="{{ $_SESSION['DayHourInfo']->getCountyTwo() }}" >
             </label>
 
             <!-- County3 inputs -->
             <label class="col-sm">
                 <strong>County 3</strong>
-                <input type="text" class="form-control" name="countyThree" value="{{ @countyThree }}" >
+                <input type="text" class="form-control" name="countyThree" value="{{ $_SESSION['DayHourInfo']->getCountyThree() }}" >
             </label>
         </div>
 

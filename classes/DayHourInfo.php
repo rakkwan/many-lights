@@ -6,18 +6,18 @@ class DayHourInfo
     private $_day;
     private $_fromTime;
     private $_toTime;
-    private $_county1;
-    private $_county2;
-    private $_county3;
+    private $_countyOne;
+    private $_countyTwo;
+    private $_countyThree;
 
-    function __construct($_day, $_county1, $_county2, $_county3)
+    function __construct($_day, $_countyOne, $_countyTwo, $_countyThree)
     {
-        $this->_day;
-        $this->_fromTime;
-        $this->_toTime;
-        $this->_county1;
-        $this->_county2;
-        $this->_county3;
+        $this->_day = $_day;
+//        $this->_fromTime;
+//        $this->_toTime;
+        $this->_countyOne = $_countyOne;
+        $this->_countyTwo = $_countyTwo;
+        $this->_countyThree = $_countyThree;
     }
 
     /**
@@ -44,8 +44,8 @@ class DayHourInfo
         {
         return true;
         }
-        return false;
     }
+        return false;
     }
 
     /**
@@ -83,49 +83,49 @@ class DayHourInfo
     /**
      * @return mixed
      */
-    public function getCounty1()
+    public function getCountyOne()
     {
-        return $this->_county1;
+        return $this->_countyOne;
     }
 
     /**
-     * @param mixed $county1
+     * @param mixed $countyOne
      */
-    public function setCounty1($county1)
+    public function setCountyOne($countyOne)
     {
-        $this->_county1 = $county1;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCounty2()
-    {
-        return $this->_county2;
-    }
-
-    /**
-     * @param mixed $county2
-     */
-    public function setCounty2($county2)
-    {
-        $this->_county2 = $county2;
+        $this->_countyOne = $countyOne;
     }
 
     /**
      * @return mixed
      */
-    public function getCounty3()
+    public function getCountyTwo()
     {
-        return $this->_county3;
+        return $this->_countyTwo;
     }
 
     /**
-     * @param mixed $county3
+     * @param mixed $countyTwo
      */
-    public function setCounty3($county3)
+    public function setCountyTwo($countyTwo)
     {
-        $this->_county3 = $county3;
+        $this->_countyTwo = $countyTwo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountyThree()
+    {
+        return $this->_countyThree;
+    }
+
+    /**
+     * @param mixed $countyThree
+     */
+    public function setCountyThree($countyThree)
+    {
+        $this->_countyThree = $countyThree;
     }
 
 
