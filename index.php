@@ -304,10 +304,11 @@ $f3->route('GET|POST /dayHour', function ($f3) {
     if (!empty($_POST)) {
         // Get data from form
         $days = $_POST['days'];
+        $_SESSION['days'] = $days;
 
         if (!empty($days)) {
             // loop through and check which days are checked
-            foreach ($_POST['days'] as $day) {
+            foreach ($_SESSION['days'] as $day) {
                 if (isset($day)) {
                     // Add data to hive and set session for time
                     $_SESSION[$day . 'FromTime'] = date('h:i A', strtotime($_POST[$day . 'FromTime']));
@@ -319,27 +320,19 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             }
         }
 
-        if(sizeof($days) == 0) {
-            $days = array('No days selection');
-        }
-
 
         $countyOne = $_POST['countyOne'];
         $countyTwo = $_POST['countyTwo'];
         $countyThree = $_POST['countyThree'];
 
         // Add data to hive
-        $f3->set('day', $days);
         $f3->set('countyOne', $countyOne);
         $f3->set('countyTwo', $countyTwo);
         $f3->set('countyThree', $countyThree);
 
-        $_SESSION['DayHourInfo'] = new DayHourInfo($days, $countyOne, $countyTwo, $countyThree);
-
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
-            $_SESSION['days'] = $days;
             $_SESSION['countyOne'] = $countyOne;
             $_SESSION['countyTwo'] = $countyTwo;
             $_SESSION['countyThree'] = $countyThree;
@@ -349,10 +342,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         }
     }
 
-    if(!isset($_SESSION['DayHourInfo'])) {
-        $noInput = array('1', '2');
-        $_SESSION['DayHourInfo'] = new DayHourInfo($noInput, '', '', '');
-    }
 
     //display the day and hour of the page
     $view = new Template();
@@ -364,17 +353,25 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 
 // Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
+
+
+    echo print_r($f3->get('day'));
+
+
     if (empty($_SESSION['days'])) {
         foreach ($f3->get('day') as $day) {
             $_SESSION[$day . 'NoTime'] = 'No time selected';
+
         }
     } else {
         foreach ($f3->get('day') as $date) {
             if (!in_array($date, $_SESSION['days'])) {
                 $_SESSION[$date . 'NoTime'] = 'No time selected';
             }
+
         }
     }
+
 
     global $db;
 
