@@ -162,7 +162,8 @@ CREATE TABLE `waMap` (
  */
 
 //$user = $_SERVER['USER'];
-require_once '/home/jgoodri1/config.php';
+//require_once '/home/jgoodri1/config.php';
+require_once '/home2/rhillgre/config3.php';
 
 class Databases
 {
@@ -290,6 +291,52 @@ class Databases
         $statement->execute();
 
         // Return the results
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
+     * gets the Resources information based on a status param
+     * @param $status is a String that is either Pending, Accepted, or Declined
+     * @return array
+     */
+    function getResourceStatus($status)
+    {
+        switch($status)
+        {
+            case 3:
+                //Declined
+                $statusID = 3;
+                break;
+            case 2:
+                //Accepted
+                $statusID = 2;
+                break;
+            default:
+                //Pending
+                $statusID = 1;
+        }
+
+        // define the query
+        $sql = 'SELECT
+                    *,
+                    statusBrand.statusLabel
+                FROM
+                    resources
+                INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+                WHERE
+                    resources.statusID = :statusID';
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
+
+        //Execute the statement
+        $statement->execute();
+
+        //Return the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
     }

@@ -394,23 +394,12 @@ $f3->route('GET|POST /admin', function ($f3) {
     //Get the DB instance
     global $db;
     //Proof the db is connected
-
-    $fields = $db->getResource();
+    $fields = $db->getResourceStatus(1);
 
     //var dumps the resources. DUMMY Test data alot!!!
-    foreach ($fields as $outer_key => $array) {
-        foreach ($array as $inner_key => $value) {
-
-            if ($inner_key === 'Field') {
-                if (!(int)$inner_key) {
-                    $this->column_names[] = $value;
-                }
-            }
-        }
-    }
-
     var_dump($fields);
-
+//    var_dump($res);
+//
 //    $view = new Template();
 //    echo $view->render('views/includes/header.html');
 //    echo $view->render('views/adminView.html');
