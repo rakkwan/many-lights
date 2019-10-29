@@ -127,7 +127,7 @@ $f3->route('GET|POST /recommended', function ($f3) {
 
             global $db;
             $db->recommendedInfo($recommendedInfo);
-            $_SESSION['recommendedInfo_ID'] = $f3->get('recommendedInfo_ID');
+            $_SESSION['recommendedInfoID'] = $f3->get('recommendedInfoID');
 
             // redirect to provider
             $f3->reroute('/resourceContact');
@@ -186,6 +186,16 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
+
+
+            //insert the recommendedInfo into the database
+            $service = new ResourceContact($_POST['service'],
+                $_POST['specialty'], $_POST['office'], $_POST['officePhone'], $_POST['officeEmail'],
+                $_POST['theraFname'], $_POST['theraLname'], $_POST['theraGender']);
+
+            global $db;
+            $db->serviceInfo($service);
+            $_SESSION['serviceID'] = $f3->get('serviceID');
 
             // reroute to location
             $f3->reroute('/location');
@@ -379,8 +389,10 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     global $db;
 
     //retrieve the recomendedInfo
-    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfo_ID']);
+    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
     $f3->set('recommendedInfo', $recommendedInfo);
+    $service = $db->getServiceInfo($_SESSION['serviceID']);
+    $f3->set('service', $service);
 
     //display the confirmation of the page
     $view = new Template();
