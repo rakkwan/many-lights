@@ -2,6 +2,77 @@
 
 
 /*
+ *
+ *
+ * create table referee
+(
+  refereeID int         not null auto_increment,
+  primary key (refereeID),
+  fname     varchar(50) not null,
+  lname     varchar(50) not null,
+  email     varchar(50) not null,
+  phone     varchar(50) not null
+);
+
+create table status
+(
+  statusID int not null auto_increment,
+  primary key (statusID),
+  status   varchar(20)
+);
+INSERT INTO `status`( `status`) VALUES ("Pending");
+create table service
+(
+  serviceID int not null auto_increment,
+  primary key (serviceID),
+  service   varchar(40)
+);
+
+INSERT INTO `service` (`service`) VALUES (VAL-1);
+
+
+create table resources
+(
+
+  resourceID  int         not null auto_increment,
+  primary key (resourceID),
+  speciality  varchar(60),
+  days        linestring,
+  office      varchar(50) not null,
+  officeEmail varchar(50) not null,
+  officePhone varchar(15) not null,
+  theraFname  varchar(50),
+  theraLname  varchar(50),
+  theraGender boolean,
+  interpreter varchar(100),
+  insurance   varchar(50),
+  fee         int,
+  age         int,
+  countyOne   varchar(50),
+  countyTwo   varchar(50),
+  countyThree varchar(50),
+  address     varchar(50),
+  city        varchar(25),
+  state       varchar(3),
+  zip         int,
+  website     varchar(40),
+  serviceID   int,
+  refereeID   int,
+
+  FOREIGN KEY (serviceID) REFERENCES service (serviceID),
+  FOREIGN KEY (refereeID) REFERENCES referee (refereeID)
+
+)
+
+
+ *
+ *
+ *
+ *
+ *
+ *
+ * SAMANTHA's CHANGES ABOVE
+ *
 
 Database: `rhillgre_coderLite`
 
@@ -342,6 +413,5 @@ class Databases
     }
 
 }
-
 
 
