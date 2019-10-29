@@ -107,7 +107,7 @@
                 <p class="w-75">
                     <strong>Resource Website</strong>
                     <label class="orange-text mb-0">(optional)</label>
-                    <input type="text" class="form-control" name="website" value="{{ $_SESSION['LocationForm']->getWebsite() }}" >
+                    <input type="url" class="form-control" name="website" value="{{ $_SESSION['LocationForm']->getWebsite() }}" >
                     <check if="{{ isset(@errors['website']) }}">
                         <span class="text-danger">{{ @errors['website'] }}</span>
                     </check>
