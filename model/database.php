@@ -13,13 +13,14 @@
   email     varchar(50) not null,
   phone     varchar(50) not null
 );
-
-create table status
+//Updated by rhill34
+create table statusBrand
 (
   statusID int not null auto_increment,
   primary key (statusID),
-  status   varchar(20)
+  statusLabel   varchar(20)
 );
+
 INSERT INTO `status`( `status`) VALUES ("Pending");
 create table service
 (
@@ -189,7 +190,7 @@ CREATE TABLE `serviceType` (
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
-Table structure for table `status`
+Table structure for table `statusBrand`
 
 CREATE TABLE `status` (
     status_ID` int(11) NOT NULL,
@@ -233,8 +234,8 @@ CREATE TABLE `waMap` (
  */
 
 //$user = $_SERVER['USER'];
-//require_once '/home/jgoodri1/config.php';
-require_once '/home2/rhillgre/config3.php';
+require_once '/home/jgoodri1/config.php';
+
 
 class Databases
 {
