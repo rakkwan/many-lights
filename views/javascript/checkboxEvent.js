@@ -12,3 +12,20 @@ $('#businessHours :checkbox').change(function() {
         $("#" + day).hide();
     }
 });
+
+$('#service').change(function () {
+    if ($(this).val() == 'Therapy') {
+        $('#therapistInfo').show();
+        console.log($(this).val() + ' is selected');
+    }
+    else {
+        $('#therapistInfo').hide();
+        console.log($(this).val() + ' is selected');
+    }
+});
+
+if(document.getElementById("service").value == "Therapy") {
+    $('#therapistInfo').show();
+}
+
+
