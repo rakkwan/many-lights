@@ -32,11 +32,25 @@
                     <br>
 
                     <select class="form-control" name="service" id="service">
-                        <option value="Therapy">Therapy</option>
-                        <option value="Food">Food</option>
-                        <option value="Crisis">Crisis</option>
-                        <option value="Crisis">Insurance</option>
-                        <option value="Other">Other</option>
+                        <option value="Therapy" id="therapy"
+                        <check if="{{@SESSION.service == 'Therapy'}}">selected</check>
+                        >Therapy</option>
+
+                        <option value="Food"
+                        <check if="{{@SESSION.service == 'Food'}}">selected</check>
+                        >Food</option>
+
+                        <option value="Crisis"
+                        <check if="{{@SESSION.service == 'Crisis'}}">selected</check>
+                        >Crisis</option>
+
+                        <option value="Insurance"
+                        <check if="{{@SESSION.service == 'Insurance'}}">selected</check>
+                        >Insurance</option>
+
+                        <option value="Other"
+                        <check if="{{@SESSION.service == 'Other'}}">selected</check>
+                        >Other</option>
                     </select>
                 </p>
 

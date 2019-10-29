@@ -34,4 +34,11 @@ $('#service').change(function () {
     }
 });
 
+// Show therapist info when going back
+if($('#service').val() == 'Therapy') {
+    $('#therapistInfo').show();
+}
+else {
+    $('#therapistInfo').hide();
+}
 
