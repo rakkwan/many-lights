@@ -15,7 +15,7 @@ $('#businessHours :checkbox').change(function() {
 });
 
 // Show time when going back
-var boxes = $('#myCheck:checked');
+var boxes = $('.myCheck:checked');
 boxes.each(function (i, checkbox) {
     var day = document.getElementById(checkbox.value);
     console.log(day);

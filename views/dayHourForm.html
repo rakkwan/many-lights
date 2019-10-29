@@ -24,7 +24,7 @@
         <div class="row">
             <repeat group="{{@day}}" value="{{@date}}">
                 <fieldset class="col-sm">
-                    <input type="checkbox" name="days[]" value="{{@date}}" id="myCheck"
+                    <input type="checkbox" name="days[]" value="{{@date}}" class="myCheck"
                     <check if="{{ $_SESSION['DayHourInfo']->containsDay(@date) }}">checked</check>
 
                         > {{@date}}
