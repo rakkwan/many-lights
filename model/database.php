@@ -105,7 +105,7 @@ class Databases
         try {
             //Instantiate a database object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-           //$user = $_SERVER['USER'];
+            //$user = $_SERVER['USER'];
             //echo "Connected to DB with $user";
 
         } catch (PDOException $e) {
@@ -121,7 +121,7 @@ class Databases
     public function getResource()
     {
         //Define Query
-        $sql = "SELECT * FROM resourcesContact LIMIT 5";
+        $sql = "SELECT * FROM resources";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -141,7 +141,13 @@ class Databases
     public function getResourcesMain()
     {
         //Define Query
-        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
+//        $sql = "SELECT service.service, resources.theraFname, resources.theraLname,
+//resources.office,resources.officeEmail,resources.address,resources.city,resources.state,
+//resources.zip  from resources join service on service.serviceID = resources.serviceID";
+
+
+        $sql = "SELECT service.service, resources.theraFname, resources.theraLname,
+resources.office,resources.officeEmail,resources.city  from resources join service on service.serviceID = resources.serviceID";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -289,8 +295,6 @@ class Databases
     */
 
 
-
-
     /*
      * -----------------------------------------------------------------------------------------------
      */
@@ -303,8 +307,7 @@ class Databases
      */
     function getResourceStatus($status)
     {
-        switch($status)
-        {
+        switch ($status) {
             case 3:
                 //Declined
                 $statusID = 3;

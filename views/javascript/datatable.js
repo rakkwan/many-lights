@@ -3,12 +3,52 @@ Datatable.js
 
 this file will include the data table and the clickable row functionality
 
+
 TODO: Insert PDO
 TODO: Fill Modal with pulled data
  */
 $(document).ready(function () {
+
     $('#resources').DataTable({
-        "data": [
+        "ajax": {
+            "url": "https://coderlite.greenriverdev.com/IT355/oneStopWa/views/javascript/resources.txt"
+        }
+    });
+    console.log("JS loaded");
+
+    //     Reroute to a new page with clickable rows
+    // $('#resources tbody').on('click', 'tr', function () {
+    //     // console.log($(this)[0].cells[0].textContent);
+    //     let serviceName = $(this)[0].cells[0].textContent;
+    //     let reroute = "https://coderlite.greenriverdev.com/IT355/oneStopWa/resources/service/" + serviceName;
+    //
+    //     console.log(reroute);
+    //
+    //     //reroute manually
+    //     window.location = reroute;
+    //
+    //     //send with ajax
+    //     $.ajax({
+    //         type: "POST",
+    //         url: reroute,
+    //         data: {name: serviceName},
+    //
+    //         success: function (data) {
+    //
+    //             // do stuff
+    //
+    //             // call next ajax function
+    //             console.log(data);
+    //         }
+    //
+    //
+    //     });
+    //
+    // });
+    //
+
+    /*
+     "data": [
             [
                 "Therapist",
                 "Kristie Baber, MSW, LICSW",
@@ -104,38 +144,7 @@ $(document).ready(function () {
                 "Shoreline, WA 98133"
             ]
         ]
-    });
-    console.log("JS loaded");
-
-    //     Reroute to a new page with clickable rows
-    // $('#resources tbody').on('click', 'tr', function () {
-    //     // console.log($(this)[0].cells[0].textContent);
-    //     let serviceName = $(this)[0].cells[0].textContent;
-    //     let reroute = "https://coderlite.greenriverdev.com/IT355/oneStopWa/resources/service/" + serviceName;
-    //
-    //     console.log(reroute);
-    //
-    //     //reroute manually
-    //     window.location = reroute;
-    //
-    //     //send with ajax
-    //     $.ajax({
-    //         type: "POST",
-    //         url: reroute,
-    //         data: {name: serviceName},
-    //
-    //         success: function (data) {
-    //
-    //             // do stuff
-    //
-    //             // call next ajax function
-    //             console.log(data);
-    //         }
-    //
-    //
-    //     });
-    //
-    // });
+     */
 
 
     /*
@@ -164,4 +173,5 @@ $(document).ready(function () {
 
     });
 
-});
+})
+;
