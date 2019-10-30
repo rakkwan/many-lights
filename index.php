@@ -391,7 +391,7 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     //retrieve the recomendedInfo
     $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
     $f3->set('recommendedInfo', $recommendedInfo);
-    $service = $db->getServiceInfo($_SESSION['serviceID']);
+    $service = $db->getServiceInfo($_SESSION['service']);
     $f3->set('service', $service);
 
     //display the confirmation of the page

@@ -255,13 +255,13 @@ class Databases
     function getServiceInfo($service)
     {
         // define the query
-        $sql = 'SELECT * FROM service WHERE serviceID = :serviceID';
+        $sql = 'SELECT * FROM service WHERE service = :service';
 
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         // Bind the parameters
-        $statement->bindParam(':serviceID', $service, PDO::PARAM_STR);
+        $statement->bindParam(':service', $service, PDO::PARAM_STR);
 
         // Execute the statement
         $statement->execute();
