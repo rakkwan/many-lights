@@ -271,6 +271,125 @@ class Databases
         return $result;
     }
 
+    function getServiceID($service)
+    {
+        // define the query
+        $sql = 'SELECT serviceID FROM service WHERE service = :service';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // Bind the parameters
+        $statement->bindParam(':service', $service, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        global $f3;
+        // Return the results
+        $result = $statement->fetch();
+        $f3->set('serviceID', $result);
+
+//        return $result;
+    }
+
+    function resourceInfo($resource) {
+        //speciality days office officeEmail officePhone theraFname theraLname theraGender
+        // interpreter insurance fee age countyOne countyTwo countyThree
+        // address city state zip website serviceID recommendedInfoID statusID
+
+        // prepare sql statement
+        $sql = "INSERT INTO resources 
+        (speciality, office, officeEmail, officePhone, theraFname, theraLname, serviceID, recommendedInfoID, statusID)
+//        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, 1, :recommendedInfoID, 1)";
+
+        // save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        global $f3;
+        // assign values
+        $speciality = $resource->getSpecialty();
+        $office = $resource->getOffice();
+        $officeEmail = $resource->getOfficeEmail();
+        $officePhone = $resource->getOfficePhone();
+        $theraFname = $resource->getTheraFname();
+        $theraLname = $resource->getTheraLname();
+//        $theraGender = $resource->getTheraGender();
+//        $serviceID = $f3->get('serviceID');
+        $recommendedInfoID = $f3->get('recommendedInfoID');
+
+        // bind params
+        $statement->bindParam(':speciality', $speciality, PDO::PARAM_STR);
+        $statement->bindParam(':office', $office, PDO::PARAM_STR);
+        $statement->bindParam(':officeEmail', $officeEmail, PDO::PARAM_STR);
+        $statement->bindParam(':officePhone', $officePhone, PDO::PARAM_STR);
+        $statement->bindParam(':theraFname', $theraFname, PDO::PARAM_STR);
+        $statement->bindParam(':theraLname', $theraLname, PDO::PARAM_STR);
+//        $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
+//        $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
+
+        // execute insert into recommendedInfo
+        $statement->execute();
+
+        $lastID = $this->_dbh->lastInsertId();
+        $f3->set('resourceID', $lastID);
+    }
+
+    function getResourceInfo($resource)
+    {
+        // define the query
+        $sql = 'SELECT * FROM resources WHERE resourceID = :resourceID';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // Bind the parameters
+        $statement->bindParam(':resourceID', $resource, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        // Return the results
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function updateLocation($location)
+    {
+        // address city state zip website serviceID recommendedInfoID statusID
+
+        // define the query
+        $sql = 'UPDATE resources 
+        SET address = :address, city = :city, state = :state, zip = :zip, website = :website 
+        WHERE resourceID = :resourceID';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        global $f3;
+        // assign values
+        $address = $location->getAddress();
+        $city = $location->getCity();
+        $state = $location->getState();
+        $zip = $location->getZip();
+        $website = $location->getWebsite();
+        $resourceID = $f3->get('resourceID');
+
+        // bind params
+        $statement->bindParam(':address', $address, PDO::PARAM_STR);
+        $statement->bindParam(':city', $city, PDO::PARAM_STR);
+        $statement->bindParam(':state', $state, PDO::PARAM_STR);
+        $statement->bindParam(':zip', $zip, PDO::PARAM_STR);
+        $statement->bindParam(':website', $website, PDO::PARAM_STR);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+    }
+
+
+
     /*
     function insertService($service, $lastRecommendedInfoID)
     {

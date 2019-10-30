@@ -194,8 +194,14 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
                 $_POST['theraFname'], $_POST['theraLname'], $_POST['theraGender']);
 
             global $db;
-            $db->serviceInfo($service);
-            $_SESSION['serviceID'] = $f3->get('serviceID');
+//            $db->serviceInfo($service);
+//            $_SESSION['serviceID'] = $f3->get('serviceID');
+
+//            $serviceID = $db->getServiceID($_SESSION['service']);
+//            $f3->set('serviceID', $serviceID);
+
+            $db->resourceInfo($service);
+            $_SESSION['resourceID'] = $f3->get('resourceID');
 
             // reroute to location
             $f3->reroute('/location');
@@ -236,6 +242,10 @@ $f3->route('GET|POST /location', function ($f3) {
 
         // save data in class session
         $_SESSION['LocationForm'] = new LocationForm($address, $city, $state, $zip, $website);
+
+        global $db;
+        $db->updateLocation($_SESSION['LocationForm']);
+
 
         $f3->reroute('/optionalInfo');
     }
@@ -393,6 +403,8 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     $f3->set('recommendedInfo', $recommendedInfo);
     $service = $db->getServiceInfo($_SESSION['service']);
     $f3->set('service', $service);
+    $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
+    $f3->set('resourceInfo', $resourceInfo);
 
     //display the confirmation of the page
     $view = new Template();
