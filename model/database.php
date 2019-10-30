@@ -52,7 +52,7 @@ create table resources
   interpreter varchar(100),
   insurance   varchar(50),
   fee         int,
-  age         int,
+  age         varchar(50),
   countyOne   varchar(50),
   countyTwo   varchar(50),
   countyThree varchar(50),

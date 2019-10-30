@@ -71,6 +71,8 @@ $f3->route('GET /resources', function ($f3) {
 
     $resources_data = $db->getResourcesMain();
 
+
+
     echo "<pre>" . $resources_data . "</pre>";
     var_dump($resources_data);
 
