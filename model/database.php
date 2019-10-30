@@ -52,7 +52,7 @@ create table resources
   interpreter varchar(100),
   insurance   varchar(50),
   fee         int,
-  age         varchar(50),
+  age         int,
   countyOne   varchar(50),
   countyTwo   varchar(50),
   countyThree varchar(50),
@@ -105,7 +105,7 @@ class Databases
         try {
             //Instantiate a database object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-            //$user = $_SERVER['USER'];
+           //$user = $_SERVER['USER'];
             //echo "Connected to DB with $user";
 
         } catch (PDOException $e) {
@@ -121,7 +121,7 @@ class Databases
     public function getResource()
     {
         //Define Query
-        $sql = "SELECT * FROM resources";
+        $sql = "SELECT * FROM resourcesContact LIMIT 5";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -141,13 +141,7 @@ class Databases
     public function getResourcesMain()
     {
         //Define Query
-//        $sql = "SELECT service.service, resources.theraFname, resources.theraLname,
-//resources.office,resources.officeEmail,resources.address,resources.city,resources.state,
-//resources.zip  from resources join service on service.serviceID = resources.serviceID";
-
-
-        $sql = "SELECT service.service, resources.theraFname, resources.theraLname,
-resources.office,resources.officeEmail,resources.city  from resources join service on service.serviceID = resources.serviceID";
+        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -324,6 +318,7 @@ resources.office,resources.officeEmail,resources.city  from resources join servi
 //        $serviceID = $f3->get('serviceID');
         $recommendedInfoID = $f3->get('recommendedInfoID');
 
+
         // bind params
         $statement->bindParam(':speciality', $speciality, PDO::PARAM_STR);
         $statement->bindParam(':office', $office, PDO::PARAM_STR);
@@ -414,6 +409,8 @@ resources.office,resources.officeEmail,resources.city  from resources join servi
     */
 
 
+
+
     /*
      * -----------------------------------------------------------------------------------------------
      */
@@ -426,7 +423,8 @@ resources.office,resources.officeEmail,resources.city  from resources join servi
      */
     function getResourceStatus($status)
     {
-        switch ($status) {
+        switch($status)
+        {
             case 3:
                 //Declined
                 $statusID = 3;

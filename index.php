@@ -69,33 +69,15 @@ $f3->route('GET /resources', function ($f3) {
     global $db;
     //Proof the db is connected
 
-//    $resources_data = $db->getResourcesMain();
-//
-////    $test = json_encode($resources_data, JSON_FORCE_OBJECT);
-//
-//    $data = array("data" => []);
-//
-//    echo print_r($resources_data);
-//
-//    echo "from db <br>";
-//    foreach ($resources_data as $key => $value) {
-//        // $arr[3] will be updated with each value from $arr...
-//        echo "{$key} => {$value} ";
-//        print_r($resources_data);
-//    }
-//
-//    $data['data'] = array("service" => "theraphy", "service" => "theraphy", "service1" => "theraphy", "service2" => "theraphy", "servic3e" => "theraphy", "service4" => "theraphy"
-//    );
-//    echo "tet<br>";
-//
-//    echo json_encode($data);
+    $resources_data = $db->getResourcesMain();
 
-    //send the data pulled into the datatable
+    echo "<pre>" . $resources_data . "</pre>";
+    var_dump($resources_data);
+
 
     //display the contents of the page
     $view = new Template();
     $f3->set('title', "Resources");
-
 
     echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
@@ -352,6 +334,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $_SESSION['countyThree'] = $countyThree;
 
 
+
         if (!empty($days)) {
             // loop through and check which days are checked
             foreach ($_POST['days'] as $day) {
@@ -366,7 +349,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             }
         }
 
-        if (sizeof($days) == 0) {
+        if(sizeof($days) == 0) {
             $days = array('No days selected');
         }
 
@@ -384,7 +367,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $f3->reroute('/confirmation');
     }
 
-    if (!isset($_SESSION['DayHourInfo'])) {
+    if(!isset($_SESSION['DayHourInfo'])) {
         $noInput = array('1', '2');
         $_SESSION['DayHourInfo'] = new DayHourInfo($noInput, '', '', '');
     }
@@ -422,6 +405,7 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     $f3->set('service', $service);
     $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
     $f3->set('resourceInfo', $resourceInfo);
+
 
     //display the confirmation of the page
     $view = new Template();
