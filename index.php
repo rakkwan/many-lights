@@ -245,8 +245,8 @@ $f3->route('GET|POST /location', function ($f3) {
 
         $locationInfo = new LocationForm($_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['website']);
         global $db;
-        $db->updateLocation($locationInfo);
         $_SESSION['resourceID'] = $f3->get('resourceID');
+        $db->updateLocation($locationInfo, $_SESSION['resourceID']);
 
 
         $f3->reroute('/optionalInfo');

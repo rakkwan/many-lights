@@ -300,8 +300,8 @@ class Databases
 
         // prepare sql statement
         $sql = "INSERT INTO resources 
-        (speciality, office, officeEmail, officePhone, theraFname, theraLname, serviceID, recommendedInfoID, statusID)
-        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, 1, 1, 1)";
+        (speciality, office, officeEmail, officePhone, theraFname, theraLname, theraGender, serviceID, recommendedInfoID, statusID)
+        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, :theraGender, 1, 1, 1)";
 
         // save prepared statement
         $statement = $this->_dbh->prepare($sql);
@@ -356,7 +356,7 @@ class Databases
         return $result;
     }
 
-    function updateLocation($location)
+    function updateLocation($location, $resourceID)
     {
         // address city state zip website serviceID recommendedInfoID statusID
 
@@ -375,7 +375,7 @@ class Databases
         $state = $location->getState();
         $zip = $location->getZip();
         $website = $location->getWebsite();
-        $resourceID = $f3->get('resourceID');
+//        $resourceID = $f3->get('resourceID');
 
         // bind params
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
