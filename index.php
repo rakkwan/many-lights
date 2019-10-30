@@ -115,7 +115,7 @@ $f3->route('GET|POST /recommended', function ($f3) {
         $f3->set('email', $email);
         $f3->set('phone', $phone);
 
-        // save data in class session 
+        // save data in class session
         $_SESSION['RecommendedInfo'] = new RecommendedInfo($fname, $lname, $email, $phone);
 
         // if data is valid
@@ -246,6 +246,7 @@ $f3->route('GET|POST /location', function ($f3) {
         $locationInfo = new LocationForm($_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['website']);
         global $db;
         $db->updateLocation($locationInfo);
+        $_SESSION['resourceID'] = $f3->get('resourceID');
 
 
         $f3->reroute('/optionalInfo');
@@ -406,6 +407,8 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     $f3->set('service', $service);
     $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
     $f3->set('resourceInfo', $resourceInfo);
+    //$updateLocationInfo = $db->updateLocation(['resourceID']);
+    //$f3->set('resourceID', $updateLocationInfo);
 
 
     //display the confirmation of the page

@@ -314,7 +314,7 @@ class Databases
         $officePhone = $resource->getOfficePhone();
         $theraFname = $resource->getTheraFname();
         $theraLname = $resource->getTheraLname();
-//        $theraGender = $resource->getTheraGender();
+        $theraGender = $resource->getTheraGender();
 //        $serviceID = $f3->get('serviceID');
 //        $recommendedInfoID = $f3->get('recommendedInfoID');
 
@@ -326,7 +326,7 @@ class Databases
         $statement->bindParam(':officePhone', $officePhone, PDO::PARAM_STR);
         $statement->bindParam(':theraFname', $theraFname, PDO::PARAM_STR);
         $statement->bindParam(':theraLname', $theraLname, PDO::PARAM_STR);
-//        $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
+        $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
 //        $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
 //        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
 
@@ -356,7 +356,7 @@ class Databases
         return $result;
     }
 
-    function updateLocation($location, $resourceID)
+    function updateLocation($location)
     {
         // address city state zip website serviceID recommendedInfoID statusID
 
@@ -375,7 +375,7 @@ class Databases
         $state = $location->getState();
         $zip = $location->getZip();
         $website = $location->getWebsite();
-//        $resourceID = $f3->get('resourceID');
+        $resourceID = $f3->get('resourceID');
 
         // bind params
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
@@ -383,7 +383,7 @@ class Databases
         $statement->bindParam(':state', $state, PDO::PARAM_STR);
         $statement->bindParam(':zip', $zip, PDO::PARAM_STR);
         $statement->bindParam(':website', $website, PDO::PARAM_STR);
-        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_INT);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
 
         // Execute the statement
         $statement->execute();
