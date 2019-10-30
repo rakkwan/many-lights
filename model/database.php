@@ -301,7 +301,7 @@ class Databases
         // prepare sql statement
         $sql = "INSERT INTO resources 
         (speciality, office, officeEmail, officePhone, theraFname, theraLname, serviceID, recommendedInfoID, statusID)
-//        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, 1, :recommendedInfoID, 1)";
+        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, 1, 1, 1)";
 
         // save prepared statement
         $statement = $this->_dbh->prepare($sql);
@@ -316,7 +316,7 @@ class Databases
         $theraLname = $resource->getTheraLname();
 //        $theraGender = $resource->getTheraGender();
 //        $serviceID = $f3->get('serviceID');
-        $recommendedInfoID = $f3->get('recommendedInfoID');
+//        $recommendedInfoID = $f3->get('recommendedInfoID');
 
 
         // bind params
@@ -328,7 +328,7 @@ class Databases
         $statement->bindParam(':theraLname', $theraLname, PDO::PARAM_STR);
 //        $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
 //        $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
-        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
+//        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
 
         // execute insert into recommendedInfo
         $statement->execute();
@@ -356,7 +356,7 @@ class Databases
         return $result;
     }
 
-    function updateLocation($location)
+    function updateLocation($location, $resourceID)
     {
         // address city state zip website serviceID recommendedInfoID statusID
 
@@ -375,7 +375,7 @@ class Databases
         $state = $location->getState();
         $zip = $location->getZip();
         $website = $location->getWebsite();
-        $resourceID = $f3->get('resourceID');
+//        $resourceID = $f3->get('resourceID');
 
         // bind params
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
@@ -383,7 +383,7 @@ class Databases
         $statement->bindParam(':state', $state, PDO::PARAM_STR);
         $statement->bindParam(':zip', $zip, PDO::PARAM_STR);
         $statement->bindParam(':website', $website, PDO::PARAM_STR);
-        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_INT);
 
         // Execute the statement
         $statement->execute();
