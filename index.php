@@ -446,12 +446,27 @@ $f3->route('GET|POST /admin', function ($f3) {
     }
 
     var_dump($fields);
+});
+
+//route to test SQL
+$f3->route('GET|POST /mock', function ($f3) {
+
+    global $db;
+
+    //Update the status of resource in DB
+    $data = $db->updateStatus(7,1);
+
+    $f3->set('res', $data);
+
+//    var_dump($data);
+
 
 //    $view = new Template();
 //    echo $view->render('views/includes/header.html');
-//    echo $view->render('views/adminView.html');
+//    echo $view->render("views/resources.html");
 //    echo $view->render('views/includes/footer.html');
-});
+//    session_destroy();
 
+});
 //run Fat-free
 $f3->run();
