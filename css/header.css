@@ -10,6 +10,22 @@
     height: 4em;
 }
 
+#pic2 {
+    height: 220px;
+    width: 300px
+}
+
+#pic4 {
+    height: 220px;
+    width: 300px;
+
+}
+
+#pic3 {
+    height: 220px;
+    width: 300px;
+}
+
 #basicExampleNav {
     font-family: Roboto, sans-serif;
 }

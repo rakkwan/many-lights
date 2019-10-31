@@ -69,53 +69,51 @@ $f3->route('GET /resources', function ($f3) {
     global $db;
     //Proof the db is connected
 
-<<<<<<< HEAD
 //
-=======
+//
+//    $resources_data = $db->getResourcesMain();
+//
+//    $loadResources = [];
+//
+////    echo print_r($resources_data);
+//    foreach ($resources_data as $resources_datum) {
+//
+//        //service.service,theraFname,theraLname, officePhone, countyOne,countyTwo,countyThree, officeEmail,address,city,zip,state
+//        $res = new Resource($resources_datum['service'], $resources_datum['theraFname'], $resources_datum['theraLname'],
+//            $resources_datum['officePhone'],
+//            $resources_datum['countyOne'],
+//            $resources_datum['countyTwo'],
+//            $resources_datum['countyThree'],
+//            $resources_datum['officeEmail'],
+//            $resources_datum['address'],
+//            $resources_datum['city'],
+//            $resources_datum['zip'],
+//            $resources_datum['state']
+//        );
+//
+//
+//        foreach ($resources_datum as $key => $value) {
+//
+//            //update empty columns with null
+//            if ($key == null || $key == "") {
+//                $key = "N/A";
+//            } else if ($value == null || $value == "") {
+//                $value = "N/A";
+//            }
+//
+//
+////            echo $resources_datum['countyOne'];
+////            echo $resources_datum['service'] == null ? $resources_datum['service'] : "N/A";
+////            echo "<p>$key    $value</p><br>";
+//
+//        }
+//
+//        array_push($loadResources, $res);
+////        echo $loadResources;
+//    }
+//
+////    echo json_encode($resources_data);
 
-    $resources_data = $db->getResourcesMain();
-
-    $loadResources = [];
-
-//    echo print_r($resources_data);
-    foreach ($resources_data as $resources_datum) {
-
-        //service.service,theraFname,theraLname, officePhone, countyOne,countyTwo,countyThree, officeEmail,address,city,zip,state
-        $res = new Resource($resources_datum['service'], $resources_datum['theraFname'], $resources_datum['theraLname'],
-            $resources_datum['officePhone'],
-            $resources_datum['countyOne'],
-            $resources_datum['countyTwo'],
-            $resources_datum['countyThree'],
-            $resources_datum['officeEmail'],
-            $resources_datum['address'],
-            $resources_datum['city'],
-            $resources_datum['zip'],
-            $resources_datum['state']
-        );
-
-
-        foreach ($resources_datum as $key => $value) {
-
-            //update empty columns with null
-            if ($key == null || $key == "") {
-                $key = "N/A";
-            } else if ($value == null || $value == "") {
-                $value = "N/A";
-            }
-
-
-//            echo $resources_datum['countyOne'];
-//            echo $resources_datum['service'] == null ? $resources_datum['service'] : "N/A";
-//            echo "<p>$key    $value</p><br>";
-
-        }
-
-        array_push($loadResources, $res);
-//        echo $loadResources;
-    }
-
-//    echo json_encode($resources_data);
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
 
 
     //display the contents of the page
@@ -503,7 +501,7 @@ $f3->route('GET|POST /mock', function ($f3) {
     global $db;
 
     //Update the status of resource in DB
-<<<<<<< HEAD
+
     $data = $db->getDataTableInfo(1);
 
     $f3->set('res', $data);
@@ -519,9 +517,8 @@ $f3->route('GET|POST /resourceB', function ($f3) {
 
     //Update the status of resource in DB
     $data = $db->getDataTableInfo(1);
-=======
-    $data = $db->updateStatus(7, 1);
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+//    $data = $db->updateStatus(7, 1);
+
 
     $f3->set('res', $data);
 

@@ -107,3 +107,7 @@ img#val_stairs {
 .care {
     color: #7289ad;
 }
+
+footer {
+    position: fixed;
+}

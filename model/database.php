@@ -80,8 +80,8 @@ create table resources
  */
 
 
-//require_once '/home/jgoodri1/config.php';
-require_once  '/home2/rhillgre/config3.php';
+require_once '/home/jgoodri1/config.php';
+
 
 class Databases
 {
@@ -144,7 +144,7 @@ class Databases
         }
     }
 
-<<<<<<< HEAD
+
 //    /**
 //     * Function to get all the resources
 //     */
@@ -164,7 +164,7 @@ class Databases
 //
 //        return $result;
 //    }
-=======
+
     /**
      * Function to get all the resources
      */
@@ -184,12 +184,12 @@ class Databases
 
         return $result;
     }
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+
 
     /**
      * Function to get all the resources
      */
-<<<<<<< HEAD
+
 //    public function getResourcesMain()
 //    {
 //        //Define Query
@@ -206,7 +206,7 @@ class Databases
 //
 //        return $result;
 //    }
-=======
+
     public function getResourcesMain()
     {
         //Define Query
@@ -224,7 +224,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
         return $result;
     }
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+
 
     /*
      * -----------------------------------Jittima & Sang functions
@@ -517,11 +517,9 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         }
 
         // define the query
-<<<<<<< HEAD
+
         $sql = $this->_longSql.'
-=======
-        $sql = $this->_l_sql . '
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
@@ -549,11 +547,9 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      */
     function getResWithKeyInfo()
     {
-<<<<<<< HEAD
+
         $sql = $this->_longSql.'
-=======
-        $sql = $this->_l_sql . '
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
@@ -579,20 +575,14 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     function getOneResWithKeyInfo($id)
     {
 
-<<<<<<< HEAD
+
         $sql = $this->_longSql." 
                 INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
                 INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
                 INNER JOIN service ON resources.serviceID = service.serviceID
                 WHERE resources.resourceID = :id
                 ";
-=======
-        $sql = $this->_l_sql . ' 
-            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
-            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
-            INNER JOIN service ON resources.serviceID = service.serviceID
-            WHERE resources.resourceID = :ID';
->>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
+
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
