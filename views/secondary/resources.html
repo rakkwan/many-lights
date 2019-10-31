@@ -1,0 +1,243 @@
+<!-- resources -->
+<!--Header Template Page'
+Date: Oct4
+Updated: Oct21
+file: header.html
+Author: Samantha DeSmul
+-->
+
+<!--Page specific styles-->
+<link rel="stylesheet" href="./css/resources.css">
+
+<div class="row">
+    <div class="col-12 text-center bg-white mb-3 pt-2">
+
+        <h2>Browse post adoption resources</h2>
+    </div>
+</div>
+
+<div class="container bg-light p-4 m-1 text-center mx-auto">
+    <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">ID
+            </th>
+            <th class="th-sm">Service
+            </th>
+            <th class="th-sm">Name
+            <th class="th-sm">Office
+            </th>
+            <th class="th-sm">Phone
+            </th>
+            <th class="th-sm">Email
+            </th>
+            <th class="th-sm">Address
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{ @res }}"
+                value="{{ @value }}">
+            <tr value="{{ @value['resourceID'] }}">
+                <td>{{ @value["resourceID"] }}</td>
+                <td>{{ @value["Resource_ServiceType"] }}</td>
+                <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
+                <td>{{ @value["office"] }}</td>
+                <td>{{ @value["officePhone"] }}</td>
+                <td>{{ @value["officeEmail"] }}</td>
+                <td>{{ @value["address"] }}</td>
+            </tr>
+        </repeat>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>ID
+            </th>
+            <th>Service
+            </th>
+            <th>Name
+            </th>
+            <th>Office
+            </th>
+            <th>Phone
+            </th>
+            <th>Email
+            </th>
+            <th>Address
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Central Modal-->
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header purple text-white">
+                <p class="heading lead">Browse Resource</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Modal body-->
+            <!--TODO: Update with DB information -->
+            <div class="modal-body">
+                <div class="text-center">
+
+                    <div class="container">
+                        <!--Recommended Resource information-->
+                        <h3 class="bg-light">Resource Information</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Resource Type</h5>
+                                <p id="Resource_ServiceType"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Business Name</h5>
+                                <p id="office"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Website</h5>
+                                <p id="website"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Provider Name</h5>
+                                <p id="speciality"></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Email <a href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
+                                             target="_top">
+                                    <i class="fas fa-envelope"></i>
+                                </a></h5>
+                                <p id="officeEmail"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Phone <a href="tel:{{@res['officePhone']}}">
+                                    <i class="fas fa-phone"></i>
+                                </a></h5>
+                                <p id="officePhone"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Phone <a href="tel:{{@res['officePhone']}}">
+                                    <i class="fas fa-phone"></i>
+                                </a></h5>
+                                <p>{{@res['officePhone']}}</p>
+                            </div>
+                            <div class="col">
+                                <h5>County</h5>
+                                <p>King</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Resource Address</h5>
+                                <p id="address">{{@res['address']}}</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource City</h5>
+                                <p id="city">{{@res["city"]}}</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource State</h5>
+                                <p id="state">{{@res[""]}}</p>
+                            </div>
+                            <div class="col">
+                                <h5>Resource Zip</h5>
+                                <p id="zip">{{@res[""]}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Provider Gender</h5>
+                                <p id="theraGender"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Ages Seen</h5>
+                                <p>0-4, 10-12</p>
+                            </div>
+                            <div class="col">
+                                <h5>Credentials</h5>
+                                <p>PhD</p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Credentials</h5>
+                                <p>Licensed Clinical Social Worker</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Languages/Interpreter</h5>
+                                <p id="interpreter"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Insurance Accepted</h5>
+                                <p id="insurance"></p>
+                            </div>
+                            <div class="col">
+                                <h5>Fees</h5>
+                                <p>{{ @res["insurance"]}}</p>
+                            </div>
+                            <div class="col">
+                                <h5>Secondary Credentials</h5>
+                                <p>Licensed Clinical Social Worker</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Monday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Tuesday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Wednesday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Thursday</h5>
+                                <p>9:00am-5:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Friday</h5>
+                                <p>9:00am-4:00pm</p>
+                            </div>
+                            <div class="col">
+                                <h5>Saturday</h5>
+                                <p>Closed</p>
+                            </div>
+                            <div class="col">
+                                <h5>Sunday</h5>
+                                <p>Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center purple">
+                <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
+                                          aria-hidden="true"></i><b class="text-warning">NOTE:
+                </b>There is no guarantee on quality of service, or that this
+                    resource's information is
+                    current!</h6>
+            </div>
+        </div>
+    </div>
+    <!--/.Content-->
+</div>
