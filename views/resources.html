@@ -66,44 +66,43 @@ Author: Samantha DeSmul
                         <!--Recommended Resource information-->
                         <h3 class="bg-light">Resource Information</h3>
                         <div class="row">
-
                             <div class="col">
                                 <h5>Resource Type</h5>
-                                <p>Therapist</p>
+                                <p>{{@res["Resource_ServiceType"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Business Name</h5>
-                                <p>Business Name L.L.C.</p>
+                                <p>{{ @res['office']}}</p>
                             </div>
                             <div class="col">
                                 <h5>Website</h5>
-                                <p>www.example.com</p>
+                                <p>{{ @res['website'] }}</p>
                             </div>
                             <div class="col">
                                 <h5>Provider Name</h5>
-                                <p>Jane Doe</p>
+                                <p>{{ @res['specialty'] }}</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <h5>Email <a href="mailto:Johndoe@gmail.com?Subject=OneStop%20WA%20Recommendation%20"
+                                <h5>Email <a href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
                                              target="_top">
                                     <i class="fas fa-envelope"></i>
                                 </a></h5>
-                                <p>Johndoe@gmail.com</p>
+                                <p>{{@res['officeEmail']}}</p>
                             </div>
                             <div class="col">
-                                <h5>Phone <a href="tel:{{@phoneNumber}}">
+                                <h5>Phone <a href="tel:{{@res['officePhone']}}">
                                     <i class="fas fa-phone"></i>
                                 </a></h5>
-                                <p>(111)222-3333</p>
+                                <p>{{@res['officePhone']}}</p>
                             </div>
                             <div class="col">
-                                <h5>Secondary Phone <a href="tel:{{@phoneNumber}}">
+                                <h5>Secondary Phone <a href="tel:{{@res['officePhone']}}">
                                     <i class="fas fa-phone"></i>
                                 </a></h5>
-                                <p>(111)222-3333</p>
+                                <p>{{@res['officePhone']}}</p>
                             </div>
                             <div class="col">
                                 <h5>County</h5>
@@ -114,26 +113,26 @@ Author: Samantha DeSmul
                         <div class="row">
                             <div class="col">
                                 <h5>Resource Address</h5>
-                                <p>200 Griffin ave #000</p>
+                                <p>{{@res['address']}}</p>
                             </div>
                             <div class="col">
                                 <h5>Resource City</h5>
-                                <p>Enumclaw</p>
+                                <p>{{@res["city"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Resource State</h5>
-                                <p>WA</p>
+                                <p>{{@res["state"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Resource Zip</h5>
-                                <p>98022</p>
+                                <p>{{@res["zip"]}}</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col">
                                 <h5>Provider Gender</h5>
-                                <p>Female</p>
+                                <p>{{ @res["theraGender"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Ages Seen</h5>
@@ -152,15 +151,15 @@ Author: Samantha DeSmul
                         <div class="row">
                             <div class="col">
                                 <h5>Languages/Interpreter</h5>
-                                <p>English, Spanish</p>
+                                <p>{{ @res["interpreter"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Insurance Accepted</h5>
-                                <p>Medicaid, Washington Apple Health</p>
+                                <p>{{ @res["insurance"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Fees</h5>
-                                <p>$100 No insurance</p>
+                                <p>{{ @res["insurance"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Secondary Credentials</h5>
@@ -205,20 +204,20 @@ Author: Samantha DeSmul
                     <div class="row">
                         <div class="col">
                             <h5>Name</h5>
-                            <p>John Doe</p>
+                            <p>{{@res['Referral_fname']}} {{@res['Referral_lname']}}</p>
                         </div>
                         <div class="col">
-                            <h5>Email <a href="mailto:Johndoe@gmail.com?Subject=OneStop%20WA%20Recommendation%20"
+                            <h5>Email <a href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
                                          target="_top">
                                 <i class="fas fa-envelope"></i>
                             </a></h5>
-                            <p>Johndoe@gmail.com</p>
+                            <p>{{@res['Referral_email']}}</p>
                         </div>
                         <div class="col">
-                            <h5>Phone <a href="tel:{{@phoneNumber}}">
+                            <h5>Phone <a href="tel:{{@res['Referral_phone']}}">
                                 <i class="fas fa-phone"></i>
                             </a></h5>
-                            <p>(111)222-3333</p>
+                            <p>{{@res['Referral_phone']}}</p>
                         </div>
                     </div>
                 </div>
