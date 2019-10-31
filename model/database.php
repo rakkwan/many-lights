@@ -88,6 +88,35 @@ class Databases
 
     private $_dbh;
     private $_errorMessage;
+    private $_l_sql = 'SELECT
+                resourceID,
+                speciality,
+                office,
+                officeEmail,
+                officePhone,
+                theraFname,
+                theraLname,
+                theraGender,
+                interpreter,
+                insurance,
+                fee,
+                age,
+                countyOne,
+                countyTwo,
+                countyThree,
+                address,
+                city,
+                state,
+                zip,
+                website,
+                service.service AS Resource_ServiceType,
+                recommendedInfo.email AS Referral_email,
+                recommendedInfo.fname AS Referral_fname,
+                recommendedInfo.lname AS Referral_lname,
+                recommendedInfo.phone AS Referral_phone,
+                statusBrand.statusLabel AS Resource_status
+            FROM
+                resources';
 
     public function __construct()
     {
@@ -420,7 +449,7 @@ class Databases
      * @param $status is a String that is either Pending, Accepted, or Declined
      * @return array
      */
-    function getResourceStatus($status)
+    function getResByStatus($status)
     {
         switch($status)
         {
@@ -438,14 +467,12 @@ class Databases
         }
 
         // define the query
-        $sql = 'SELECT
-                    *,
-                    statusBrand.statusLabel
-                FROM
-                    resources
-                INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
-                WHERE
-                    resources.statusID = :statusID';
+        $sql = $this->_l_sql.'
+            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
+            INNER JOIN service ON resources.serviceID = service.serviceID
+            WHERE
+                resources.statusID = :statusID';
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -459,6 +486,91 @@ class Databases
         //Return the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    /**
+     * Function to get all resources info an the foreign key values associated.
+     * @return array
+     */
+    function getResWithKeyInfo()
+    {
+        $sql = $this->_l_sql.'
+            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
+            INNER JOIN service ON resources.serviceID = service.serviceID
+            ';
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute the statement
+        $statement->execute();
+
+        //Return the results
+        $result = $statement->fetchAll();
+        return $result;
+    }
+
+    /**
+     * Function to get all resources info an the foreign key values associated.
+     * @param int to represent resourceID
+     * @return array
+     */
+    function getOneResWithKeyInfo($id)
+    {
+
+        $sql = $this->_l_sql.' 
+            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
+            INNER JOIN service ON resources.serviceID = service.serviceID
+            WHERE resources.resourceID = :ID';
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':ID', $id, PDO::PARAM_STR);
+
+        //Execute the statement
+        $statement->execute();
+
+        //Return the results
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
+     * This is to update the status of the resource
+     * will return the updated resource
+     * @param $resourceID resourceID int
+     * @param $statusID int status ID
+     * @return mixed
+     */
+    function updateStatus($resourceID, $statusID)
+    {
+        // address city state zip website serviceID recommendedInfoID statusID
+
+        // define the query
+        $sql = 'UPDATE
+                 resources
+                SET
+                statusID = :statusID
+                WHERE
+                resourceID = :resourceID
+                ';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+
+        // bind params
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+        $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        return $this->getOneResWithKeyInfo($resourceID);
     }
 
 }
