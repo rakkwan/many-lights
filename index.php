@@ -69,10 +69,7 @@ $f3->route('GET /resources', function ($f3) {
     global $db;
     //Proof the db is connected
 
-    $resources_data = $db->getResourcesMain();
-
-    echo "<pre>" . $resources_data . "</pre>";
-    var_dump($resources_data);
+//
 
 
     //display the contents of the page
@@ -431,7 +428,7 @@ $f3->route('GET|POST /admin', function ($f3) {
     global $db;
     //Proof the db is connected
 
-    $fields = $db->getResource();
+    $fields = $db->getResWithKeyInfo();
 
     //var dumps the resources. DUMMY Test data alot!!!
     foreach ($fields as $outer_key => $array) {
@@ -454,18 +451,48 @@ $f3->route('GET|POST /mock', function ($f3) {
     global $db;
 
     //Update the status of resource in DB
-    $data = $db->updateStatus(7,1);
+    $data = $db->getDataTableInfo(1);
 
     $f3->set('res', $data);
 
-//    var_dump($data);
+    var_dump($data);
+
+});
+
+//route to planB resources page
+$f3->route('GET|POST /resourceB', function ($f3) {
+
+    global $db;
+
+    //Update the status of resource in DB
+    $data = $db->getDataTableInfo(1);
+
+    $f3->set('res', $data);
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/secondary/resources.html");
+    echo $view->render('views/includes/footer.html');
+    session_destroy();
+
+});
+
+//route to mock admin page
+$f3->route('GET|POST /adminB', function ($f3) {
+
+    global $db;
+
+    //Update the status of resource in DB
+    $data = $db->getDataTableInfo(1);
+
+    $f3->set('res', $data);
 
 
-//    $view = new Template();
-//    echo $view->render('views/includes/header.html');
-//    echo $view->render("views/resources.html");
-//    echo $view->render('views/includes/footer.html');
-//    session_destroy();
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/secondary/admin.html");
+    echo $view->render('views/includes/footer.html');
+    session_destroy();
 
 });
 //run Fat-free
