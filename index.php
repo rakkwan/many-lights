@@ -69,7 +69,53 @@ $f3->route('GET /resources', function ($f3) {
     global $db;
     //Proof the db is connected
 
+<<<<<<< HEAD
 //
+=======
+
+    $resources_data = $db->getResourcesMain();
+
+    $loadResources = [];
+
+//    echo print_r($resources_data);
+    foreach ($resources_data as $resources_datum) {
+
+        //service.service,theraFname,theraLname, officePhone, countyOne,countyTwo,countyThree, officeEmail,address,city,zip,state
+        $res = new Resource($resources_datum['service'], $resources_datum['theraFname'], $resources_datum['theraLname'],
+            $resources_datum['officePhone'],
+            $resources_datum['countyOne'],
+            $resources_datum['countyTwo'],
+            $resources_datum['countyThree'],
+            $resources_datum['officeEmail'],
+            $resources_datum['address'],
+            $resources_datum['city'],
+            $resources_datum['zip'],
+            $resources_datum['state']
+        );
+
+
+        foreach ($resources_datum as $key => $value) {
+
+            //update empty columns with null
+            if ($key == null || $key == "") {
+                $key = "N/A";
+            } else if ($value == null || $value == "") {
+                $value = "N/A";
+            }
+
+
+//            echo $resources_datum['countyOne'];
+//            echo $resources_datum['service'] == null ? $resources_datum['service'] : "N/A";
+//            echo "<p>$key    $value</p><br>";
+
+        }
+
+        array_push($loadResources, $res);
+//        echo $loadResources;
+    }
+
+//    echo json_encode($resources_data);
+>>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
 
 
     //display the contents of the page
@@ -334,7 +380,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $_SESSION['countyThree'] = $countyThree;
 
 
-
         if (!empty($days)) {
             // loop through and check which days are checked
             foreach ($_POST['days'] as $day) {
@@ -349,7 +394,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             }
         }
 
-        if(sizeof($days) == 0) {
+        if (sizeof($days) == 0) {
             $days = array('No days selected');
         }
 
@@ -367,7 +412,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $f3->reroute('/confirmation');
     }
 
-    if(!isset($_SESSION['DayHourInfo'])) {
+    if (!isset($_SESSION['DayHourInfo'])) {
         $noInput = array('1', '2');
         $_SESSION['DayHourInfo'] = new DayHourInfo($noInput, '', '', '');
     }
@@ -431,18 +476,25 @@ $f3->route('GET|POST /admin', function ($f3) {
     $fields = $db->getResWithKeyInfo();
 
     //var dumps the resources. DUMMY Test data alot!!!
-    foreach ($fields as $outer_key => $array) {
-        foreach ($array as $inner_key => $value) {
+//    foreach ($fields as $outer_key => $array) {
+//        foreach ($array as $inner_key => $value) {
+//
+//            if ($inner_key === 'Field') {
+//                if (!(int)$inner_key) {
+//                    $this->column_names[] = $value;
+//                }
+//            }
+//        }
+//    }
 
-            if ($inner_key === 'Field') {
-                if (!(int)$inner_key) {
-                    $this->column_names[] = $value;
-                }
-            }
-        }
-    }
+//    var_dump($fields);
 
-    var_dump($fields);
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/adminView.html");
+    echo $view->render('views/includes/footer.html');
+
 });
 
 //route to test SQL
@@ -451,6 +503,7 @@ $f3->route('GET|POST /mock', function ($f3) {
     global $db;
 
     //Update the status of resource in DB
+<<<<<<< HEAD
     $data = $db->getDataTableInfo(1);
 
     $f3->set('res', $data);
@@ -466,6 +519,9 @@ $f3->route('GET|POST /resourceB', function ($f3) {
 
     //Update the status of resource in DB
     $data = $db->getDataTableInfo(1);
+=======
+    $data = $db->updateStatus(7, 1);
+>>>>>>> f2dd25177103a06c28b2b1390bec27ccfe41ca24
 
     $f3->set('res', $data);
 

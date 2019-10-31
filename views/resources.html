@@ -23,7 +23,7 @@ Author: Samantha DeSmul
         <tr>
             <th>Service</th>
             <th>Name</th>
-            <th>Office</th>
+            <th>County</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
@@ -34,7 +34,7 @@ Author: Samantha DeSmul
         <tr>
             <th>Service</th>
             <th>Name</th>
-            <th>Office</th>
+            <th>County</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
@@ -86,8 +86,9 @@ Author: Samantha DeSmul
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <h5>Email <a href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                             target="_top">
+                                <h5>Email <a
+                                        href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
+                                        target="_top">
                                     <i class="fas fa-envelope"></i>
                                 </a></h5>
                                 <p>{{@res['officeEmail']}}</p>
@@ -199,27 +200,6 @@ Author: Samantha DeSmul
                         </div>
                     </div>
 
-                    <!--Contact info for user who referred resource-->
-                    <h3 class="bg-light">Referee Information</h3>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Name</h5>
-                            <p>{{@res['Referral_fname']}} {{@res['Referral_lname']}}</p>
-                        </div>
-                        <div class="col">
-                            <h5>Email <a href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                         target="_top">
-                                <i class="fas fa-envelope"></i>
-                            </a></h5>
-                            <p>{{@res['Referral_email']}}</p>
-                        </div>
-                        <div class="col">
-                            <h5>Phone <a href="tel:{{@res['Referral_phone']}}">
-                                <i class="fas fa-phone"></i>
-                            </a></h5>
-                            <p>{{@res['Referral_phone']}}</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
