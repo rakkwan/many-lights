@@ -10,7 +10,7 @@
 <div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
     <h1 class="text-center">Thank you!</h1>
     <p class="lead text-center">{{ @recommendedInfo['fname'] }} {{ @recommendedInfo['lname'] }} for your recommendation!</p>
-    <p class="lead text-center">Your confirmation number is {{ @recommendedInfo['recommendedInfoID'] }}</p>
+    <h2 class="">Your confirmation number is {{ @recommendedInfo['recommendedInfoID'] }}</h2>
     <hr>
 
 <div class="progress">
@@ -19,38 +19,40 @@
 
 <div class="container white mt-4">
     <div class="jumbotron">
-        <h3 class="text-center">Your information</h3>
+        <h3 class="text-center">Your Information</h3>
         <p><strong>Name:</strong> {{ @recommendedInfo['fname'] }} {{ @recommendedInfo['lname'] }} </p>
         <p><strong>Email:</strong> {{ @recommendedInfo['email'] }}</p>
         <p><strong>Phone:</strong> {{ @recommendedInfo['phone'] }}</p>
         <hr class="my-4">
-        <h3 class="text-center"> Resource information </h3>
+
+        <h3 class="text-center"> Resource Information </h3>
         <p><strong>Category:</strong> {{ @service.service}}</p>
-        <p><strong>Resource Name:</strong> {{ @resourceInfo.office }}</p>
-        <p><strong>Resource Address:</strong> {{ @resourceInfo['address'] }}</p>
-        <p><strong>Resource City:</strong> {{ @resourceInfo['city'] }}</p>
-        <p><strong>Resource State:</strong> {{ @resourceInfo['state'] }}</p>
-        <p><strong>Resource Zip:</strong> {{ @resourceInfo['zip'] }}</p>
-        <p><strong>Resource Phone:</strong> {{ @resourceInfo['officePhone'] }}</p>
-        <p><strong>Resource Email:</strong> {{ @resourceInfo['officeEmail'] }}</p>
-        <p><strong>Resource Website:</strong> {{ @resourceInfo['website'] }}</p>
-        <p><strong>Comments:</strong> {{ @SESSION.comments }}</p>
+        <p><strong>Specialty:</strong> {{ @SESSION['specialty'] }}</p>
+        <p><strong>Resource Name:</strong> {{ @SESSION['office'] }}</p>
+        <p><strong>Resource Phone Number:</strong> {{ @SESSION['officePhone'] }}</p>
+        <p><strong>Resource Email:</strong> {{ @SESSION['officeEmail'] }}</p>
+        <p><strong>Therapist First Name:</strong> {{ @SESSION['theraFname'] }}</p>
+        <p><strong>Therapist Last Name:</strong> {{ @SESSION['theraLname'] }}</p>
+        <p><strong>Therapist Gender:</strong> {{ @SESSION['theraGender'] }}</p>
         <hr class="my-4">
-        <h3 class="text-center">Therapist information</h3>
-        <p><strong>Therapist Name:</strong> {{ @resourceInfo['theraFname'] }} {{ @resourceInfo['theraLname'] }}</p>
-        <p><strong>Therapist Gender:</strong> {{ @resourceInfo['theraGender'] }}</p>
-        <p><strong>Therapist Email:</strong> {{ @SESSION.theraEmail }}</p>
-        <p><strong>Therapist Phone Number:</strong> {{ @SESSION.theraPhone}}</p>
-        <p><strong>Therapist Secondary Phone Number:</strong> {{ @SESSION.secondPhone}}</p>
+
+        <h3 class="text-center"> Resource Location </h3>
+        <p><strong>Resource Street Address:</strong> {{ $_SESSION['LocationForm']->getAddress()}}</p>
+        <p><strong>Resource City:</strong> {{ $_SESSION['LocationForm']->getCity()}}</p>
+        <p><strong>Resource State:</strong> {{ $_SESSION['LocationForm']->getState() }}</p>
+        <p><strong>Resource Zip Code:</strong> {{ $_SESSION['LocationForm']->getZip() }}</p>
+        <p><strong>Resource Website:</strong> {{ $_SESSION['LocationForm']->getWebsite() }}</p>
+        <hr class="my-4">
+
+        <h3 class="text-center">Resource Optional Information</h3>
+        <p><strong>Ages seen:</strong> {{ @SESSION.age }}</p>
+        <p><strong>Languages/Interpreter:</strong> {{ $_SESSION['OptionalInfo']->getInterpreter() }}</p>
+        <p><strong>Insurance Accepted:</strong> {{ $_SESSION['OptionalInfo']->getInsurance() }}</p>
+        <p><strong>Fees:</strong> {{ $_SESSION['OptionalInfo']->getFee()}}</p>
         <p><strong>Credential:</strong> {{ @SESSION.credential}}</p>
         <p><strong>Secondary Credential:</strong> {{ @SESSION.secondCredential}}</p>
         <hr class="my-4">
-        <h3 class="text-center">Optional information</h3>
-        <p><strong>Ages seen:</strong> {{ @SESSION.age}}</p>
-        <p><strong>Languages/Interpreter:</strong> {{ @SESSION.interpreter}}</p>
-        <p><strong>Insurance Accepted:</strong> {{ @SESSION.insurance}}</p>
-        <p><strong>Fees:</strong> {{ @SESSION.fee}}</p>
-        <hr class="my-4">
+
         <h3 class="text-center">Days and Hours of Operation</h3>
         <p><strong>Days Operation:</strong> {{ @SESSION.days}}</p>
         <p><strong>Monday Hours Operation:</strong> {{@SESSION.MondayNoTime}}
@@ -91,12 +93,14 @@
         <p><strong>County 1:</strong> {{ @SESSION.countyOne}}</p>
         <p><strong>County 2:</strong> {{ @SESSION.countyTwo}}</p>
         <p><strong>County 3:</strong> {{ @SESSION.countyThree}}</p>
+
+
     </div>
 
     <div class="row">
         <!-- Back Button -->
         <form method="get" action="dayHour">
-            <button type="button" onclick="history.back()" class="btn btn-outline-purple btn-sm waves-effect">Back</button>
+            <button type="button" onclick="history.back()" class="btn btn-outline-purple waves-effect">Back</button>
         </form>
     </div>
 </div>

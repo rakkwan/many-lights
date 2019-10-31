@@ -9,12 +9,18 @@ TODO: Fill Modal with pulled data
  */
 $(document).ready(function () {
 
+
+
+
     $('#resources').DataTable({
         "ajax": {
+            "processing": true,
+            "serverSide": true,
             "url": "https://coderlite.greenriverdev.com/IT355/oneStopWa/views/javascript/resources.txt"
         }
     });
     console.log("JS loaded");
+
 
     //     Reroute to a new page with clickable rows
     // $('#resources tbody').on('click', 'tr', function () {
@@ -173,5 +179,6 @@ $(document).ready(function () {
 
     });
 
-})
-;
+
+
+});

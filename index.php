@@ -244,6 +244,7 @@ $f3->route('GET|POST /location', function ($f3) {
         $_SESSION['LocationForm'] = new LocationForm($address, $city, $state, $zip, $website);
 
         $locationInfo = new LocationForm($_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['website']);
+
         global $db;
         $_SESSION['resourceID'] = $f3->get('resourceID');
         $db->updateLocation($locationInfo, $_SESSION['resourceID']);
@@ -403,10 +404,13 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     //retrieve the recomendedInfo
     $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
     $f3->set('recommendedInfo', $recommendedInfo);
+
     $service = $db->getServiceInfo($_SESSION['service']);
     $f3->set('service', $service);
+
     $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
     $f3->set('resourceInfo', $resourceInfo);
+
     //$updateLocationInfo = $db->updateLocation(['resourceID']);
     //$f3->set('resourceID', $updateLocationInfo);
 

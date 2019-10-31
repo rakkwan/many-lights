@@ -357,8 +357,7 @@ class Databases
     }
 
     function updateLocation($location, $resourceID)
-    {
-        // address city state zip website serviceID recommendedInfoID statusID
+    {// address city state zip website serviceID recommendedInfoID statusID
 
         // define the query
         $sql = 'UPDATE resources 
@@ -368,14 +367,14 @@ class Databases
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        global $f3;
+        //global $f3;
         // assign values
         $address = $location->getAddress();
         $city = $location->getCity();
         $state = $location->getState();
         $zip = $location->getZip();
         $website = $location->getWebsite();
-//        $resourceID = $f3->get('resourceID');
+        //$resourceID = $f3->get('resourceID');
 
         // bind params
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
