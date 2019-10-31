@@ -134,8 +134,8 @@ class Databases
         try {
             //Instantiate a database object
             $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-           //$user = $_SERVER['USER'];
-            //echo "Connected to DB with $user";
+//            $user = $_SERVER['USER'];
+//            echo "Connected to DB with $user";
 
         } catch (PDOException $e) {
             $this->_errorMessage = $e->getMessage();
@@ -150,7 +150,7 @@ class Databases
     public function getResource()
     {
         //Define Query
-        $sql = "SELECT * FROM resourcesContact LIMIT 5";
+        $sql = "SELECT * FROM resources LIMIT 5";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -170,7 +170,8 @@ class Databases
     public function getResourcesMain()
     {
         //Define Query
-        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
+        $sql = "SELECT service.service,theraFname,theraLname, officePhone, countyOne,countyTwo,countyThree, officeEmail,address,city,zip,state 
+from resources join service on resources.serviceID = service.serviceID limit 2";
 
         //prepare statement
         $statement = $this->_dbh->prepare($sql);
@@ -322,7 +323,8 @@ class Databases
 //        return $result;
     }
 
-    function resourceInfo($resource) {
+    function resourceInfo($resource)
+    {
         //speciality days office officeEmail officePhone theraFname theraLname theraGender
         // interpreter insurance fee age countyOne countyTwo countyThree
         // address city state zip website serviceID recommendedInfoID statusID
@@ -437,8 +439,6 @@ class Databases
     */
 
 
-
-
     /*
      * -----------------------------------------------------------------------------------------------
      */
@@ -451,8 +451,7 @@ class Databases
      */
     function getResByStatus($status)
     {
-        switch($status)
-        {
+        switch ($status) {
             case 3:
                 //Declined
                 $statusID = 3;
@@ -467,7 +466,7 @@ class Databases
         }
 
         // define the query
-        $sql = $this->_l_sql.'
+        $sql = $this->_l_sql . '
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
@@ -494,7 +493,7 @@ class Databases
      */
     function getResWithKeyInfo()
     {
-        $sql = $this->_l_sql.'
+        $sql = $this->_l_sql . '
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
@@ -519,7 +518,7 @@ class Databases
     function getOneResWithKeyInfo($id)
     {
 
-        $sql = $this->_l_sql.' 
+        $sql = $this->_l_sql . ' 
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID

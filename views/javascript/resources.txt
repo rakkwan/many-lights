@@ -1,4 +1,7 @@
-{"data":[["Kell","Kristie Baber, MSW, LICSW","LodeStar Therapy","(206)673-3730","N/A","4500 9Tth Ave Ne Suite 300",
+{
+    "data":[
+    ["Kell","Kristie Baber, MSW, LICSW","LodeStar Therapy","(206)673-3730","N/A","4500 9Tth Ave Ne Suite 300",
                       "Seattle, WA 98105"],["Therapist","Amy Baker D' Alessandro","N/A",
                       "(206)661-2466","abaker@nwfamilylife.org","10550 Lake City Way NE suit E "
-                      ,"Seattle, WA 98125"]]}
+                      ,"Seattle, WA 98125"]
+           ]}

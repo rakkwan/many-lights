@@ -12,11 +12,11 @@ h6 {
 /*}*/
 
 tbody tr:hover {
-    background-color: #9e9f80 !important;
+    background-color: #8ddbd6 !important;
 }
 
 tbody tr:hover td.sorting_1 {
-    background-color: #7c7b5b !important;
+    background-color: #507c7c !important;
 }
 
 th:hover {

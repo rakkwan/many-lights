@@ -1,0 +1,11 @@
+tbody tr:hover {
+    background-color: #8ddbd6 !important;
+}
+
+tbody tr:hover td.sorting_1 {
+    background-color: #507c7c !important;
+}
+
+th:hover {
+    background: darkgray;
+}
