@@ -359,7 +359,7 @@ $(document).ready(function () {
 
 
     /*
-    * pop-up modal information will be filled
+    * pop-up modal information
     *
     * */
     $('#resources tbody').on('click', 'tr', function () {
@@ -405,5 +405,11 @@ $(document).ready(function () {
 
     });
 
+    $('#approveButton').on('click', function () {
+        alert("Approved!");
+    });
+    $('#declineButton').on('click', function () {
+        alert("Declined!");
+    });
 
 });
