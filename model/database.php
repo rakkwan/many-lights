@@ -80,15 +80,15 @@ create table resources
  */
 
 
-require_once '/home/jgoodri1/config.php';
-
+//require_once '/home/jgoodri1/config.php';
+require_once  '/home2/rhillgre/config3.php';
 
 class Databases
 {
 
     private $_dbh;
     private $_errorMessage;
-    private $_l_sql = 'SELECT
+    private $_longSql = 'SELECT
                 resourceID,
                 speciality,
                 office,
@@ -144,45 +144,45 @@ class Databases
         }
     }
 
+//    /**
+//     * Function to get all the resources
+//     */
+//    public function getResource()
+//    {
+//        //Define Query
+//        $sql = "SELECT * FROM resourcesContact LIMIT 5";
+//
+//        //prepare statement
+//        $statement = $this->_dbh->prepare($sql);
+//
+//        //execute statement
+//        $statement->execute();
+//
+//        //Process the result
+//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+//
+//        return $result;
+//    }
+
     /**
      * Function to get all the resources
      */
-    public function getResource()
-    {
-        //Define Query
-        $sql = "SELECT * FROM resourcesContact LIMIT 5";
-
-        //prepare statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //execute statement
-        $statement->execute();
-
-        //Process the result
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    /**
-     * Function to get all the resources
-     */
-    public function getResourcesMain()
-    {
-        //Define Query
-        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
-
-        //prepare statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //execute statement
-        $statement->execute();
-
-        //Process the result
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
+//    public function getResourcesMain()
+//    {
+//        //Define Query
+//        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
+//
+//        //prepare statement
+//        $statement = $this->_dbh->prepare($sql);
+//
+//        //execute statement
+//        $statement->execute();
+//
+//        //Process the result
+//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+//
+//        return $result;
+//    }
 
     /*
      * -----------------------------------Jittima & Sang functions
@@ -442,11 +442,21 @@ class Databases
     /*
      * -----------------------------------------------------------------------------------------------
      */
-
+    /**
+     * -----------------------------------------------------------------------------------------------
+     *
+     *
+     *
+     *---------------------------------------- Views & Admin Functions -------------------------------
+     *
+     *
+     *
+     *________________________________________________________________________________________________
+     */
 
     /**
-     * gets the Resources information based on a status param
-     * @param $status is a String that is either Pending, Accepted, or Declined
+     * gets all the Resources information based on a status
+     * @param $status either Pending(1), Accepted(2), or Declined(3)
      * @return array
      */
     function getResByStatus($status)
@@ -467,12 +477,13 @@ class Databases
         }
 
         // define the query
-        $sql = $this->_l_sql.'
+        $sql = $this->_longSql.'
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
             WHERE
-                resources.statusID = :statusID';
+                resources.statusID = :statusID
+            ';
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -494,10 +505,11 @@ class Databases
      */
     function getResWithKeyInfo()
     {
-        $sql = $this->_l_sql.'
+        $sql = $this->_longSql.'
             INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
+            LIMIT 1
             ';
 
         //prepare the statement
@@ -512,24 +524,25 @@ class Databases
     }
 
     /**
-     * Function to get all resources info an the foreign key values associated.
+     * Function to get one resource info an the foreign key values associated.
      * @param int to represent resourceID
      * @return array
      */
     function getOneResWithKeyInfo($id)
     {
 
-        $sql = $this->_l_sql.' 
-            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
-            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
-            INNER JOIN service ON resources.serviceID = service.serviceID
-            WHERE resources.resourceID = :ID';
+        $sql = $this->_longSql." 
+                INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+                INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
+                INNER JOIN service ON resources.serviceID = service.serviceID
+                WHERE resources.resourceID = :id
+                ";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //Bind the parameters
-        $statement->bindParam(':ID', $id, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
         //Execute the statement
         $statement->execute();
@@ -570,7 +583,39 @@ class Databases
         // Execute the statement
         $statement->execute();
 
+        //confirmation
         return $this->getOneResWithKeyInfo($resourceID);
+    }
+
+    function getDataTableInfo($statusID)
+    {
+        $sql = 'SELECT
+                resourceID,
+                service.service AS Resource_ServiceType,
+                theraFname,
+                theraLname,
+                office,
+                officePhone,
+                officeEmail,
+                address
+                FROM
+                resources
+                INNER JOIN service ON resources.serviceID = service.serviceID
+                WHERE
+                resources.statusID = :statusID';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        //Return the results
+        $result = $statement->fetchALL(PDO::FETCH_ASSOC);
+        return $result;
     }
 
 }
