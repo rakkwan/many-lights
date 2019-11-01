@@ -548,5 +548,17 @@ $f3->route('GET|POST /adminB', function ($f3) {
     session_destroy();
 
 });
+
+//route to mock admin page
+$f3->route('GET|POST /adminLogin', function ($f3) {
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/adminLogin.html");
+    echo $view->render('views/includes/footer.html');
+    session_destroy();
+
+});
+
 //run Fat-free
 $f3->run();
