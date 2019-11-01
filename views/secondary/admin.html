@@ -20,8 +20,6 @@ Author: Samantha DeSmul
     <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
-            <th class="th-sm">ID
-            </th>
             <th class="th-sm">Service
             </th>
             <th class="th-sm">Name
@@ -39,7 +37,6 @@ Author: Samantha DeSmul
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
             <tr value="{{ @value['resourceID'] }}">
-                <td>{{ @value["resourceID"] }}</td>
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
                 <td>{{ @value["office"] }}</td>
@@ -52,8 +49,6 @@ Author: Samantha DeSmul
         </tbody>
         <tfoot>
         <tr>
-            <th>ID
-            </th>
             <th>Service
             </th>
             <th>Name
