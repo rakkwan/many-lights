@@ -91,10 +91,10 @@ $('#decline').click(function () {
         },
         function(data, status){
             var info = JSON.parse(data);
-            alert("\nThe listing:\n"
+            alert("\n The listing:\n"
                 + info.theraFname + " " + info.theraLname +
-                " \nfrom \n" + info.Referral_fname + " " + info.Referral_lname +
-                "\nwill not be listed to on OneStop WA);
+                " \n from \n" + info.Referral_fname + " " + info.Referral_lname +
+                "\n will not be listed to on OneStop WA");
             console.log(status);
             console.log(info);
         }
