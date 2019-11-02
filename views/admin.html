@@ -7,7 +7,7 @@ Author: Samantha DeSmul, Robert Hill
 -->
 
 <!--Page specific styles-->
-<link rel="stylesheet" href="./css/resources.css">
+<!--<link rel="stylesheet" href="./css/resources.css">-->
 
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
@@ -38,7 +38,7 @@ Author: Samantha DeSmul, Robert Hill
         <tbody>
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
-            <tr value="{{ @value['resourceID'] }}">
+            <tr title="{{ @value['resourceID'] }}">
                 <td>{{ @value["Listing_Status"] }}</td>
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>

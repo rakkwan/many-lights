@@ -16,9 +16,9 @@ $(document).ready(function() {
 $('#dtBasicExample').on('click', 'tr', function() {
 
     //get value of resource from the datatable
-    let $res = $(this).attr("value");
+    let $res = $(this).attr("title");
     //ajax post call to php script
-    $.post("model/getResourceDatatable_ajax.php", {
+    $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
             statusID: $res
         },
         function(data, status) {
@@ -69,17 +69,16 @@ $('#approve').click(function() {
 
     let $res = $('#here').text();
 
-    $.post("model/updateResourceStatus_ajax.php", {
+    $.post("model/ajax/puts/updateResourceStatus_ajax.php", {
             statusID: $res,
             choice: 2
         },
         function(data, status) {
+            //updated resource info
             var info = JSON.parse(data);
             alert("\nThe listing: \n" + info.theraFname + " " + info.theraLname + " \nfrom: \n" +
                 info.Referral_fname + " " + info.Referral_lname + "\n approved for \nOneStop WA " +
                 "VIEW ALL resources");
-            console.log(status);
-            console.log(info);
         }
     );
 });
@@ -88,18 +87,17 @@ $('#decline').click(function() {
 
     let $res = $('#here').text();
 
-    $.post("model/updateResourceStatus_ajax.php", {
+    $.post("model/ajax/puts/updateResourceStatus_ajax.php", {
             statusID: $res,
             choice: 3
         },
         function(data, status) {
+            //updated resource info
             var info = JSON.parse(data);
             alert("\n The listing:\n" +
                 info.theraFname + " " + info.theraLname +
                 " \n from \n" + info.Referral_fname + " " + info.Referral_lname +
                 "\n will not be listed to on OneStop WA");
-            console.log(status);
-            console.log(info);
         }
     );
 });

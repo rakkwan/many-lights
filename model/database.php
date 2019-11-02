@@ -80,8 +80,7 @@ create table resources
  */
 
 
-//require_once '/home/jgoodri1/config.php';
-require_once '/home2/rhillgre/config3.php';
+require_once '/home/jgoodri1/config.php';
 
 class Databases
 {
@@ -436,9 +435,10 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Function to get all resources info an the foreign key values associated.
-     * @return array
+     * @param $id int represent ResourceID in DB
+     * @return array Associative
      */
-    function getResWithKeyInfo()
+    function getResWithKeyInfo($id)
     {
 
         $sql = $this->_longSql.'
@@ -447,10 +447,13 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
             INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
             INNER JOIN service ON resources.serviceID = service.serviceID
             LIMIT 1
-            ';
+            WHERE resources.resourceID = :id";';
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
+
+        //Bind the parameters
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
         //Execute the statement
         $statement->execute();
@@ -519,7 +522,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
 
         //confirmation
-        return $this->getOneResWithKeyInfo($resourceID);
+        return $this->getResWithKeyInfo($resourceID);
     }
 
     /**
