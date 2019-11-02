@@ -69,6 +69,17 @@ create table resources
 
 )
 
+**Table for adminLogin**
+
+CREATE TABLE adminLogin
+(
+	adminID INTEGER NOT NULL AUTO_INCREMENT,
+	email VARCHAR(254) NOT NULL,
+	password VARCHAR(128) NOT NULL,
+	UNIQUE (email),
+	PRIMARY KEY (adminID)
+);
+
 ------------------------------------------------------------
 */
 
@@ -187,6 +198,27 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      * -----------------------------------Jittima & Sang (FE functions)
      */
 
+
+    /**
+     * Attempts to log the admin in
+     * @param String $email - the email given
+     * @param String $password - the password given
+     * @return mixed the ID of the admin
+     */
+    function adminLogin($email, $password)
+    {
+        $sql = "SELECT adminID FROM adminLogin WHERE email = :email AND password = :password";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        global $f3;
+        $f3->set('adminID', $row['adminID']);
+        return $row;
+
+    }
 
     /**
      * insert recommendedInfo of the user to database
