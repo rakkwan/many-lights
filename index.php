@@ -44,8 +44,8 @@ $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 //homepage
 $f3->route('GET /', function () {
     //display the contents of the page
-    session_destroy();
-    session_start();
+    //session_destroy();
+    //session_start();
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -54,7 +54,6 @@ $f3->route('GET /', function () {
 });
 
 $f3->route('GET /home', function () {
-    session_destroy();
     //display the contents of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -376,7 +375,6 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/confirmation.html");
     echo $view->render('views/includes/footer.html');
-    session_destroy();
 });
 
 //User Listings View
@@ -394,7 +392,6 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
     echo $view->render('views/includes/footer.html');
-    session_destroy();
 });
 
 
@@ -429,7 +426,6 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/adminLogin.html");
     echo $view->render('views/includes/footer.html');
-    session_destroy();
 
 });
 
@@ -468,7 +464,6 @@ $f3->route('GET|POST /admin', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/admin.html");
     echo $view->render('views/includes/footer.html');
-    session_destroy();
 });
 
 /**
