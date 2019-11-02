@@ -1,13 +1,12 @@
 <?php
 
-//Require autoload file
+
 require_once('vendor/autoload.php');
 
 /**
  * Created by PhpStorm.
  * User: samantha, Jittima, Robert, Sang
  * Date: 2019-10-04
- * updated 11/1/2019 - reordered the routes by workflow
  * Time: 15:09
  */
 
@@ -19,6 +18,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Require autoload file
+//require_once ('vendor/autoload.php');
 require_once('model/validation.php');
 require_once('model/officeValidation.php');
 require_once('model/thereapistValidation.php');
@@ -39,6 +39,8 @@ $f3->set('DEBUG', 3);
 
 // arrays of age
 $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
+
+//Define a default root, there can be multiple routes
 
 //homepage
 $f3->route('GET /', function () {
@@ -61,7 +63,80 @@ $f3->route('GET /home', function () {
     echo $view->render('views/includes/footer.html');
 });
 
-// User personal contact info form route
+$f3->route('GET /resources', function ($f3) {
+
+    //load with DB values with array
+    global $db;
+    //Proof the db is connected
+
+
+    $resources_data = $db->getResourcesMain();
+
+    $loadResources = [];
+
+//    echo print_r($resources_data);
+    foreach ($resources_data as $resources_datum) {
+
+        //service.service,theraFname,theraLname, officePhone, countyOne,countyTwo,countyThree, officeEmail,address,city,zip,state
+        $res = new Resource($resources_datum['service'], $resources_datum['theraFname'], $resources_datum['theraLname'],
+            $resources_datum['officePhone'],
+            $resources_datum['countyOne'],
+            $resources_datum['countyTwo'],
+            $resources_datum['countyThree'],
+            $resources_datum['officeEmail'],
+            $resources_datum['address'],
+            $resources_datum['city'],
+            $resources_datum['zip'],
+            $resources_datum['state']
+        );
+
+
+        foreach ($resources_datum as $key => $value) {
+
+            //update empty columns with null
+            if ($key == null || $key == "") {
+                $key = "N/A";
+            } else if ($value == null || $value == "") {
+                $value = "N/A";
+            }
+
+
+//            echo $resources_datum['countyOne'];
+//            echo $resources_datum['service'] == null ? $resources_datum['service'] : "N/A";
+//            echo "<p>$key    $value</p><br>";
+
+        }
+
+        array_push($loadResources, $res);
+//        echo $loadResources;
+    }
+
+//    echo json_encode($resources_data);
+
+
+    //display the contents of the page
+    $view = new Template();
+    $f3->set('title', "Resources");
+
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/resources.html");
+    echo $view->render('views/includes/footer.html');
+});
+
+/*
+ * Clickable row route
+ */
+$f3->route('GET /resources/service/@type', function ($f3) {
+    //display the contents of the page
+    $view = new Template();
+    $f3->set('title', 'Service');
+    $f3->set('resource', $f3->get('PARAMS.type'));
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/serviceResource.html");
+    echo $view->render('views/includes/footer.html');
+});
+
+// personal contact info form route
 $f3->route('GET|POST /recommended', function ($f3) {
     //If form has been submitted, validate
 
@@ -158,6 +233,11 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
                 $_POST['theraFname'], $_POST['theraLname'], $_POST['theraGender']);
 
             global $db;
+//            $db->serviceInfo($service);
+//            $_SESSION['serviceID'] = $f3->get('serviceID');
+
+//            $serviceID = $db->getServiceID($_SESSION['service']);
+//            $f3->set('serviceID', $serviceID);
 
             $db->resourceInfo($service);
             $_SESSION['resourceID'] = $f3->get('resourceID');
@@ -222,9 +302,11 @@ $f3->route('GET|POST /location', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-// User optional information route
+// optional information route
 $f3->route('GET|POST /optionalInfo', function ($f3) {
 
+    //session_destroy();
+    //session_start();
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -277,7 +359,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
 });
 
 
-//User day and hour information route
+// day and hour information route
 $f3->route('GET|POST /dayHour', function ($f3) {
 
     //If form has been submitted, validate
@@ -338,7 +420,8 @@ $f3->route('GET|POST /dayHour', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
-// User Confirmation route
+
+// Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
     if (empty($_SESSION['days'])) {
         foreach ($f3->get('day') as $day) {
@@ -378,71 +461,87 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     session_destroy();
 });
 
-//User Listings View
-$f3->route('GET /resources', function ($f3) {
+//Admin to be able to view recommended resource listings to update listings Status
+$f3->route('GET|POST /admin', function ($f3) {
+    //display the admin page
+
+    //Get the DB instance
+    global $db;
+    //Proof the db is connected
+
+    $fields = $db->getResWithKeyInfo();
+
+    //var dumps the resources. DUMMY Test data alot!!!
+//    foreach ($fields as $outer_key => $array) {
+//        foreach ($array as $inner_key => $value) {
+//
+//            if ($inner_key === 'Field') {
+//                if (!(int)$inner_key) {
+//                    $this->column_names[] = $value;
+//                }
+//            }
+//        }
+//    }
+
+//    var_dump($fields);
+
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/adminView.html");
+    echo $view->render('views/includes/footer.html');
+
+});
+
+//route to test SQL
+$f3->route('GET|POST /mock', function ($f3) {
 
     global $db;
 
     //Update the status of resource in DB
-    $data = $db->getViewListingInfo(1);
+    $data = $db->getDataTableInfo(1);
 
-    //Set the array to use in the table.
     $f3->set('res', $data);
 
-    $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render("views/resources.html");
-    echo $view->render('views/includes/footer.html');
-    session_destroy();
-});
-
-
-/***********************************************************************************
- * ---------------------------------------------------------------------------------
- *                                  Admin Routes
- * ---------------------------------------------------------------------------------
- ***********************************************************************************/
-//Admin Login
-$f3->route('GET|POST /adminLogin', function ($f3) {
-
-    $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render("views/adminLogin.html");
-    echo $view->render('views/includes/footer.html');
-    session_destroy();
+    var_dump($data);
 
 });
 
-//Admin Listing View
-$f3->route('GET|POST /admin', function ($f3) {
+//route to planB resources page
+$f3->route('GET|POST /resourceB', function ($f3) {
 
     global $db;
 
-    //Get the info from DB for admin Data Table Listings
-    $data = $db->getAdminListingInfo();
+    //Update the status of resource in DB
+    $data = $db->getDataTableInfo(1);
+
+    $data = $db->updateStatus(7, 1);
+    
 
     $f3->set('res', $data);
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
-    echo $view->render("views/admin.html");
+    echo $view->render("views/secondary/resources.html");
     echo $view->render('views/includes/footer.html');
     session_destroy();
+
 });
 
-/**
- *
- *
- * !!!!!!!!!!!!!!!!!!!! DEVELOPER ONLY Routes!!!!!!!!!!!!!!!!!!!!
- *
- *
- */
-//Test route
-$f3->route('GET|POST /dev', function ($f3) {
+//route to mock admin page
+$f3->route('GET|POST /adminB', function ($f3) {
+
+    global $db;
+
+    //Update the status of resource in DB
+    $data = $db->getDataTableInfo(1);
+
+    $f3->set('res', $data);
+
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
-    echo $view->render("Test HTML");
+    echo $view->render("views/secondary/admin.html");
     echo $view->render('views/includes/footer.html');
     session_destroy();
 

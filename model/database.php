@@ -194,8 +194,9 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     }
 
 
-    /*
-     * -----------------------------------Jittima & Sang (FE functions)
+    /**
+     * --------------------------adminLogin functions (Jittima)----------------------------------------
+     *
      */
 
 
@@ -217,8 +218,41 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         global $f3;
         $f3->set('adminID', $row['adminID']);
         return $row;
-
     }
+
+    /**
+     * Check if the email is already in the database
+     * @param String $email - the given email
+     * @return mixed - the email if it was already in the database
+     */
+    function checkEmail($email)
+    {
+        $sql = "SELECT * FROM adminLogin WHERE email = :email";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->excute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Change the admin's current password
+     * @param int $admin - adminID
+     * @param String $password - the new password
+     * @return void
+     */
+    function changePassword($admin, $password)
+    {
+        $sql = "UPDATE adminLogin SET password = :password WHERE adminID = :adminID";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+
+    /**
+     * ------------------------------------- Jittima & Sang (FE functions)-------------------------
+     */
 
     /**
      * insert recommendedInfo of the user to database
@@ -448,10 +482,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         // Execute the statement
         $statement->execute();
     }
-
-    /*
-     * -----------------------------------------------------------------------------------------------
-     */
 
     /**
      * -----------------------------------------------------------------------------------------------
