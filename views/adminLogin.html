@@ -19,14 +19,20 @@
 
                     <div class="row ml-2">
                         <div class="col-sm-6">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username">
+                            <label>Username/Admin email</label>
+                            <input type="text" class="form-control" name="adminEmail">
+                            <check if="{{ isset(@errors['adminEmail']) }}">
+                                <span class="text-danger">{{ @errors['adminEmail'] }}</span>
+                            </check>
                         </div>
                     </div>
                     <div class="row ml-2">
                         <div class="col-sm-6">
                             <label>Password</label>
-                            <input type="text" class="form-control" name="password">
+                            <input type="text" class="form-control" name="adminPassword">
+                            <check if="{{ isset(@errors['adminPassword']) }}">
+                                <span class="text-danger">{{ @errors['adminPassword'] }}</span>
+                            </check>
                         </div>
                     </div>
 

@@ -235,6 +235,21 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     }
 
     /**
+     * Changes the user's email
+     * @param int $admin the adminID
+     * @param String $email - the new email
+     * @return void
+     */
+    function changeEmail($admin, $email)
+    {
+        $sql = "UPDATE adminLogin SET email = :email WHERE adminID = :adminID";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->excute();
+    }
+
+    /**
      * Change the admin's current password
      * @param int $admin - adminID
      * @param String $password - the new password

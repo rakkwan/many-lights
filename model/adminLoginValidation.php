@@ -6,6 +6,26 @@
  * Time: 9:35 AM
  */
 
+function validAdminLogin()
+{
+    global $f3;
+    $isValid = true;
+
+    if (!validAdminEmail($f3->get('adminEmail')))
+    {
+        $isValid = false;
+        $f3->set("errors['adminEmail']", "This email is invalid or already exists, please enter a valid email address");
+
+    }
+
+    if (!validPassword($f3->get('adminPassword')))
+    {
+        $isValid = false;
+        $f3->set("errors['adminPassword']", "Please enter a valid password");
+    }
+    return $isValid;
+}
+
 
 /**
  * Checks if the email is valid
