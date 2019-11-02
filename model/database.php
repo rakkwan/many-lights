@@ -80,8 +80,8 @@ create table resources
  */
 
 
-require_once '/home/jgoodri1/config.php';
-
+//require_once '/home/jgoodri1/config.php';
+require_once '/home2/rhillgre/config3.php';
 
 class Databases
 {
@@ -144,27 +144,6 @@ class Databases
         }
     }
 
-
-//    /**
-//     * Function to get all the resources
-//     */
-//    public function getResource()
-//    {
-//        //Define Query
-//        $sql = "SELECT * FROM resourcesContact LIMIT 5";
-//
-//        //prepare statement
-//        $statement = $this->_dbh->prepare($sql);
-//
-//        //execute statement
-//        $statement->execute();
-//
-//        //Process the result
-//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-//
-//        return $result;
-//    }
-
     /**
      * Function to get all the resources
      */
@@ -186,27 +165,6 @@ class Databases
     }
 
 
-    /**
-     * Function to get all the resources
-     */
-
-//    public function getResourcesMain()
-//    {
-//        //Define Query
-//        $sql = "SELECT serviceType FROM resourcesContact LIMIT 2";
-//
-//        //prepare statement
-//        $statement = $this->_dbh->prepare($sql);
-//
-//        //execute statement
-//        $statement->execute();
-//
-//        //Process the result
-//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-//
-//        return $result;
-//    }
-
     public function getResourcesMain()
     {
         //Define Query
@@ -227,7 +185,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
 
     /*
-     * -----------------------------------Jittima & Sang functions
+     * -----------------------------------Jittima & Sang (FE functions)
      */
 
 
@@ -460,86 +418,21 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
     }
 
-
-
-    /*
-    function insertService($service, $lastRecommendedInfoID)
-    {
-        $sqlSerID = 'SELECT serviceID FROM service WHERE service = :service';
-        // save prepared statement
-        $statementSerID = $this->_dbh->prepare($sqlSerID);
-        // bind params
-        $statementSerID->bindParam(':service', $service, PDO::PARAM_STR);
-        // execute insert into recommendedInfo
-        $statementSerID->execute();
-        $serviceID = $statementSerID->fetch(PDO::FETCH_NUM);
-
-        $sqlService = 'INSERT INTO resources()'
-
-    }
-    */
-
-
     /*
      * -----------------------------------------------------------------------------------------------
      */
+
     /**
      * -----------------------------------------------------------------------------------------------
      *
      *
      *
-     *---------------------------------------- Views & Admin Functions -------------------------------
+     *---------------------------------------- BE & Admin Functions ----------------------------------
      *
      *
      *
      *________________________________________________________________________________________________
      */
-
-    /**
-     * gets all the Resources information based on a status
-     * @param $status either Pending(1), Accepted(2), or Declined(3)
-     * @return array
-     */
-    function getResByStatus($status)
-    {
-        switch ($status) {
-            case 3:
-                //Declined
-                $statusID = 3;
-                break;
-            case 2:
-                //Accepted
-                $statusID = 2;
-                break;
-            default:
-                //Pending
-                $statusID = 1;
-        }
-
-        // define the query
-
-        $sql = $this->_longSql.'
-
-            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
-            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
-            INNER JOIN service ON resources.serviceID = service.serviceID
-            WHERE
-                resources.statusID = :statusID
-            ';
-
-        //prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //Bind the parameters
-        $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
-
-        //Execute the statement
-        $statement->execute();
-
-        //Return the results
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }
 
     /**
      * Function to get all resources info an the foreign key values associated.
@@ -568,21 +461,18 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     }
 
     /**
-     * Function to get one resource info an the foreign key values associated.
+     * Function to get Selected resource and associated info values
      * @param int to represent resourceID
-     * @return array
+     * @return array (Associative)
      */
-    function getOneResWithKeyInfo($id)
+    function getSelectedResInfo($id)
     {
-
 
         $sql = $this->_longSql." 
                 INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
                 INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
                 INNER JOIN service ON resources.serviceID = service.serviceID
-                WHERE resources.resourceID = :id
-                ";
-
+                WHERE resources.resourceID = :id";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -601,9 +491,9 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     /**
      * This is to update the status of the resource
      * will return the updated resource
-     * @param $resourceID resourceID int
-     * @param $statusID int status ID
-     * @return mixed
+     * @param $resourceID int resourceID
+     * @param $statusID int statusID
+     * @return array (Associative)
      */
     function updateStatus($resourceID, $statusID)
     {
@@ -615,8 +505,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
                 SET
                 statusID = :statusID
                 WHERE
-                resourceID = :resourceID
-                ';
+                resourceID = :resourceID';
 
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -633,7 +522,12 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         return $this->getOneResWithKeyInfo($resourceID);
     }
 
-    function getDataTableInfo($statusID)
+    /**
+     * Function gets all the Resource Information based on a status from the DB
+     * @param $statusID int is either Pending(1), Accepted(2), or Declined(3)
+     * @return array
+     */
+    function getViewListingInfo($statusID)
     {
         $sql = 'SELECT
                 resourceID,
@@ -664,6 +558,38 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         return $result;
     }
 
+    /**
+     * This function returns the information for the Admin Listing view
+     * @return array
+     */
+    function getAdminListingInfo()
+    {
+        $sql = 'SELECT
+                resourceID,
+                service.service AS Resource_ServiceType,
+                theraFname,
+                theraLname,
+                office,
+                officePhone,
+                officeEmail,
+                city, 
+                statusBrand.statusLabel AS Listing_Status
+                FROM
+                resources
+                INNER JOIN service ON resources.serviceID = service.serviceID
+                INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
+                ';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // Execute the statement
+        $statement->execute();
+
+        //Return the results
+        $result = $statement->fetchALL(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 
 

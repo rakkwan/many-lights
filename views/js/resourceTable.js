@@ -1,25 +1,30 @@
-$(document).ready(function () {
+/**
+ * Robert Hill
+ * 11/1/19
+ * resourceTable.js
+ * This is the JavaScript file has functions for the datatables, modal info,
+ * and admin modal buttons for pending and declining resources status
+ */
+
+//Listing Data Table
+$(document).ready(function() {
     $('#dtBasicExample').DataTable();
     $('.dataTables_length').addClass('bs-select');
 });
 
-//Call to Update Modal
-$('#dtBasicExample').on('click', 'tr', function () {
+//Modal information
+$('#dtBasicExample').on('click', 'tr', function() {
 
     //get value of resource from the datatable
     let $res = $(this).attr("value");
     //ajax post call to php script
-    $.post("model/getResourceDatatable_ajax.php",
-        {
+    $.post("model/getResourceDatatable_ajax.php", {
             statusID: $res
         },
-        function(data, status){
+        function(data, status) {
             var info = JSON.parse(data);
-            // console.log(typeof info);
-            // alert("Data: " + data + "\nStatus: " + status);
 
-            if(info)
-            {
+            if (info) {
                 //First Row of form
                 $('#office').text(info.office);
                 $("#Resource_ServiceType").text(info.Resource_ServiceType);
@@ -53,46 +58,44 @@ $('#dtBasicExample').on('click', 'tr', function () {
                 //admin Row
                 $('#here').text(info.resourceID);
             }
-    });
+        });
     $(this).attr("data-toggle", "modal");
     $(this).attr("data-target", "#centralModalSuccess");
 
 });
 
-//Calls to Update Admin Status
-$('#approve').click(function () {
+//Accept Button function for the Status of selected resource
+$('#approve').click(function() {
 
     let $res = $('#here').text();
 
-    $.post("model/updateResourceStatus_ajax.php",
-        {
+    $.post("model/updateResourceStatus_ajax.php", {
             statusID: $res,
-            choice : 2
+            choice: 2
         },
-        function(data, status){
+        function(data, status) {
             var info = JSON.parse(data);
-            alert("\nThe listing: \n" + info.theraFname + " " + info.theraLname + " \nfrom: \n"
-                + info.Referral_fname + " " + info.Referral_lname + "\n approved for \nOneStop WA " +
+            alert("\nThe listing: \n" + info.theraFname + " " + info.theraLname + " \nfrom: \n" +
+                info.Referral_fname + " " + info.Referral_lname + "\n approved for \nOneStop WA " +
                 "VIEW ALL resources");
             console.log(status);
             console.log(info);
         }
     );
 });
-
-$('#decline').click(function () {
+//Decline Button function for the Status of selected resource
+$('#decline').click(function() {
 
     let $res = $('#here').text();
 
-    $.post("model/updateResourceStatus_ajax.php",
-        {
+    $.post("model/updateResourceStatus_ajax.php", {
             statusID: $res,
-            choice : 3
+            choice: 3
         },
-        function(data, status){
+        function(data, status) {
             var info = JSON.parse(data);
-            alert("\n The listing:\n"
-                + info.theraFname + " " + info.theraLname +
+            alert("\n The listing:\n" +
+                info.theraFname + " " + info.theraLname +
                 " \n from \n" + info.Referral_fname + " " + info.Referral_lname +
                 "\n will not be listed to on OneStop WA");
             console.log(status);

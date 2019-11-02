@@ -1,9 +1,9 @@
 <!-- resources -->
 <!--Header Template Page'
 Date: Oct4
-Updated: Oct21
+Updated: Oct21, Nov 1
 file: header.html
-Author: Samantha DeSmul
+Author: Samantha DeSmul, Robert Hill
 -->
 
 <!--Page specific styles-->
@@ -12,7 +12,7 @@ Author: Samantha DeSmul
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
 
-        <h2>Browse post adoption resources</h2>
+        <h2>Admin Browse post adoption resources</h2>
     </div>
 </div>
 
@@ -20,6 +20,8 @@ Author: Samantha DeSmul
     <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
+            <th class="th-sm">Status
+            </th>
             <th class="th-sm">Service
             </th>
             <th class="th-sm">Name
@@ -29,7 +31,7 @@ Author: Samantha DeSmul
             </th>
             <th class="th-sm">Email
             </th>
-            <th class="th-sm">Address
+            <th class="th-sm">City
             </th>
         </tr>
         </thead>
@@ -37,12 +39,13 @@ Author: Samantha DeSmul
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
             <tr value="{{ @value['resourceID'] }}">
+                <td>{{ @value["Listing_Status"] }}</td>
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
                 <td>{{ @value["office"] }}</td>
                 <td>{{ @value["officePhone"] }}</td>
                 <td>{{ @value["officeEmail"] }}</td>
-                <td>{{ @value["address"] }}</td>
+                <td>{{ @value["city"] }}</td>
             </tr>
         </repeat>
 
@@ -59,7 +62,7 @@ Author: Samantha DeSmul
             </th>
             <th>Email
             </th>
-            <th>Address
+            <th>City
             </th>
         </tr>
         </tfoot>
@@ -155,7 +158,7 @@ Author: Samantha DeSmul
                         <div class="row">
                             <div class="col">
                                 <h5>Provider Gender</h5>
-                                <p id="theraGender"></p>
+                                <p>{{ @res["theraGender"]}}</p>
                             </div>
                             <div class="col">
                                 <h5>Ages Seen</h5>
@@ -221,16 +224,61 @@ Author: Samantha DeSmul
                             </div>
                         </div>
                     </div>
+
+                    <!--Contact info for user who referred resource-->
+                    <h3 class="bg-light">Referee Information</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Name</h5>
+                            <p id="Referral_fname">{{@res['Referral_lname']}}</p>
+                        </div>
+                        <div class="col">
+                            <h5>Email <a href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
+                                         target="_top">
+                                <i class="fas fa-envelope"></i>
+                            </a></h5>
+                            <p id="Referral_email"></p>
+                        </div>
+                        <div class="col">
+                            <h5>Phone <a href="tel:{{@res['Referral_phone']}}">
+                                <i class="fas fa-phone"></i>
+                            </a></h5>
+                            <p id="Referral_phone"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+
             <!--Footer-->
             <div class="modal-footer justify-content-center purple">
-                <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
-                                          aria-hidden="true"></i><b class="text-warning">NOTE:
-                </b>There is no guarantee on quality of service, or that this
-                    resource's information is
-                    current!</h6>
+                <div class="d-flex flex-column">
+                    <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
+                                              aria-hidden="true"></i><b class="text-warning">NOTE:
+                    </b>There is no guarantee on quality of service, or that this
+                        resource's information is
+                        current!
+                    </h6>
+                </div>
+            </div>
+            <div class="container-fluid purple">
+                <p hidden id="here"></p>
+                <div class="w-auto p-3">
+                    <div class="row d-flex justify-content-center">
+                        <div class="d-flex flex-column">
+                            <!--                        Button Accept-->
+                            <button type="button" class="btn btn-outline-yellow waves-effect" id="approve">
+                                <i class="fas fa-check text-purple"></i> Approve Listing
+                            </button>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <!--                       Button Decline-->
+                            <button type="button" class="btn btn-yellow waves-effect" id="decline">
+                                Further Review <i class="fas fa-ban"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
