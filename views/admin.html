@@ -75,9 +75,7 @@ Author: Samantha DeSmul, Robert Hill
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
-            <div class="modal-header purple text-white">
-                <p class="heading lead">Browse Resource</p>
-
+            <div class="modal-header purple text-white mx-auto w-100">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="white-text">&times;</span>
                 </button>
@@ -88,9 +86,10 @@ Author: Samantha DeSmul, Robert Hill
             <div class="modal-body">
                 <div class="text-center">
 
-                    <div class="container">
+                    <div class="container w-75">
+
                         <!--Admin Review-->
-                        <h3 class="bg-light">Admin Review</h3>
+                        <h3 class="bg-light">Resource Information</h3>
                         <!--First row in modal-->
                         <div class="row">
                             <div class="col">
@@ -133,7 +132,7 @@ Author: Samantha DeSmul, Robert Hill
                             </div>
                             <div class="col">
                                 <h5 class="label">Provider Gender</h5>
-                                <p>{{ @res["theraGender"]}}</p>
+                                <p id="theraGender"></p>
                             </div>
                         </div>
                         <hr>
@@ -141,10 +140,13 @@ Author: Samantha DeSmul, Robert Hill
                         <div class="row">
                             <div class="col">
                                 <h5 class="label">Address</h5>
-                                <p id="address">{{@res['address']}} </p>
-                                <p id="city">{{@res["city"]}}</p>
-                                <p id="state">{{@res["state"]}}</p>
-                                <p id="zip">{{@res["zip"]}}</p>
+
+                                <p id="address" class="float-left pr-1 mx-1">{{@res['address']}}</p>
+                                <p id="city" class="float-left pl-1">{{@res['city']}}</p>
+                                <p id="comma" class="float-left">{{@comma}}</p>
+                                <p id="state" class="float-left pl-1">{{@res['state']}}</p>
+                                <p id="zip" class="float-left pl-1">{{@res['zip']}}</p>
+
                             </div>
                             <div class="col">
                                 <h5 class="label">Ages Seen</h5>
@@ -204,30 +206,32 @@ Author: Samantha DeSmul, Robert Hill
                             </div>
                         </div>
 
-                    <!--Contact info for user who referred resource-->
-                    <h3 class="bg-light">Referee Information</h3>
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="label">Name</h5>
-                            <p id="Referral_fname">{{@res['Referral_lname']}}</p>
-                        </div>
-                        <div class="col">
-                            <h5 class="label">Email <a
-                                    href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                    target="_top">
-                                <i class="fas fa-envelope"></i>
-                            </a></h5>
-                            <p id="Referral_email"></p>
-                        </div>
-                        <div class="col">
-                            <h5 class="label">Phone <a href="tel:{{@res['Referral_phone']}}">
-                                <i class="fas fa-phone"></i>
-                            </a></h5>
-                            <p id="Referral_phone"></p>
+                        <!--Contact info for user who referred resource-->
+                        <h3 class="bg-light">Referee Information</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="label">Name</h5>
+                                <p id="Referral_fname">{{@res['Referral_lname']}}</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="label">Email <a
+                                        href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
+                                        target="_top">
+                                    <i class="fas fa-envelope"></i>
+                                </a></h5>
+                                <p id="Referral_email"></p>
+                            </div>
+                            <div class="col">
+                                <h5 class="label">Phone <a href="tel:{{@res['Referral_phone']}}">
+                                    <i class="fas fa-phone"></i>
+                                </a></h5>
+                                <p id="Referral_phone"></p>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
-            </div>
             </div>
 
             <!--Footer-->
@@ -236,15 +240,21 @@ Author: Samantha DeSmul, Robert Hill
                 <div class="w-auto p-3">
                     <div class="row d-flex justify-content-center">
                         <div class="d-flex flex-column">
-                            <!--                        Button Accept-->
-                            <button type="button" class="btn btn-outline-yellow waves-effect" id="approve">
+                            <!--Button Accept-->
+                            <button type="button" class="btn btn-outline-success waves-effect" id="approve">
                                 <i class="fas fa-check text-purple"></i> Approve Listing
                             </button>
                         </div>
                         <div class="d-flex flex-column">
-                            <!--                       Button Decline-->
-                            <button type="button" class="btn btn-yellow waves-effect" id="decline">
-                                Further Review <i class="fas fa-ban"></i>
+                            <!--Button Decline-->
+                            <button type="button" class="btn btn-outline-light waves-effect" id="edit">
+                                <i class="far fa-edit"></i> Edit Listing
+                            </button>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <!--Button Decline-->
+                            <button type="button" class="btn btn-outline-warning waves-effect" id="decline">
+                                <i class="fas fa-ban"></i> Deny Listing
                             </button>
                         </div>
                     </div>

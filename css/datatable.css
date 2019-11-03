@@ -1,11 +1,25 @@
 tbody tr:hover {
-    background-color: #8ddbd6 !important;
+    background-color: #9ef0eb !important;
 }
 
 tbody tr:hover td.sorting_1 {
-    background-color: #507c7c !important;
+    background-color: #8ad6d6 !important;
 }
 
 th:hover {
     background: darkgray;
+}
+
+
+h5.label {
+    font-weight: 500 !important;
+}
+
+
+.container.m-0 {
+    min-width: 100% !important;
+}
+
+.col {
+    padding-top: 1px !important;
 }

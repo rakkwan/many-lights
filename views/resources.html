@@ -71,14 +71,16 @@ Author: Samantha DeSmul
 <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-notify modal-warning modal-fluid" role="document">
         <!--Content-->
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <!--Header-->
-            <div class="modal-header purple text-white">
-                <p class="heading lead">Browse Resource</p>
+            <div class="modal-header purple text-white mx-auto w-100">
+                <div class="col-12">
+                    <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                    <h1 class=" text-center mx-auto ">Browse Resource</h1>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
+                </div>
             </div>
 
             <!--Modal body-->
@@ -86,9 +88,7 @@ Author: Samantha DeSmul
             <div class="modal-body">
                 <div class="text-center">
 
-                    <div class="container">
-                        <!--Recommended Resource information-->
-                        <h3 class="bg-light">Resource Information</h3>
+                    <div class="container ">
                         <!--First row in modal-->
                         <div class="row">
                             <div class="col">
@@ -139,10 +139,13 @@ Author: Samantha DeSmul
                         <div class="row">
                             <div class="col">
                                 <h5 class="label">Address</h5>
-                                <p id="address">{{@res['address']}} </p>
-                                <p id="city">{{@res["city"]}}</p>
-                                <p id="state">{{@res["state"]}}</p>
-                                <p id="zip">{{@res["zip"]}}</p>
+
+                                <p id="address" class="float-left pr-1 mx-1">{{@res['address']}}</p>
+                                <p id="city" class="float-left pl-1">{{@res['city']}}</p>
+                                <p id="comma" class="float-left">{{@comma}}</p>
+                                <p id="state" class="float-left pl-1">{{@res['state']}}</p>
+                                <p id="zip" class="float-left pl-1">{{@res['zip']}}</p>
+
                             </div>
                             <div class="col">
                                 <h5 class="label">Ages Seen</h5>
@@ -207,12 +210,19 @@ Author: Samantha DeSmul
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center purple">
-                <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
-                                          aria-hidden="true"></i><b class="text-warning">NOTE:
-                </b>There is no guarantee on quality of service, or that this
-                    resource's information is
-                    current!</h6>
+            <div class="modal-footer justify-content-left purple">
+                <h4 class="text-white">
+                    <i class="fa fa-exclamation-circle text-warning" aria-hidden="true"></i>
+                    <b class="text-warning">NOTE:</b>
+                    There is no guarantee on quality of service, or that this
+                    resource's information is current!
+                </h4>
+                <div class="d-flex flex-column">
+                    <!--Button Decline-->
+                    <button type="button" class="btn btn-outline-light waves-effect" id="edit">
+                        <i class="fas fa-file-download"></i> Download PDF
+                    </button>
+                </div>
             </div>
         </div>
     </div>
