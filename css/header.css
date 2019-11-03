@@ -1,8 +1,11 @@
 
+
 .navbar-dark .navbar-nav .nav-link {
-    font-family: serif;
-    font-size: x-large;
+    /*font-family: serif; please dont add this font back!! thank you */
+    font-size: large;
 }
+
+
 
 /*The image in NavBar*/
 /*Use the # to target an ID of an html element*/
@@ -10,6 +13,9 @@
     height: 4em;
 }
 
+/*
+3 pictures on the homepage
+ */
 #pic2 {
     height: 220px;
     width: 300px
