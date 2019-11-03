@@ -79,6 +79,7 @@ CREATE TABLE adminLogin
 	UNIQUE (email),
 	PRIMARY KEY (adminID)
 );
+
 CREATE TABLE openHours(
     dayID INT NOT NULL AUTO_INCREMENT,
     primary key(dayID),
@@ -209,6 +210,21 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
 
     /**
+     * Get the admin email
+     * @param $adminEmail - admin email
+     * @return mixed admin email
+     */
+    function getAdmin($adminEmail)
+    {
+        $sql = 'SELECT * FROM adminLogin WHERE email = :email';
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
      * Attempts to log the admin in
      * @param String $email - the email given
      * @param String $password - the password given
@@ -259,15 +275,15 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Change the admin's current password
-     * @param int $admin - adminID
+     * @param int $adminEmail - admin email
      * @param String $password - the new password
      * @return void
      */
-    function changePassword($admin, $password)
+    function changePassword($adminEmail, $password)
     {
-        $sql = "UPDATE adminLogin SET password = :password WHERE adminID = :adminID";
+        $sql = "UPDATE adminLogin SET password = :password WHERE email = :email";
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
+        $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     }

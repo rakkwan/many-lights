@@ -429,6 +429,40 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 
 });
 
+
+// Admin resetPassword
+$f3->route('GET|POST /resetPassword', function ($f3) {
+
+    global $db;
+
+    // if the admin is trying to change the password
+    if (!empty($_POST)) {
+        // change the admin password
+        if (isset($_POST['newPassword1'])) {
+            if (validNewPassword()) {
+                $db->changePassword($_SESSION['adminEmail1'], $_POST['newPassword1']);
+            }
+            else{
+                $f3->set('error', 'Invalid new password');
+            }
+        }
+
+        // change the admin's email address
+    }
+
+    // retrieve the admin info
+    $admin = $db->getAdmin($_SESSION['adminEmail1']);
+
+    // set the admin info into the hive
+    $f3->set('admin', $admin);
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/resetPassword.html");
+    echo $view->render('views/includes/footer.html');
+
+});
+
 // Admin Logout
 $f3->route('GET|POST /adminLogout', function ($f3) {
 

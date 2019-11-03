@@ -6,6 +6,36 @@
  * Time: 9:35 AM
  */
 
+
+/**
+ * used to valid the new passwords
+ * @return bool- if the new passwords are valid
+ */
+function validNewPassword()
+{
+    global $f3;
+    $isValid = true;
+
+    if (!validPassword($f3->get('newPassword')))
+    {
+        $isValid = false;
+        $f3->set("errors['newPassword']", "Please enter a valid password, at least 7 characters");
+    }
+
+    if (!validSamePass($f3->get('newPassword'), $f3->get('newPassword1')))
+    {
+        $isValid = false;
+        $f3->set("errors['newPassword1']", "Password must be matched, please re-enter your password");
+    }
+
+    return $isValid;
+}
+
+
+/**
+ * used to valid the adminLogin form
+ * @return bool - checks if everything is valid
+ */
 function validAdminLogin()
 {
     global $f3;
@@ -29,7 +59,7 @@ function validAdminLogin()
 
 /**
  * Checks if the email is valid
- * @param Spring $adminEmail the email given
+ * @param String $adminEmail the email given
  * @return bool if the email is valid or not
  */
 function validAdminEmail($adminEmail)
@@ -54,16 +84,16 @@ function validPassword($password)
 }
 
 /**
- * Check if the passwords give match
- * @param String $password the first password
- * @param String $password1 the second password
+ * Check if the new passwords give match
+ * @param String $newPassword the first password
+ * @param String $newPassword1 the second password
  * @return bool checks if the passwords match or not
  */
-function validSamePass($password, $password1)
+function validSamePass($newPassword, $newPassword1)
 {
-    if (!empty($password) == !empty($password1))
+    if (!empty($newPassword) == !empty($newPassword1))
     {
-        return $password == $password1;
+        return $newPassword == $newPassword1;
     }
     return false;
 }
