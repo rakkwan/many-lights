@@ -15,6 +15,13 @@ h5.label {
     font-weight: 500 !important;
 }
 
+td {
+    text-align: left !important;
+}
+
+th:hover, td:hover {
+    cursor: pointer;
+}
 
 .container.m-0 {
     min-width: 100% !important;
