@@ -407,7 +407,7 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
     if (!empty($_SESSION['adminID'])) {
         $f3->reroute('/admin');
     }
-    if(!empty($_POST)) {
+    if (!empty($_POST)) {
 
         global $db;
         // try to login - checks if adminEmail and password are in the database
@@ -459,6 +459,7 @@ $f3->route('GET|POST /admin', function ($f3) {
     $data = $db->getAdminListingInfo();
 
     $f3->set('res', $data);
+    $f3->set('comma', ",");
 
     $view = new Template();
     echo $view->render('views/includes/header.html');

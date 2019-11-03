@@ -8,6 +8,7 @@ Author: Samantha DeSmul
 
 <!--Page specific styles-->
 <link rel="stylesheet" href="./css/resources.css">
+<link rel="stylesheet" href="./css/datatable.css">
 
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
@@ -68,16 +69,18 @@ Author: Samantha DeSmul
 
 <!-- Central Modal-->
 <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
+    <div class="modal-dialog modal-notify modal-warning modal-fluid" role="document">
         <!--Content-->
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <!--Header-->
-            <div class="modal-header purple text-white">
-                <p class="heading lead">Browse Resource</p>
+            <div class="modal-header purple text-white mx-auto w-100">
+                <div class="col-12">
+                    <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                    <h1 class=" text-center mx-auto ">Browse Resource</h1>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
+                </div>
             </div>
 
             <!--Modal body-->
@@ -85,138 +88,120 @@ Author: Samantha DeSmul
             <div class="modal-body">
                 <div class="text-center">
 
-                    <div class="container">
-                        <!--Recommended Resource information-->
-                        <h3 class="bg-light">Resource Information</h3>
+                    <div class="container ">
+                        <!--First row in modal-->
                         <div class="row">
                             <div class="col">
-                                <h5>Resource Type</h5>
+                                <h5 class="label">Resource Type</h5>
                                 <p id="Resource_ServiceType"></p>
                             </div>
                             <div class="col">
-                                <h5>Business Name</h5>
+                                <h5 class="label">Business Name</h5>
                                 <p id="office"></p>
                             </div>
                             <div class="col">
-                                <h5>Website</h5>
+                                <h5 class="label">Website</h5>
                                 <p id="website"></p>
                             </div>
                             <div class="col">
-                                <h5>Provider Name</h5>
+                                <h5 class="label">Provider Name</h5>
                                 <p id="speciality"></p>
                             </div>
                         </div>
                         <hr>
+                        <!--Second row in modal-->
                         <div class="row">
                             <div class="col">
-                                <h5>Email <a href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                             target="_top">
+                                <h5 class="label">Email <a
+                                        href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
+                                        target="_top">
                                     <i class="fas fa-envelope"></i>
                                 </a></h5>
                                 <p id="officeEmail"></p>
                             </div>
                             <div class="col">
-                                <h5>Phone <a href="tel:{{@res['officePhone']}}">
+                                <h5 class="label">Phone <a href="tel:{{@res['officePhone']}}">
                                     <i class="fas fa-phone"></i>
                                 </a></h5>
                                 <p id="officePhone"></p>
                             </div>
                             <div class="col">
-                                <h5>Secondary Phone <a href="tel:{{@res['officePhone']}}">
-                                    <i class="fas fa-phone"></i>
-                                </a></h5>
-                                <p>{{@res['officePhone']}}</p>
-                            </div>
-                            <div class="col">
-                                <h5>County</h5>
+                                <h5 class="label">County</h5>
                                 <p>King</p>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
                             <div class="col">
-                                <h5>Resource Address</h5>
-                                <p id="address">{{@res['address']}}</p>
-                            </div>
-                            <div class="col">
-                                <h5>Resource City</h5>
-                                <p id="city">{{@res["city"]}}</p>
-                            </div>
-                            <div class="col">
-                                <h5>Resource State</h5>
-                                <p id="state">{{@res[""]}}</p>
-                            </div>
-                            <div class="col">
-                                <h5>Resource Zip</h5>
-                                <p id="zip">{{@res[""]}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <h5>Provider Gender</h5>
+                                <h5 class="label">Provider Gender</h5>
                                 <p id="theraGender"></p>
                             </div>
+                        </div>
+                        <hr>
+                        <!--Third row in modal-->
+                        <div class="row">
                             <div class="col">
-                                <h5>Ages Seen</h5>
+                                <h5 class="label">Address</h5>
+
+                                <p id="address" class="float-left pr-1 mx-1">{{@res['address']}}</p>
+                                <p id="city" class="float-left pl-1">{{@res['city']}}</p>
+                                <p id="comma" class="float-left">{{@comma}}</p>
+                                <p id="state" class="float-left pl-1">{{@res['state']}}</p>
+                                <p id="zip" class="float-left pl-1">{{@res['zip']}}</p>
+
+                            </div>
+                            <div class="col">
+                                <h5 class="label">Ages Seen</h5>
                                 <p>0-4, 10-12</p>
                             </div>
                             <div class="col">
-                                <h5>Credentials</h5>
+                                <h5 class="label">Credentials</h5>
                                 <p>PhD</p>
                             </div>
-                            <div class="col">
-                                <h5>Secondary Credentials</h5>
-                                <p>Licensed Clinical Social Worker</p>
-                            </div>
+
                         </div>
                         <hr>
+                        <!--Fourth row in modal-->
                         <div class="row">
                             <div class="col">
-                                <h5>Languages/Interpreter</h5>
+                                <h5 class="label">Languages/Interpreter</h5>
                                 <p id="interpreter"></p>
                             </div>
                             <div class="col">
-                                <h5>Insurance Accepted</h5>
+                                <h5 class="label">Insurance Accepted</h5>
                                 <p id="insurance"></p>
                             </div>
                             <div class="col">
-                                <h5>Fees</h5>
+                                <h5 class="label">Fees</h5>
                                 <p>{{ @res["insurance"]}}</p>
-                            </div>
-                            <div class="col">
-                                <h5>Secondary Credentials</h5>
-                                <p>Licensed Clinical Social Worker</p>
                             </div>
                         </div>
                         <hr>
+                        <!--Fifth row in modal-->
                         <div class="row">
                             <div class="col">
-                                <h5>Monday</h5>
+                                <h5 class="label">Monday</h5>
                                 <p>9:00am-5:00pm</p>
                             </div>
                             <div class="col">
-                                <h5>Tuesday</h5>
+                                <h5 class="label">Tuesday</h5>
                                 <p>9:00am-5:00pm</p>
                             </div>
                             <div class="col">
-                                <h5>Wednesday</h5>
+                                <h5 class="label">Wednesday</h5>
                                 <p>9:00am-5:00pm</p>
                             </div>
                             <div class="col">
-                                <h5>Thursday</h5>
+                                <h5 class="label">Thursday</h5>
                                 <p>9:00am-5:00pm</p>
                             </div>
                             <div class="col">
-                                <h5>Friday</h5>
+                                <h5 class="label">Friday</h5>
                                 <p>9:00am-4:00pm</p>
                             </div>
                             <div class="col">
-                                <h5>Saturday</h5>
+                                <h5 class="label">Saturday</h5>
                                 <p>Closed</p>
                             </div>
                             <div class="col">
-                                <h5>Sunday</h5>
+                                <h5 class="label">Sunday</h5>
                                 <p>Closed</p>
                             </div>
                         </div>
@@ -225,12 +210,19 @@ Author: Samantha DeSmul
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center purple">
-                <h6 class="text-white"><i class="fa fa-exclamation-circle text-warning"
-                                          aria-hidden="true"></i><b class="text-warning">NOTE:
-                </b>There is no guarantee on quality of service, or that this
-                    resource's information is
-                    current!</h6>
+            <div class="modal-footer justify-content-left purple">
+                <h4 class="text-white">
+                    <i class="fa fa-exclamation-circle text-warning" aria-hidden="true"></i>
+                    <b class="text-warning">NOTE:</b>
+                    There is no guarantee on quality of service, or that this
+                    resource's information is current!
+                </h4>
+                <div class="d-flex flex-column">
+                    <!--Button Decline-->
+                    <button type="button" class="btn btn-outline-light waves-effect" id="edit">
+                        <i class="fas fa-file-download"></i> Download PDF
+                    </button>
+                </div>
             </div>
         </div>
     </div>
