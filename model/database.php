@@ -79,6 +79,14 @@ CREATE TABLE adminLogin
 	UNIQUE (email),
 	PRIMARY KEY (adminID)
 );
+CREATE TABLE openHours(
+    dayID INT NOT NULL AUTO_INCREMENT,
+    primary key(dayID),
+    day varchar(20),
+    start varchar(20),
+    end varchar(20),
+	FOREIGN KEY (resourceID) REFERENCES resources (resourceID)
+)
 
 ------------------------------------------------------------
 */
