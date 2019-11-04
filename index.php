@@ -121,6 +121,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         $office = $_POST['office'];
         $officePhone = $_POST['officePhone'];
         $officeEmail = $_POST['officeEmail'];
+        $credentail = $_POST['credential'];
         $theraFname = $_POST['theraFname'];
         $theraLname = $_POST['theraLname'];
         $theraGender = $_POST['theraGender'];
@@ -147,6 +148,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['office'] = $office;
             $_SESSION['officePhone'] = $officePhone;
             $_SESSION['officeEmail'] = $officeEmail;
+            $_SESSION['credential'] = $credentail;
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
@@ -190,6 +192,12 @@ $f3->route('GET|POST /location', function ($f3) {
         $state = $_POST['state'];
         $zip = $_POST['zip'];
         $website = $_POST['website'];
+
+        $_SESSION['address'] = $address;
+        $_SESSION['city'] = $city;
+        $_SESSION['state'] = $state;
+        $_SESSION['zip'] = $zip;
+        $_SESSION['website'] = $website;
 
 
         // do data to hive
