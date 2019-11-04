@@ -69,7 +69,7 @@
                 <p class="w-75">
                     <strong>Resource Name</strong>
                     <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="office"
+                    <input required type="text" class="form-control" name="office"
                            value="{{ $_SESSION['ResourceContact']->getOffice() }}" >
                     <check if="{{ isset(@errors['office']) }}">
                         <span class="text-danger">{{ @errors['office'] }}</span>
@@ -80,7 +80,7 @@
                 <p class="w-75">
                     <strong>Resource Phone Number</strong>
                     <label class="red-text mb-0">*</label>
-                    <input type="text" class="form-control" name="officePhone"
+                    <input required type="text" class="form-control" name="officePhone"
                            value="{{ $_SESSION['ResourceContact']->getOfficePhone() }}" >
                     <check if="{{ isset(@errors['officePhone']) }}">
                         <span class="text-danger">{{ @errors['officePhone'] }}</span>
@@ -92,7 +92,7 @@
                     <strong>Resource Email</strong>
                     <label class="red-text mb-0">*</label>
                     <label class="blue-text mb-0">(john@example.com)</label>
-                    <input type="text" class="form-control" name="officeEmail"
+                    <input required type="text" class="form-control" name="officeEmail"
                            value="{{ $_SESSION['ResourceContact']->getOfficeEmail() }}">
                     <check if="{{ isset(@errors['officeEmail']) }}">
                         <span class="text-danger">{{ @errors['officeEmail'] }}</span>
@@ -166,7 +166,7 @@
 
             <div class="col-lg-4">
                 <p class="bg-light mt-4 mr-5 p-2 rounded">
-                    Please fill out the office contact information
+                    Please fill out the resource contact information
                     with as much information as possible.
                 </p>
             </div>  <!-- end of right column -->
