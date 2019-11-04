@@ -17,7 +17,7 @@
     <hr>
 
     <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 40%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">40%</div>
     </div>
 
     <!-- Form container -->
@@ -99,9 +99,15 @@
                     </check>
                 </p>
 
+                <!-- Credential inputs -->
+                <p class="w-75">
+                    <strong>Credential</strong>
+                    <label class="orange-text mb-0">(optional)</label>
+                    <input class="form-control" type="text" name="credentialOne">
+                </p>
+
                 <!-- Therapist Info inputs -->
                 <div id="therapistInfo">
-
                     <!-- Therapist First name inputs -->
                     <p class="w-75">
                         <strong>Therapist First Name</strong>
@@ -154,7 +160,7 @@
                             <span class="text-danger">{{ @errors['theraGender'] }}</span>
                         </check>
                     </p>  <!-- End of gender inputs -->
-                </div> <!-- End of Therapist Inso-->
+                </div> <!-- End of Therapist Info-->
 
             </div>  <!-- end of left column-->
 
@@ -181,5 +187,5 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="views/javascript/checkboxEvent.js"></script>
+<script src="views/js/checkboxEvent.js"></script>
 
