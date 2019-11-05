@@ -445,14 +445,9 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
 
     // if the admin is trying to change the password
     if (!empty($_POST)) {
-
-        // get data from the input
-        $newPassword = $_POST['newPassword'];
-        $newPassword1 = $_POST['newPassword1'];
-
-        // add the hive
-        $f3->set('newPassword', $newPassword);
-        $f3->set('newPassword1', $newPassword1);
+        $_SESSION['adminEmail1'] = $_POST['adminEmail1'];
+        $f3->set('newPassword', $_POST['newPassword']);
+        $f3->set('newPassword1', $_POST['newPassword1']);
 
         // change the admin password
         if (isset($_POST['newPassword1'])) {
