@@ -104,8 +104,8 @@ CREATE TABLE openHours(
  */
 
 
-//require_once '/home/jgoodri1/config.php';
-require_once '/home2/rhillgre/config3.php';
+require_once '/home/jgoodri1/config.php';
+//require_once '/home2/rhillgre/config3.php';
 class Databases
 {
 
