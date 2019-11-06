@@ -38,12 +38,12 @@
                     <div class="form-group" id="{{@date}}" style="display: none">
                         <label>
                             <small>From</small>
-                            <input class="timepicker w-100" type="text" name="{{@date}}FromTime">
+                            <input class="timepicker w-100" type="text" name="{{@date}}FromTime" value='{{$_SESSION[@date."FromTime"]}}'>
                         </label>
                         <br>
                         <label>
                             <small>To</small>
-                            <input class="timepicker w-100" type="text" name="{{@date}}ToTime">
+                            <input class="timepicker w-100" type="text" name="{{@date}}ToTime" value='{{$_SESSION[@date."ToTime"]}}'>
                         </label>
                     </div>
                 </fieldset>

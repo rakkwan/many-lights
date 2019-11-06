@@ -305,6 +305,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $countyThree = $_POST['countyThree'];
 
         $_SESSION['days'] = $days;
+        $_SESSION['date'] = $days;
         $_SESSION['countyOne'] = $countyOne;
         $_SESSION['countyTwo'] = $countyTwo;
         $_SESSION['countyThree'] = $countyThree;
