@@ -84,14 +84,20 @@ $f3->route('GET|POST /recommended', function ($f3) {
 
         // if data is valid
         if (validForm()) {
+            // Write data to session
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+            $_SESSION['email'] = $email;
+            $_SESSION['phone'] = $phone;
 
+            /*
+             *
             //insert the recommendedInfo into the database
             $recommendedInfo = new RecommendedInfo($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['phone']);
-
-
             global $db;
             $db->recommendedInfo($recommendedInfo);
             $_SESSION['recommendedInfoID'] = $f3->get('recommendedInfoID');
+            */
 
             // redirect to provider
             $f3->reroute('/resourceContact');
@@ -153,7 +159,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
 
-
+            /*
             //insert the recommendedInfo into the database
             $service = new ResourceContact($_POST['service'],
                 $_POST['specialty'], $_POST['office'], $_POST['officePhone'], $_POST['officeEmail'],
@@ -163,6 +169,8 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
 
             $db->resourceInfo($service);
             $_SESSION['resourceID'] = $f3->get('resourceID');
+
+            */
 
             // reroute to location
             $f3->reroute('/location');
@@ -365,14 +373,14 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     global $db;
 
     //retrieve the recomendedInfo
-    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
-    $f3->set('recommendedInfo', $recommendedInfo);
+    //$recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
+    //$f3->set('recommendedInfo', $recommendedInfo);
 
-    $service = $db->getServiceInfo($_SESSION['service']);
-    $f3->set('service', $service);
+    //$service = $db->getServiceInfo($_SESSION['service']);
+    //$f3->set('service', $service);
 
-    $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
-    $f3->set('resourceInfo', $resourceInfo);
+    //$resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
+    //$f3->set('resourceInfo', $resourceInfo);
 
     //$updateLocationInfo = $db->updateLocation(['resourceID']);
     //$f3->set('resourceID', $updateLocationInfo);
