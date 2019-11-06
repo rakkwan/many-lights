@@ -1,21 +1,17 @@
 <!-- resources -->
 <!--Header Template Page'
-Date: Oct4
-Updated: Oct21, Nov 1
-file: header.html
-Author: Samantha DeSmul, Robert Hill
--->
-
+   Date: Oct4
+   Updated: Oct21, Nov 1
+   file: header.html
+   Author: Samantha DeSmul, Robert Hill
+   -->
 <!--Page specific styles-->
 <link rel="stylesheet" href="./css/datatable.css">
-
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
-
         <h2>Review pending resources</h2>
     </div>
 </div>
-
 <div class="container bg-light p-4 m-1 text-center mx-auto">
     <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
@@ -48,7 +44,6 @@ Author: Samantha DeSmul, Robert Hill
                 <td>{{ @value["city"] }}</td>
             </tr>
         </repeat>
-
         </tbody>
         <tfoot>
         <tr>
@@ -68,10 +63,9 @@ Author: Samantha DeSmul, Robert Hill
         </tfoot>
     </table>
 </div>
-
 <!-- Central Modal-->
 <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-notify modal-warning modal-fluid" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-notify modal-warning modal-fluid" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
@@ -80,14 +74,11 @@ Author: Samantha DeSmul, Robert Hill
                     <span aria-hidden="true" class="white-text">&times;</span>
                 </button>
             </div>
-
             <!--Modal body-->
             <!--TODO: Update with DB information -->
             <div class="modal-body">
                 <div class="text-center">
-
                     <div class="container w-75">
-
                         <!--Admin Review-->
                         <h3 class="purple text-white">Resource Information</h3>
                         <!--First row in modal-->
@@ -117,13 +108,15 @@ Author: Samantha DeSmul, Robert Hill
                                         href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
                                         target="_top">
                                     <i class="fas fa-envelope"></i>
-                                </a></h5>
+                                </a>
+                                </h5>
                                 <p id="officeEmail"></p>
                             </div>
                             <div class="col">
                                 <h5 class="label">Phone <a href="tel:{{@res['officePhone']}}">
                                     <i class="fas fa-phone"></i>
-                                </a></h5>
+                                </a>
+                                </h5>
                                 <p id="officePhone"></p>
                             </div>
                             <div class="col">
@@ -140,13 +133,11 @@ Author: Samantha DeSmul, Robert Hill
                         <div class="row">
                             <div class="col">
                                 <h5 class="label">Address</h5>
-
                                 <p id="address" class="float-left pr-1 mx-1">{{@res['address']}}</p>
                                 <p id="city" class="float-left pl-1">{{@res['city']}}</p>
                                 <p id="comma" class="float-left">{{@comma}}</p>
                                 <p id="state" class="float-left pl-1">{{@res['state']}}</p>
                                 <p id="zip" class="float-left pl-1">{{@res['zip']}}</p>
-
                             </div>
                             <div class="col">
                                 <h5 class="label">Ages Seen</h5>
@@ -205,7 +196,6 @@ Author: Samantha DeSmul, Robert Hill
                                 <p>Closed</p>
                             </div>
                         </div>
-
                         <!--Contact info for user who referred resource-->
                         <h3 class="purple text-white">Referee Information</h3>
                         <div class="row">
@@ -218,22 +208,21 @@ Author: Samantha DeSmul, Robert Hill
                                         href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
                                         target="_top">
                                     <i class="fas fa-envelope"></i>
-                                </a></h5>
+                                </a>
+                                </h5>
                                 <p id="Referral_email"></p>
                             </div>
                             <div class="col">
                                 <h5 class="label">Phone <a href="tel:{{@res['Referral_phone']}}">
                                     <i class="fas fa-phone"></i>
-                                </a></h5>
+                                </a>
+                                </h5>
                                 <p id="Referral_phone"></p>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
             <!--Footer-->
             <div class="container-fluid purple">
                 <p hidden id="here"></p>
@@ -247,7 +236,7 @@ Author: Samantha DeSmul, Robert Hill
                         </div>
                         <div class="d-flex flex-column">
                             <!--Button Decline-->
-                            <button type="button" class="btn btn-outline-light waves-effect" id="edit">
+                            <button type="button" class="btn btn-outline-light waves-effect" data-toggle="modal" data-target="#fluidModalBottomResoEdit" id="edit">
                                 <i class="far fa-edit"></i> Edit Listing
                             </button>
                         </div>
@@ -262,6 +251,390 @@ Author: Samantha DeSmul, Robert Hill
             </div>
         </div>
     </div>
-
     <!--/.Content-->
 </div>
+<!-- Full Height Modal Bottom Edit Resource-->
+<div class="modal fade bottom" id="fluidModalBottomResoEdit" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom" role="document">
+        <!--Content-->
+        <div class="modal-content container-fluid">
+            <!--Header-->
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Resource Info</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="text-center">
+                <br>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
+            </div>
+            <div class="modal-body mx-3">
+                <h5 class="card-title ">Resource</h5>
+                <div class="card">
+                    <!-- Container -->
+                    <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
+                        <!-- Container -->
+                        <div class="d-block d-md-flex">
+                            <!-- Column -->
+                            <div class="p-3 flex-1">
+                                <p class="prefix grey-text">Type</p>
+                                <div class="md-form mb-9">
+                                    <i class="fas fa-list-ul prefix grey-text"></i>
+                                    <input type="text" id="goldForm-type" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-type" id="goldType">Resource Type</label>
+                                </div>
+                                <p class="prefix grey-text">Name</p>
+                                <div class="md-form mb-8">
+                                    <i class="fas fa-tag prefix grey-text"></i>
+                                    <input type="text" id="goldForm-name" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-name" id="goldName">Bus Name</label>
+                                </div>
+                                <p class="prefix grey-text">Website</p>
+                                <div class="md-form mb-7">
+                                    <i class="fas fa-globe-americas prefix grey-text"></i>
+                                    <input type="text" id="goldForm-website" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-website" id="gold">Website</label>
+                                </div>
+                                <p class="prefix grey-text">Credentials</p>
+                                <div class="md-form mb-6">
+                                    <i class="fas fa-certificate prefix grey-text"></i>
+                                    <input type="text" id="goldForm-cert" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-cert" id="goldCred">Credentials</label>
+                                </div>
+                                <p class="prefix grey-text">Insurance</p>
+                                <div class="md-form mb-5">
+                                    <i class="fas fa-notes-medical prefix grey-text"></i>
+                                    <input type="text" id="goldForm-ins" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-ins" id="goldIns">Insurance</label>
+                                </div>
+                                <p class="prefix grey-text">Fees</p>
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-cash-register prefix grey-text"></i>
+                                    <input type="text" id="goldForm-fees" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-fees" id="goldFees">Fees</label>
+                                </div>
+                                <p class="prefix grey-text">Address</p>
+                                <div class="md-form mb-3">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="goldForm-address" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-address" id="goldAdd">Address</label>
+                                </div>
+                                <p class="prefix grey-text">City</p>
+                                <div class="md-form mb-2">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="goldForm-city" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-city" id="orCity">City</label>
+                                </div>
+                                <p class="prefix grey-text">County</p>
+                                <div class="md-form mb-1">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="goldForm-County" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-County" id="goldCount">County</label>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                            <!-- Column -->
+                            <div class="p-3 flex-1">
+                                <p class="prefix grey-text">Person to Contact First Name</p>
+                                <div class="md-form mb-10">
+                                    <i class="far fa-user-circle prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-poc" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-poc" id="orCont">person to contact</label>
+                                </div>
+                                <p class="prefix grey-text">Person to Contact Last Name</p>
+                                <div class="md-form mb-11">
+                                    <i class="far fa-user-circle prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-pocL" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-pocL" id="orContL">person to contact Last Name</label>
+                                </div>
+                                <p class="prefix grey-text">Email</p>
+                                <div class="md-form mb-12">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="email" id="orangeForm-email" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-email" id="orEmail">Your email</label>
+                                </div>
+                                <p class="prefix grey-text">Phone</p>
+                                <div class="md-form mb-13">
+                                    <i class="fas fa-phone-square prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-phone" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-phone" id="orPhone">Your phone</label>
+                                </div>
+                                <p class="prefix grey-text">Gender</p>
+                                <div class="md-form mb-14">
+                                    <i class="fas fa-genderless prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-gender" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-gender" id="orGen">provider Gender</label>
+                                </div>
+                                <p class="prefix grey-text">Ages</p>
+                                <div class="md-form mb-15">
+                                    <i class="fas fa-birthday-cake prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-ages" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-ages" id="orAges">provider ages Seen</label>
+                                </div>
+                                <p class="prefix grey-text">Interpreter</p>
+                                <div class="md-form mb-16">
+                                    <i class="fas fa-american-sign-language-interpreting prefix grey-text"></i>
+                                    <input type="text" id="orangeForm-lang" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-lang" id="orInt">Interpreter</label>
+                                </div>
+                                <p class="prefix grey-text">State</p>
+                                <div class="md-form mb-17">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="goldForm-state" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-state" id="orState">State</label>
+                                </div>
+                                <p class="prefix grey-text">Zip</p>
+                                <div class="md-form mb-18">
+                                    <i class="fas fa-home prefix grey-text"></i>
+                                    <input type="text" id="goldForm-zip" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-zip" id="goldZip">Zip</label>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                        </div>
+                        <!-- Container -->
+                    </div>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
+            </div>
+            <!--Footer-->
+            <!--/.Content-->
+        </div>
+        <!--Body-->
+    </div>
+</div>
+<!-- Full Height Modal Bottom Danger Demo-->
+<!-- Full Height Modal Bottom Edit Referral-->
+<div class="modal fade bottom" id="fluidModalBottomRefEdit" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom " role="document">
+        <!--Content-->
+        <div class="modal-content container-fluid">
+            <!--Header-->
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Referral Info</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="text-center">
+                <br>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
+            </div>
+            <div class="modal-body mx-3">
+                <h5 class="card-title ">Referral</h5>
+                <div class="card">
+                    <!-- Container -->
+                    <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
+                        <!-- Container -->
+                        <div class="d-block d-md-flex">
+                            <!-- Column -->
+                            <div class="p-3 flex-1">
+                                <p class="prefix grey-text">First Name</p>
+                                <div class="md-form mb-3">
+                                    <i class="fas fa-tag prefix grey-text"></i>
+                                    <input type="text" id="greyForm-name" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="greyForm-name" id="refName">Ref Name</label>
+                                </div>
+                                <p class="prefix grey-text">Last Name</p>
+                                <div class="md-form mb-3">
+                                    <i class="fas fa-tag prefix grey-text"></i>
+                                    <input type="text" id="greyForm-nameL" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="greyForm-nameL" id="refNameL">Ref Name</label>
+                                </div>
+                                <p class="prefix grey-text">Email</p>
+                                <div class="md-form mb-2">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="email" id="greyForm-email" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="greyForm-email" id="refEmail">Ref Email</label>
+                                </div>
+                                <p class="prefix grey-text">Phone</p>
+                                <div class="md-form mb-1">
+                                    <i class="fas fa-phone-square prefix grey-text"></i>
+                                    <input type="email" id="greyForm-phone" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="greyForm-phone" id="refPhone">Ref phone</label>
+                                </div>
+                            </div>
+                            <!-- Column -->
+                        </div>
+                    </div>
+                    <!-- Container -->
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
+            </div>
+            <!--Footer-->
+            <!--/.Content-->
+        </div>
+        <!--Body-->
+    </div>
+</div>
+<!-- Full Height Modal Bottom Edit Referral-->
+<!-- Full Height Modal Bottom Day Hour Edit-->
+<div class="modal fade bottom" id="fluidModalBottomDayHourEdit" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom modal-notify modal-danger" role="document">
+        <!--Content-->
+        <div class="modal-content container-fluid">
+            <!--Header-->
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Resource Service Hours</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="text-center">
+                <br>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
+            </div>
+            <div class="modal-body mx-3">
+                <h5 class="card-title ">Edit Hours</h5>
+                <div class="card">
+                    <!-- Container -->
+                    <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
+                        <!-- Container -->
+                        <div class="d-block d-md-flex">
+                            <!-- Column Open Time -->
+                            <div class="p-3 flex-1">
+                                <h5 class="prefix grey-text">Open</h5>
+                                <hr>
+                                <p class="prefix grey-text">Sunday</p>
+                                <div class="md-form mb-7">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-sun" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-sun">Sunday</label>
+                                </div>
+                                <p class="prefix grey-text">Monday</p>
+                                <div class="md-form mb-6">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-mon" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-mon">Monday</label>
+                                </div>
+                                <p class="prefix grey-text">Tuesday</p>
+                                <div class="md-form mb-5">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-tues" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-tues">Tuesday</label>
+                                </div>
+                                <p class="prefix grey-text">Wednesday</p>
+                                <div class="md-form mb-4">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-wed" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-wed">Wednesday</label>
+                                </div>
+                                <p class="prefix grey-text">Thursday</p>
+                                <div class="md-form mb-3">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-thurs" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-thurs">Thursday</label>
+                                </div>
+                                <p class="prefix grey-text">Friday</p>
+                                <div class="md-form mb-2">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-fri" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-fri">Friday</label>
+                                </div>
+                                <p class="prefix grey-text">Saturday</p>
+                                <div class="md-form mb-1">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-sat" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-sat">Saturday</label>
+                                </div>
+                            </div>
+                            <!-- Column Open Time -->
+                            <!-- Column Close Time -->
+                            <div class="p-3 flex-1">
+                                <h5 class="prefix grey-text">Closed</h5>
+                                <hr>
+                                <p class="prefix grey-text">Sunday</p>
+                                <div class="md-form mb-7">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-sunEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-sunEnd">Sunday</label>
+                                </div>
+                                <p class="prefix grey-text">Monday</p>
+                                <div class="md-form mb-6">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-monEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-monEnd">Monday</label>
+                                </div>
+                                <p class="prefix grey-text">Tuesday</p>
+                                <div class="md-form mb-5">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-tuesEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-tuesEnd">Tuesday</label>
+                                </div>
+                                <p class="prefix grey-text">Wednesday</p>
+                                <div class="md-form mb-4">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-wedEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-wedEnd">Wednesday</label>
+                                </div>
+                                <p class="prefix grey-text">Thursday</p>
+                                <div class="md-form mb-3">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-thursEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-thursEnd">Thursday</label>
+                                </div>
+                                <p class="prefix grey-text">Friday</p>
+                                <div class="md-form mb-2">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-friEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-friEnd">Friday</label>
+                                </div>
+                                <p class="prefix grey-text">Saturday</p>
+                                <div class="md-form mb-1">
+                                    <!--                                                                <i class="fas fa-tag prefix grey-text"></i>-->
+                                    <i class="fas fa-calendar-week prefix grey-text"></i>
+                                    <input type="text" id="goldForm-satEnd" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="goldForm-satEnd">Saturday</label>
+                                </div>
+                            </div>
+                            <!-- Column Close Time-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
+            </div>
+            <!--Footer-->
+            <!--/.Content-->
+        </div>
+        <!--Body-->
+    </div>
+</div>
+<!-- Full Height Modal Bottom Day Hour Edit-->
