@@ -20,8 +20,8 @@
                         <div class="col-sm-6">
                             <label>Username/Admin email</label>
                             <input type="text" class="form-control" name="adminEmail">
-                            <check if="{{ isset(@errors['adminEmail']) }}">
-                                <span class="text-danger">{{ @errors['adminEmail'] }}</span>
+                            <check if="{{ !empty(@errors) }}">
+                                <span class="text-danger">{{ @errors }}</span>
                             </check>
                         </div>
                     </div>
@@ -29,15 +29,15 @@
                         <div class="col-sm-6">
                             <label>Password</label>
                             <input type="text" class="form-control" name="adminPassword">
-                            <check if="{{ isset(@errors['adminPassword']) }}">
-                                <span class="text-danger">{{ @errors['adminPassword'] }}</span>
+                            <check if="{{ !empty(@errors) }}">
+                                <span class="text-danger">{{ @errors }}</span>
                             </check>
                         </div>
                     </div>
 
                     <div class="row ml-4 pt-4">
                         <button id="login" type="submit" class="btn btn-purple waves-effect">Login</button>
-                        <a type="button" class="btn btn-outline-purple waves-effect" href="resetPassword">Reset Password</a>
+                        <a type="button" class="btn btn-outline-purple waves-effect" href="resetPassword">Forget Password</a>
                     </div>
 
                 </form>

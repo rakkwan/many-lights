@@ -80,6 +80,10 @@ CREATE TABLE adminLogin
 	PRIMARY KEY (adminID)
 );
 
+
+INSERT INTO adminLogin (email, password)
+VALUES ('coderlite@email.com', 'coderLite1');
+
 CREATE TABLE openHours(
     dayID INT NOT NULL AUTO_INCREMENT,
     primary key(dayID),

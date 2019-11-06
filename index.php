@@ -84,14 +84,20 @@ $f3->route('GET|POST /recommended', function ($f3) {
 
         // if data is valid
         if (validForm()) {
+            // Write data to session
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+            $_SESSION['email'] = $email;
+            $_SESSION['phone'] = $phone;
 
+            /*
+             *
             //insert the recommendedInfo into the database
             $recommendedInfo = new RecommendedInfo($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['phone']);
-
-
             global $db;
             $db->recommendedInfo($recommendedInfo);
             $_SESSION['recommendedInfoID'] = $f3->get('recommendedInfoID');
+            */
 
             // redirect to provider
             $f3->reroute('/resourceContact');
@@ -121,6 +127,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         $office = $_POST['office'];
         $officePhone = $_POST['officePhone'];
         $officeEmail = $_POST['officeEmail'];
+        $credentail = $_POST['credential'];
         $theraFname = $_POST['theraFname'];
         $theraLname = $_POST['theraLname'];
         $theraGender = $_POST['theraGender'];
@@ -147,11 +154,12 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['office'] = $office;
             $_SESSION['officePhone'] = $officePhone;
             $_SESSION['officeEmail'] = $officeEmail;
+            $_SESSION['credential'] = $credentail;
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
 
-
+            /*
             //insert the recommendedInfo into the database
             $service = new ResourceContact($_POST['service'],
                 $_POST['specialty'], $_POST['office'], $_POST['officePhone'], $_POST['officeEmail'],
@@ -161,6 +169,8 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
 
             $db->resourceInfo($service);
             $_SESSION['resourceID'] = $f3->get('resourceID');
+
+            */
 
             // reroute to location
             $f3->reroute('/location');
@@ -190,6 +200,12 @@ $f3->route('GET|POST /location', function ($f3) {
         $state = $_POST['state'];
         $zip = $_POST['zip'];
         $website = $_POST['website'];
+
+        $_SESSION['address'] = $address;
+        $_SESSION['city'] = $city;
+        $_SESSION['state'] = $state;
+        $_SESSION['zip'] = $zip;
+        $_SESSION['website'] = $website;
 
 
         // do data to hive
@@ -289,6 +305,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $countyThree = $_POST['countyThree'];
 
         $_SESSION['days'] = $days;
+        $_SESSION['date'] = $days;
         $_SESSION['countyOne'] = $countyOne;
         $_SESSION['countyTwo'] = $countyTwo;
         $_SESSION['countyThree'] = $countyThree;
@@ -357,14 +374,14 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     global $db;
 
     //retrieve the recomendedInfo
-    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
-    $f3->set('recommendedInfo', $recommendedInfo);
+    //$recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
+    //$f3->set('recommendedInfo', $recommendedInfo);
 
-    $service = $db->getServiceInfo($_SESSION['service']);
-    $f3->set('service', $service);
+    //$service = $db->getServiceInfo($_SESSION['service']);
+    //$f3->set('service', $service);
 
-    $resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
-    $f3->set('resourceInfo', $resourceInfo);
+    //$resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
+    //$f3->set('resourceInfo', $resourceInfo);
 
     //$updateLocationInfo = $db->updateLocation(['resourceID']);
     //$f3->set('resourceID', $updateLocationInfo);
@@ -419,7 +436,7 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $f3->reroute('/admin');
         }
-        $f3->set('errors', 'No matching admin');
+        $f3->set('errors', 'No matching email address with the password');
     }
 
     $view = new Template();
@@ -437,10 +454,15 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
 
     // if the admin is trying to change the password
     if (!empty($_POST)) {
+        $_SESSION['adminEmail1'] = $_POST['adminEmail1'];
+        $f3->set('newPassword', $_POST['newPassword']);
+        $f3->set('newPassword1', $_POST['newPassword1']);
+
         // change the admin password
         if (isset($_POST['newPassword1'])) {
             if (validNewPassword()) {
                 $db->changePassword($_SESSION['adminEmail1'], $_POST['newPassword1']);
+                $f3->reroute('/succeedResetPassword');
             }
             else{
                 $f3->set('error', 'Invalid new password');
@@ -479,6 +501,18 @@ $f3->route('GET|POST /adminLogout', function ($f3) {
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/adminLogout.html");
+    echo $view->render('views/includes/footer.html');
+
+
+});
+
+
+// Admin succeed reset password
+$f3->route('GET|POST /succeedResetPassword', function ($f3) {
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/succeedResetPassword.html");
     echo $view->render('views/includes/footer.html');
 
 

@@ -1,13 +1,14 @@
- <!--
-    Name: Sang Le
-    updated version
+<!--
+   Name: Sang Le
+   updated version
 
-    Name: Jittima Goodrich
-    Date: 10/19/2019
-    File: dayHourForm.html
-    This is the form for an adoptive family to share the resources
+   Name: Jittima Goodrich
+   Date: 10/19/2019
+   File: dayHourForm.html
+   This is the form for an adoptive family to share the resources
 
 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
 <!-- Contact Information container -->
 <div class="container shadow-lg p-5 mb-5 mt-2 bg-white rounded">
@@ -15,12 +16,13 @@
     <hr>
 
     <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">95%</div>
     </div>
 
     <!-- Form container-->
     <form action="#" method="post" id="businessHours">
-        <h3 class="mt-3">Please select all that apply</h3>
+        <h3 class="mt-3 mb-0">Please select all that apply</h3>
+        <p class="orange-text">If known, please select the open days and hours of the business</p>
         <hr>
 
         <!-- Day selection inputs-->
@@ -30,27 +32,28 @@
                     <input type="checkbox" name="days[]" value="{{@date}}" class="myCheck"
                     <check if="{{ $_SESSION['DayHourInfo']->containsDay(@date) }}">checked</check>
 
-                        > {{@date}}
+                    > {{@date}}
 
-                        <!-- Time selection inputs-->
-                        <div class="form-group" id="{{@date}}" style="display: none">
-                            <label>
-                                <small>From</small>
-                                <input type="time" name="{{@date}}FromTime" step="900">
-                            </label>
-                            <br>
-                            <label>
-                                <small>To</small>
-                                <input type="time" name="{{@date}}ToTime" step="900">
-                            </label>
-                        </div>
+                    <!-- Time selection inputs-->
+                    <div class="form-group" id="{{@date}}" style="display: none">
+                        <label>
+                            <small>From</small>
+                            <input class="timepicker w-100" type="text" name="{{@date}}FromTime" value='{{$_SESSION[@date."FromTime"]}}'>
+                        </label>
+                        <br>
+                        <label>
+                            <small>To</small>
+                            <input class="timepicker w-100" type="text" name="{{@date}}ToTime" value='{{$_SESSION[@date."ToTime"]}}'>
+                        </label>
+                    </div>
                 </fieldset>
             </repeat>
         </div>  <!-- End of day selection input -->
 
         <hr>
 
-        <h3>County of Services, Specialties or Therapists <span class="orange-text mb-0">(optional)</span></h3>
+        <h3 class="mb-0">County of Services, Specialties or Therapists</h3>
+        <p class="orange-text">If apply, please enter the other county office location</p>
         <div class="row">
             <!-- County1 inputs -->
             <label class="col-sm">
@@ -85,6 +88,10 @@
     </form>
 
 </div>
- <!-- Script for checkbox event -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
- <script src="views/js/checkboxEvent.js"></script>
+
+<!-- Script for checkbox event -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="views/js/jquery.timepicker.min.js"></script>
+<script>$('.timepicker').timepicker()</script>
+<script src="views/js/checkboxEvent.js"></script>
+
