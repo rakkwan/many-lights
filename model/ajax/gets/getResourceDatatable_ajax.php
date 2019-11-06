@@ -19,4 +19,4 @@ else {
 $db = new Databases();
 
 //return the results from the DB
-echo json_encode($db->getSelectedResInfo($status));
+echo json_encode($db->getSelectedListInfo($status));

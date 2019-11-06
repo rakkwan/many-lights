@@ -100,8 +100,8 @@ CREATE TABLE openHours(
  */
 
 
-require_once '/home/jgoodri1/config.php';
-
+//require_once '/home/jgoodri1/config.php';
+require_once '/home2/rhillgre/config3.php';
 class Databases
 {
 
@@ -535,44 +535,14 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      */
 
     /**
-     * Function to get all resources info an the foreign key values associated.
-     * @param $id int represent ResourceID in DB
-     * @return array Associative
-     */
-    function getResWithKeyInfo($id)
-    {
-
-        $sql = $this->_longSql.'
-
-            INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
-            INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
-            INNER JOIN service ON resources.serviceID = service.serviceID
-            LIMIT 1
-            WHERE resources.resourceID = :id";';
-
-        //prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //Bind the parameters
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
-
-        //Execute the statement
-        $statement->execute();
-
-        //Return the results
-        $result = $statement->fetchAll();
-        return $result;
-    }
-
-    /**
      * Function to get Selected resource and associated info values
      * @param int to represent resourceID
      * @return array (Associative)
      */
-    function getSelectedResInfo($id)
+    function getSelectedListInfo($id)
     {
 
-        $sql = $this->_longSql." 
+        $sql = $this->_longSql.' '." 
                 INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
                 INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
                 INNER JOIN service ON resources.serviceID = service.serviceID
@@ -623,7 +593,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
 
         //confirmation
-        return $this->getResWithKeyInfo($resourceID);
+        return $this->getSelectedListInfo($resourceID);
     }
 
     /**
@@ -658,7 +628,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
 
         //Return the results
-        $result = $statement->fetchALL(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -691,8 +661,149 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
 
         //Return the results
-        $result = $statement->fetchALL(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    /**
+     * Function to Modify information in the DB from  the Admin Listing View Edit
+     * @param $info array $_POST
+     * @return array ??? Always comes back false.
+     */
+    function putAdminListingInfo($info)
+    {
+        $id = $info["resKey"];
+
+        $resKey = $info["resKey"];
+        $resType = $info["resType"];
+        $resName = $info["resName"];
+        $resWeb = $info["resWeb"];
+        $resCert = $info["resCert"];
+        $resIns = $info["resIns"];
+        $resFee = $info["resFee"];
+        $resAdd = $info["resAdd"];
+        $resCity = $info["resCity"];
+        $resPoc = $info["resPoc"];
+        $resPocL = $info["resPocL"];
+        $resEmail = $info["resEmail"];
+        $resPhone = $info["resPhone"];
+        $resGender = $info["resGender"];
+//        $resAges = $info["resAges"];
+        $resLang = $info["resLang"];
+        $resSt = $info["resSt"];
+        $resZip = $info["resZip"];
+        $resCou = $info["resCou"];
+        $refName = $info["refName"];
+        $refNameL = $info["refNameL"];
+        $refEmail = $info["refEmail"];
+        $refPhone = $info["refPhone"];
+//        $resOsun = $info["resOsun"];
+//        $resOmon = $info["resOmon"];
+//        $resOtues = $info["resOtues"];
+//        $resOwed = $info["resOwed"];
+//        $resOthurs = $info["resOthurs"];
+//        $resOfri = $info["resOfri"];
+//        $resOsat = $info["resOsat"];
+//        $resEsun = $info["resEsun"];
+//        $resEmon = $info["resEmon"];
+//        $resEtue = $info["resEtue"];
+//        $resEwed = $info["resEwed"];
+//        $resEthur = $info["resEthur"];
+//        $resEfri = $info["resEfri"];
+//        $resEsat = $info["resEsat"];
+
+        $sql = '
+            SET
+            @res = :resKey;
+            START TRANSACTION
+                ;
+            UPDATE
+                resources
+            SET
+                office = :resName,
+                address = :resAdd,
+                city = :resCity,
+                state = :resSt,
+                fee = :resFee,
+                zip = :resZip,
+                insurance = :resIns,
+                interpreter = :resLang,
+                officeEmail = :resEmail,
+                officePhone = :resPhone,
+                theraFname = :resPoc,
+                theraLname = :resPocL,
+                theraGender = :resGender,
+                website = :resWeb,
+                speciality = :resType,
+                fee = :resFee,
+                countyOne = :resCou
+            WHERE
+                resourceID = @res;
+            UPDATE
+                recommendedInfo,
+                resources
+            SET
+                recommendedInfo.email = :refEmail,
+                recommendedInfo.fname = :refName,
+                recommendedInfo.lname = :refNameL,
+                recommendedInfo.phone = :refPhone
+            WHERE
+                resources.resourceID = @res AND recommendedInfo.recommendedInfoID = resources.recommendedInfoID;
+            COMMIT
+                ;
+        ';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+
+        // bind params
+        $statement->bindParam(':resKey',$resKey, PDO::PARAM_STR);
+        $statement->bindParam(':resType',$resType, PDO::PARAM_STR);
+        $statement->bindParam(':resName',$resName, PDO::PARAM_STR);
+        $statement->bindParam(':resWeb',$resWeb, PDO::PARAM_STR);
+        $statement->bindParam(':resCert',$resCert, PDO::PARAM_STR);
+        $statement->bindParam(':resIns',$resIns, PDO::PARAM_STR);
+        $statement->bindParam(':resFee',$resFee, PDO::PARAM_STR);
+        $statement->bindParam(':resAdd',$resAdd, PDO::PARAM_STR);
+        $statement->bindParam(':resCity',$resCity, PDO::PARAM_STR);
+        $statement->bindParam(':resPoc',$resPoc, PDO::PARAM_STR);
+        $statement->bindParam(':resPocL',$resPocL, PDO::PARAM_STR);
+        $statement->bindParam(':resEmail',$resEmail, PDO::PARAM_STR);
+        $statement->bindParam(':resPhone',$resPhone, PDO::PARAM_STR);
+        $statement->bindParam(':resGender',$resGender, PDO::PARAM_STR);
+//        $statement->bindParam(':resAges',$resAges, PDO::PARAM_STR); Waiting for Ages Seen Table
+        $statement->bindParam(':resLang',$resLang, PDO::PARAM_STR);
+        $statement->bindParam(':resSt',$resSt, PDO::PARAM_STR);
+        $statement->bindParam(':resZip',$resZip, PDO::PARAM_STR);
+        $statement->bindParam(':resCou',$resCou, PDO::PARAM_STR);
+        $statement->bindParam(':refName',$refName, PDO::PARAM_STR);
+        $statement->bindParam(':refName',$refName, PDO::PARAM_STR);
+        $statement->bindParam(':refNameL',$refNameL, PDO::PARAM_STR);
+        $statement->bindParam(':refEmail',$refEmail, PDO::PARAM_STR);
+        $statement->bindParam(':refPhone',$refPhone, PDO::PARAM_STR);
+
+        //Waiting to see how the Hours will be stored
+//        $statement->bindParam(':resOsun',$resOsun, PDO::PARAM_STR);
+//        $statement->bindParam(':resOmon',$resOmon, PDO::PARAM_STR);
+//        $statement->bindParam(':resOtues',$resOtues, PDO::PARAM_STR);
+//        $statement->bindParam(':resOwed',$resOwed, PDO::PARAM_STR);
+//        $statement->bindParam(':resOthurs',$resOthurs, PDO::PARAM_STR);
+//        $statement->bindParam(':resOfri',$resOfri, PDO::PARAM_STR);
+//        $statement->bindParam(':resOsat',$resOsat, PDO::PARAM_STR);
+//        $statement->bindParam(':resEsun',$resEsun, PDO::PARAM_STR);
+//        $statement->bindParam(':resEmon',$resEmon, PDO::PARAM_STR);
+//        $statement->bindParam(':resEtue',$resEtue, PDO::PARAM_STR);
+//        $statement->bindParam(':resEwed',$resEwed, PDO::PARAM_STR);
+//        $statement->bindParam(':resEthur',$resEthur, PDO::PARAM_STR);
+//        $statement->bindParam(':resEfri',$resEfri, PDO::PARAM_STR);
+//        $statement->bindParam(':resEsat',$resEsat, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        //confirmation
+        return $this->getSelectedListInfo($id);
     }
 }
 
