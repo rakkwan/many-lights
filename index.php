@@ -427,7 +427,7 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $f3->reroute('/admin');
         }
-        $f3->set('errors', 'No matching admin');
+        $f3->set('errors', 'No matching email address with the password');
     }
 
     $view = new Template();
@@ -453,6 +453,7 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
         if (isset($_POST['newPassword1'])) {
             if (validNewPassword()) {
                 $db->changePassword($_SESSION['adminEmail1'], $_POST['newPassword1']);
+                $f3->reroute('/succeedResetPassword');
             }
             else{
                 $f3->set('error', 'Invalid new password');
@@ -491,6 +492,18 @@ $f3->route('GET|POST /adminLogout', function ($f3) {
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/adminLogout.html");
+    echo $view->render('views/includes/footer.html');
+
+
+});
+
+
+// Admin succeed reset password
+$f3->route('GET|POST /succeedResetPassword', function ($f3) {
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/succeedResetPassword.html");
     echo $view->render('views/includes/footer.html');
 
 
