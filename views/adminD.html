@@ -1,287 +1,38 @@
-<!-- resources -->
-<!--Header Template Page'
-   Date: Oct4
-   Updated: Oct21, Nov 1
-   file: header.html
-   Author: Samantha DeSmul, Robert Hill
-   -->
-<!--Page specific styles-->
-<link rel="stylesheet" href="./css/datatable.css">
 
-<div class="row">
-    <div class="col-12 text-center bg-white mb-3 pt-2">
-        <h2>Review pending resources</h2>
+<div class="col-md-3">
+    <h5 class="text-center mb-3">Fluid Modal</h5>
+
+    <img src="https://mdbootstrap.com/img/brandflow/modal1.jpg" alt="MDB graphics" class="img-fluid z-depth-1">
+    <div class="text-center">
+        <h5 class="my-3">Position</h5>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Bottom</button>
     </div>
 </div>
-<div class="container scrollable bg-light p-4 m-1 text-center mx-auto">
-    <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th class="th-sm">Status
-            </th>
-            <th class="th-sm">Service
-            </th>
-            <th class="th-sm">Name
-            <th class="th-sm">Office
-            </th>
-            <th class="th-sm">Phone
-            </th>
-            <th class="th-sm">Email
-            </th>
-            <th class="th-sm">City
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <repeat group="{{ @res }}"
-                value="{{ @value }}">
-            <tr title="{{ @value['resourceID'] }}">
-                <td>{{ @value["Listing_Status"] }}</td>
-                <td>{{ @value["Resource_ServiceType"] }}</td>
-                <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
-                <td>{{ @value["office"] }}</td>
-                <td>{{ @value["officePhone"] }}</td>
-                <td>{{ @value["officeEmail"] }}</td>
-                <td>{{ @value["city"] }}</td>
-            </tr>
-        </repeat>
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Service
-            </th>
-            <th>Name
-            </th>
-            <th>Office
-            </th>
-            <th>Phone
-            </th>
-            <th>Email
-            </th>
-            <th>City
-            </th>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-<!-- Central Modal-->
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable modal-notify modal-warning modal-fluid" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header purple text-white mx-auto w-100">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
-            </div>
-            <!--Modal body-->
-            <!--TODO: Update with DB information -->
-            <div class="modal-body">
-                <div class="text-center">
-                    <div class="container w-75">
-                        <!--Admin Review-->
-                        <h3 class="purple text-white">Resource Information</h3>
-                        <!--First row in modal-->
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Resource Type</h5>
-                                <p id="Resource_ServiceType"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Business Name</h5>
-                                <p id="office"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Website</h5>
-                                <p id="website"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Provider Name</h5>
-                                <p id="speciality"></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <!--Second row in modal-->
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Email <a
-                                        href="mailto:{{@res['officeEmail']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                        target="_top">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                </h5>
-                                <p id="officeEmail"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Phone <a href="tel:{{@res['officePhone']}}">
-                                    <i class="fas fa-phone"></i>
-                                </a>
-                                </h5>
-                                <p id="officePhone"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">County</h5>
-                                <p>King</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Provider Gender</h5>
-                                <p id="theraGender"></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <!--Third row in modal-->
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Address</h5>
-                                <p id="address" class="float-left pr-1 mx-1">{{@res['address']}}</p>
-                                <p id="city" class="float-left pl-1">{{@res['city']}}</p>
-                                <p id="comma" class="float-left">{{@comma}}</p>
-                                <p id="state" class="float-left pl-1">{{@res['state']}}</p>
-                                <p id="zip" class="float-left pl-1">{{@res['zip']}}</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Ages Seen</h5>
-                                <p>0-4, 10-12</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Credentials</h5>
-                                <p>PhD</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <!--Fourth row in modal-->
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Languages/Interpreter</h5>
-                                <p id="interpreter"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Insurance Accepted</h5>
-                                <p id="insurance"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Fees</h5>
-                                <p>{{ @res["insurance"]}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <!--Fifth row in modal-->
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Monday</h5>
-                                <p>9:00am-5:00pm</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Tuesday</h5>
-                                <p>9:00am-5:00pm</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Wednesday</h5>
-                                <p>9:00am-5:00pm</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Thursday</h5>
-                                <p>9:00am-5:00pm</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Friday</h5>
-                                <p>9:00am-4:00pm</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Saturday</h5>
-                                <p>Closed</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Sunday</h5>
-                                <p>Closed</p>
-                            </div>
-                        </div>
-                        <!--Contact info for user who referred resource-->
-                        <h3 class="purple text-white">Referee Information</h3>
-                        <div class="row">
-                            <div class="col">
-                                <h5 class="label">Name</h5>
-                                <p id="Referral_fname">{{@res['Referral_lname']}}</p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Email <a
-                                        href="mailto:{{@res['Referral_email']}}?Subject=OneStop%20WA%20Recommendation%20"
-                                        target="_top">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                </h5>
-                                <p id="Referral_email"></p>
-                            </div>
-                            <div class="col">
-                                <h5 class="label">Phone <a href="tel:{{@res['Referral_phone']}}">
-                                    <i class="fas fa-phone"></i>
-                                </a>
-                                </h5>
-                                <p id="Referral_phone"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Footer-->
-            <div class="container-fluid purple">
-                <p hidden id="here"></p>
-                <div class="w-auto p-3">
-                    <div class="row d-flex justify-content-center">
-                        <div class="d-flex flex-column">
-                            <!--Button Accept-->
-                            <button type="button" class="btn btn-outline-success waves-effect" id="approve">
-                                <i class="fas fa-check text-purple"></i> Approve Listing
-                            </button>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <!--Button Decline-->
-                            <button type="button" class="btn btn-outline-light waves-effect" data-toggle="modal" data-target="#fluidModalBottomResoEdit" id="edit">
-                                <i class="far fa-edit"></i> Edit Listing
-                            </button>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <!--Button Decline-->
-                            <button type="button" class="btn btn-outline-warning waves-effect" id="decline">
-                                <i class="fas fa-ban"></i> Deny Listing
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/.Content-->
-</div>
+
+<p hidden id="here"></p>
 <!-- Full Height Modal Bottom Edit Resource-->
 <div class="modal fade bottom" id="fluidModalBottomResoEdit" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom modal-notify modal-danger" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom" role="document">
         <!--Content-->
         <div class="modal-content container-fluid">
             <!--Header-->
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold white-text">Resource Info</h4>
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Resource Info</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <!--EDIT SECTION BUTTONS-->
-            <div class="d-flex justify-content-center">
-                <a role="button" class="btn btn-info waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
-                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
-                <a role="button" class="btn btn-warning waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
-            </div>
-            <div class="d-flex justify-content-start">
+            <div class="text-center">
                 <br>
-                <i class="fas fa-edit fa-4x mb-3 animated rotateIn ml-5"></i>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
             </div>
             <div class="modal-body mx-3">
                 <h5 class="card-title ">Resource</h5>
                 <div class="card">
                     <!-- Container -->
                     <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
                         <!-- Container -->
                         <div class="d-block d-md-flex">
                             <!-- Column -->
@@ -407,8 +158,10 @@
             </div>
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a role="button" class="btn btn-outline-danger waves-effect z-depth-1-half" data-dismiss="modal">Cancel Edit</a>
-                <a role="button" class="btn btn-purple waves-effect z-depth-1-half" data-dismiss="modal" lang="fEdit">Finish Edit</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
             </div>
             <!--Footer-->
             <!--/.Content-->
@@ -416,34 +169,30 @@
         <!--Body-->
     </div>
 </div>
-<!-- Full Height Modal Bottom Edit Resource-->
+<!-- Full Height Modal Bottom Danger Demo-->
 <!-- Full Height Modal Bottom Edit Referral-->
 <div class="modal fade bottom" id="fluidModalBottomRefEdit" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom modal-notify modal-info" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom " role="document">
         <!--Content-->
         <div class="modal-content container-fluid">
             <!--Header-->
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold white-text">Referral Info</h4>
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Referral Info</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="d-flex justify-content-center">
-                <a role="button" class="btn btn-info waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
-                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
-                <a role="button" class="btn btn-warning waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
-            </div>
-            <div class="d-flex justify-content-start">
+            <div class="text-center">
                 <br>
-                <i class="fas fa-edit fa-4x mb-3 animated rotateIn ml-5"></i>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
             </div>
             <div class="modal-body mx-3">
                 <h5 class="card-title ">Referral</h5>
                 <div class="card">
                     <!-- Container -->
                     <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
                         <!-- Container -->
                         <div class="d-block d-md-flex">
                             <!-- Column -->
@@ -481,8 +230,10 @@
             </div>
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a role="button" class="btn btn-outline-danger waves-effect z-depth-1-half" data-dismiss="modal">Cancel Edit</a>
-                <a role="button" class="btn btn-purple waves-effect z-depth-1-half" data-dismiss="modal" lang="fEdit">Finish Edit</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
             </div>
             <!--Footer-->
             <!--/.Content-->
@@ -493,31 +244,27 @@
 <!-- Full Height Modal Bottom Edit Referral-->
 <!-- Full Height Modal Bottom Day Hour Edit-->
 <div class="modal fade bottom" id="fluidModalBottomDayHourEdit" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom modal-notify modal-warning" role="document">
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-full-height modal-bottom modal-notify modal-danger" role="document">
         <!--Content-->
         <div class="modal-content container-fluid">
             <!--Header-->
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold white-text">Resource Service Hours</h4>
+            <div class="modal-header text-center amber lighten-5">
+                <h4 class="modal-title w-100 font-weight-bold">Resource Service Hours</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="d-flex justify-content-center">
-                <a role="button" class="btn btn-info waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
-                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
-                <a role="button" class="btn btn-warning waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
-            </div>
-            <div class="d-flex justify-content-start">
+            <div class="text-center">
                 <br>
-                <i class="fas fa-edit fa-4x mb-3 animated rotateIn ml-5"></i>
+                <i class="fas fa-edit fa-4x mb-3 animated rotateIn"></i>
             </div>
             <div class="modal-body mx-3">
                 <h5 class="card-title ">Edit Hours</h5>
                 <div class="card">
                     <!-- Container -->
                     <div class="card-body">
+                        <a class="card-link float-right" lang="fEdit">Finished Editing</a>
                         <!-- Container -->
                         <div class="d-block d-md-flex">
                             <!-- Column Open Time -->
@@ -636,8 +383,10 @@
             </div>
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel Edit</a>
-                <a role="button" class="btn btn-purple waves-effect" data-dismiss="modal" lang="fEdit">Finish Edit</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomRefEdit">Edit Referral</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomResoEdit">Edit Resource</a>
+                <a role="button" class="btn btn-danger waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#fluidModalBottomDayHourEdit">Edit Hours</a>
+                <a role="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
             </div>
             <!--Footer-->
             <!--/.Content-->
@@ -646,36 +395,3 @@
     </div>
 </div>
 <!-- Full Height Modal Bottom Day Hour Edit-->
-<!-- Central Modal Medium Success -->
-<div class="modal fade" id="confirmEditModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-notify" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header purple">
-                <h2 class="heading lead justify-content-center">Edit Complete!</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                <div class="text-center">
-                    <br>
-                    <i id="finishEditIcon" class="fas fa-check fa-4x mb-3 animated rotateIn text-warning"></i>
-                    <p id="confirmEdit"></p>
-                </div>
-            </div>
-            <!--Footer-->
-            <div class="modal-footer justify-content-center purple">
-                <button type="button" class="btn btn-outline-light waves-effect" data-dismiss="modal" id="editedListing">
-                    <i class="fas fa-th-list"></i>
-                    View Listings
-                </button>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!-- Central Modal Medium Success-->

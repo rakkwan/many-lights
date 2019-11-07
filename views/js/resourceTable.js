@@ -46,7 +46,7 @@ $('#edit').click(function () {
 
 //Action execute the Admin Edit
 $("a[lang='fEdit']").click(function () {
-    var ready = confirm("Are you ready to Commit an EDIT in OneStop WA DB?");
+    var ready = confirm("Ready to EDIT the OneStop WA DB?");
     if (ready == true) {
         AdminEditInfo();
     } else {
@@ -54,6 +54,10 @@ $("a[lang='fEdit']").click(function () {
     }
 });
 
+//refresh page after edit is complete
+$("#editedListing").click(function () {
+    location.href = self['location'];
+})
 /**
  * Parses the info returned from API into the modal
  * @param data json object
@@ -234,7 +238,7 @@ function AdminEditInfo() {
 
     //Key for the resource
     let resKey = $("#here").text();
-    
+
     //Bind vars to Post
     $.post("model/ajax/puts/updateResInfo_ajax.php",
         //Post Var bind
@@ -281,9 +285,13 @@ function AdminEditInfo() {
             //updated resource info
             if (data) {
                 var info = JSON.parse(data);
-
-                alert("The Resource, recommendation, and Hours of Service for \n" + resName + " has been updated\n" +
+                jQuery.noConflict();
+                //Confimation For user
+                $("#confirmEditModalSuccess").modal("show");
+                $("#confirmEdit").text("The Resource, recommendation, and " +
+                    "Hours of Service for \n " + resName + " has been updated\n" +
                     "in the OneStop WA Database!");
+
                 console.log(status);
             } else {
                 alert("There was a problem updating your selected information");
