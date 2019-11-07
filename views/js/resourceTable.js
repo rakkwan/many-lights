@@ -9,7 +9,9 @@
 //Listing Data Table
 $(document).ready(function () {
     $('#dtBasicExample').DataTable();
+    $('#dtBasicExample1').DataTable();
     $('.dataTables_length').addClass('bs-select');
+    downloadResourcePdf();
 });
 
 //Modal information
@@ -19,12 +21,50 @@ $('#dtBasicExample').on('click', 'tr', function () {
     let $res = $(this).attr("title");
 
     //gets the info for the modal
+    console.log($res);
     completeModal($res);
 
     $(this).attr("data-toggle", "modal");
     $(this).attr("data-target", "#centralModalSuccess");
 
 });
+
+let downloadId;
+
+//Modal information
+$('#dtBasicExample1').on('click', 'tr', function () {
+
+    //get value of resource from the datatable
+    let $dataRowId = $(this).attr("value");
+
+    //gets the info for the modal
+    console.log($dataRowId);
+    downloadId = $dataRowId;
+    completeModal($dataRowId);
+
+    $(this).attr("data-toggle", "modal");
+    $(this).attr("data-target", "#centralModalSuccess1");
+
+});
+
+
+function downloadResourcePdf() {
+
+    $("#downloadPdf").click(function () {
+
+        $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
+                statusID: downloadId
+            },
+            function (data, status) {
+                var info = JSON.parse(data);
+                console.log(info);
+            });
+        console.log(downloadId);
+        // location.href =
+
+    });
+
+}
 
 //Accept Button function for the Status of selected resource
 $('#approve').click(function () {
@@ -58,6 +98,7 @@ $("a[lang='fEdit']").click(function () {
 $("#editedListing").click(function () {
     location.href = self['location'];
 })
+
 /**
  * Parses the info returned from API into the modal
  * @param data json object
