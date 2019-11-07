@@ -41,7 +41,7 @@ $('#decline').click(function () {
 //Edit Button Function for Admin listing
 $('#edit').click(function () {
     let $res = $('#here').text();
-    completeEdit($res);
+    completeModal($res);
 });
 
 //Action execute the Admin Edit
@@ -58,85 +58,6 @@ $("a[lang='fEdit']").click(function () {
 $("#editedListing").click(function () {
     location.href = self['location'];
 })
-/**
- * Parses the info returned from API into the modal
- * @param data json object
- */
-function completeModal($id) {
-
-    //ajax post call to php script
-    $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
-            statusID: $id
-        },
-        function (data, status) {
-            var info = JSON.parse(data);
-
-            if (info) {
-                //Listing Modal
-                //First Row of form
-                $('#office').text(info.office);
-                $("#Resource_ServiceType").text(info.Resource_ServiceType);
-                $('#website').text(info.website);
-                $('#speciality').text(info.theraFname + " " + info.theraLname);
-
-                //Second Row of Modal
-                $('#officeEmail').text(info.officeEmail);
-
-                $('#officePhone').text(info.officePhone);
-
-                //Third Row of Modal
-                $('#address').text(info.address);
-                $('#city').text(info.city);
-                $('#state').text(info.state);
-                $('#zip').text(info.zip);
-
-                //Fourth Row of Modal
-                $('#theraGender').text(info.theraGender);
-
-                //Fifth Row of Modal
-                $('#interpreter').text(info.interpreter);
-
-                //Referral Row
-                $('#Referral_fname').text(info.Referral_fname + " " + info.Referral_lname);
-                $("#Referral_email").text(info.Referral_email);
-                $("#Referral_phone").text(info.Referral_phone);
-                $("#insurance").text(info.insurance);
-                $("#fees").text(info.insurance);
-
-                //admin Row
-                $('#here').text(info.resourceID);
-
-                //Edit Modal
-                //First Column of Resource info placeholders
-                $("#goldType").text(info.Resource_ServiceType);
-                $("#goldName").text(info.office);
-                $("#goldWeb").text(info.website);
-                $("#goldAdd").text(info.address);
-                $("#orCity").text(info.city);
-                $("#orState").text(info.state);
-                $("#goldZip").text(info.zip);
-                // $("#goldCount").text(info.); //Counties
-                // $("#goldCred").text(info.); //Credentials
-                $("#goldIns").text(info.insurance);
-                $("#goldFees").text(info.insurance); //Payments
-
-                //Second Column of Resource info Placeholders
-                $("#orCont").text(info.theraFname + " " + info.theraLname);
-                $("#orEmail").text(info.officeEmail);
-                $("#orPhone").text(info.officePhone);
-                $("#orGen").text(info.theraGender);
-                // $("#orAges").text(info.); //ages seen
-                $("#orInt").text(info.interpreter);
-
-                //Referral Info Placholders
-                $("#refName").text(info.Referral_fname + " " + info.Referral_lname);
-                $("#refEmail").text(info.Referral_email);
-                $("#refPhone").text(info.Referral_phone);
-
-            }
-        });
-}
-
 
 /**
  * Edit Button function to Modifiy/Update the selected resource info in the DB
