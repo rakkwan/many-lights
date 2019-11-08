@@ -399,8 +399,8 @@ $f3->route('GET /resources', function ($f3) {
 
     global $db;
 
-    //Update the status of resource in DB
-    $data = $db->getViewListingInfo(1);
+    //Get Listings with Approved Status from resources in DB
+    $data = $db->getViewListingInfo(2);
 
     //Set the array to use in the table.
     $f3->set('res', $data);
