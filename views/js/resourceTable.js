@@ -98,8 +98,6 @@ $("a[lang='fEdit']").click(function () {
 $("#editedListing").click(function () {
     location.href = self['location'];
 })
-<<<<<<< HEAD
-=======
 
 /**
  * Parses the info returned from API into the modal
@@ -176,55 +174,6 @@ function completeModal($id) {
                 $("#refEmail").text(info.Referral_email);
                 $("#refPhone").text(info.Referral_phone);
 
-            }
-        });
-}
-
->>>>>>> 28de43cb456a386e198a5fbcf1540022699123e3
-
-/**
- * Edit Button function to Modifiy/Update the selected resource info in the DB
- */
-function completeEdit($id) {
-    //ajax post call to get the correct values
-    $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
-            statusID: $id
-        },
-        function (data, status) {
-            var info = JSON.parse(data);
-            //Placeholders for edit forms
-            if (info) {
-
-                //First Column of Resource info placeholders
-                $("#goldType").text(info.Resource_ServiceType);
-                $("#goldName").text(info.office);
-                $("#goldWeb").text(info.website);
-                $("#goldAdd").text(info.address);
-                $("#orCity").text(info.city);
-                $("#orState").text(info.state);
-                $("#goldZip").text(info.zip);
-                // $("#goldCount").text(info.); //Counties
-                // $("#goldCred").text(info.); //Credentials
-                $("#goldIns").text(info.insurance);
-                $("#goldFees").text(info.insurance); //Payments
-
-                //Second Column of Resource info Placeholders
-                $("#orCont").text(info.theraFname);
-                $("#orContL").text(info.theraLname);
-                $("#orEmail").text(info.officeEmail);
-                $("#orPhone").text(info.officePhone);
-                $("#orGen").text(info.theraGender);
-                // $("#orAges").text(info.); //ages seen
-                $("#orInt").text(info.interpreter);
-
-                //Referral Info Placholders
-                $("#refName").text(info.Referral_fname)
-                $("#refNameL").text(info.Referral_lname);
-                $("#refEmail").text(info.Referral_email);
-                $("#refPhone").text(info.Referral_phone);
-
-                //admin Row
-                $('#here').text(info.resourceID);
             }
         });
 }
