@@ -70,12 +70,14 @@ function downloadResourcePdf() {
 $('#approve').click(function () {
     let $res = $('#here').text();
     acceptedStatus($res);
+    location.href = self['location'];
 });
 
 //Decline Button function for the Status of selected resource
 $('#decline').click(function () {
     let $res = $('#here').text();
     declinedStatus($res);
+    location.href = self['location'];
 });
 
 //Edit Button Function for Admin listing
