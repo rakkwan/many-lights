@@ -19,7 +19,8 @@ function validNewPassword()
     if (!validPassword($f3->get('newPassword')))
     {
         $isValid = false;
-        $f3->set("errors['newPassword']", "Please enter a valid password, at least 7 characters");
+        $f3->set("errors['newPassword']", "Password should be at least 8 characters
+        in length and should include at least one upper case letter, one number, and one special character");
     }
 
     if (!validSamePass($f3->get('newPassword'), $f3->get('newPassword1')))
@@ -76,11 +77,16 @@ function validAdminEmail($adminEmail)
 /**
  * Checks if password is valid
  * @param String $password the password given
- * @return bool if the password is 7 charaters or longer
+ * @return bool if the password is 7 characters or longer
  */
 function validPassword($password)
 {
-    return !empty($password) && strlen($password) >= 7;
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    return ($uppercase && $lowercase && $number && $specialChars && strlen($password) >= 8);
 }
 
 /**
