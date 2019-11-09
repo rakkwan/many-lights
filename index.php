@@ -400,17 +400,22 @@ $f3->route('GET /resources', function ($f3) {
 
     global $db;
 
-    require_once('vendor/autoload.php');
 
-    $mpdf = null;
-
-    $mpdf = new \mpdf\Mpdf;
-
-    $mpdf->WriteHTML('<h1>Hello world!</h1>');
-    $mpdf->Output();
-    //Update the status of resource in DB
-
-    $data = $db->getResourcesInfo();
+    //Get Listings with Approved Status from resources in DB
+    $data = $db->getViewListingInfo(2);
+//=======
+//    require_once('vendor/autoload.php');
+//
+//    $mpdf = null;
+//
+//    $mpdf = new \mpdf\Mpdf;
+//
+//    $mpdf->WriteHTML('<h1>Hello world!</h1>');
+//    $mpdf->Output();
+//    //Update the status of resource in DB
+//
+//    $data = $db->getResourcesInfo();
+//>>>>>>> 28de43cb456a386e198a5fbcf1540022699123e3
 
     //Set the array to use in the table.
     $f3->set('res', $data);
