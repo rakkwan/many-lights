@@ -9,7 +9,9 @@
 //Listing Data Table
 $(document).ready(function () {
     $('#dtBasicExample').DataTable();
+    $('#dtBasicExample1').DataTable();
     $('.dataTables_length').addClass('bs-select');
+    downloadResourcePdf();
 });
 
 //Modal information
@@ -19,12 +21,50 @@ $('#dtBasicExample').on('click', 'tr', function () {
     let $res = $(this).attr("title");
 
     //gets the info for the modal
+    console.log($res);
     completeModal($res);
 
     $(this).attr("data-toggle", "modal");
     $(this).attr("data-target", "#centralModalSuccess");
 
 });
+
+let downloadId;
+
+//Modal information
+$('#dtBasicExample1').on('click', 'tr', function () {
+
+    //get value of resource from the datatable
+    let $dataRowId = $(this).attr("value");
+
+    //gets the info for the modal
+    console.log($dataRowId);
+    downloadId = $dataRowId;
+    completeModal($dataRowId);
+
+    $(this).attr("data-toggle", "modal");
+    $(this).attr("data-target", "#centralModalSuccess1");
+
+});
+
+
+function downloadResourcePdf() {
+
+    $("#downloadPdf").click(function () {
+
+        $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
+                statusID: downloadId
+            },
+            function (data, status) {
+                var info = JSON.parse(data);
+                console.log(info);
+            });
+        console.log(downloadId);
+        // location.href =
+
+    });
+
+}
 
 //Accept Button function for the Status of selected resource
 $('#approve').click(function () {
@@ -58,6 +98,89 @@ $("a[lang='fEdit']").click(function () {
 $("#editedListing").click(function () {
     location.href = self['location'];
 })
+<<<<<<< HEAD
+=======
+
+/**
+ * Parses the info returned from API into the modal
+ * @param data json object
+ */
+function completeModal($id) {
+
+    //ajax post call to php script
+    $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
+            statusID: $id
+        },
+        function (data, status) {
+            var info = JSON.parse(data);
+
+            if (info) {
+                //Listing Modal
+                //First Row of form
+                $('#office').text(info.office);
+                $("#Resource_ServiceType").text(info.Resource_ServiceType);
+                $('#website').text(info.website);
+                $('#speciality').text(info.theraFname + " " + info.theraLname);
+
+                //Second Row of Modal
+                $('#officeEmail').text(info.officeEmail);
+
+                $('#officePhone').text(info.officePhone);
+
+                //Third Row of Modal
+                $('#address').text(info.address);
+                $('#city').text(info.city);
+                $('#state').text(info.state);
+                $('#zip').text(info.zip);
+
+                //Fourth Row of Modal
+                $('#theraGender').text(info.theraGender);
+
+                //Fifth Row of Modal
+                $('#interpreter').text(info.interpreter);
+
+                //Referral Row
+                $('#Referral_fname').text(info.Referral_fname + " " + info.Referral_lname);
+                $("#Referral_email").text(info.Referral_email);
+                $("#Referral_phone").text(info.Referral_phone);
+                $("#insurance").text(info.insurance);
+                $("#fees").text(info.insurance);
+
+                //admin Row
+                $('#here').text(info.resourceID);
+
+                //Edit Modal
+                //First Column of Resource info placeholders
+                $("#goldType").text(info.Resource_ServiceType);
+                $("#goldName").text(info.office);
+                $("#goldWeb").text(info.website);
+                $("#goldAdd").text(info.address);
+                $("#orCity").text(info.city);
+                $("#orState").text(info.state);
+                $("#goldZip").text(info.zip);
+                // $("#goldCount").text(info.); //Counties
+                // $("#goldCred").text(info.); //Credentials
+                $("#goldIns").text(info.insurance);
+                $("#goldFees").text(info.insurance); //Payments
+
+                //Second Column of Resource info Placeholders
+                $("#orCont").text(info.theraFname + " " + info.theraLname);
+                $("#orEmail").text(info.officeEmail);
+                $("#orPhone").text(info.officePhone);
+                $("#orGen").text(info.theraGender);
+                // $("#orAges").text(info.); //ages seen
+                $("#orInt").text(info.interpreter);
+
+                //Referral Info Placholders
+                $("#refName").text(info.Referral_fname + " " + info.Referral_lname);
+                $("#refEmail").text(info.Referral_email);
+                $("#refPhone").text(info.Referral_phone);
+
+            }
+        });
+}
+
+>>>>>>> 28de43cb456a386e198a5fbcf1540022699123e3
 
 /**
  * Edit Button function to Modifiy/Update the selected resource info in the DB

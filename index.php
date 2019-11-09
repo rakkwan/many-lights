@@ -1,7 +1,7 @@
 <?php
 
 //Require autoload file
-require_once('vendor/autoload.php');
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Created by PhpStorm.
@@ -16,6 +16,7 @@ session_start();
 
 //turn on error reporting
 ini_set('display_errors', 1);
+
 error_reporting(E_ALL);
 
 //Require autoload file
@@ -399,8 +400,22 @@ $f3->route('GET /resources', function ($f3) {
 
     global $db;
 
+<<<<<<< HEAD
     //Get Listings with Approved Status from resources in DB
     $data = $db->getViewListingInfo(2);
+=======
+    require_once('vendor/autoload.php');
+
+    $mpdf = null;
+
+    $mpdf = new \mpdf\Mpdf;
+
+    $mpdf->WriteHTML('<h1>Hello world!</h1>');
+    $mpdf->Output();
+    //Update the status of resource in DB
+
+    $data = $db->getResourcesInfo();
+>>>>>>> 28de43cb456a386e198a5fbcf1540022699123e3
 
     //Set the array to use in the table.
     $f3->set('res', $data);
@@ -409,6 +424,39 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
     echo $view->render('views/includes/footer.html');
+
+
+});//User Listings View
+$f3->route('GET /download', function ($f3) {
+
+    global $db;
+
+    //Update the status of resource in DB
+
+    $data = $db->getResourcesInfo();
+
+    echo "asdf";
+
+    $mpdf = new \Mpdf\Mpdf([
+        'mode' => 'utf-8',
+        'format' => [190, 236],
+        'orientation' => 'L'
+    ]);
+
+//
+//    $mpdf = new \Mpdf\Mpdf();
+//
+//    $mpdf->WriteHTML('<h1>Hello world!</h1>');
+//    $mpdf->Output();
+    //Set the array to use in the table.
+    $f3->set('res', $data);
+
+    $view = new Template();
+//    echo $view->render('views/includes/header.html');
+//    echo $view->render("model/ajax/puts/downloadPdf.php");
+//    echo $view->render('views/includes/footer.html');
+
+
 });
 
 
@@ -463,8 +511,7 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
             if (validNewPassword()) {
                 $db->changePassword($_SESSION['adminEmail1'], $_POST['newPassword1']);
                 $f3->reroute('/succeedResetPassword');
-            }
-            else{
+            } else {
                 $f3->set('error', 'Invalid new password');
             }
         }
@@ -552,5 +599,7 @@ $f3->route('GET|POST /dev', function ($f3) {
     session_destroy();
 
 });
+
+$f3->set('DEBUG', 0);
 //run Fat-free
 $f3->run();
