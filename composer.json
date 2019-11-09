@@ -20,7 +20,7 @@
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master",
-    "mpdf/mpdf": "^7.1.9"
+    "php": ">=7.1.0"
   },
   "autoload": {
     "classmap": [

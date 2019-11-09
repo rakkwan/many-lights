@@ -2,6 +2,18 @@
 
 //Require autoload file
 require_once __DIR__ . '/vendor/autoload.php';
+//var_dump(phpinfo());
+//die;
+//try {
+//    $mpdf = \Mpdf\Mpdf();
+//    $mpdf->WriteHTML('Hello World');
+//    // Other code
+//    $mpdf->Output();
+//} catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
+//    // Process the exception, log, print etc.
+//    echo $e->getMessage();
+//}
+
 
 /**
  * Created by PhpStorm.
@@ -13,6 +25,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Start session!
 session_start();
+
 
 //turn on error reporting
 ini_set('display_errors', 1);
