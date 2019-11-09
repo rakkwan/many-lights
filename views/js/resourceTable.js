@@ -9,7 +9,9 @@
 //Listing Data Table
 $(document).ready(function () {
     $('#dtBasicExample').DataTable();
+    $('#dtBasicExample1').DataTable();
     $('.dataTables_length').addClass('bs-select');
+    downloadResourcePdf();
 });
 
 //Modal information
@@ -19,12 +21,50 @@ $('#dtBasicExample').on('click', 'tr', function () {
     let $res = $(this).attr("title");
 
     //gets the info for the modal
+    console.log($res);
     completeModal($res);
 
     $(this).attr("data-toggle", "modal");
     $(this).attr("data-target", "#centralModalSuccess");
 
 });
+
+let downloadId;
+
+//Modal information
+$('#dtBasicExample1').on('click', 'tr', function () {
+
+    //get value of resource from the datatable
+    let $dataRowId = $(this).attr("value");
+
+    //gets the info for the modal
+    console.log($dataRowId);
+    downloadId = $dataRowId;
+    completeModal($dataRowId);
+
+    $(this).attr("data-toggle", "modal");
+    $(this).attr("data-target", "#centralModalSuccess1");
+
+});
+
+
+function downloadResourcePdf() {
+
+    $("#downloadPdf").click(function () {
+
+        $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
+                statusID: downloadId
+            },
+            function (data, status) {
+                var info = JSON.parse(data);
+                console.log(info);
+            });
+        console.log(downloadId);
+        // location.href =
+
+    });
+
+}
 
 //Accept Button function for the Status of selected resource
 $('#approve').click(function () {
@@ -46,13 +86,18 @@ $('#edit').click(function () {
 
 //Action execute the Admin Edit
 $("a[lang='fEdit']").click(function () {
-    var ready = confirm("Are you ready to Commit an EDIT in OneStop WA DB?");
+    var ready = confirm("Ready to EDIT the OneStop WA DB?");
     if (ready == true) {
         AdminEditInfo();
     } else {
         return;
     }
 });
+
+//refresh page after edit is complete
+$("#editedListing").click(function () {
+    location.href = self['location'];
+})
 
 /**
  * Parses the info returned from API into the modal
@@ -234,7 +279,7 @@ function AdminEditInfo() {
 
     //Key for the resource
     let resKey = $("#here").text();
-    
+
     //Bind vars to Post
     $.post("model/ajax/puts/updateResInfo_ajax.php",
         //Post Var bind
@@ -281,9 +326,13 @@ function AdminEditInfo() {
             //updated resource info
             if (data) {
                 var info = JSON.parse(data);
-
-                alert("The Resource, recommendation, and Hours of Service for \n" + resName + " has been updated\n" +
+                jQuery.noConflict();
+                //Confimation For user
+                $("#confirmEditModalSuccess").modal("show");
+                $("#confirmEdit").text("The Resource, recommendation, and " +
+                    "Hours of Service for \n " + resName + " has been updated\n" +
                     "in the OneStop WA Database!");
+
                 console.log(status);
             } else {
                 alert("There was a problem updating your selected information");

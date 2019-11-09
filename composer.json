@@ -6,7 +6,7 @@
       "email": "sdesmul@greenriver.edu"
     },
     {
-      "name" : "Robert Hill III, CSM",
+      "name": "Robert Hill III, CSM",
       "email": "rhill34@mail.greenriver.edu"
     },
     {
@@ -15,13 +15,16 @@
     },
     {
       "name": "Sang Le",
-      "email" : "sle11@mail.greenriver.edu"
+      "email": "sle11@mail.greenriver.edu"
     }
   ],
   "require": {
-    "bcosca/fatfree-core": "dev-master"
+    "bcosca/fatfree-core": "dev-master",
+    "mpdf/mpdf": "^7.1.9"
   },
   "autoload": {
-    "classmap": ["classes/"]
+    "classmap": [
+      "classes/"
+    ]
   }
 }

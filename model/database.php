@@ -105,6 +105,7 @@ CREATE TABLE openHours(
 
 
 require_once '/home/jgoodri1/config.php';
+
 //require_once '/home2/rhillgre/config3.php';
 class Databases
 {
@@ -546,7 +547,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     function getSelectedListInfo($id)
     {
 
-        $sql = $this->_longSql.' '." 
+        $sql = $this->_longSql . ' ' . " 
                 INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
                 INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
                 INNER JOIN service ON resources.serviceID = service.serviceID
@@ -627,6 +628,36 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
         // bind params
         $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+
+        //Return the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
+     * This function returns the information for the resources Listing view
+     * @return array
+     */
+    function getResourcesInfo()
+    {
+        $sql = 'SELECT
+                resourceID,
+                service.service AS Resource_ServiceType,
+                theraFname,
+                theraLname,
+                office,
+                officePhone,
+                officeEmail,
+                address
+                FROM
+                resources
+                INNER JOIN service ON resources.serviceID = service.serviceID';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
 
         // Execute the statement
         $statement->execute();
@@ -762,30 +793,30 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
 
         // bind params
-        $statement->bindParam(':resKey',$resKey, PDO::PARAM_STR);
-        $statement->bindParam(':resType',$resType, PDO::PARAM_STR);
-        $statement->bindParam(':resName',$resName, PDO::PARAM_STR);
-        $statement->bindParam(':resWeb',$resWeb, PDO::PARAM_STR);
-        $statement->bindParam(':resCert',$resCert, PDO::PARAM_STR);
-        $statement->bindParam(':resIns',$resIns, PDO::PARAM_STR);
-        $statement->bindParam(':resFee',$resFee, PDO::PARAM_STR);
-        $statement->bindParam(':resAdd',$resAdd, PDO::PARAM_STR);
-        $statement->bindParam(':resCity',$resCity, PDO::PARAM_STR);
-        $statement->bindParam(':resPoc',$resPoc, PDO::PARAM_STR);
-        $statement->bindParam(':resPocL',$resPocL, PDO::PARAM_STR);
-        $statement->bindParam(':resEmail',$resEmail, PDO::PARAM_STR);
-        $statement->bindParam(':resPhone',$resPhone, PDO::PARAM_STR);
-        $statement->bindParam(':resGender',$resGender, PDO::PARAM_STR);
+        $statement->bindParam(':resKey', $resKey, PDO::PARAM_STR);
+        $statement->bindParam(':resType', $resType, PDO::PARAM_STR);
+        $statement->bindParam(':resName', $resName, PDO::PARAM_STR);
+        $statement->bindParam(':resWeb', $resWeb, PDO::PARAM_STR);
+        $statement->bindParam(':resCert', $resCert, PDO::PARAM_STR);
+        $statement->bindParam(':resIns', $resIns, PDO::PARAM_STR);
+        $statement->bindParam(':resFee', $resFee, PDO::PARAM_STR);
+        $statement->bindParam(':resAdd', $resAdd, PDO::PARAM_STR);
+        $statement->bindParam(':resCity', $resCity, PDO::PARAM_STR);
+        $statement->bindParam(':resPoc', $resPoc, PDO::PARAM_STR);
+        $statement->bindParam(':resPocL', $resPocL, PDO::PARAM_STR);
+        $statement->bindParam(':resEmail', $resEmail, PDO::PARAM_STR);
+        $statement->bindParam(':resPhone', $resPhone, PDO::PARAM_STR);
+        $statement->bindParam(':resGender', $resGender, PDO::PARAM_STR);
 //        $statement->bindParam(':resAges',$resAges, PDO::PARAM_STR); Waiting for Ages Seen Table
-        $statement->bindParam(':resLang',$resLang, PDO::PARAM_STR);
-        $statement->bindParam(':resSt',$resSt, PDO::PARAM_STR);
-        $statement->bindParam(':resZip',$resZip, PDO::PARAM_STR);
-        $statement->bindParam(':resCou',$resCou, PDO::PARAM_STR);
-        $statement->bindParam(':refName',$refName, PDO::PARAM_STR);
-        $statement->bindParam(':refName',$refName, PDO::PARAM_STR);
-        $statement->bindParam(':refNameL',$refNameL, PDO::PARAM_STR);
-        $statement->bindParam(':refEmail',$refEmail, PDO::PARAM_STR);
-        $statement->bindParam(':refPhone',$refPhone, PDO::PARAM_STR);
+        $statement->bindParam(':resLang', $resLang, PDO::PARAM_STR);
+        $statement->bindParam(':resSt', $resSt, PDO::PARAM_STR);
+        $statement->bindParam(':resZip', $resZip, PDO::PARAM_STR);
+        $statement->bindParam(':resCou', $resCou, PDO::PARAM_STR);
+        $statement->bindParam(':refName', $refName, PDO::PARAM_STR);
+        $statement->bindParam(':refName', $refName, PDO::PARAM_STR);
+        $statement->bindParam(':refNameL', $refNameL, PDO::PARAM_STR);
+        $statement->bindParam(':refEmail', $refEmail, PDO::PARAM_STR);
+        $statement->bindParam(':refPhone', $refPhone, PDO::PARAM_STR);
 
         //Waiting to see how the Hours will be stored
 //        $statement->bindParam(':resOsun',$resOsun, PDO::PARAM_STR);
