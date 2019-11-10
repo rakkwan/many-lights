@@ -484,6 +484,7 @@ $f3->route('GET /submitted', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/submittedForm.html");
     echo $view->render('views/includes/footer.html');
+    session_destroy();
 });
 
 
