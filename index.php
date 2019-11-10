@@ -2,17 +2,6 @@
 
 //Require autoload file
 require_once __DIR__ . '/vendor/autoload.php';
-//var_dump(phpinfo());
-//die;
-//try {
-//    $mpdf = \Mpdf\Mpdf();
-//    $mpdf->WriteHTML('Hello World');
-//    // Other code
-//    $mpdf->Output();
-//} catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
-//    // Process the exception, log, print etc.
-//    echo $e->getMessage();
-//}
 
 
 /**
@@ -412,23 +401,8 @@ $f3->route('GET|POST /confirmation', function ($f3) {
 $f3->route('GET /resources', function ($f3) {
 
     global $db;
-
-
     //Get Listings with Approved Status from resources in DB
     $data = $db->getViewListingInfo(2);
-//=======
-//    require_once('vendor/autoload.php');
-//
-//    $mpdf = null;
-//
-//    $mpdf = new \mpdf\Mpdf;
-//
-//    $mpdf->WriteHTML('<h1>Hello world!</h1>');
-//    $mpdf->Output();
-//    //Update the status of resource in DB
-//
-//    $data = $db->getResourcesInfo();
-//>>>>>>> 28de43cb456a386e198a5fbcf1540022699123e3
 
     //Set the array to use in the table.
     $f3->set('res', $data);
@@ -440,7 +414,7 @@ $f3->route('GET /resources', function ($f3) {
 
 
 });//User Listings View
-$f3->route('GET /download', function ($f3) {
+$f3->route('GET|POST /download', function ($f3) {
 
     global $db;
 
@@ -448,28 +422,22 @@ $f3->route('GET /download', function ($f3) {
 
     $data = $db->getResourcesInfo();
 
-    echo "asdf";
+//    echo var_dump($data);
+    try {
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('Hello World');
+// Other code
+        $mpdf->Output();
+    } catch
+    (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
+        // Process the exception, log, print etc.
+        echo $e->getMessage();
+    }
 
-    $mpdf = new \Mpdf\Mpdf([
-        'mode' => 'utf-8',
-        'format' => [190, 236],
-        'orientation' => 'L'
-    ]);
-
-//
-//    $mpdf = new \Mpdf\Mpdf();
-//
-//    $mpdf->WriteHTML('<h1>Hello world!</h1>');
-//    $mpdf->Output();
-    //Set the array to use in the table.
-    $f3->set('res', $data);
 
     $view = new Template();
-//    echo $view->render('views/includes/header.html');
-//    echo $view->render("model/ajax/puts/downloadPdf.php");
-//    echo $view->render('views/includes/footer.html');
-
-
+    echo $view->render('views/includes/header.html');
+    echo $view->render("model/ajax/puts/downloadPdf.php");
 });
 
 

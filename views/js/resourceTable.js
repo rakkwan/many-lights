@@ -52,18 +52,39 @@ function downloadResourcePdf() {
 
     $("#downloadPdf").click(function () {
 
+        console.log(window.location.href);
         $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
                 statusID: downloadId
             },
             function (data, status) {
                 var info = JSON.parse(data);
                 console.log(info);
+                createCookie("age", info.age, "1");
             });
-        console.log(downloadId);
-        // location.href =
+
+
+        let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
+
+        window.open(location);
 
     });
 
+}
+
+// Function to create the cookie
+function createCookie(name, value, days) {
+    var expires;
+
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+
+    document.cookie = escape(name) + "=" +
+        escape(value) + expires + "; path=/";
 }
 
 //Accept Button function for the Status of selected resource
