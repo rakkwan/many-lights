@@ -54,7 +54,7 @@
                     <check if="{{@SESSION.service == 'Therapy'}}">id="showTherapy"</check>>
                     <p><strong>Therapist Last Name:</strong> {{ @SESSION['theraLname'] }}</p>
                     <p><strong>Therapist First Name:</strong> {{ @SESSION['theraFname'] }}</p>
-                    <p><strong>Therapist Gender:</strong> {{ @SESSION['theraGender'] }}</p>
+                    <p><strong>Therapist Gender:</strong> {{ @SESSION['therapyGender'] }}</p>
                 </div>
             </div>  <!-- End of card body -->
         </div>  <!-- End of resourceContactForm container-->
@@ -89,7 +89,7 @@
                 </div>
 
                 <h3 class="text-center">Resource Optional Information</h3>
-                <p><strong>Ages seen:</strong> {{ @SESSION.age }}</p>
+                <p><strong>Ages seen:</strong> {{ @SESSION.ageSeen }}</p>
                 <p><strong>Languages/Interpreter:</strong> {{ $_SESSION['interpreter']}}</p>
                 <p><strong>Insurance Accepted:</strong> {{ $_SESSION['insurance']}}</p>
                 <p><strong>Fees:</strong> {{ $_SESSION['fee']}}</p>
@@ -108,9 +108,9 @@
                 </div>
 
                 <h3 class="text-center">Days and Hours of Operation</h3>
-                <p><strong>Days Operation:</strong> {{ @SESSION.days}}</p>
+                <p><strong>Days Operation:</strong> {{ @SESSION.date}}</p>
 
-                <repeat group="{{@SESSION.date}}" value="{{@date}}">
+                <repeat group="{{@SESSION.days}}" value="{{@date}}">
                     <p>
                         <strong>{{@date}} Operation Hours:</strong>
                         <small>From-</small>{{$_SESSION[@date."FromTime"]}}
@@ -118,9 +118,18 @@
                     </p>
                 </repeat>
 
-                <p><strong>County 1:</strong> {{ @SESSION.countyOne}}</p>
-                <p><strong>County 2:</strong> {{ @SESSION.countyTwo}}</p>
-                <p><strong>County 3:</strong> {{ @SESSION.countyThree}}</p>
+                <check if="{{empty(@SESSION.countyOne) && empty(@SESSION.countyTwo) && empty(@SESSION.countyThree)}}">
+                    <p><strong>County: No entry</strong></p>
+                </check>
+                <check if="{{!empty(@SESSION.countyOne)}}">
+                    <p><strong>County 1:</strong> {{ @SESSION.countyOne}}</p>
+                </check>
+                <check if="{{!empty(@SESSION.countyTwo)}}">
+                    <p><strong>County 2:</strong> {{ @SESSION.countyTwo}}</p>
+                </check>
+                <check if="{{!empty(@SESSION.countyThree)}}">
+                    <p><strong>County 3:</strong> {{ @SESSION.countyThree}}</p>
+                </check>
             </div>  <!-- End of card body -->
         </div>  <!-- End of dayHourForm container-->
 

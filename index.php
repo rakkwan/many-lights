@@ -252,12 +252,8 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $insurance = $_POST['insurance'];
         $fee = $_POST['fee'];
 
-        if (sizeof($age) == 0) {
-            $age = array('1', '2');
-        }
-
         // Add data to hive
-        $f3->set('age', $age);
+//        $f3->set('age', $age);
         $f3->set('interpreter', $interpreter);
         $f3->set('insurance', $insurance);
         $f3->set('fee', $fee);
@@ -266,15 +262,15 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
-            $_SESSION['age'] = $age;
+//            $_SESSION['age'] = $age;
             $_SESSION['interpreter'] = $interpreter;
             $_SESSION['insurance'] = $insurance;
             $_SESSION['fee'] = $fee;
 
             if (empty($age)) {
-                $_SESSION['age'] = "No age selected";
+                $_SESSION['ageSeen'] = "No age selected";
             } else {
-                $_SESSION['age'] = implode(', ', $age);
+                $_SESSION['ageSeen'] = implode(', ', $age);
             }
 
             // redirect to datHour page
@@ -308,7 +304,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $countyThree = $_POST['countyThree'];
 
         $_SESSION['days'] = $days;
-        $_SESSION['date'] = $days;
         $_SESSION['countyOne'] = $countyOne;
         $_SESSION['countyTwo'] = $countyTwo;
         $_SESSION['countyThree'] = $countyThree;
@@ -360,18 +355,68 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 
 // User Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
+//    session_destroy();
+
     if (empty($_SESSION['days'])) {
-        foreach ($f3->get('day') as $day) {
-            $_SESSION[$day . 'NoTime'] = 'No time selected';
-        }
-        $_SESSION['days'] = 'No days selected';
+        $_SESSION['date'] = 'No days selected';
     } else {
-        foreach ($f3->get('day') as $date) {
-            if (!in_array($date, $_SESSION['days'])) {
-                $_SESSION[$date . 'NoTime'] = 'No time selected';
-            }
+//        if (!in_array($date, $_SESSION['days'])) {
+//        }
+        if(isset($_SESSION['days'])) {
+            $_SESSION['date'] = implode(', ', $_SESSION['days']);
         }
-        $_SESSION['days'] = implode(', ', $_SESSION['days']);
+    }
+
+    // Resource information check
+    if(empty($_SESSION['specialty'])) {
+        $_SESSION['specialty'] = "No entry";
+    }
+    if(empty($_SESSION['credential'])) {
+        $_SESSION['credential'] = "No entry";
+    }
+    if(empty($_SESSION['theraFname'])) {
+        $_SESSION['theraFname'] = "No entry";
+    }
+    if(empty($_SESSION['theraLname'])) {
+        $_SESSION['theraLname'] = "No entry";
+    }
+    if(empty($_SESSION['theraGender'])) {
+        $_SESSION['therapyGender'] = "Not selected";
+    }
+    else {
+        $_SESSION['therapyGender'] = $_SESSION['theraGender'];
+    }
+
+        // Location information check
+    if(empty($_SESSION['address'])) {
+        $_SESSION['address'] = "No entry";
+    }
+    if(empty($_SESSION['city'])) {
+        $_SESSION['city'] = "No entry";
+    }
+    if(empty($_SESSION['zip'])) {
+        $_SESSION['zip'] = "No entry";
+    }
+    if(empty($_SESSION['website'])) {
+        $_SESSION['website'] = "No entry";
+    }
+
+        // Optional information check
+    if(empty($_SESSION['interpreter'])) {
+        $_SESSION['interpreter'] = "No entry";
+    }
+    if(empty($_SESSION['insurance'])) {
+        $_SESSION['insurance'] = "No entry";
+    }
+    if(empty($_SESSION['fee'])) {
+        $_SESSION['fee'] = "No entry";
+    }
+
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+        $f3->reroute('/submitted');
     }
 
     global $db;
@@ -396,6 +441,9 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     echo $view->render("views/confirmation.html");
     echo $view->render('views/includes/footer.html');
 });
+
+
+
 
 //User Listings View
 $f3->route('GET /resources', function ($f3) {
