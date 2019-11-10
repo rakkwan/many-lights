@@ -424,23 +424,18 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
 
         global $f3;
-        // Return the results
-        $result = $statement->fetch();
-        $f3->set('serviceID', $result);
 
-//        return $result;
+        // Return the results
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $f3->set('serviceID', $result);
     }
 
     function resourceInfo($resource)
     {
-        //speciality days office officeEmail officePhone theraFname theraLname theraGender
-        // interpreter insurance fee age countyOne countyTwo countyThree
-        // address city state zip website serviceID recommendedInfoID statusID
-
         // prepare sql statement
         $sql = "INSERT INTO resources 
         (speciality, office, officeEmail, officePhone, theraFname, theraLname, theraGender, serviceID, recommendedInfoID, statusID)
-        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, :theraGender, 1, 1, 1)";
+        VALUES (:speciality, :office, :officeEmail, :officePhone, :theraFname, :theraLname, :theraGender, :serviceID, :recommendedInfoID, 1)";
 
         // save prepared statement
         $statement = $this->_dbh->prepare($sql);
@@ -454,8 +449,8 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $theraFname = $resource->getTheraFname();
         $theraLname = $resource->getTheraLname();
         $theraGender = $resource->getTheraGender();
-//        $serviceID = $f3->get('serviceID');
-//        $recommendedInfoID = $f3->get('recommendedInfoID');
+        $serviceID = $f3->get('serviceID');
+        $recommendedInfoID = $f3->get('recommendedInfoID');
 
 
         // bind params
@@ -466,8 +461,8 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':theraFname', $theraFname, PDO::PARAM_STR);
         $statement->bindParam(':theraLname', $theraLname, PDO::PARAM_STR);
         $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
-//        $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
-//        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
+        $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+        $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_INT);
 
         // execute insert into recommendedInfo
         $statement->execute();
@@ -496,8 +491,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     }
 
     function updateLocation($location, $resourceID)
-    {// address city state zip website serviceID recommendedInfoID statusID
-
+    {
         // define the query
         $sql = 'UPDATE resources 
         SET address = :address, city = :city, state = :state, zip = :zip, website = :website 
@@ -506,14 +500,12 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //global $f3;
         // assign values
         $address = $location->getAddress();
         $city = $location->getCity();
         $state = $location->getState();
         $zip = $location->getZip();
         $website = $location->getWebsite();
-        //$resourceID = $f3->get('resourceID');
 
         // bind params
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
@@ -521,6 +513,76 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':state', $state, PDO::PARAM_STR);
         $statement->bindParam(':zip', $zip, PDO::PARAM_STR);
         $statement->bindParam(':website', $website, PDO::PARAM_STR);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+    }
+
+
+    function updateOptionalInfo($optional, $resourceID)
+    {
+        // define the query
+        $sql = 'UPDATE resources 
+        SET interpreter = :interpreter, insurance = :insurance, fee = :fee, age = :age
+        WHERE resourceID = :resourceID';
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // assign values
+        $interpreter = $optional->getInterpreter();
+        $insurance = $optional->getInsurance();
+        $fee = $optional->getFee();
+        $age = $optional->getAge();
+
+        // bind params
+        $statement->bindParam(':interpreter', $interpreter, PDO::PARAM_STR);
+        $statement->bindParam(':insurance', $insurance, PDO::PARAM_STR);
+        $statement->bindParam(':fee', $fee, PDO::PARAM_STR);
+        $statement->bindParam(':age', $age, PDO::PARAM_STR);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+    }
+
+
+    function dayHours($day, $startTime, $endTime, $resourceID)
+    {
+        // prepare sql statement
+        $sql = "INSERT INTO openHours
+        (day, start, end, resourceID)
+        VALUES (:day, :start, :end, :resourceID)";
+
+        // save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':day', $day, PDO::PARAM_STR);
+        $statement->bindParam(':start', $startTime, PDO::PARAM_STR);
+        $statement->bindParam(':end', $endTime, PDO::PARAM_STR);
+        $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
+
+        // Execute the statement
+        $statement->execute();
+    }
+
+
+    function updateCounties($countyOne, $countyTwo, $countyThree, $resourceID)
+    {
+        // define the query
+        $sql = "UPDATE resources
+        SET countyOne = :countyOne, countyTwo = :countyTwo, countyThree = :countyThree
+        WHERE resourceID = :resourceID";
+
+        // prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':countyOne', $countyOne, PDO::PARAM_STR);
+        $statement->bindParam(':countyTwo', $countyTwo, PDO::PARAM_STR);
+        $statement->bindParam(':countyThree', $countyThree, PDO::PARAM_STR);
         $statement->bindParam(':resourceID', $resourceID, PDO::PARAM_STR);
 
         // Execute the statement

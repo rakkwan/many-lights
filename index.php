@@ -262,7 +262,7 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         // if data is valid
         if (!empty($_POST)) {
             // Write data to session
-//            $_SESSION['age'] = $age;
+            $_SESSION['ages'] = $age;
             $_SESSION['interpreter'] = $interpreter;
             $_SESSION['insurance'] = $insurance;
             $_SESSION['fee'] = $fee;
@@ -369,39 +369,63 @@ $f3->route('GET|POST /confirmation', function ($f3) {
 
     // Resource information check
     if(empty($_SESSION['specialty'])) {
-        $_SESSION['specialty'] = "No entry";
-    }
-    if(empty($_SESSION['credential'])) {
-        $_SESSION['credential'] = "No entry";
-    }
-    if(empty($_SESSION['theraFname'])) {
-        $_SESSION['theraFname'] = "No entry";
-    }
-    if(empty($_SESSION['theraLname'])) {
-        $_SESSION['theraLname'] = "No entry";
-    }
-    if(empty($_SESSION['theraGender'])) {
-        $_SESSION['therapyGender'] = "Not selected";
+        $_SESSION['confirmSpecialty'] = "No entry";
     }
     else {
-        $_SESSION['therapyGender'] = $_SESSION['theraGender'];
+        $_SESSION['confirmSpecialty'] = $_SESSION['specialty'];
+    }
+    if(empty($_SESSION['credential'])) {
+        $_SESSION['confirmCredential'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmCredential'] = $_SESSION['credential'];
+    }
+    if(empty($_SESSION['theraFname'])) {
+        $_SESSION['confirmTheraFname'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmTheraFname'] = $_SESSION['theraFname'];
+    }
+    if(empty($_SESSION['theraLname'])) {
+        $_SESSION['confirmTheraLname'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmTheraLname'] = $_SESSION['theraLname'];
+    }
+    if(empty($_SESSION['theraGender'])) {
+        $_SESSION['confirmTheraGender'] = "Not selected";
+    }
+    else {
+        $_SESSION['confirmTheraGender'] = $_SESSION['theraGender'];
     }
 
-        // Location information check
+    // Location information check
     if(empty($_SESSION['address'])) {
-        $_SESSION['address'] = "No entry";
+        $_SESSION['confirmAddress'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmAddress'] = $_SESSION['address'];
     }
     if(empty($_SESSION['city'])) {
-        $_SESSION['city'] = "No entry";
+        $_SESSION['confirmCity'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmCity'] = $_SESSION['city'];
     }
     if(empty($_SESSION['zip'])) {
-        $_SESSION['zip'] = "No entry";
+        $_SESSION['confirmZip'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmZip'] = $_SESSION['zip'];
     }
     if(empty($_SESSION['website'])) {
-        $_SESSION['website'] = "No entry";
+        $_SESSION['confirmWebsite'] = "No entry";
+    }
+    else {
+        $_SESSION['confirmWebsite'] = $_SESSION['website'];
     }
 
-        // Optional information check
+    // Optional information check
     if(empty($_SESSION['interpreter'])) {
         $_SESSION['interpreter'] = "No entry";
     }
@@ -412,18 +436,79 @@ $f3->route('GET|POST /confirmation', function ($f3) {
         $_SESSION['fee'] = "No entry";
     }
 
+    global $db;
+
+    $db->getServiceID($_SESSION['service']);
+
+//    print_r($f3->get('serviceID'));
+    $_SESSION['serviceID'] = implode($f3->get('serviceID'));
+//    print($something);
+
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
         $f3->reroute('/submitted');
     }
 
+
+    //display the confirmation of the page
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render("views/confirmation.html");
+    echo $view->render('views/includes/footer.html');
+});
+
+$f3->route('GET /submitted', function ($f3) {
     global $db;
 
+    // Insert  recommendedInfo into the database
+    $recommendedInfo = new RecommendedInfo(
+        $_SESSION['fname'], $_SESSION['lname'], $_SESSION['email'], $_SESSION['phone']);
+    $db->recommendedInfo($recommendedInfo);
+    $f3->set('recommendedInfoID', $f3->get('recommendedInfoID'));
+
+
+    // Insert resourceContact into the database
+    $resourceInfo = new ResourceContact(
+        $_SESSION['service'], $_SESSION['specialty'], $_SESSION['office'], $_SESSION['officePhone'],
+        $_SESSION['officeEmail'], $_SESSION['theraFname'], $_SESSION['theraLname'], $_SESSION['theraGender']);
+
+    // Get service ID
+    $db->getServiceID($_SESSION['service']);
+    $f3->set('serviceID', implode($f3->get('serviceID')));
+
+    $db->resourceInfo($resourceInfo);
+    $_SESSION['resourceID'] = $f3->get('resourceID');
+
+
+    // Update location information into the database
+    $locationInfo = new LocationForm(
+        $_SESSION['address'], $_SESSION['city'], $_SESSION['state'],
+        $_SESSION['zip'], $_SESSION['website']);
+
+    $db->updateLocation($locationInfo, $_SESSION['resourceID']);
+
+
+    // Update optionalInfo into the database
+    $optionalInfo = new OptionalInfo(
+        $_SESSION['ageSeen'], $_SESSION['interpreter'], $_SESSION['insurance'], $_SESSION['fee']);
+
+    $db->updateOptionalInfo($optionalInfo, $_SESSION['resourceID']);
+
+
+    // Insert dayHour into the database
+    if(!empty($_SESSION['days'])) {
+        foreach($_SESSION['days'] as $day) {
+            $db->dayHours($day, $_SESSION[$day . 'FromTime'], $_SESSION[$day . 'ToTime'], $_SESSION['resourceID']);
+        }
+    }
+
+    // Insert county into the database
+    $db->updateCounties($_SESSION['countyOne'], $_SESSION['countyTwo'], $_SESSION['countyThree'], $_SESSION['resourceID']);
+
+
     //retrieve the recomendedInfo
-    //$recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
-    //$f3->set('recommendedInfo', $recommendedInfo);
+//    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
+//    $f3->set('recommendedInfo', $recommendedInfo);
 
     //$service = $db->getServiceInfo($_SESSION['service']);
     //$f3->set('service', $service);
@@ -434,15 +519,12 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     //$updateLocationInfo = $db->updateLocation(['resourceID']);
     //$f3->set('resourceID', $updateLocationInfo);
 
-
-    //display the confirmation of the page
+    //display the submitted form of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
-    echo $view->render("views/confirmation.html");
+    echo $view->render("views/submittedForm.html");
     echo $view->render('views/includes/footer.html');
 });
-
-
 
 
 //User Listings View
