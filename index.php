@@ -556,7 +556,7 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $f3->reroute('/admin');
         }
-        $f3->set('errors', 'No matching email address with the password');
+        $f3->set('errors', 'Admin email and password do not match');
     }
 
     $view = new Template();
@@ -571,23 +571,29 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 $f3->route('GET|POST /resetPassword', function ($f3) {
 
     global $db;
-
     // if the admin is trying to change the password
     if (!empty($_POST)) {
-        $_SESSION['adminEmail1'] = $_POST['adminEmail1'];
-        $f3->set('newPassword', $_POST['newPassword']);
-        $f3->set('newPassword1', $_POST['newPassword1']);
+        //check admin email address
+        $admin = $db->getAdmin($_POST['adminEmail1']);
 
-        // change the admin password
-        if (isset($_POST['newPassword1'])) {
-            if (validNewPassword()) {
-                $db->changePassword($_SESSION['adminEmail1'], $_POST['newPassword1']);
-                $f3->reroute('/succeedResetPassword');
-            } else {
-                $f3->set('error', 'Invalid new password');
+        // if a result is retrieved from the database
+        if (!empty($admin['adminID'])) {
+            $_SESSION['adminID'] = $f3->get('adminID');
+            $f3->set('adminEmail1',$_POST['adminEmail1']);
+            $f3->set('newPassword', $_POST['newPassword']);
+            $f3->set('newPassword1', $_POST['newPassword1']);
+
+            // change the admin password
+            if (isset($_POST['newPassword1'])) {
+                if (validNewPassword()) {
+                    $db->changePassword($_SESSION['adminID'], $_POST['newPassword1']);
+                    $f3->reroute('/succeedResetPassword');
+                } else {
+                    $f3->set('error', 'Invalid new password');
+                }
             }
         }
-        // change the admin's email address
+        $f3->set('errors', 'Invalid admin email address');
     }
 
     // retrieve the admin info
@@ -620,7 +626,6 @@ $f3->route('GET|POST /adminLogout', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/adminLogout.html");
     echo $view->render('views/includes/footer.html');
-
 
 });
 

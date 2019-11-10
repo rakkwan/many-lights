@@ -221,7 +221,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      */
     function getAdmin($adminEmail)
     {
-        $sql = 'SELECT * FROM adminLogin WHERE email = :email';
+        $sql = 'SELECT adminID FROM adminLogin WHERE email = :email';
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
         $statement->execute();
@@ -280,15 +280,15 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Change the admin's current password
-     * @param int $adminEmail - admin email
+     * @param int $admin - adminID
      * @param String $password - the new password
      * @return void
      */
-    function changePassword($adminEmail, $password)
+    function changePassword($admin, $password)
     {
-        $sql = "UPDATE adminLogin SET password = :password WHERE email = :email";
+        $sql = "UPDATE adminLogin SET password = :password WHERE adminID = :adminID";
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
+        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     }
