@@ -77,7 +77,7 @@ function validAdminEmail($adminEmail)
 /**
  * Checks if password is valid
  * @param String $password the password given
- * @return bool if the password is 7 characters or longer
+ * @return bool if the password is 8 characters or longer
  */
 function validPassword($password)
 {
