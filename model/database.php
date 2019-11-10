@@ -217,15 +217,18 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     /**
      * Get the admin email
      * @param $adminEmail - admin email
-     * @return mixed admin email
+     * @return mixed the ID of the admin
      */
     function getAdmin($adminEmail)
     {
-        $sql = 'SELECT adminID FROM adminLogin WHERE email = :email';
+        $sql = 'SELECT email FROM adminLogin WHERE email = :email';
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        global $f3;
+        $f3->set('email', $result['email']);
         return $result;
     }
 

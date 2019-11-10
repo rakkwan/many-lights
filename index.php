@@ -577,30 +577,35 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
         $admin = $db->getAdmin($_POST['adminEmail1']);
 
         // if a result is retrieved from the database
-        if (!empty($admin['adminID'])) {
-            $_SESSION['adminID'] = $f3->get('adminID');
-            $f3->set('adminEmail1',$_POST['adminEmail1']);
+        if (!empty($admin['email'])) {
+
+            $_SESSION['email'] = $f3->get('email');
+            //$f3->set('email', implode($f3->get('email')));
+
+            $_SESSION['adminEmail1'] = $_POST['adminEmail1'];
             $f3->set('newPassword', $_POST['newPassword']);
             $f3->set('newPassword1', $_POST['newPassword1']);
 
             // change the admin password
             if (isset($_POST['newPassword1'])) {
                 if (validNewPassword()) {
-                    $db->changePassword($_SESSION['adminID'], $_POST['newPassword1']);
+                    $db->changePassword($_SESSION['email'], $_POST['newPassword1']);
                     $f3->reroute('/succeedResetPassword');
                 } else {
                     $f3->set('error', 'Invalid new password');
                 }
             }
+
+        } else {
+            $f3->set('errors', 'Invalid admin email address');
         }
-        $f3->set('errors', 'Invalid admin email address');
     }
 
     // retrieve the admin info
-    $admin = $db->getAdmin($_SESSION['adminEmail1']);
+    //$admin = $db->getAdmin($_SESSION['adminEmail1']);
 
     // set the admin info into the hive
-    $f3->set('admin', $admin);
+    //$f3->set('admin', $admin);
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
