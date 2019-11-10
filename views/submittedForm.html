@@ -1,7 +1,19 @@
-<div class="container p-5 mb-5 mt-2 bg-white rounded">
-    <h1 class="text-center">Thank you!</h1>
-    <p class="lead text-center">{{ @SESSION['fname'] }} {{ @SESSION['lname'] }} for your recommendation!</p>
+<!--
+    Sang Le, Jittima Goodrich
+    11/10/2019
+    submittedForm.html
 
-    <hr>
+ -->
 
-</div>
+<!--Thank you contents -->
+<div class="container white">
+    <div class="jumbotron">
+        <h2 class="display-4 text-center">Thank you!</h2>
+        <p class="lead text-center">{{ @SESSION['fname'] }} {{ @SESSION['lname'] }} for your recommendation!</p>
+        <p class="lead text-center"></p>
+        <hr class="my-4">
+        <p>Would you like to recommend another resource?</p>
+        <a href="recommended" class="btn btn-purple">Yes</a>
+        <a href="home" class="btn btn-outline-purple">No</a>
+    </div>
+</div> <!-- -->

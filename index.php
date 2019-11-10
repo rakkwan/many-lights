@@ -47,8 +47,8 @@ $f3->set('age', array('0-4', '5-9', '10-12', '13-17', '18+'));
 //homepage
 $f3->route('GET /', function () {
     //display the contents of the page
-    //session_destroy();
-    //session_start();
+    session_destroy();
+    session_start();
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -67,7 +67,6 @@ $f3->route('GET /home', function () {
 // User personal contact info form route
 $f3->route('GET|POST /recommended', function ($f3) {
     //If form has been submitted, validate
-
 
     if (!empty($_POST)) {
         // Get data from form
@@ -92,15 +91,6 @@ $f3->route('GET|POST /recommended', function ($f3) {
             $_SESSION['lname'] = $lname;
             $_SESSION['email'] = $email;
             $_SESSION['phone'] = $phone;
-
-            /*
-             *
-            //insert the recommendedInfo into the database
-            $recommendedInfo = new RecommendedInfo($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['phone']);
-            global $db;
-            $db->recommendedInfo($recommendedInfo);
-            $_SESSION['recommendedInfoID'] = $f3->get('recommendedInfoID');
-            */
 
             // redirect to provider
             $f3->reroute('/resourceContact');
@@ -161,19 +151,6 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
-
-            /*
-            //insert the recommendedInfo into the database
-            $service = new ResourceContact($_POST['service'],
-                $_POST['specialty'], $_POST['office'], $_POST['officePhone'], $_POST['officeEmail'],
-                $_POST['theraFname'], $_POST['theraLname'], $_POST['theraGender']);
-
-            global $db;
-
-            $db->resourceInfo($service);
-            $_SESSION['resourceID'] = $f3->get('resourceID');
-
-            */
 
             // reroute to location
             $f3->reroute('/location');
@@ -278,7 +255,6 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         }
     }
 
-
     if (!isset($_SESSION['OptionalInfo'])) {
         $dummy = array('1', '2');
         $_SESSION['OptionalInfo'] = new OptionalInfo($dummy, '', '', '');
@@ -327,7 +303,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
             $days = array('No days selected');
         }
 
-
         // Add data to hive
         $f3->set('days', $days);
         $f3->set('countyOne', $countyOne);
@@ -335,7 +310,6 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $f3->set('countyThree', $countyThree);
 
         $_SESSION['DayHourInfo'] = new DayHourInfo($days, $countyOne, $countyTwo, $countyThree);
-
 
         // redirect to confirmation
         $f3->reroute('/confirmation');
@@ -505,20 +479,6 @@ $f3->route('GET /submitted', function ($f3) {
     // Insert county into the database
     $db->updateCounties($_SESSION['countyOne'], $_SESSION['countyTwo'], $_SESSION['countyThree'], $_SESSION['resourceID']);
 
-
-    //retrieve the recomendedInfo
-//    $recommendedInfo = $db->getRecommendedInfo($_SESSION['recommendedInfoID']);
-//    $f3->set('recommendedInfo', $recommendedInfo);
-
-    //$service = $db->getServiceInfo($_SESSION['service']);
-    //$f3->set('service', $service);
-
-    //$resourceInfo = $db->getResourceInfo($_SESSION['resourceID']);
-    //$f3->set('resourceInfo', $resourceInfo);
-
-    //$updateLocationInfo = $db->updateLocation(['resourceID']);
-    //$f3->set('resourceID', $updateLocationInfo);
-
     //display the submitted form of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
@@ -626,7 +586,6 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
                 $f3->set('error', 'Invalid new password');
             }
         }
-
         // change the admin's email address
     }
 
