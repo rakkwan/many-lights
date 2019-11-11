@@ -29,7 +29,7 @@
     <!-- Time picker-->
     <link rel="stylesheet" type="text/html" href="/IT355/oneStopWa/css/jquery.timepicker.min.css">
 
-    <title>One Stop WA</title>
+    <title>One Stop WASHINGTON </title>
 </head>
 <body>
 <!--Navbar-->
@@ -87,8 +87,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class=\"dropdown-item\" href=\"adminLogin\">Admin Log in</a>
-                    <a class=\"dropdown-item\" href=\"adminLogout\">Admin Log out</a>
+                    <check if="{{empty(@SESSION['adminID'])}}">
+                        <true>
+                            <a class="dropdown-item" href="adminLogin">Admin Login</a>
+                        </true>
+                        <false>
+                            <a class="dropdown-item" href="adminLogout">Admin Logout</a>
+                        </false>
+                    </check>
                 </div>
             </li>
         </ul>
