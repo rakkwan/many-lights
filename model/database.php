@@ -226,7 +226,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':email', $adminEmail, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-
         return $result;
     }
 
