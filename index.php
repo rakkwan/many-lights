@@ -571,33 +571,35 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 $f3->route('GET|POST /resetPassword', function ($f3) {
 
     global $db;
+
     // if the admin is trying to change the password
     if (!empty($_POST)) {
-        //check admin email address
-        $admin = $db->getAdmin($_POST['adminEmail1']);
-
         // if a result is retrieved from the database
-        if (!empty($admin['email'])) {
-
-            $_SESSION['email'] = $f3->get('email');
-            //$f3->set('email', implode($f3->get('email')));
-
-            $_SESSION['adminEmail1'] = $_POST['adminEmail1'];
-            $f3->set('newPassword', $_POST['newPassword']);
-            $f3->set('newPassword1', $_POST['newPassword1']);
-
-            // change the admin password
-            if (isset($_POST['newPassword1'])) {
-                if (validNewPassword()) {
-                    $db->changePassword($_SESSION['email'], $_POST['newPassword1']);
-                    $f3->reroute('/succeedResetPassword');
-                } else {
-                    $f3->set('error', 'Invalid new password');
-                }
+        if (!empty($_POST['adminEmail1'])) {
+            //check admin email address
+            $admin = $db->getAdmin($_POST['adminEmail1']);
+            if(empty($admin)) {
+                $f3->set('errors[adminEmail1]', 'Invalid admin email address');
+            }
+            else {
+                $_SESSION['email'] = implode($admin);
             }
 
-        } else {
-            $f3->set('errors', 'Invalid admin email address');
+            // change the admin password
+            if (isset($_POST['newPassword1'], $_POST['newPassword'])) {
+                $f3->set('newPassword', $_POST['newPassword']);
+                $f3->set('newPassword1', $_POST['newPassword1']);
+                if (validNewPassword()) {
+                    $db->changePassword($_SESSION['email'], $f3->get('newPassword1'));
+                    $f3->reroute('/succeedResetPassword');
+                }
+            }
+            else {
+                $f3->set("errors['newPassword']", "Please enter your new password");
+            }
+        }
+        else {
+            $f3->set('errors[adminEmail1]', 'Please enter an admin email address');
         }
     }
 

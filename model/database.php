@@ -227,8 +227,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        global $f3;
-        $f3->set('email', $result['email']);
         return $result;
     }
 
@@ -283,15 +281,15 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Change the admin's current password
-     * @param int $admin - adminID
+     * @param int $email - admin email
      * @param String $password - the new password
      * @return void
      */
-    function changePassword($admin, $password)
+    function changePassword($email, $password)
     {
-        $sql = "UPDATE adminLogin SET password = :password WHERE adminID = :adminID";
+        $sql = "UPDATE adminLogin SET password = :password WHERE email = :email";
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
     }
