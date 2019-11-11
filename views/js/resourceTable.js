@@ -65,18 +65,29 @@ function downloadResourcePdf() {
                 let info = JSON.parse(data);
                 console.log(info);
                 let providerName = info.theraFname + " " + info.theraLname;
-
+                let providerGender = (info.theraGender === 0) ? "F" : "M";
+                let county = info.countyOne != null ? info.countyOne : "n/a" + ", " + info.countyTwo + ","
+                let address = info.address + " " + info.city + ", " + info.state + " " + info.zip;
                 createCookie("age", info.age, "1");
                 createCookie("resource", info.Resource_ServiceType, "1");
                 createCookie("office", info.office, "1");
                 createCookie("providerName", providerName, "1");
-                createCookie("office", info.office, "1");
+                createCookie("website", info.website, "1");
+                createCookie("officeEmail", info.officeEmail, "1");
+                createCookie("officePhone", info.officePhone, "1");
+                createCookie("county", county, "1");
+                createCookie("providerGender", providerGender, "1");
+                createCookie("address", address, "1");
+                createCookie("", address, "1");
+
+
                 createCookie("refresh", refresh, "1");
             });
 
         let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
 
         window.open(location);
+
         refresh = false;
     });
 

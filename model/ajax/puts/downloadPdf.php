@@ -14,10 +14,24 @@ if ($_COOKIE) {
         $mpdf->WriteHTML("<p>" . $_COOKIE['refresh'] . "</p>");
 
         $mpdf->WriteHTML("<p>" . $_COOKIE['age'] . "</p>");
-        $mpdf->WriteHTML("<p><b>Resource Type</b> : " . $_COOKIE['resource'] . "</p>");
-        $mpdf->WriteHTML("<p><b>Business Name</b> : " . $_COOKIE['office'] . "</p>");
-        $mpdf->WriteHTML("<p><b>Website</b> : " . $_COOKIE['providerName'] . "</p>");
-        $mpdf->WriteHTML("<p><b>Provider Name</b> : " . $_COOKIE['office'] . "</p>");
+        //first segment
+        $mpdf->WriteHTML("<p><b>Resource Type</b> : " . $_COOKIE['resource'] .
+            "<b>&emsp;&emsp;&emsp; Business Name</b> : " . $_COOKIE['office'] .
+            "<b>&emsp;&emsp;&emsp;  Website</b> : " . $_COOKIE['website'] .
+            "<b>&emsp;&emsp;&emsp;  Provider Name</b> : " . $_COOKIE['providerName'] . "</p>");
+
+
+        //Second segment
+        $mpdf->WriteHTML("<p><b>Email</b> : " . $_COOKIE['officeEmail'] .
+            "<b>&emsp;&emsp;&emsp;  Phone</b> : " . $_COOKIE['officePhone'] .
+            "<b>&emsp;&emsp;&emsp;  County</b> : " . $_COOKIE['county'] .
+            "<b>&emsp;&emsp;&emsp;  Provider Gender</b> : " . $_COOKIE['providerGender'] . "</p>");
+
+        //Third segment
+        $mpdf->WriteHTML("<p><b>&emsp;&emsp;&emsp;  Address</b> : " . $_COOKIE['address'] .
+            "<b>&emsp;&emsp;&emsp;  Ages Seen</b> : " . $_COOKIE['agesSeen'] .
+            "<b>&emsp;&emsp;&emsp;  Credentials</b> : " . $_COOKIE['credentials'] . "</p>");
+
 // Other code
         $mpdf->Output();
     } catch
@@ -36,7 +50,10 @@ if ($_COOKIE) {
 if ($ready) {
 //    header('Location: ' . $_SERVER['REQUEST_URI']);
 
+//    echo "window.addEventListener('DOMContentLoaded',function(event){location.reload();});";
 
+} else {
+    echo "NOOO";
 }
 
 /* JS resonse on click to be printed example
