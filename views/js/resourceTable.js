@@ -47,33 +47,44 @@ $('#dtBasicExample1').on('click', 'tr', function () {
 
 });
 
-
+/**
+ * Download the resource information as PDF
+ */
 function downloadResourcePdf() {
+
+    let refresh = false;
 
     $("#downloadPdf").click(function () {
 
+        refresh = true;
         console.log(window.location.href);
         $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
                 statusID: downloadId
             },
             function (data, status) {
-                var info = JSON.parse(data);
+                let info = JSON.parse(data);
                 console.log(info);
-                createCookie("age", info.age, "1");
-            });
+                let providerName = info.theraFname + " " + info.theraLname;
 
+                createCookie("age", info.age, "1");
+                createCookie("resource", info.Resource_ServiceType, "1");
+                createCookie("office", info.office, "1");
+                createCookie("providerName", providerName, "1");
+                createCookie("office", info.office, "1");
+                createCookie("refresh", refresh, "1");
+            });
 
         let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
 
         window.open(location);
-
+        refresh = false;
     });
 
 }
 
 // Function to create the cookie
 function createCookie(name, value, days) {
-    var expires;
+    let expires;
 
     if (days) {
         var date = new Date();

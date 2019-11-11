@@ -336,77 +336,68 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     } else {
 //        if (!in_array($date, $_SESSION['days'])) {
 //        }
-        if(isset($_SESSION['days'])) {
+        if (isset($_SESSION['days'])) {
             $_SESSION['date'] = implode(', ', $_SESSION['days']);
         }
     }
 
     // Resource information check
-    if(empty($_SESSION['specialty'])) {
+    if (empty($_SESSION['specialty'])) {
         $_SESSION['confirmSpecialty'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmSpecialty'] = $_SESSION['specialty'];
     }
-    if(empty($_SESSION['credential'])) {
+    if (empty($_SESSION['credential'])) {
         $_SESSION['confirmCredential'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmCredential'] = $_SESSION['credential'];
     }
-    if(empty($_SESSION['theraFname'])) {
+    if (empty($_SESSION['theraFname'])) {
         $_SESSION['confirmTheraFname'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmTheraFname'] = $_SESSION['theraFname'];
     }
-    if(empty($_SESSION['theraLname'])) {
+    if (empty($_SESSION['theraLname'])) {
         $_SESSION['confirmTheraLname'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmTheraLname'] = $_SESSION['theraLname'];
     }
-    if(empty($_SESSION['theraGender'])) {
+    if (empty($_SESSION['theraGender'])) {
         $_SESSION['confirmTheraGender'] = "Not selected";
-    }
-    else {
+    } else {
         $_SESSION['confirmTheraGender'] = $_SESSION['theraGender'];
     }
 
     // Location information check
-    if(empty($_SESSION['address'])) {
+    if (empty($_SESSION['address'])) {
         $_SESSION['confirmAddress'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmAddress'] = $_SESSION['address'];
     }
-    if(empty($_SESSION['city'])) {
+    if (empty($_SESSION['city'])) {
         $_SESSION['confirmCity'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmCity'] = $_SESSION['city'];
     }
-    if(empty($_SESSION['zip'])) {
+    if (empty($_SESSION['zip'])) {
         $_SESSION['confirmZip'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmZip'] = $_SESSION['zip'];
     }
-    if(empty($_SESSION['website'])) {
+    if (empty($_SESSION['website'])) {
         $_SESSION['confirmWebsite'] = "No entry";
-    }
-    else {
+    } else {
         $_SESSION['confirmWebsite'] = $_SESSION['website'];
     }
 
     // Optional information check
-    if(empty($_SESSION['interpreter'])) {
+    if (empty($_SESSION['interpreter'])) {
         $_SESSION['interpreter'] = "No entry";
     }
-    if(empty($_SESSION['insurance'])) {
+    if (empty($_SESSION['insurance'])) {
         $_SESSION['insurance'] = "No entry";
     }
-    if(empty($_SESSION['fee'])) {
+    if (empty($_SESSION['fee'])) {
         $_SESSION['fee'] = "No entry";
     }
 
@@ -419,7 +410,7 @@ $f3->route('GET|POST /confirmation', function ($f3) {
 //    print($something);
 
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $f3->reroute('/submitted');
     }
 
@@ -470,8 +461,8 @@ $f3->route('GET /submitted', function ($f3) {
 
 
     // Insert dayHour into the database
-    if(!empty($_SESSION['days'])) {
-        foreach($_SESSION['days'] as $day) {
+    if (!empty($_SESSION['days'])) {
+        foreach ($_SESSION['days'] as $day) {
             $db->dayHours($day, $_SESSION[$day . 'FromTime'], $_SESSION[$day . 'ToTime'], $_SESSION['resourceID']);
         }
     }
@@ -507,28 +498,17 @@ $f3->route('GET /resources', function ($f3) {
 });//User Listings View
 $f3->route('GET|POST /download', function ($f3) {
 
-    global $db;
-
-    //Update the status of resource in DB
-
-    $data = $db->getResourcesInfo();
-
-//    echo var_dump($data);
-    try {
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->WriteHTML('Hello World');
-// Other code
-        $mpdf->Output();
-    } catch
-    (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
-        // Process the exception, log, print etc.
-        echo $e->getMessage();
+    if ($_COOKIE) {
+        echo $_COOKIE['refresh'];
+    } else {
+        echo "submit wrong";
     }
 
-
     $view = new Template();
-    echo $view->render('views/includes/header.html');
+
+
     echo $view->render("model/ajax/puts/downloadPdf.php");
+
 });
 
 
@@ -578,10 +558,9 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
         if (!empty($_POST['adminEmail1'])) {
             //check admin email address
             $admin = $db->getAdmin($_POST['adminEmail1']);
-            if(empty($admin)) {
+            if (empty($admin)) {
                 $f3->set('errors[adminEmail1]', 'Invalid admin email address');
-            }
-            else {
+            } else {
                 $_SESSION['email'] = implode($admin);
             }
 
@@ -593,12 +572,10 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
                     $db->changePassword($_SESSION['email'], $f3->get('newPassword1'));
                     $f3->reroute('/succeedResetPassword');
                 }
-            }
-            else {
+            } else {
                 $f3->set("errors['newPassword']", "Please enter your new password");
             }
-        }
-        else {
+        } else {
             $f3->set('errors[adminEmail1]', 'Please enter an admin email address');
         }
     }
