@@ -230,7 +230,6 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
         $fee = $_POST['fee'];
 
         // Add data to hive
-//        $f3->set('age', $age);
         $f3->set('interpreter', $interpreter);
         $f3->set('insurance', $insurance);
         $f3->set('fee', $fee);
@@ -329,13 +328,9 @@ $f3->route('GET|POST /dayHour', function ($f3) {
 
 // User Confirmation route
 $f3->route('GET|POST /confirmation', function ($f3) {
-//    session_destroy();
-
     if (empty($_SESSION['days'])) {
         $_SESSION['date'] = 'No days selected';
     } else {
-//        if (!in_array($date, $_SESSION['days'])) {
-//        }
         if (isset($_SESSION['days'])) {
             $_SESSION['date'] = implode(', ', $_SESSION['days']);
         }
@@ -404,11 +399,6 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     global $db;
 
     $db->getServiceID($_SESSION['service']);
-
-//    print_r($f3->get('serviceID'));
-    $_SESSION['serviceID'] = implode($f3->get('serviceID'));
-//    print($something);
-
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $f3->reroute('/submitted');
