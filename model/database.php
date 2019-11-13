@@ -112,7 +112,7 @@ class Databases
 
     private $_dbh;
     private $_errorMessage;
-    private $_longSql = 'SELECT
+    private $_longSql = 'SELECT DISTINCT 
                 resourceID,
                 speciality,
                 office,
@@ -609,10 +609,13 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     function getSelectedListInfo($id)
     {
 
+        //   join openHours on resources.resourceID = openHours.resourceID
+
         $sql = $this->_longSql . ' ' . " 
                 INNER JOIN statusBrand ON resources.statusID = statusBrand.statusID
                 INNER JOIN recommendedInfo ON resources.recommendedInfoID = recommendedInfo.recommendedInfoID
                 INNER JOIN service ON resources.serviceID = service.serviceID
+               
                 WHERE resources.resourceID = :id";
 
         //prepare the statement

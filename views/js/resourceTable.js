@@ -48,6 +48,38 @@ $('#dtBasicExample1').on('click', 'tr', function () {
 });
 
 /**
+ * Create a cookie for the information of the resources to be transferee to MPDF download
+ * @param info
+ */
+function createCookies(info) {
+
+    let providerName = info.theraFname + " " + info.theraLname;
+    let providerGender = (info.theraGender === 0) ? "F" : "M";
+    let county = info.countyOne != null ? info.countyOne : "n/a" + ", ";
+    let address = info.address + " " + info.city + ", " + info.state + " " + info.zip;
+
+    createCookie("age", info.age, 1);
+    createCookie("resource", info.Resource_ServiceType, 1);
+    createCookie("office", info.office, 1);
+    createCookie("providerName", providerName, 1);
+    createCookie("website", info.website, 1);
+    createCookie("officeEmail", info.officeEmail, 1);
+    createCookie("officePhone", info.officePhone, 1);
+    createCookie("county", county, 1);
+    createCookie("providerGender", providerGender, 1);
+    createCookie("address", address, 1);
+    //ages seen m
+    // createCookie("agesSeen", info.agesSeen, 1);
+    //credentials
+    // createCookie("credentials", info.credentials, 1);
+    createCookie("interpreter", info.interpreter, 1);
+    createCookie("insurance", info.insurance, 1);
+    createCookie("fee", info.fee, 1);
+
+    createCookie("", address, "1");
+}
+
+/**
  * Download the resource information as PDF
  */
 function downloadResourcePdf() {
@@ -64,22 +96,9 @@ function downloadResourcePdf() {
             function (data, status) {
                 let info = JSON.parse(data);
                 console.log(info);
-                let providerName = info.theraFname + " " + info.theraLname;
-                let providerGender = (info.theraGender === 0) ? "F" : "M";
-                let county = info.countyOne != null ? info.countyOne : "n/a" + ", " + info.countyTwo + ","
-                let address = info.address + " " + info.city + ", " + info.state + " " + info.zip;
-                createCookie("age", info.age, "1");
-                createCookie("resource", info.Resource_ServiceType, "1");
-                createCookie("office", info.office, "1");
-                createCookie("providerName", providerName, "1");
-                createCookie("website", info.website, "1");
-                createCookie("officeEmail", info.officeEmail, "1");
-                createCookie("officePhone", info.officePhone, "1");
-                createCookie("county", county, "1");
-                createCookie("providerGender", providerGender, "1");
-                createCookie("address", address, "1");
-                createCookie("", address, "1");
 
+
+                createCookies(info);
 
                 createCookie("refresh", refresh, "1");
             });
@@ -156,8 +175,9 @@ function completeModal($id) {
         },
         function (data, status) {
             var info = JSON.parse(data);
-
             if (info) {
+                console.log("HERE" + info);
+
                 //Listing Modal
                 //First Row of form
                 $('#office').text(info.office);

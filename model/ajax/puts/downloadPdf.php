@@ -4,16 +4,11 @@
 $ready = false;
 if ($_COOKIE) {
     $ready = true;
-//    echo "cookies set<br>";
-//    debug_to_console($_COOKIE['age']);
-//    echo json_decode($_COOKIE['age']);
-
 
     try {
         $mpdf = new \Mpdf\Mpdf(['debug' => true]);
-        $mpdf->WriteHTML("<p>" . $_COOKIE['refresh'] . "</p>");
 
-        $mpdf->WriteHTML("<p>" . $_COOKIE['age'] . "</p>");
+
         //first segment
         $mpdf->WriteHTML("<p><b>Resource Type</b> : " . $_COOKIE['resource'] .
             "<b>&emsp;&emsp;&emsp; Business Name</b> : " . $_COOKIE['office'] .
@@ -31,6 +26,40 @@ if ($_COOKIE) {
         $mpdf->WriteHTML("<p><b>&emsp;&emsp;&emsp;  Address</b> : " . $_COOKIE['address'] .
             "<b>&emsp;&emsp;&emsp;  Ages Seen</b> : " . $_COOKIE['agesSeen'] .
             "<b>&emsp;&emsp;&emsp;  Credentials</b> : " . $_COOKIE['credentials'] . "</p>");
+
+        //Forth segment
+        $mpdf->WriteHTML("<p><b>&emsp;&emsp;&emsp;  Languages/Interpreter</b> : " . $_COOKIE['interpreter'] .
+            "<b>&emsp;&emsp;&emsp;  Insurance Accepted</b> : " . $_COOKIE['insurance'] .
+            "<b>&emsp;&emsp;&emsp;  Fees</b> : " . $_COOKIE['fee'] . "</p>");
+
+        //Days table
+        $table = '
+  <table class="tg">
+  <tr>
+    <th class="tg-0lax">Monday</th>
+    <th class="tg-0lax">Tuesday</th>
+    <th class="tg-0lax">Wednesday</th>
+    <th class="tg-0lax">Thursday</th>
+    <th class="tg-0lax">Friday</th>
+    <th class="tg-0lax">Saturday</th>
+    <th class="tg-0lax">Sunday</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+  </tr>
+</table>
+        ';
+
+        $tableStyles = file_get_contents("css/pdfStyles.css");
+        $mpdf->WriteHTML($tableStyles, 1);
+        $mpdf->WriteHTML($table);
+
 
 // Other code
         $mpdf->Output();
