@@ -64,7 +64,7 @@ if ($_COOKIE) {
 
 
 // Other code
-        $mpdf->Output();
+        $mpdf->Output('oneStopWaResource.pdf', 'I');
     } catch
     (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
         // Process the exception, log, print etc.
