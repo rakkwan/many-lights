@@ -1,3 +1,9 @@
+/*Table Styles
+
+Samantha Desmul
+
+*/
+
 .tg {
     border-collapse: collapse;
     border-spacing: 0;
@@ -35,3 +41,14 @@
     text-align: left;
     vertical-align: top
 }
+
+.pdfHead {
+    margin-left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #9249ab;
+}
+

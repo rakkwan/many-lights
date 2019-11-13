@@ -35,7 +35,7 @@ let downloadId;
 $('#dtBasicExample1').on('click', 'tr', function () {
 
     //get value of resource from the datatable
-    let $dataRowId = $(this).attr("value");
+    let $dataRowId = $(this).attr("title");
 
     //gets the info for the modal
     console.log($dataRowId);

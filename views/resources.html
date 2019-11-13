@@ -18,7 +18,7 @@ Author: Samantha DeSmul
 </div>
 
 <div class="container bg-light p-4 m-1 text-center mx-auto">
-    <table id="dtBasicExample1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="dtBasicExample1" class="table table-striped table-bordered w-100">
         <thead>
         <tr>
             <th class="th-sm">Service
@@ -37,7 +37,7 @@ Author: Samantha DeSmul
         <tbody>
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
-            <tr value="{{ @value['resourceID'] }}">
+            <tr title="{{ @value['resourceID'] }}">
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
                 <td>{{ @value["office"] }}</td>
