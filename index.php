@@ -21,13 +21,6 @@ ini_set('display_errors', 1);
 
 error_reporting(E_ALL);
 
-//Require autoload file
-require_once('model/validation.php');
-require_once('model/officeValidation.php');
-require_once('model/thereapistValidation.php');
-require_once('model/database.php');
-require_once('model/adminLoginValidation.php');
-
 //create an instance of the Base class/ fat free object
 $f3 = Base::instance();
 
@@ -486,7 +479,9 @@ $f3->route('GET /resources', function ($f3) {
     echo $view->render('views/includes/footer.html');
 
 
-});//User Listings View
+});
+
+//User Listings View
 $f3->route('GET|POST /download', function ($f3) {
 
     if ($_COOKIE) {
@@ -534,7 +529,6 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
     echo $view->render('views/includes/header.html');
     echo $view->render("views/adminLogin.html");
     echo $view->render('views/includes/footer.html');
-
 });
 
 
@@ -570,12 +564,6 @@ $f3->route('GET|POST /resetPassword', function ($f3) {
             $f3->set('errors[adminEmail1]', 'Please enter an admin email address');
         }
     }
-
-    // retrieve the admin info
-    //$admin = $db->getAdmin($_SESSION['adminEmail1']);
-
-    // set the admin info into the hive
-    //$f3->set('admin', $admin);
 
     $view = new Template();
     echo $view->render('views/includes/header.html');

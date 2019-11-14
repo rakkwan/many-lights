@@ -26,6 +26,11 @@
   "autoload": {
     "classmap": [
       "classes/"
-    ]
+    ],
+    "files": ["model/validation.php",
+      "model/officeValidation.php",
+    "model/thereapistValidation.php",
+    "model/database.php",
+    "model/adminLoginValidation.php"]
   }
 }
