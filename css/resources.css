@@ -30,3 +30,7 @@ th:hover {
 /*td.sorting_1 {*/
 /*background-color: #a2a87e !important;*/
 /*}*/
+
+#dtBasicExample1 {
+    cellspacing: "0";
+}

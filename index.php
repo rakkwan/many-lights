@@ -473,8 +473,9 @@ $f3->route('GET /submitted', function ($f3) {
 $f3->route('GET /resources', function ($f3) {
 
     global $db;
+    $approved = 2;
     //Get Listings with Approved Status from resources in DB
-    $data = $db->getViewListingInfo(2);
+    $data = $db->getViewListingInfo($approved);
 
     //Set the array to use in the table.
     $f3->set('res', $data);
