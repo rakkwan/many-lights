@@ -1,8 +1,12 @@
 
 
 .navbar-dark .navbar-nav .nav-link {
-    /*font-family: serif; please dont add this font back!! thank you */
+    font-family: gotham;
     font-size: large;
+    background: rgb(135,33,117);
+}
+nav {
+    background: rgb(135,33,117);
 }
 
 
@@ -34,6 +38,15 @@
 
 #basicExampleNav {
     font-family: Roboto, sans-serif;
+}
+h1 {
+    font-family: gotham;
+    color: rgb(135,33,117);
+}
+
+p {
+    font-family: gotham;
+    font-size: 1.2em;
 }
 
 

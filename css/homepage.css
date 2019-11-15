@@ -111,3 +111,7 @@ img#val_stairs {
 footer {
     position: fixed;
 }
+
+p {
+    font-family: gotham;
+}
