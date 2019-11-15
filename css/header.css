@@ -49,6 +49,13 @@ p {
     font-size: 1.2em;
 }
 
+label {
+    font-family: gotham;
+}
+
+body {
+    background: lightgrey;
+}
 
 
 
