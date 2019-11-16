@@ -507,7 +507,7 @@ $f3->route('GET|POST /download', function ($f3) {
 $f3->route('GET|POST /adminLogin', function ($f3) {
 
     // if admin already logged in then take admin to the admin page
-    if (!empty($_SESSION['adminID'])) {
+    if (!empty($_SESSION['adminID']) && $_SESSION['masterAdmin']) {
         $f3->reroute('/admin');
     }
     if (!empty($_POST)) {
@@ -517,10 +517,15 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
         $admin = $db->adminLogin($_POST['adminEmail'], $_POST['adminPassword']);
 
         // if a result is retrieved from the database
-        if (!empty($admin['adminID'])) {
+        if (!empty($admin['adminID']) && ($admin['masterAdmin']) == 1) {
             // add the adminID to session and then go to admin page
             $_SESSION['adminID'] = $f3->get('adminID');
+            $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
             $f3->reroute('/admin');
+        } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
+            $_SESSION['adminID'] = $f3->get('adminID');
+            $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+            $f3->reroute('/adminDashboard');
         }
         $f3->set('errors', 'Admin email and password do not match');
     }
@@ -531,6 +536,15 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
     echo $view->render('views/includes/footer.html');
 });
 
+
+//Admin Dashboard
+$f3->route('GET|POST /adminDashboard', function ($f3) {
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render('views/adminDashboard/adminDashboard.html');
+    echo $view->render('views/includes/footer.html');
+});
 
 // Admin resetPassword
 $f3->route('GET|POST /resetPassword', function ($f3) {

@@ -80,6 +80,8 @@ CREATE TABLE adminLogin
 	PRIMARY KEY (adminID)
 );
 
+ALTER TABLE adminLogin
+ADD masterAdmin BOOLEAN NOT NULL DEFAULT FALSE;
 
 INSERT INTO adminLogin (email, password)
 VALUES ('coderlite@email.com', 'coderLite1');
@@ -237,7 +239,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      */
     function adminLogin($email, $password)
     {
-        $sql = "SELECT adminID FROM adminLogin WHERE email = :email AND password = :password";
+        $sql = "SELECT adminID, masterAdmin FROM adminLogin WHERE email = :email AND password = :password ";
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
@@ -246,6 +248,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
         global $f3;
         $f3->set('adminID', $row['adminID']);
+        $f3->set('masterAdmin', $row['masterAdmin']);
         return $row;
     }
 
