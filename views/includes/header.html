@@ -87,14 +87,28 @@
                 </p>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <check if="{{empty(@SESSION['adminID'])}}">
-                        <true>
-                            <a class="dropdown-item" href="adminLogin">Admin Login</a>
-                        </true>
+                    <check if="{{!empty(@SESSION['adminID'])}}">
+                        <check if="{{(@SESSION['masterAdmin']) == 0}}">
+                            <true>
+                                <a class="dropdown-item" href="adminDashboard">
+                                    <i class="fas fa-user-shield fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Dashboard</a>
+                                <a class="dropdown-item" href="adminLogout">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Logout</a>
+                            </true>
+                            <false>
+                                <a class="dropdown-item" href="admin">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Table</a>
+                                <a class="dropdown-item" href="adminLogout">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Logout</a>
+                            </false>
+
+                        </check>
                         <false>
-                            <a class="dropdown-item" href="adminLogout">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Admin Logout</a>
+                            <a class="dropdown-item" href="adminLogin">Admin Login</a>
                         </false>
                     </check>
                 </div>
