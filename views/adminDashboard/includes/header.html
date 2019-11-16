@@ -1,0 +1,123 @@
+<!--Header Template Page'
+   Date: 11/16/2019
+   file: header.html
+   Author:  Jittima Goodrich
+   Updated: 11/1/19
+   -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- CSS uncomment below to make it work-->
+    <!-- Font Awesome -->
+    <link rel="shortcut icon" href="./image/oneWA.ico"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/homepage.css">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{{@BASE}}/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="{{@BASE}}/css/header.css">
+    <!-- Time picker-->
+    <link rel="stylesheet" type="text/css" href="/IT355/oneStopWa/css/jquery.timepicker.min.css">
+    <link href="views/adminDashboard/css/sb-admin-2.css" rel="stylesheet">
+
+    <title>One Stop WASHINGTON </title>
+
+</head>
+
+<body id="page-top">
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="home"><img id="pic1" src="./image/oneStopWa.PNG" alt="Logo Image"></a>
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link err" href="{{@BASE}}/resources">View Resources
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link err" href="recommended">Recommend Resource
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://manylights.org/about/" target="_blank">Many Lights.org</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <!-- Linkedin -->
+                <a class="nav-link waves-effect waves-light"
+                   href="https://www.linkedin.com/company/many-lights-foundation/about/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </li>
+            <!-- Twitter -->
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="https://twitter.com/ManyLights" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </li>
+            <!-- facebook -->
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="https://www.facebook.com/manylights"
+                   target="_blank"><i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <!-- drop down adminLogin -->
+            <li class="nav-item dropdown">
+                <p role="menu" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </p>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    <check if="{{!empty(@SESSION['adminID'])}}">
+                        <check if="{{(@SESSION['masterAdmin']) == 0}}">
+                            <true>
+                                <a class="dropdown-item" href="adminDashboard">
+                                    <i class="fas fa-user-shield fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Dashboard</a>
+                                <a class="dropdown-item" href="adminLogout">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Logout</a>
+                            </true>
+                            <false>
+                                <a class="dropdown-item" href="admin">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Table</a>
+                                <a class="dropdown-item" href="adminLogout">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Admin Logout</a>
+                            </false>
+
+                        </check>
+                        <false>
+                            <a class="dropdown-item" href="adminLogin">Admin Login</a>
+                        </false>
+                    </check>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Collapsible content -->
+</nav>
+<!--/.Navbar-->

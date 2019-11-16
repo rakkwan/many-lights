@@ -541,8 +541,18 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 $f3->route('GET|POST /adminDashboard', function ($f3) {
 
     $view = new Template();
-    echo $view->render('views/includes/header.html');
+    echo $view->render('views/adminDashboard/includes/header.html');
     echo $view->render('views/adminDashboard/adminDashboard.html');
+    echo $view->render('views/adminDashboard/includes/footer.html');
+});
+
+
+//master Admin create a new admin
+$f3->route('GET|POST /createAdmin', function ($f3) {
+
+    $view = new Template();
+    echo $view->render('views/includes/header.html');
+    echo $view->render('views/createAdmin.html');
     echo $view->render('views/includes/footer.html');
 });
 

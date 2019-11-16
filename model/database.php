@@ -76,9 +76,16 @@ CREATE TABLE adminLogin
 	adminID INTEGER NOT NULL AUTO_INCREMENT,
 	email VARCHAR(254) NOT NULL,
 	password VARCHAR(128) NOT NULL,
+    masterAdmin BOOLEAN NOT NULL,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
 	UNIQUE (email),
 	PRIMARY KEY (adminID)
 );
+
+ALTER TABLE adminLogin
+ADD fname VARCHAR(50)
+
 
 ALTER TABLE adminLogin
 ADD masterAdmin BOOLEAN NOT NULL DEFAULT FALSE;
@@ -294,6 +301,39 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
         $statement->execute();
+    }
+
+
+    /**
+     * Function to create the new admin user
+     * @param $email - String email address
+     * @param $password - String password for login
+     * @param $masterAdmin - Boolean if it's a masterAdmin
+     * @param $fname - String first name
+     * @param $lname - String last name
+     */
+    function createAdmin($email, $password, $masterAdmin, $fname, $lname)
+    {
+        // prepare sql statement
+        $sql = "INSERT INTO adminLogin (email, password, masterAdmin, fname, lname)
+        VALUES (:email, :password, :masterAdmin, :fname, :lname)";
+
+        // save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->bindParam(':masterAdmin', $masterAdmin, PDO::PARAM_BOOL);
+        $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+
+        // execute insert into recommendedInfo
+        $statement->execute();
+
+        global $f3;
+        $lastID = $this->_dbh->lastInsertId();
+        $f3->set('adminID', $lastID);
     }
 
 
