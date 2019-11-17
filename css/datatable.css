@@ -1,15 +1,23 @@
+.purpleColor {
+    background: rgb(135,33,117) !important;
+}
+
 tbody tr:hover {
-    background-color: #9ef0eb !important;
+    background-color: #fffcbe !important;
 }
 
 tbody tr:hover td.sorting_1 {
-    background-color: #8ad6d6 !important;
+    background-color: rgba(221, 215, 154, 0.77) !important;
 }
-
 th:hover {
-    background: darkgray;
+    background: lightgrey;
 }
-
+div#dtBasicExample1_wrapper {
+    background: rgba(119, 44, 109, 0.13);
+}
+div#dtBasicExample_wrapper {
+    background: rgba(119, 44, 109, 0.13);
+}
 
 h5.label {
     font-weight: 500 !important;
@@ -29,4 +37,13 @@ th:hover, td:hover {
 
 .col {
     padding-top: 1px !important;
+}
+td {
+    color: black;
+}
+th.th-sm.sorting {
+    color: black;
+}
+th {
+    color: black;
 }

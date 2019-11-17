@@ -6,30 +6,16 @@ h6 {
     font-family: inherit;
 }
 
+
 /*Cells*/
 /*table td {*/
 /*background-color: #feffd9;*/
 /*}*/
 
-tbody tr:hover {
-    background-color: #8ddbd6 !important;
-}
-
-tbody tr:hover td.sorting_1 {
-    background-color: #507c7c !important;
-}
-
-th:hover {
-    background: darkgray;
-}
-
 .d-flex.flex-column {
     margin-left: 13%;
 }
 
-/*td.sorting_1 {*/
-/*background-color: #a2a87e !important;*/
-/*}*/
 
 #dtBasicExample1 {
     cellspacing: "0";
