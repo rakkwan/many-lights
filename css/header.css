@@ -63,3 +63,21 @@ a button footer {
 
 
 
+a[type="button"] {
+    background: rgb(135,33,117);
+    color: white;
+}
+
+button[type="submit"] {
+    background: rgb(135,33,117);
+    color: white;
+}
+
+.btn-outline {
+    color: rgb(135,33,117);
+}
+
+
+
+
+
