@@ -8,8 +8,12 @@
 
 //Listing Data Table
 $(document).ready(function () {
-    $('#dtBasicExample').DataTable();
-    $('#dtBasicExample1').DataTable();
+    $('#dtBasicExample').DataTable({
+        "scrollX": true
+    });
+    $('#dtBasicExample1').DataTable({
+        "scrollX": true
+    });
     $('.dataTables_length').addClass('bs-select');
     downloadResourcePdf();
 });
