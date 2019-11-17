@@ -16,6 +16,15 @@ $(document).ready(function () {
     });
     $('.dataTables_length').addClass('bs-select');
     downloadResourcePdf();
+
+    $("#disclaimerButton").css("display", "none");
+    $("#disclaimerButton").click();
+
+    //declined
+    $("#declineDisclaimer").on("click", function () {
+        //reroute home
+        window.location.href = "../oneStopWa";
+    })
 });
 
 //Modal information
@@ -32,6 +41,19 @@ $('#dtBasicExample').on('click', 'tr', function () {
     $(this).attr("data-target", "#centralModalSuccess");
 
 });
+
+// Disclaimer Overlay JS
+/* Open */
+function openNav() {
+    console.log("load");
+    document.getElementById("disclaimer").style.display = "block";
+    $("#disclaimer").css("background-color", "yellow");
+}
+
+/* Close */
+function closeNav() {
+    document.getElementById("disclaimer").style.display = "none";
+}
 
 let downloadId;
 
