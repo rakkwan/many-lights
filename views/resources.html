@@ -6,9 +6,63 @@ file: header.html
 Author: Samantha DeSmul
 -->
 
+
 <!--Page specific styles-->
 <link rel="stylesheet" href="./css/resources.css">
 <link rel="stylesheet" href="./css/datatable.css">
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" id="disclaimerButton" data-toggle="modal" data-target="#disclaimerModal"
+        data-backdrop="static" data-keyboard="false">
+</button>
+
+<!--Disclaimer overlay-->
+
+<check if="{{ @approve=='yes' }}">
+    <true>
+        <!--Enjoy/-->
+    </true>
+    <false>
+        <!-- Modal -->
+        <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="disclaimerModalLabel">Modal title</h5>
+                        <button type="button" class="close" id="closeDisclaimer" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p> The content provided on this website is for information purposes only and not a guarantee of
+                            quality. It
+                            is recommended that you confirm the accuracy of information and interview service providers
+                            to
+                            determine
+                            the best fit for your needs. </p>
+                        To help with evaluating whether a provider is suitable for you and your
+                        family, we have prepared a list of questions for you to use. You may also go to this link
+                        Screening
+                        Questions When Seeking An Adoption-Competent Therapist
+                        <a href="https://www.growbeyondwords.com/screening-questions-when-seeking-an-adoption-competent-therapist/">visit
+                            online.</a>
+
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-success float-left" data-dismiss="modal"
+                                id="approveDisclaimer">
+                            Approve
+                        </button>
+                        <button type="button" class="btn btn-danger" id="declineDisclaimer">Decline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </false>
+</check>
+
 
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
@@ -17,7 +71,7 @@ Author: Samantha DeSmul
     </div>
 </div>
 
-<div class="container p-4 m-1 text-center mx-auto">
+<div class="container p-4 m-1 text-center mx-auto bg-light">
     <table id="dtBasicExample1" class="table table-striped table-bordered w-100">
         <thead>
         <tr>
@@ -73,7 +127,7 @@ Author: Samantha DeSmul
         <!--Content-->
         <div class="modal-content text-center">
             <!--Header-->
-            <div  class="modal-header text-white mx-auto w-100 purpleColor">
+            <div class="modal-header text-white mx-auto w-100 purpleColor">
                 <div class="col-12">
                     <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="white-text">&times;</span>
@@ -229,4 +283,3 @@ Author: Samantha DeSmul
     </div>
     <!--/.Content-->
 </div>
-
