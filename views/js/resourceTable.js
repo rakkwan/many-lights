@@ -18,13 +18,41 @@ $(document).ready(function () {
     downloadResourcePdf();
 
     $("#disclaimerButton").css("display", "none");
+
+    //check session for disclaimer
+
+    if ($("#disclaimerButton").hasClass) {
+
+    }
+
     $("#disclaimerButton").click();
 
     //declined
     $("#declineDisclaimer").on("click", function () {
         //reroute home
         window.location.href = "../oneStopWa";
-    })
+    });
+
+    $("#approveDisclaimer").on("click", function () {
+
+        //send Ajax to save session
+        console.log("Saved approval");
+
+        $.ajax({
+            type: "POST",
+            url: "model/ajax/puts/saveDisclaimer.php",
+            data: {approve: "yes"},
+            success: function (func) {
+                // Do what you want to do when the session has been updated
+                console.log(func);
+            }
+        });
+
+        // $.post("model/ajax/puts/saveDisclaimer.php", {name: "John", approve: "yes"});
+        console.log("sent approval");
+
+
+    });
 });
 
 //Modal information

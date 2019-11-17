@@ -473,6 +473,11 @@ $f3->route('GET /resources', function ($f3) {
     //Set the array to use in the table.
     $f3->set('res', $data);
 
+    //check if the disclaimer approved before
+    if ($_SESSION["approve"] == "yes" && !empty($_SESSION['approve'])) {
+        $f3->set('approve', "yes");
+    }
+
     $view = new Template();
     echo $view->render('views/includes/header.html');
     echo $view->render("views/resources.html");
