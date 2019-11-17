@@ -32,6 +32,11 @@ $(document).ready(function () {
         //reroute home
         window.location.href = "../oneStopWa";
     });
+    $("#closeDisclaimer").on("click", function () {
+        //reroute home
+        window.location.href = "../oneStopWa";
+    });
+
 
     $("#approveDisclaimer").on("click", function () {
 
