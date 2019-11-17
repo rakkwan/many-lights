@@ -10,7 +10,6 @@ nav {
 }
 
 
-
 /*The image in NavBar*/
 /*Use the # to target an ID of an html element*/
 #pic1 {
@@ -61,20 +60,21 @@ a button footer {
     font-family: gotham;
 }
 
-
-
 a[type="button"] {
     background: rgb(135,33,117);
     color: white;
+    font-family: gotham;
 }
 
 button[type="submit"] {
     background: rgb(135,33,117);
     color: white;
+    font-family: gotham;
 }
 
 .btn-outline {
     color: rgb(135,33,117);
+    font-family: gotham;
 }
 
 
