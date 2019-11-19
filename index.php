@@ -453,6 +453,24 @@ $f3->route('GET /submitted', function ($f3) {
     // Insert county into the database
     $db->updateCounties($_SESSION['countyOne'], $_SESSION['countyTwo'], $_SESSION['countyThree'], $_SESSION['resourceID']);
 
+    // Mail to admin someone sent recommendation
+    $to = "sle11@mail.greenriver.edu";
+    $subject = "Someone sent email";
+    $name = $_SESSION['fname'] . " " . $_SESSION['lname'];
+    $link = "";
+    $message = $name . " have sent an recommendation please check One Stop WA admin page with the link below" . $link;
+    $headers =
+        'From: onestopwa@noreply.com' . "\r\n" .
+        'Reply-To: onestopwa@noreply.com' . "\r\n" .
+        'Return-Path: onestopwa@noreply.com' . "\r\n" .
+        'Organization: One Stop WA' . "\r\n" .
+        'MIME-Version: 1.0' . "\r\n" .
+        'X-Priority: 3' . "\r\n" .
+        'X-Mailer: PHP". phpversion()' . "\r\n" .
+        'Content-type: text/html; charset=iso-8859-1';
+
+    mail($to, $subject, $message, $headers);
+
     //display the submitted form of the page
     $view = new Template();
     echo $view->render('views/includes/header.html');
