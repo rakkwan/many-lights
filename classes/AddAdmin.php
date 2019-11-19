@@ -27,7 +27,7 @@ class AddAdmin
      * @param boolean $adminType the type of admin of the admin
      * @return void
      */
-    public function __construct($fname, $lname, $email, $password, $adminType)
+    public function __construct($email, $password, $adminType, $fname, $lname)
     {
         $this->_fname = $fname;
         $this->_lname = $lname;

@@ -585,6 +585,7 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
             $f3->reroute('/succeedResetPassword');
         }
 
+
     }
     $view = new Template();
     echo $view->render('views/adminDashboard/includes/header.html');
