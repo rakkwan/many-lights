@@ -1,6 +1,10 @@
+<!--
+    Name: Jittima Goodrich
+    Date: 10/6/2019
+    File: resourceContactForm.html
+    This is the form for an adoptive family to share the resources
 
-
-
+-->
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,26 +27,71 @@
                             <h1 class="h4 text-gray-900 mb-4">Create a New Admin!</h1>
                         </div>
                         <form method="post" class="user">
+
+                            <!-- Admin first name and last name -->
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                                    <input type="text" class="form-control form-control-user"
+                                           id="exampleFirstName" name="fname" value="{{@fname}}"
+                                           placeholder="First Name">
+                                    <check if="{{ isset(@errors['fname']) }}">
+                                        <span class="text-danger">{{ @errors['fname'] }}</span>
+                                    </check>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    <input type="text" class="form-control form-control-user"
+                                           id="exampleLastName" name="lname" value="{{@lname}}"
+                                           placeholder="Last Name">
+                                    <check if="{{ isset(@errors['lname']) }}">
+                                        <span class="text-danger">{{ @errors['lname'] }}</span>
+                                    </check>
                                 </div>
                             </div>
 
+                            <!-- Admin email -->
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user"
+                                       id="exampleInputEmail" name="adminEmail" value="{{@adminEmail}}"
+                                       placeholder="Email Address">
+                                <check if="{{ isset(@errors['adminEmail']) }}">
+                                    <span class="text-danger">{{ @errors['adminEmail'] }}</span>
+                                </check>
+                            </div>
+
+                            <!-- Admin Password -->
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="password" class="form-control form-control-user"
+                                           id="exampleInputPassword" name="password" value="{{@password}}"
+                                           placeholder="Password">
+                                    <check if="{{ isset(@errors['password']) }}">
+                                        <span class="text-danger">{{ @errors['password'] }}</span>
+                                    </check>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user"
+                                           id="exampleRepeatPassword" name="repeatPassword" value="{{@repeatPassword}}"
+                                           placeholder="Repeat Password">
+                                    <check if="{{ isset(@errors['repeatPassword']) }}">
+                                        <span class="text-danger">{{ @errors['repeatPassword'] }}</span>
+                                    </check>
+                                </div>
+                            </div>
+
+                            <!-- Admin Type -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="adminType"
+                                       id="inlineRadio1" value="0">
+                                <label class="form-check-label" for="inlineRadio1">Master Admin</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="adminType"
+                                       id="inlineRadio2" value="1">
+                                <label class="form-check-label" for="inlineRadio2">Standard Admin</label>
+                            </div>
+
+                            <!-- button -->
 
                             <a type="button" href="adminLogin" class="btn btn btn-user btn-block">
                                 Create a new Admin

@@ -306,13 +306,9 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Function to create the new admin user
-     * @param $email - String email address
-     * @param $password - String password for login
-     * @param $masterAdmin - Boolean if it's a masterAdmin
-     * @param $fname - String first name
-     * @param $lname - String last name
+     * @param $admin - String admin object
      */
-    function createAdmin($email, $password, $masterAdmin, $fname, $lname)
+    function createAdmin($admin)
     {
         // prepare sql statement
         $sql = "INSERT INTO adminLogin (email, password, masterAdmin, fname, lname)
@@ -320,6 +316,13 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
         // save prepared statement
         $statement = $this->_dbh->prepare($sql);
+
+        // assign value
+        $email = $admin->getEmail();
+        $password = $admin->getPassword();
+        $masterAdmin = $admin->getAdminType();
+        $fname = $admin->getFname();
+        $lname = $admin->getLname();
 
         // bind params
         $statement->bindParam(':email', $email, PDO::PARAM_STR);

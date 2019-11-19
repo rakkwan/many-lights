@@ -554,6 +554,38 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 //Add a new Admin
 $f3->route('GET|POST /addAdmin', function ($f3) {
 
+    if (!empty($_POST))
+    {
+        // get data from the form
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $adminEmail = $_POST['adminEmail'];
+        $password = $_POST['password'];
+        $repeatPassword = $_POST['repeatPassword'];
+        $adminType = $_POST['adminType'];
+
+        // add data to hive
+        $f3->set('fname', $fname);
+        $f3->set('lname', $lname);
+        $f3->set('adminEmail', $adminEmail);
+        $f3->set('password', $password);
+        $f3->set('repeatPassword', $repeatPassword);
+        $f3->set('adminType', $adminType);
+
+        // if data is valid
+        if (validCreateAdmin())
+        {
+            // create a new admin and add them into the database
+            $admin = new AddAdmin($_POST['email'], $_POST['password'], $_POST['adminType'], $_POST['fname'],
+                     $_POST['lname']);
+
+            global $db;
+            $db->createAdmin($admin);
+            $_SESSION['adminID'] = $f3->get('adminID');
+            $f3->reroute('/succeedResetPassword');
+        }
+
+    }
     $view = new Template();
     echo $view->render('views/adminDashboard/includes/header.html');
     echo $view->render('views/createAdmin.html');

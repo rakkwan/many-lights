@@ -41,6 +41,48 @@ function validForm()
 }
 
 /**
+ * used to valid create a new admin form
+ * @return bool - if everything was valid or not
+ */
+function validCreateAdmin()
+{
+    global $f3;
+    $isValid = true;
+    if (!validName($f3->get('fname')))
+    {
+        $isValid = false;
+        $f3->set("errors['fname']", "Please enter a valid first name");
+    }
+    if (!validName($f3->get('lname')))
+    {
+        $isValid = false;
+        $f3->set("errors['lname']", "Please enter a valid last name");
+    }
+    if (!validAdminEmail($f3->get('adminEmail')))
+    {
+        $isValid = false;
+        $f3->set("errors['adminEmail']", "Please enter a valid email address");
+    }
+
+    if (!validPassword($f3->get('password')))
+    {
+        $isValid = false;
+        $f3->set("errors['password']", "Password should be at least 8 characters
+        in length and should include at least one upper case letter, one number, and one special character");
+    }
+
+    if (!validSamePass($f3->get('password'), $f3->get('repeatPassword')))
+    {
+        $isValid = false;
+        $f3->set("errors['repeatPassword']", "Password must be matched, please re-enter your password");
+    }
+    return $isValid;
+}
+
+
+
+
+/**
  * Checks if the name given was valid
  * @param String $name the name given
  * @return bool if the name was valid
