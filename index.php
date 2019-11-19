@@ -571,8 +571,8 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 
 //Add a new Admin
 $f3->route('GET|POST /addAdmin', function ($f3) {
+    global $db;
 
-    echo "test";
     if (!empty($_POST))
     {
         // get data from the form
@@ -592,23 +592,23 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
         $f3->set('adminType', $adminType);
 
 
-//            if ($adminType == 0)
-//            {
-//                $adminType = false;
-//            }
-//            else {
-//                $adminType = true;
-//            }
-//            // create a new admin and add them into the database
-//            $admin = new AddAdmin($_POST['email'], $_POST['password'], $adminType, $_POST['fname'],
-//                     $_POST['lname']);
-//
-//            global $db;
-//            $db->createAdmin($admin);
+        if(validCreateAdmin())
+        {
+            if ($adminType == '0')
+            {
+                $adminType = false;
+            }
+            else {
+                $adminType = true;
+            }
+            // create a new admin and add them into the database
+            $admin = new AddAdmin($_POST['adminEmail'], $_POST['password'], $adminType, $_POST['fname'], $_POST['lname']);
+
+            $db->createAdmin($admin);
             $_SESSION['adminID'] = $f3->get('adminID');
             $f3->reroute('/succeedResetPassword');
 
-
+        }
 
     }
     $view = new Template();

@@ -115,16 +115,16 @@ class AddAdmin
      * Gets the type of the admin
      * @return boolean
      */
-    public function getAdminType(): bool
+    public function getAdminType()
     {
         return $this->_adminType;
     }
 
     /**
      * Sets the type of the admin
-     * @param String $adminType
+     * @param boolean $adminType
      */
-    public function setAdminType(String $adminType): void
+    public function setAdminType($adminType)
     {
         $this->_adminType = $adminType;
     }

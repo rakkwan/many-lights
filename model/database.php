@@ -269,7 +269,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $sql = "SELECT * FROM adminLogin WHERE email = :email";
         $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->excute();
+        $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
