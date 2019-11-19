@@ -454,11 +454,11 @@ $f3->route('GET /submitted', function ($f3) {
     $db->updateCounties($_SESSION['countyOne'], $_SESSION['countyTwo'], $_SESSION['countyThree'], $_SESSION['resourceID']);
 
     // Mail to admin someone sent recommendation
-    $to = "sle11@mail.greenriver.edu";
-    $subject = "Someone sent email";
+    $to = "sle11@mail.greenriver.edu, jgoodrich4@mail.greenriver.edu";
+    $subject = "Recommendation was submitted";
     $name = $_SESSION['fname'] . " " . $_SESSION['lname'];
-    $link = "";
-    $message = $name . " have sent an recommendation please check One Stop WA admin page with the link below" . $link;
+    $link = '<a href="https://coderlite.greenriverdev.com/IT355/oneStopWa/adminLogin">Click here</a>';
+    $message = $name . " have sent an recommendation please check One Stop WA admin page with the link below \n" . $link;
     $headers =
         'From: onestopwa@noreply.com' . "\r\n" .
         'Reply-To: onestopwa@noreply.com' . "\r\n" .
@@ -572,6 +572,7 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 //Add a new Admin
 $f3->route('GET|POST /addAdmin', function ($f3) {
 
+    echo "test";
     if (!empty($_POST))
     {
         // get data from the form
@@ -590,18 +591,23 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
         $f3->set('repeatPassword', $repeatPassword);
         $f3->set('adminType', $adminType);
 
-        // if data is valid
-        if (validCreateAdmin())
-        {
-            // create a new admin and add them into the database
-            $admin = new AddAdmin($_POST['email'], $_POST['password'], $_POST['adminType'], $_POST['fname'],
-                     $_POST['lname']);
 
-            global $db;
-            $db->createAdmin($admin);
+//            if ($adminType == 0)
+//            {
+//                $adminType = false;
+//            }
+//            else {
+//                $adminType = true;
+//            }
+//            // create a new admin and add them into the database
+//            $admin = new AddAdmin($_POST['email'], $_POST['password'], $adminType, $_POST['fname'],
+//                     $_POST['lname']);
+//
+//            global $db;
+//            $db->createAdmin($admin);
             $_SESSION['adminID'] = $f3->get('adminID');
             $f3->reroute('/succeedResetPassword');
-        }
+
 
 
     }
@@ -684,6 +690,7 @@ $f3->route('GET|POST /adminLogout', function ($f3) {
 
 // Admin succeed reset password
 $f3->route('GET|POST /succeedResetPassword', function ($f3) {
+    print $f3->get('adminType');
 
     $view = new Template();
     echo $view->render('views/includes/header.html');
