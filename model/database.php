@@ -243,13 +243,13 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
      * @param $adminID - admin
      * @return mixed the ID of the admin
      */
-    function getAllAdmin($adminID)
+    function getAllAdmin()//$adminID)
     {
-        $sql = 'SELECT * FROM adminLogin WHERE adminID = :adminID';
+        $sql = 'SELECT * FROM adminLogin'; //WHERE adminID = :adminID';
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':adminID', $adminID, PDO::PARAM_STR);
+//        $statement->bindParam(':adminID', $adminID, PDO::PARAM_STR);
         $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -544,22 +544,19 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $f3->set('resourceID', $lastID);
     }
 
-    function getResourceInfo($resource)
+    function getResourceInfo()
     {
         // define the query
-        $sql = 'SELECT * FROM resources WHERE resourceID = :resourceID';
+        $sql = 'SELECT * FROM resources';
 
         // prepare the statement
         $statement = $this->_dbh->prepare($sql);
-
-        // Bind the parameters
-        $statement->bindParam(':resourceID', $resource, PDO::PARAM_STR);
 
         // Execute the statement
         $statement->execute();
 
         // Return the results
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

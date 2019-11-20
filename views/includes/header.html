@@ -89,12 +89,12 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
                     <check if="{{!empty(@SESSION['adminID'])}}">
-                        <check if="{{(@SESSION['masterAdmin']) == 0}}">
+                        <check if="{{(@SESSION['masterAdmin']) == 1}}">
                             <true>
                                 <a class="dropdown-item" href="adminDashboard">
                                     <i class="fas fa-user-shield fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Admin Dashboard</a>
-                                <a class="dropdown-item" href="adminLogout">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Admin Logout</a>
                             </true>
@@ -119,3 +119,23 @@
     <!-- Collapsible content -->
 </nav>
 <!--/.Navbar-->
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <a class="btn btn-outline-unique" type="button" data-dismiss="modal">Cancel</a>
+                <a type="button" class="btn btn" href="adminLogout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

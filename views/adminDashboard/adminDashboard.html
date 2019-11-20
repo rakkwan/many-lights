@@ -259,7 +259,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Admin</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{count(@admin)}}</div>
                   </div>
                   <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -276,7 +276,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Master Admin</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countMaster}}</div>
                   </div>
                   <div class="col-auto">
                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -295,7 +295,7 @@
                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Standard Admin</div>
                     <div class="row no-gutters align-items-center">
                       <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">3</div>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{@countStandard}}</div>
                       </div>
                       <div class="col">
                         <div class="progress progress-sm mr-2">
@@ -319,7 +319,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Resources</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countPending}}</div>
                   </div>
                   <div class="col-auto">
                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -339,71 +339,41 @@
           <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Active Admin</h3>
           <div class="card-body">
             <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
               class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
               <table class="table table-bordered table-responsive-md table-striped text-center">
                 <thead>
-                <tr>
-                  <th class="text-center">First Name</th>
-                  <th class="text-center">Last Name</th>
-                  <th class="text-center">Email</th>
-                  <th class="text-center">Password</th>
-                  <th class="text-center">Admin Type</th>
-
-                  <th class="text-center">Remove</th>
-                </tr>
+                  <tr>
+                    <th class="text-center">First Name</th>
+                    <th class="text-center">Last Name</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Admin Type</th>
+                    <th class="text-center">Remove</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="pt-3-half" contenteditable="true">{{@admin['fname']}}</td>
-                  <td class="pt-3-half" contenteditable="true">{{@admin['lname']}}</td>
-                  <td class="pt-3-half" contenteditable="true">{{@admin['email']}}</td>
-                  <td class="pt-3-half" contenteditable="true">{{@admin['password']}}</td>
-                  <td class="pt-3-half" contenteditable="true">{{@admin['masterAdmin']}}</td>
-                  <td>
-              <span class="table-remove"><button type="button"
-                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                  </td>
-                </tr>
-                <!-- This is our clonable table line -->
-                <tr>
-                  <td class="pt-3-half" contenteditable="true">Guerra Cortez</td>
-                  <td class="pt-3-half" contenteditable="true">45</td>
-                  <td class="pt-3-half" contenteditable="true">Insectus</td>
-                  <td class="pt-3-half" contenteditable="true">USA</td>
-                  <td class="pt-3-half" contenteditable="true">San Francisco</td>
-
-                  <td>
-              <span class="table-remove"><button type="button"
-                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                  </td>
-                </tr>
-                <!-- This is our clonable table line -->
-                <tr>
-                  <td class="pt-3-half" contenteditable="true">Guadalupe House</td>
-                  <td class="pt-3-half" contenteditable="true">26</td>
-                  <td class="pt-3-half" contenteditable="true">Isotronic</td>
-                  <td class="pt-3-half" contenteditable="true">Germany</td>
-                  <td class="pt-3-half" contenteditable="true">Frankfurt am Main</td>
-
-                  <td>
-              <span class="table-remove"><button type="button"
-                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                  </td>
-                </tr>
-                <!-- This is our clonable table line -->
-                <tr class="hide">
-                  <td class="pt-3-half" contenteditable="true">Elisa Gallagher</td>
-                  <td class="pt-3-half" contenteditable="true">31</td>
-                  <td class="pt-3-half" contenteditable="true">Portica</td>
-                  <td class="pt-3-half" contenteditable="true">United Kingdom</td>
-                  <td class="pt-3-half" contenteditable="true">London</td>
-
-                  <td>
-              <span class="table-remove"><button type="button"
-                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                  </td>
-                </tr>
+                <repeat group="{{@admin}}" value="@row">
+                  <tr>
+                    <td class="pt-3-half" contenteditable="true">{{@row['fname']}}</td>
+                    <td class="pt-3-half" contenteditable="true">{{@row['lname']}}</td>
+                    <td class="pt-3-half" contenteditable="true">{{@row['email']}}</td>
+                    <td class="pt-3-half" contenteditable="true">{{@row['password']}}</td>
+                    <td class="pt-3-half" contenteditable="true">
+                      <check if="{{@row['masterAdmin'] == 1}}">
+                        <true>
+                          Master Admin
+                        </true>
+                        <false>
+                          Standard Admin
+                        </false>
+                      </check>
+                    </td>
+                    <td>
+                      <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                    </td>
+                  </tr>
+                </repeat>
                 </tbody>
               </table>
             </div>

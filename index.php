@@ -566,8 +566,37 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     global $db;
 
     // retrieve the new admin's info
-    $admin = $db->getAllAdmin($_SESSION['adminID']);
+    $admin = $db->getAllAdmin();
     $f3->set('admin', $admin);
+
+    // get all resources
+    $resources = $db->getResourceInfo();
+
+    $countMaster = 0;
+    $countStandard = 0;
+    $countPending = 0;
+
+    // count the type of admin
+    foreach($admin as $row) {
+        if($row['masterAdmin'] == 1) {
+            $countMaster++;
+        }
+        else {
+            $countStandard++;
+        }
+    }
+
+    // count the pending resources
+    foreach($resources as $row) {
+        if($row['statusID'] == 1) {
+            $countPending++;
+        }
+    }
+
+    // add counter to hive
+    $f3->set('countMaster', $countMaster);
+    $f3->set('countStandard', $countStandard);
+    $f3->set('countPending', $countPending);
 
 
     $view = new Template();
