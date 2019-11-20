@@ -563,6 +563,13 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 //Admin Dashboard
 $f3->route('GET|POST /adminDashboard', function ($f3) {
 
+    global $db;
+
+    // retrieve the new admin's info
+    $admin = $db->getAllAdmin($_SESSION['adminID']);
+    $f3->set('admin', $admin);
+
+
     $view = new Template();
     echo $view->render('views/adminDashboard/includes/header.html');
     echo $view->render('views/adminDashboard/adminDashboard.html');
@@ -616,15 +623,6 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
     echo $view->render('views/adminDashboard/includes/footer.html');
 });
 
-
-//master Admin create a new admin
-$f3->route('GET|POST /createAdmin', function ($f3) {
-
-    $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render('views/createAdmin.html');
-    echo $view->render('views/includes/footer.html');
-});
 
 // Admin resetPassword
 $f3->route('GET|POST /resetPassword', function ($f3) {

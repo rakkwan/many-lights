@@ -239,6 +239,21 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     }
 
     /**
+     * Get the all admin
+     * @param $adminID - admin
+     * @return mixed the ID of the admin
+     */
+    function getAllAdmin($adminID)
+    {
+        $sql = 'SELECT * FROM adminLogin WHERE adminID = :adminID';
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':adminID', $adminID, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
      * Attempts to log the admin in
      * @param String $email - the email given
      * @param String $password - the password given
