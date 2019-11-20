@@ -598,6 +598,12 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $f3->set('countStandard', $countStandard);
     $f3->set('countPending', $countPending);
 
+    $adminID = $_POST['removeID'];
+
+
+    if(isset($adminID)) {
+        $db->deleteAdmin($adminID);
+    }
 
     $view = new Template();
     echo $view->render('views/adminDashboard/includes/header.html');

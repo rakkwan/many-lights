@@ -361,7 +361,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
     function deleteAdmin($admin)
     {
         $sql = "DELETE FROM adminLogin WHERE adminID = :adminID";
-        $statement = $this->_bdh->prepare($sql);
+        $statement = $this->_dbh->prepare($sql);
         $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
         $statement->execute();
     }
