@@ -91,7 +91,7 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
                     <check if="{{!empty(@SESSION['adminID'])}}">
-                        <check if="{{(@SESSION['masterAdmin']) == 0}}">
+                        <check if="{{(@SESSION['masterAdmin']) == 1}}">
                             <true>
                                 <a class="dropdown-item" href="adminDashboard">
                                     <i class="fas fa-user-shield fa-sm fa-fw mr-2 text-gray-400"></i>

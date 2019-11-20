@@ -339,6 +339,18 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $f3->set('adminID', $lastID);
     }
 
+    /**
+     * Deletes the given admin
+     * @param $admin - admin that want to delete
+     */
+    function deleteAdmin($admin)
+    {
+        $sql = "DELETE FROM adminLogin WHERE adminID = :adminID";
+        $statement = $this->_bdh->prepare($sql);
+        $statement->bindParam(':adminID', $admin, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
 
     /**
      * ------------------------------------- Jittima & Sang (FE functions)-------------------------

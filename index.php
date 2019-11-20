@@ -544,11 +544,11 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             // add the adminID to session and then go to admin page
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
-            $f3->reroute('/admin');
+            $f3->reroute('/adminDashboard');
         } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
-            $f3->reroute('/adminDashboard');
+            $f3->reroute('/admin');
         }
         $f3->set('errors', 'Admin email and password do not match');
     }
@@ -606,8 +606,7 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
 
             $db->createAdmin($admin);
             $_SESSION['adminID'] = $f3->get('adminID');
-            $f3->reroute('/succeedResetPassword');
-
+            $f3->reroute('/adminDashboard');
         }
 
     }

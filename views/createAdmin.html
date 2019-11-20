@@ -82,25 +82,25 @@
                             <div class="form-check form-check-inline">
 
                                 <label class="radio-inline">
-                                    <check if="{{ @adminType === 'Master Admin'}}">
+                                    <check if="{{ @adminType === '1'}}">
                                         <true>
                                             <input required type="radio" name="adminType"
-                                                   value="0" checked> Master Admin
+                                                   value="1" checked> Master Admin
                                         </true>
                                         <false>
-                                            <input required type="radio" name="adminType" value="0"> Master Admin
+                                            <input required type="radio" name="adminType" value="1"> Master Admin
                                         </false>
                                     </check>
                                 </label>
 
-                                <label class="radio-inline">
-                                    <check if="{{ @adminType === 'Standard Admin'}}">
+                                <label class="radio-inline pl-3">
+                                    <check if="{{ @adminType === '0'}}">
                                         <true>
                                             <input required type="radio" name="adminType"
-                                                   value="1" checked> Standard Admin
+                                                   value="0" checked> Standard Admin
                                         </true>
                                         <false>
-                                            <input required type="radio" name="adminType" value="1"> Standard Admin
+                                            <input required type="radio" name="adminType" value="0"> Standard Admin
                                         </false>
                                     </check>
                                 </label>
