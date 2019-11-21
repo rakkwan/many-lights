@@ -64,7 +64,7 @@ $(document).ready(function () {
 $('#dtBasicExample').on('click', 'tr', function () {
 
     //get value of resource from the datatable
-    let $res = $(this).attr("aria-label");
+    let $res = $(this).attr("data-title");
 
     //gets the info for the modal
     console.log($res);
@@ -94,7 +94,7 @@ let downloadId;
 $('#dtBasicExample1').on('click', 'tr', function () {
 
     //get value of resource from the datatable
-    let $dataRowId = $(this).attr("aria-label");
+    let $dataRowId = $(this).attr("data-title");
 
     //gets the info for the modal
     console.log($dataRowId);
