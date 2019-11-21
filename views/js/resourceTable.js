@@ -64,7 +64,7 @@ $(document).ready(function () {
 $('#dtBasicExample').on('click', 'tr', function () {
 
     //get value of resource from the datatable
-    let $res = $(this).attr("title");
+    let $res = $(this).attr("aria-label");
 
     //gets the info for the modal
     console.log($res);
@@ -94,7 +94,7 @@ let downloadId;
 $('#dtBasicExample1').on('click', 'tr', function () {
 
     //get value of resource from the datatable
-    let $dataRowId = $(this).attr("title");
+    let $dataRowId = $(this).attr("aria-label");
 
     //gets the info for the modal
     console.log($dataRowId);
@@ -286,12 +286,13 @@ function completeModal($id) {
                 $("#goldFees").text(info.insurance); //Payments
 
                 //Second Column of Resource info Placeholders
-                $("#orCont").text(info.theraFname + " " + info.theraLname);
+                $("#orCont").text(info.theraFname);
                 $("#orEmail").text(info.officeEmail);
                 $("#orPhone").text(info.officePhone);
                 $("#orGen").text(info.theraGender);
                 // $("#orAges").text(info.); //ages seen
                 $("#orInt").text(info.interpreter);
+                $("#orContL").text(info.theraLname);
 
                 //Referral Info Placholders
                 $("#refName").text(info.Referral_fname + " " + info.Referral_lname);
