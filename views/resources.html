@@ -91,7 +91,7 @@ Author: Samantha DeSmul
         <tbody>
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
-            <tr title="{{ @value['resourceID'] }}">
+            <tr aria-label="{{ @value['resourceID'] }}">
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
                 <td>{{ @value["office"] }}</td>
