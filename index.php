@@ -2,7 +2,7 @@
 
 //Require autoload file
 require_once __DIR__ . '/vendor/autoload.php';
-
+require_once __DIR__ . '/model/database.php';
 
 /**
  * Created by PhpStorm.
@@ -575,6 +575,9 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $countMaster = 0;
     $countStandard = 0;
     $countPending = 0;
+    $countApproved = 0;
+    $countDeclined = 0;
+    $countResources = 0;
 
     // count the type of admin
     foreach($admin as $row) {
@@ -586,17 +589,34 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
         }
     }
 
-    // count the pending resources
+
     foreach($resources as $row) {
+        // count the pending resources
         if($row['statusID'] == 1) {
             $countPending++;
         }
+        // count the declined resources
+        elseif($row['statusID'] == 3){
+            $countDeclined++;
+        }
+
+        else{
+            // count the Approved resources
+            $countApproved++;
+        }
     }
+
+    // count total resources
+    $countResources = $countDeclined + $countApproved + $countPending;
 
     // add counter to hive
     $f3->set('countMaster', $countMaster);
     $f3->set('countStandard', $countStandard);
     $f3->set('countPending', $countPending);
+    $f3->set('countApproved', $countApproved);
+    $f3->set('countDeclined', $countDeclined);
+    $f3->set('countResources', $countResources);
+
 
     $adminID = $_POST['removeID'];
 
@@ -604,6 +624,16 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     if(isset($adminID)) {
         $db->deleteAdmin($adminID);
     }
+
+    /**
+     * admin Page Appended
+     */
+
+    //Get the info from DB for admin Data Table Listings
+    $data = $db->getAdminListingInfo();
+
+    $f3->set('res', $data);
+    $f3->set('comma', ",");
 
     $view = new Template();
     echo $view->render('views/adminDashboard/includes/header.html');

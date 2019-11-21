@@ -47,3 +47,13 @@ th.th-sm.sorting {
 th {
     color: black;
 }
+/*For the Modal to Cover entire screen*/
+/*.modal-full {*/
+/*    min-width: 100vw;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.modal-full .modal-content {*/
+/*    min-height: 100vh;*/
+/*    margin-bottom: 10%;*/
+/*}*/
