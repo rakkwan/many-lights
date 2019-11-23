@@ -15,7 +15,10 @@ $(document).ready(function () {
         "scrollX": true
     });
     $('.dataTables_length').addClass('bs-select');
+
+
     downloadResourcePdf();
+
 
     $("#disclaimerButton").css("display", "none");
 
@@ -156,15 +159,22 @@ function downloadResourcePdf() {
                 let info = JSON.parse(data);
                 console.log(info);
 
+                $.post("model/ajax/puts/downloadPdf.php", {
+                    myData: info
+                }, function (data) {
 
-                createCookies(info);
+                    console.log(data);
 
-                createCookie("refresh", refresh, "1");
+                    let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
+
+                    window.open(location);
+                });
+
+                // createCookies(info);
+
+                // createCookie("refresh", refresh, "1");
             });
 
-        let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
-
-        window.open(location);
 
         refresh = false;
     });
@@ -177,7 +187,7 @@ function createCookie(name, value, days) {
 
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + (days * 1000 * 25));
         expires = "; expires=" + date.toGMTString();
     } else {
         expires = "";

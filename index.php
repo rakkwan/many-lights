@@ -491,7 +491,7 @@ $f3->route('GET /resources', function ($f3) {
     //Set the array to use in the table.
     $f3->set('res', $data);
 
-    //check if the disclaimer approved before
+    //check if the disclaimer approved beforecentralModalSuccess
     if ($_SESSION["approve"] == "yes" && !empty($_SESSION['approve'])) {
         $f3->set('approve', "yes");
     }
