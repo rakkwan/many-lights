@@ -17,52 +17,6 @@ Author: Samantha DeSmul
         data-backdrop="static" data-keyboard="false">
 </button>
 
-<!--Disclaimer overlay-->
-
-<check if="{{ @approve=='yes' }}">
-    <true>
-        <!--Enjoy/-->
-    </true>
-    <false>
-        <!-- Modal -->
-        <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="disclaimerModalLabel">Modal title</h5>
-                        <button type="button" class="close" id="closeDisclaimer" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p> The content provided on this website is for information purposes only and not a guarantee of
-                            quality. It
-                            is recommended that you confirm the accuracy of information and interview service providers
-                            to
-                            determine
-                            the best fit for your needs. </p>
-                        To help with evaluating whether a provider is suitable for you and your
-                        family, we have prepared a list of questions for you to use. You may also go to this link
-                        Screening
-                        Questions When Seeking An Adoption-Competent Therapist
-                        <a href="https://www.growbeyondwords.com/screening-questions-when-seeking-an-adoption-competent-therapist/">visit
-                            online.</a>
-
-                    </div>
-                    <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-success float-left" data-dismiss="modal"
-                                id="approveDisclaimer">
-                            Approve
-                        </button>
-                        <button type="button" class="btn btn-danger" id="declineDisclaimer">Decline</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </false>
-</check>
-
 
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
@@ -91,7 +45,7 @@ Author: Samantha DeSmul
         <tbody>
         <repeat group="{{ @res }}"
                 value="{{ @value }}">
-            <tr data-title="{{ @value['resourceID'] }}" >
+            <tr data-title="{{ @value['resourceID'] }}">
                 <td>{{ @value["Resource_ServiceType"] }}</td>
                 <td>{{ @value["theraFname"] }} {{ @value["theraLname"] }}</td>
                 <td>{{ @value["office"] }}</td>
@@ -120,6 +74,58 @@ Author: Samantha DeSmul
         </tfoot>
     </table>
 </div>
+
+
+<!--Disclaimer overlay-->
+
+<check if="{{ @approve=='yes' }}">
+    <true>
+        <!--Enjoy/-->
+    </true>
+    <false>
+        <!-- Modal -->
+        <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="disclaimerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header purpleColor text-white text-center">
+                        <div class="col-12">
+                            <button type="button" class="close text-white" id="closeDisclaimer" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h2 class="modal-title" id="disclaimerModalLabel">NOTICE</h2>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p> The content provided on this website is for information purposes only and not a guarantee of
+                            quality. It
+                            is recommended that you confirm the accuracy of information and interview service providers
+                            to
+                            determine
+                            the best fit for your needs.<br><br>
+                            To help with evaluating whether a provider is suitable for you and your
+                            family, we have prepared a list of questions for you to use. You may also go to this link
+                            Screening
+                            Questions When Seeking An Adoption-Competent Therapist <a
+                                    href="https://www.growbeyondwords.com/screening-questions-when-seeking-an-adoption-competent-therapist/">visit
+                                online.</a></p>
+
+
+                    </div>
+                    <div class="modal-footer text-center">
+                        <div>
+                            <button type="button" class="btn purpleColor text-white text-center" data-dismiss="modal"
+                                    id="approveDisclaimer">
+                                Approve
+                            </button>
+                            <button type="button" class="btn purpleColor text-white text-center" id="declineDisclaimer">Decline
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </false>
+</check>
 
 <!-- Central Modal-->
 <div class="modal fade" id="centralModalSuccess1" tabindex="-1" role="dialog">
