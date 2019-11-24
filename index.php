@@ -505,12 +505,12 @@ $f3->route('GET /resources', function ($f3) {
 });
 
 //User Listings View
-$f3->route('POST /download', function ($f3) {
+$f3->route('GET|POST /download', function ($f3) {
 
     if ($_COOKIE) {
 
-        echo print_r($_COOKIE);
-        echo print_r($_POST);
+//        echo print_r($_COOKIE);
+//        echo print_r($_POST);
     } else {
         echo "submit wrong";
     }

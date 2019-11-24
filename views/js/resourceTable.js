@@ -163,16 +163,16 @@ function downloadResourcePdf() {
                     myData: info
                 }, function (data) {
 
-                    // console.log(data);
-                    // let url = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
-                    // redirectMe(url, 'post');
+                    console.log(data);
+                    let url = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
+                    window.location.replace(url);
                     // $.redirect('demo.php', {'arg1': 'value1', 'arg2': 'value2'});
                 });
 
                 console.log(info);
 
 
-                // createCookies(info);
+                createCookies(info);
 
                 // createCookie("refresh", refresh, "1");
             });
