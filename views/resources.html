@@ -276,9 +276,13 @@ Author: Samantha DeSmul
             <div class="modal-footer justify-content-left purpleColor">
                 <div class="d-flex flex-column">
                     <!--Button Decline-->
-                    <button type="button" class="btn btn-outline-light waves-effect" id="downloadPdf">
-                        <i class="fas fa-file-download"></i> Download PDF
-                    </button>
+                    <form action="{{@BASE}}/download" method="post" target="_blank">
+                        <input type="submit" value="Download PDF"
+                               class="btn btn-outline-light waves-effect fas fa-file-download"
+                               id="downloadPdf">
+                        <i></i>
+                        </input>
+                    </form>
                 </div>
             </div>
         </div>

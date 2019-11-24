@@ -17,16 +17,26 @@ $(document).ready(function () {
     $('.dataTables_length').addClass('bs-select');
 
 
+//Modal information
+    $('#dtBasicExample1').on('click', 'tr', function () {
+
+        //get value of resource from the datatable
+        let $dataRowId = $(this).attr("data-title");
+
+        //gets the info for the modal
+        console.log($dataRowId);
+        downloadId = $dataRowId;
+        let source = completeModal($dataRowId);
+
+
+        $(this).attr("data-toggle", "modal");
+        $(this).attr("data-target", "#centralModalSuccess1");
+
+    });
+
     downloadResourcePdf();
 
-
     $("#disclaimerButton").css("display", "none");
-
-    //check session for disclaimer
-
-    if ($("#disclaimerButton").hasClass) {
-
-    }
 
     $("#disclaimerButton").click();
 
@@ -35,11 +45,11 @@ $(document).ready(function () {
         //reroute home
         window.location.href = "../oneStopWa";
     });
+
     $("#closeDisclaimer").on("click", function () {
         //reroute home
         window.location.href = "../oneStopWa";
     });
-
 
     $("#approveDisclaimer").on("click", function () {
 
@@ -93,21 +103,6 @@ function closeNav() {
 
 let downloadId;
 
-//Modal information
-$('#dtBasicExample1').on('click', 'tr', function () {
-
-    //get value of resource from the datatable
-    let $dataRowId = $(this).attr("data-title");
-
-    //gets the info for the modal
-    console.log($dataRowId);
-    downloadId = $dataRowId;
-    completeModal($dataRowId);
-
-    $(this).attr("data-toggle", "modal");
-    $(this).attr("data-target", "#centralModalSuccess1");
-
-});
 
 /**
  * Create a cookie for the information of the resources to be transferee to MPDF download
@@ -148,14 +143,19 @@ function downloadResourcePdf() {
 
     let refresh = false;
 
-    $("#downloadPdf").click(function () {
+    $("#downloadPdf").on("click", function (event) {
 
+        // event.preventDefault();
+
+
+        console.log(this);
         refresh = true;
         console.log(window.location.href);
+
         $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
                 statusID: downloadId
             },
-            function (data, status) {
+            function (data) {
                 let info = JSON.parse(data);
                 console.log(info);
 
@@ -163,12 +163,14 @@ function downloadResourcePdf() {
                     myData: info
                 }, function (data) {
 
-                    console.log(data);
-
-                    let location = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
-
-                    window.open(location);
+                    // console.log(data);
+                    // let url = "https://coderlite.greenriverdev.com/IT355/oneStopWa/download";
+                    // redirectMe(url, 'post');
+                    // $.redirect('demo.php', {'arg1': 'value1', 'arg2': 'value2'});
                 });
+
+                console.log(info);
+
 
                 // createCookies(info);
 
@@ -177,9 +179,17 @@ function downloadResourcePdf() {
 
 
         refresh = false;
+
     });
 
 }
+
+let redirectMe = function (url, method) {
+    $('<form>', {
+        method: method,
+        action: url
+    }).submit();
+};
 
 // Function to create the cookie
 function createCookie(name, value, days) {
@@ -230,22 +240,27 @@ $("a[lang='fEdit']").click(function () {
 //refresh page after edit is complete
 $("#editedListing").click(function () {
     location.href = self['location'];
-})
+});
 
 /**
  * Parses the info returned from API into the modal
  * @param data json object
  */
 function completeModal($id) {
-
+    let infor;
     //ajax post call to php script
-    $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
-            statusID: $id
+    infor = $.post("model/ajax/gets/getResourceDatatable_ajax.php", {
+            statusID: $id,
+            infor: null
         },
-        function (data, status) {
+        function (data, status, infor) {
+
             var info = JSON.parse(data);
             if (info) {
+
                 console.log("HERE" + info);
+
+                infor = info;
 
                 //Listing Modal
                 //First Row of form
@@ -309,8 +324,15 @@ function completeModal($id) {
                 $("#refEmail").text(info.Referral_email);
                 $("#refPhone").text(info.Referral_phone);
 
+
             }
+
+            return infor;
         });
+
+    console.log("INFO:" + infor.theraLname);
+    console.log("INFO:" + infor.theraFname);
+
 }
 
 /**

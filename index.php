@@ -505,10 +505,12 @@ $f3->route('GET /resources', function ($f3) {
 });
 
 //User Listings View
-$f3->route('GET|POST /download', function ($f3) {
+$f3->route('POST /download', function ($f3) {
 
     if ($_COOKIE) {
-        echo $_COOKIE['refresh'];
+
+        echo print_r($_COOKIE);
+        echo print_r($_POST);
     } else {
         echo "submit wrong";
     }
@@ -517,6 +519,9 @@ $f3->route('GET|POST /download', function ($f3) {
 
 
     echo $view->render("model/ajax/puts/downloadPdf.php");
+
+//    echo "<script>location.reload(true)</script>";
+
 
 });
 
@@ -580,27 +585,23 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $countResources = 0;
 
     // count the type of admin
-    foreach($admin as $row) {
-        if($row['masterAdmin'] == 1) {
+    foreach ($admin as $row) {
+        if ($row['masterAdmin'] == 1) {
             $countMaster++;
-        }
-        else {
+        } else {
             $countStandard++;
         }
     }
 
 
-    foreach($resources as $row) {
+    foreach ($resources as $row) {
         // count the pending resources
-        if($row['statusID'] == 1) {
+        if ($row['statusID'] == 1) {
             $countPending++;
-        }
-        // count the declined resources
-        elseif($row['statusID'] == 3){
+        } // count the declined resources
+        elseif ($row['statusID'] == 3) {
             $countDeclined++;
-        }
-
-        else{
+        } else {
             // count the Approved resources
             $countApproved++;
         }
@@ -621,7 +622,7 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $adminID = $_POST['removeID'];
 
 
-    if(isset($adminID)) {
+    if (isset($adminID)) {
         $db->deleteAdmin($adminID);
     }
 
@@ -645,8 +646,7 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 $f3->route('GET|POST /addAdmin', function ($f3) {
     global $db;
 
-    if (!empty($_POST))
-    {
+    if (!empty($_POST)) {
         // get data from the form
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -664,13 +664,10 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
         $f3->set('adminType', $adminType);
 
 
-        if(validCreateAdmin())
-        {
-            if ($adminType == '0')
-            {
+        if (validCreateAdmin()) {
+            if ($adminType == '0') {
                 $adminType = false;
-            }
-            else {
+            } else {
                 $adminType = true;
             }
             // create a new admin and add them into the database
