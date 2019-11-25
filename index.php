@@ -613,7 +613,10 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 
 
     if (isset($adminID)) {
+<<<<<<< HEAD
         header('Location: '.$_SERVER['REQUEST_URI']);
+=======
+>>>>>>> ae6bb8f979f52173e2ed9e40c85be93ddfd5a9f1
         $db->deleteAdmin($adminID);
     }
 

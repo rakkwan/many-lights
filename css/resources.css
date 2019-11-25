@@ -7,6 +7,10 @@ h6 {
 }
 
 
+.modal-footer.purpleColor {
+    border-radius: 0px !important;
+}
+
 /*Cells*/
 /*table td {*/
 /*background-color: #feffd9;*/
@@ -21,6 +25,6 @@ h6 {
     cellspacing: "0";
 }
 
-#disclaimerButton{
+#disclaimerButton {
     display: none;
 }

@@ -1,22 +1,24 @@
 <?php
+session_start();
+
+$ready = false;
+//echo print_r($_POST);
+$_SESSION['ready'] = false;
+
 
 //require_once 'vendor/autoload.php';
-$ready = false;
 if ($_COOKIE) {
-    $ready = true;
 
     try {
         $mpdf = new \Mpdf\Mpdf(['debug' => true]);
 
         $mpdf->WriteHTML("<h1 align=\"center\">One Stop WA</h1>");
 
-
         //first segment
         $mpdf->WriteHTML("<p><b>Resource Type</b> : " . $_COOKIE['resource'] . "</p>" .
             "<p><b>Business Name</b> : " . $_COOKIE['office'] . "</p>" .
             "<p><b>Website</b> : " . $_COOKIE['website'] . "</p>" .
             "<p><b>Provider Name</b> : " . $_COOKIE['providerName'] . "</p>");
-
 
         //Second segment
         $mpdf->WriteHTML("<p><b>Email</b> : " . $_COOKIE['officeEmail'] . "</p>" .
@@ -35,8 +37,7 @@ if ($_COOKIE) {
             "<p><b>Fees</b> : " . $_COOKIE['fee'] . "</p>");
 
         //Days table
-        $table = '
-  <table class="tg">
+        $table = '<table class="tg">
   <tr>
     <th class="tg-0lax">Monday</th>
     <th class="tg-0lax">Tuesday</th>
@@ -55,36 +56,32 @@ if ($_COOKIE) {
     <td class="tg-0lax">Closed</td>
     <td class="tg-0lax">Closed</td>
   </tr>
-</table>
-        ';
+</table>';
 
         $tableStyles = file_get_contents("css/pdfStyles.css");
         $mpdf->WriteHTML($tableStyles, 1);
         $mpdf->WriteHTML($table);
 
 
-// Other code
-        $mpdf->Output('oneStopWaResource.pdf', 'I');
     } catch
     (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception name used for catch
         // Process the exception, log, print etc.
         echo $e->getMessage();
+    } finally {
+        if ($ready == false) {
+
+
+//            echo "in " . $ready;
+//            $mpdf->Output('oneStopWaResource.pdf', 'I');
+
+            clearstatcache();
+            $mpdf->Output('oneStopWaResource.pdf', 'I');
+
+            header('https://coderlite.greenriverdev.com/IT355/oneStopWa/download');
+
+        }
     }
 
-
-    setcookie("age", "", time() - 3600);
-
-
-}
-
-
-if ($ready) {
-//    header('Location: ' . $_SERVER['REQUEST_URI']);
-
-//    echo "window.addEventListener('DOMContentLoaded',function(event){location.reload();});";
-
-} else {
-    echo "NOOO";
 }
 
 /* JS resonse on click to be printed example
@@ -119,11 +116,11 @@ zip: "33333"
 */
 
 
-//function debug_to_console($data)
-//{
-//    $output = $data;
-//    if (is_array($output))
-//        $output = implode(',', $output);
-//
-//    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-//}
+function debug_to_console($data)
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
