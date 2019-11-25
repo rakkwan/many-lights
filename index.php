@@ -539,10 +539,12 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             // add the adminID to session and then go to admin page
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+            $_SESSION['admin'] = true;
             $f3->reroute('/adminDashboard');
         } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+            $_SESSION['admin'] = true;
             $f3->reroute('/admin');
         }
         $f3->set('errors', 'Admin email and password do not match');
@@ -613,10 +615,7 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
 
 
     if (isset($adminID)) {
-<<<<<<< HEAD
         header('Location: '.$_SERVER['REQUEST_URI']);
-=======
->>>>>>> ae6bb8f979f52173e2ed9e40c85be93ddfd5a9f1
         $db->deleteAdmin($adminID);
     }
 
@@ -631,9 +630,16 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $f3->set('comma', ",");
 
     $view = new Template();
-    echo $view->render('views/adminDashboard/includes/header.html');
-    echo $view->render('views/adminDashboard/adminDashboard.html');
-    echo $view->render('views/adminDashboard/includes/footer.html');
+
+    // if admin is logged in load the page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/adminDashboard/includes/header.html');
+        echo $view->render('views/adminDashboard/adminDashboard.html');
+        echo $view->render('views/adminDashboard/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
 });
 
 //Add a new Admin
@@ -674,9 +680,16 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
 
     }
     $view = new Template();
-    echo $view->render('views/adminDashboard/includes/header.html');
-    echo $view->render('views/createAdmin.html');
-    echo $view->render('views/adminDashboard/includes/footer.html');
+    // if admin is logged in load the page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/adminDashboard/includes/header.html');
+        echo $view->render('views/createAdmin.html');
+        echo $view->render('views/adminDashboard/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
+
 });
 
 
@@ -765,9 +778,17 @@ $f3->route('GET|POST /admin', function ($f3) {
     $f3->set('comma', ",");
 
     $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render("views/admin.html");
-    echo $view->render('views/includes/footer.html');
+
+    // if admin is logged in, load page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/includes/header.html');
+        echo $view->render("views/admin.html");
+        echo $view->render('views/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
+
 });
 
 /**
