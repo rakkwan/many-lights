@@ -1,5 +1,6 @@
 <?php
-
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 /*
  *
@@ -113,9 +114,9 @@ CREATE TABLE openHours(
  */
 
 
-require_once '/home/jgoodri1/config.php';
+//require_once '/home/jgoodri1/config.php';
 
-//require_once '/home2/rhillgre/config3.php';
+require_once '/home2/rhillgre/config3.php';
 class Databases
 {
 
@@ -974,6 +975,147 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
         //confirmation
         return $this->getSelectedListInfo($id);
+    }
+
+    function bulkUpload($key, $info)
+    {
+        $batch = 0;
+        $sql = '
+        SET
+            @res = :adminLogin;
+        START TRANSACTION
+            ;
+        INSERT INTO resources(
+            speciality,
+            office,
+            officeEmail,
+            officePhone,
+            theraFname,
+            theraLname,
+            theraGender,
+            interpreter,
+            insurance,
+            fee,
+            age,
+            countyOne,
+            countyTwo,
+            countyThree,
+            address,
+            city,
+            state,
+            zip,
+            website,
+            serviceID,
+            recommendedInfoID,
+            statusID,
+            credentials
+            /**--,SOURCE**/
+        )
+        VALUES(
+            :speciality,
+            :office,
+            :officeEmail,
+            :officePhone,
+            :theraFname,
+            :theraLname,
+            :theraGender,
+            :interpreter,
+            :insurance,
+            :fee,
+            :age,
+            :countyOne,
+            :countyTwo,
+            :countyThree,
+            :address,
+            :city,
+            :state,
+            :zip,
+            :website,
+            :serviceID,
+            @res,
+            :statusID,
+            :credentials
+            /*:--,source*/
+        );
+        UPDATE
+            recommendedInfo,
+            adminLogin
+        SET
+            recommendedInfo.email = adminLogin.email,
+            recommendedInfo.fname = adminLogin.fname,
+            recommendedInfo.lname = adminLogin.lname,
+            recommendedInfo.phone = "1-800-ManyLights"
+        WHERE
+            adminLogin.adminID = @res AND recommendedInfo.phone = "1-800-ManyLights";
+        COMMIT
+            ;
+        ';
+
+        foreach ($info as $data)
+        {
+            $adminLogin = $key;
+            $speciality = $data["speciality"];
+            $office = $data["office"];
+            $officeEmail = $data["officeEmail"];
+            $officePhone = $data["officePhone"];
+            $theraFname = $data["theraFname"];
+            $theraLname = $data["theraLname"];
+            $theraGender = $data["theraGender"];
+            $interpreter = $data["interpreter"];
+            $insurance = $data["insurance"];
+            $fee = $data["fee"];
+            $age = $data["age"];
+            $countyOne = $data["countyOne"];
+            $countyTwo = $data["countyTwo"];
+            $countyThree = $data["countyThree"];
+            $address = $data["address"];
+            $city = $data["city"];
+            $state = $data["state"];
+            $zip = $data["zip"];
+            $website = $data["website"];
+            $serviceID = $data["serviceID"];
+            $recommendedInfoID = $data["recommendedInfoID"];
+            $statusID = 1;
+            $credentials = $data["credentials"];
+            $source = $data['source'];
+
+            // prepare the statement
+            $statement = $this->_dbh->prepare($sql);
+
+            // bind params
+            $statement->bindParam(':adminLogin', $adminLogin, PDO::PARAM_STR);
+            $statement->bindParam(':speciality', $speciality, PDO::PARAM_STR);
+            $statement->bindParam(':office', $office, PDO::PARAM_STR);
+            $statement->bindParam(':officeEmail', $officeEmail, PDO::PARAM_STR);
+            $statement->bindParam(':officePhone', $officePhone, PDO::PARAM_STR);
+            $statement->bindParam(':theraFname', $theraFname, PDO::PARAM_STR);
+            $statement->bindParam(':theraLname', $theraLname, PDO::PARAM_STR);
+            $statement->bindParam(':theraGender', $theraGender, PDO::PARAM_STR);
+            $statement->bindParam(':interpreter', $interpreter, PDO::PARAM_STR);
+            $statement->bindParam(':insurance', $insurance, PDO::PARAM_STR);
+            $statement->bindParam(':fee', $fee, PDO::PARAM_STR);
+            $statement->bindParam(':age', $age, PDO::PARAM_STR);
+            $statement->bindParam(':countyOne', $countyOne, PDO::PARAM_STR);
+            $statement->bindParam(':countyTwo', $countyTwo, PDO::PARAM_STR);
+            $statement->bindParam(':countyThree', $countyThree, PDO::PARAM_STR);
+            $statement->bindParam(':address', $address, PDO::PARAM_STR);
+            $statement->bindParam(':city', $city, PDO::PARAM_STR);
+            $statement->bindParam(':state', $state, PDO::PARAM_STR);
+            $statement->bindParam(':zip', $zip, PDO::PARAM_STR);
+            $statement->bindParam(':website', $website, PDO::PARAM_STR);
+            $statement->bindParam(':serviceID', $serviceID, PDO::PARAM_STR);
+//            $statement->bindParam(':recommendedInfoID', $recommendedInfoID, PDO::PARAM_STR);
+            $statement->bindParam(':statusID', $statusID, PDO::PARAM_STR);
+            $statement->bindParam(':credentials', $credentials, PDO::PARAM_STR);
+//            $statement->bindParam(':source', $source, PDO::PARAM_STR);
+
+            // Execute the statement
+            $statement->execute();
+
+          $batch = $batch + $statement->rowCount();
+        }
+
+        return $batch;
     }
 }
 
