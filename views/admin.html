@@ -7,7 +7,33 @@
    -->
 <!--Page specific styles-->
 <link rel="stylesheet" href="./css/datatable.css">
-
+<!-- This element calls for the file -->
+<form id="excelForm" action="/admin" method="post" enctype="multipart/form-data"  hidden>
+    <input type="submit" name="submitBtn" />
+</form>
+<div class="container scrollable p-4 mb-4 m-1 text-center mx-auto">
+    <div class="row justify-content-center" name="excelUpload">
+        <div class="col-4">
+            <h4 id="uploading">Excel <i class="fas fa-file-excel fa-3x"></i> Upload</h4>
+        </div>
+        <div class="col-8">
+            <div class="input-group mt-3 rounded-lg z-depth-1-half">
+                <div id="look" class="custom-file">
+                    <input onchange="captureFile()" form="excelForm" id="excelUpload" name="excelUpload" type="file" class="custom-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                    <label class="custom-file-label white-text purpleColor waves-effect waves-light look" for="excelUpload">
+                        Upload XLXS Schema with Input Resources
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 text-center">
+    <a href="assets/onstopWA_Schema.xlsx" download>
+        <p><i class="fas fa-cloud-download-alt fa-1x"></i> Download XLXS Schema to Input Resources</p>
+    </a>
+</div>
+<!-- This element calls for the file -->
 <div class="row">
     <div class="col-12 text-center bg-white mb-3 pt-2">
         <h2>Review Pending Resources</h2>
