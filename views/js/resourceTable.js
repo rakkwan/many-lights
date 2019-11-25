@@ -211,14 +211,14 @@ function createCookie(name, value, days) {
 $('#approve').click(function () {
     let $res = $('#here').text();
     acceptedStatus($res);
-    location.href = self['location'];
+
 });
 
 //Decline Button function for the Status of selected resource
 $('#decline').click(function () {
     let $res = $('#here').text();
     declinedStatus($res);
-    location.href = self['location'];
+    
 });
 
 //Edit Button Function for Admin listing
@@ -229,12 +229,7 @@ $('#edit').click(function () {
 
 //Action execute the Admin Edit
 $("a[lang='fEdit']").click(function () {
-    var ready = confirm("Ready to EDIT the OneStop WA DB?");
-    if (ready == true) {
         AdminEditInfo();
-    } else {
-        return;
-    }
 });
 
 //refresh page after edit is complete

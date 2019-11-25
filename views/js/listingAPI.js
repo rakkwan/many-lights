@@ -21,7 +21,10 @@ function acceptedStatus($id) {
             var info = JSON.parse(data);
             if(info)
             {
-                alert("\nThe listing: \n" + info.theraFname + " " + info.theraLname + " \nfrom: \n" +
+                jQuery.noConflict();
+                //Confimation For user
+                $("#confirmEditModalSuccess").modal("show");
+                $("#confirmEdit").text("\nThe listing: \n" + info.theraFname + " " + info.theraLname + " \nfrom: \n" +
                     info.Referral_fname + " " + info.Referral_lname + "\n approved for \nOneStop WA " +
                     "VIEW ALL resources");
             }
@@ -49,10 +52,14 @@ function declinedStatus($id) {
             var info = JSON.parse(data);
             if(info)
             {
-                alert("\n The listing:\n" +
+                jQuery.noConflict();
+                //Confimation For user
+                $("#confirmEditModalSuccess").modal("show");
+                $("#confirmEdit").text("\n The listing:\n" +
                     info.theraFname + " " + info.theraLname +
                     " \n from \n" + info.Referral_fname + " " + info.Referral_lname +
                     "\n will not be listed to on OneStop WA");
+
             }
             else
             {
@@ -89,76 +96,4 @@ function getSelectedListingInfo($reso) {
     );
 }
 
-// //Edit Button function to Modifiy the selected resource info in the DB
-// $('#edit').click(function() {
-//     //Post Variables
-//     let $res = $('#here').text();
-//     let $office = $('#office').text();
-//     let $type = $("#Resource_ServiceType").text();
-//     let $web = $('#website').text();
-//     let $spec = $('#speciality').text();
-//
-//     //Second Row of Modal
-//     let $offEmail= $('#officeEmail').text();
-//
-//     let $offPhone= $('#officePhone').text();
-//
-//     //Third Row of Modal
-//     let $address = $('#address').text();
-//     let $city = $('#city').text();
-//     let $state = $('#state').text();
-//     let $zip = $('#zip').text();
-//
-//     //Fourth Row of Modal
-//     let $theraGen = $('#theraGender').text();
-//
-//     //Fifth Row of Modal
-//     let $inter = $('#interpreter').text();
-//
-//     //Referral Row
-//     let $refFname = $('#Referral_fname').text();
-//     let $refEmail = $("#Referral_email").text();
-//     let $refPhone = $("#Referral_phone").text();
-//     let $insur = $("#insurance").text();
-//     let $fees = $("#fees").text();
-//
-//     //Bind vars to Post
-//     $.post("model/ajax/puts/updateResInfo_ajax.php",
-//         //Post Var bind
-//         {
-//             id: $res,
-//             office: $office,
-//             type: $type,
-//             web: $web ,
-//             spec: $spec ,
-//
-//             //Second Row of Modal
-//             offEmail: $offEmail,
-//
-//             offPhone: $offPhone,
-//
-//             //Third Row of Modal
-//             address: $address ,
-//             city:  $city,
-//             state:  $state,
-//             zip: $zip ,
-//
-//             //Fourth Row of Modal
-//             theraGen: $theraGen ,
-//
-//             //Fifth Row of Modal
-//             inter: $inter ,
-//
-//             //Referral Row
-//             refFname: $refFname,
-//             refEmail:  $refEmail,
-//             refPhone:  $refPhone,
-//             insur:  $insur,
-//             fees: $fees
-//         },
-//         function (data, status) {
-//             //updated resource info
-//
-//         })
-// });
 
