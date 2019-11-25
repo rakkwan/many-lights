@@ -15,7 +15,6 @@ require_once __DIR__ . '/model/database.php';
 // Start session!
 session_start();
 
-
 //turn on error reporting
 ini_set('display_errors', 1);
 
@@ -103,17 +102,16 @@ $f3->route('GET|POST /recommended', function ($f3) {
 
 // office information form route
 $f3->route('GET|POST /resourceContact', function ($f3) {
+
     //If form has been submitted, validate
-
     if (!empty($_POST)) {
-
         // Get data from form
         $service = $_POST['service'];
         $specialty = $_POST['specialty'];
         $office = $_POST['office'];
         $officePhone = $_POST['officePhone'];
         $officeEmail = $_POST['officeEmail'];
-        $credentail = $_POST['credential'];
+        $credential = $_POST['credential'];
         $theraFname = $_POST['theraFname'];
         $theraLname = $_POST['theraLname'];
         $theraGender = $_POST['theraGender'];
@@ -124,6 +122,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
         $f3->set('office', $office);
         $f3->set('officePhone', $officePhone);
         $f3->set('officeEmail', $officeEmail);
+        $f3->set('credential', $credential);
         $f3->set('theraFname', $theraFname);
         $f3->set('theraLname', $theraLname);
         $f3->set('theraGender', $theraGender);
@@ -140,7 +139,7 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
             $_SESSION['office'] = $office;
             $_SESSION['officePhone'] = $officePhone;
             $_SESSION['officeEmail'] = $officeEmail;
-            $_SESSION['credential'] = $credentail;
+            $_SESSION['credential'] = $credential;
             $_SESSION['theraFname'] = $theraFname;
             $_SESSION['theraLname'] = $theraLname;
             $_SESSION['theraGender'] = $theraGender;
@@ -166,7 +165,6 @@ $f3->route('GET|POST /resourceContact', function ($f3) {
 $f3->route('GET|POST /location', function ($f3) {
     //If form has been submitted, validate
     if (!empty($_POST)) {
-
         // Get data from form
         $address = $_POST['address'];
         $city = $_POST['city'];
@@ -180,8 +178,7 @@ $f3->route('GET|POST /location', function ($f3) {
         $_SESSION['zip'] = $zip;
         $_SESSION['website'] = $website;
 
-
-        // do data to hive
+        // data to hive
         $f3->set('address', $address);
         $f3->set('city', $city);
         $f3->set('state', $state);
@@ -190,13 +187,6 @@ $f3->route('GET|POST /location', function ($f3) {
 
         // save data in class session
         $_SESSION['LocationForm'] = new LocationForm($address, $city, $state, $zip, $website);
-
-        $locationInfo = new LocationForm($_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['website']);
-
-        global $db;
-        $_SESSION['resourceID'] = $f3->get('resourceID');
-        $db->updateLocation($locationInfo, $_SESSION['resourceID']);
-
 
         $f3->reroute('/optionalInfo');
     }
@@ -213,38 +203,39 @@ $f3->route('GET|POST /location', function ($f3) {
 
 // User optional information route
 $f3->route('GET|POST /optionalInfo', function ($f3) {
-
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
-        $age = $_POST['age'];
+        $ages = $_POST['ages'];
         $interpreter = $_POST['interpreter'];
         $insurance = $_POST['insurance'];
         $fee = $_POST['fee'];
+
+        // Write data to session
+        $_SESSION['ages'] = $ages;
+        $_SESSION['interpreter'] = $interpreter;
+        $_SESSION['insurance'] = $insurance;
+        $_SESSION['fee'] = $fee;
 
         // Add data to hive
         $f3->set('interpreter', $interpreter);
         $f3->set('insurance', $insurance);
         $f3->set('fee', $fee);
 
-        $_SESSION['OptionalInfo'] = new OptionalInfo($age, $interpreter, $insurance, $fee);
-        // if data is valid
-        if (!empty($_POST)) {
-            // Write data to session
-            $_SESSION['ages'] = $age;
-            $_SESSION['interpreter'] = $interpreter;
-            $_SESSION['insurance'] = $insurance;
-            $_SESSION['fee'] = $fee;
-
-            if (empty($age)) {
-                $_SESSION['ageSeen'] = "No age selected";
-            } else {
-                $_SESSION['ageSeen'] = implode(', ', $age);
-            }
-
-            // redirect to datHour page
-            $f3->reroute('/dayHour');
+        if (empty($ages)) {
+            $_SESSION['ageSeen'] = "No age selected";
+        } else {
+                $_SESSION['ageSeen'] = implode(', ', $ages);
         }
+
+        if(sizeof($ages) == 0) {
+            $ages = array('No ages selected');
+        }
+
+        $_SESSION['OptionalInfo'] = new OptionalInfo($ages, $interpreter, $insurance, $fee);
+
+        // redirect to datHour page
+        $f3->reroute('/dayHour');
     }
 
     if (!isset($_SESSION['OptionalInfo'])) {
@@ -262,7 +253,6 @@ $f3->route('GET|POST /optionalInfo', function ($f3) {
 
 //User day and hour information route
 $f3->route('GET|POST /dayHour', function ($f3) {
-
     //If form has been submitted, validate
     if (!empty($_POST)) {
         // Get data from form
@@ -276,7 +266,7 @@ $f3->route('GET|POST /dayHour', function ($f3) {
         $_SESSION['countyTwo'] = $countyTwo;
         $_SESSION['countyThree'] = $countyThree;
 
-
+        // Check if days is checked
         if (!empty($days)) {
             // loop through and check which days are checked
             foreach ($_POST['days'] as $day) {
@@ -491,7 +481,7 @@ $f3->route('GET /resources', function ($f3) {
     //Set the array to use in the table.
     $f3->set('res', $data);
 
-    //check if the disclaimer approved before
+    //check if the disclaimer approved beforecentralModalSuccess
     if ($_SESSION["approve"] == "yes" && !empty($_SESSION['approve'])) {
         $f3->set('approve', "yes");
     }
@@ -508,7 +498,9 @@ $f3->route('GET /resources', function ($f3) {
 $f3->route('GET|POST /download', function ($f3) {
 
     if ($_COOKIE) {
-        echo $_COOKIE['refresh'];
+
+//        echo print_r($_COOKIE);
+//        echo print_r($_POST);
     } else {
         echo "submit wrong";
     }
@@ -517,6 +509,9 @@ $f3->route('GET|POST /download', function ($f3) {
 
 
     echo $view->render("model/ajax/puts/downloadPdf.php");
+
+//    echo "<script>location.reload(true)</script>";
+
 
 });
 
@@ -544,10 +539,12 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
             // add the adminID to session and then go to admin page
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+            $_SESSION['admin'] = true;
             $f3->reroute('/adminDashboard');
         } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
             $_SESSION['adminID'] = $f3->get('adminID');
             $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+            $_SESSION['admin'] = true;
             $f3->reroute('/admin');
         }
         $f3->set('errors', 'Admin email and password do not match');
@@ -580,27 +577,23 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $countResources = 0;
 
     // count the type of admin
-    foreach($admin as $row) {
-        if($row['masterAdmin'] == 1) {
+    foreach ($admin as $row) {
+        if ($row['masterAdmin'] == 1) {
             $countMaster++;
-        }
-        else {
+        } else {
             $countStandard++;
         }
     }
 
 
-    foreach($resources as $row) {
+    foreach ($resources as $row) {
         // count the pending resources
-        if($row['statusID'] == 1) {
+        if ($row['statusID'] == 1) {
             $countPending++;
-        }
-        // count the declined resources
-        elseif($row['statusID'] == 3){
+        } // count the declined resources
+        elseif ($row['statusID'] == 3) {
             $countDeclined++;
-        }
-
-        else{
+        } else {
             // count the Approved resources
             $countApproved++;
         }
@@ -621,7 +614,8 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $adminID = $_POST['removeID'];
 
 
-    if(isset($adminID)) {
+    if (isset($adminID)) {
+        header('Location: '.$_SERVER['REQUEST_URI']);
         $db->deleteAdmin($adminID);
     }
 
@@ -636,17 +630,23 @@ $f3->route('GET|POST /adminDashboard', function ($f3) {
     $f3->set('comma', ",");
 
     $view = new Template();
-    echo $view->render('views/adminDashboard/includes/header.html');
-    echo $view->render('views/adminDashboard/adminDashboard.html');
-    echo $view->render('views/adminDashboard/includes/footer.html');
+
+    // if admin is logged in load the page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/adminDashboard/includes/header.html');
+        echo $view->render('views/adminDashboard/adminDashboard.html');
+        echo $view->render('views/adminDashboard/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
 });
 
 //Add a new Admin
 $f3->route('GET|POST /addAdmin', function ($f3) {
     global $db;
 
-    if (!empty($_POST))
-    {
+    if (!empty($_POST)) {
         // get data from the form
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -664,13 +664,10 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
         $f3->set('adminType', $adminType);
 
 
-        if(validCreateAdmin())
-        {
-            if ($adminType == '0')
-            {
+        if (validCreateAdmin()) {
+            if ($adminType == '0') {
                 $adminType = false;
-            }
-            else {
+            } else {
                 $adminType = true;
             }
             // create a new admin and add them into the database
@@ -683,9 +680,16 @@ $f3->route('GET|POST /addAdmin', function ($f3) {
 
     }
     $view = new Template();
-    echo $view->render('views/adminDashboard/includes/header.html');
-    echo $view->render('views/createAdmin.html');
-    echo $view->render('views/adminDashboard/includes/footer.html');
+    // if admin is logged in load the page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/adminDashboard/includes/header.html');
+        echo $view->render('views/createAdmin.html');
+        echo $view->render('views/adminDashboard/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
+
 });
 
 
@@ -774,9 +778,17 @@ $f3->route('GET|POST /admin', function ($f3) {
     $f3->set('comma', ",");
 
     $view = new Template();
-    echo $view->render('views/includes/header.html');
-    echo $view->render("views/admin.html");
-    echo $view->render('views/includes/footer.html');
+
+    // if admin is logged in, load page else reroute to admin login
+    if($_SESSION['admin'] == true) {
+        echo $view->render('views/includes/header.html');
+        echo $view->render("views/admin.html");
+        echo $view->render('views/includes/footer.html');
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
+
 });
 
 /**

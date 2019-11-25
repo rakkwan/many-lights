@@ -6,12 +6,11 @@
  * This is a select php ajax script to return resource info from the DB
  */
 
-require_once ('../../database.php');
+require_once('../../database.php');
 //get the POST array variable from call
-if ( !empty($_POST) ) {
+if (!empty($_POST)) {
     $status = $_POST['statusID'];
-}
-else {
+} else {
     $status = 1;
 }
 

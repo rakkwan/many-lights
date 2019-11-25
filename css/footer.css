@@ -18,6 +18,10 @@ footer.sticky-footer .copyright {
     font-size: 0.8rem;
 }
 
+#footer1 {
+    position: absolute;
+}
+
 
 /* Style all font awesome icons */
 
