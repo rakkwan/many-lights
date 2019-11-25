@@ -291,68 +291,7 @@
             </div>
           </div>
 
-<!--          &lt;!&ndash; Pending Requests Card Example &ndash;&gt;-->
-<!--          <div class="col-xl-3 col-md-6 mb-4">-->
-<!--            <div class="card border-left-warning shadow h-100 py-2">-->
-<!--              <div class="card-body">-->
-<!--                <div class="row no-gutters align-items-center">-->
-<!--                  <div class="col mr-2">-->
-<!--                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Resources</div>-->
-<!--                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countPending}}</div>-->
-<!--                  </div>-->
-<!--                  <div class="col-auto">-->
-<!--                    <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
-
-        <!-- Resource Content Row -->
-        <div class="row">
-
-          <!-- Total Resource Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Resources</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countResources}}</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-list-ul fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Total Resource Card Example -->
-
-          <!-- Approved Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Approved Resources</div>
-                    <div class="row no-gutters align-items-center">
-                      <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{@countApproved}}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-check fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Approved Card Example -->
-
-          <!-- Pending Requests Card Example -->
+         <!--Pending Requests Card Example -->
           <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
               <div class="card-body">
@@ -368,28 +307,8 @@
               </div>
             </div>
           </div>
-          <!-- Pending Requests Card Example -->
-
-          <!-- Declined Card Count Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Declined Resources</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countDeclined}}</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-ban fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Declined Card Count Example -->
-
         </div>
-        <!-- Resource Content Row -->
+
 
         <!-- Content Row -->
 
@@ -432,7 +351,8 @@
                       <span class="table-remove">
 <!--                        <button class="btn btn-danger btn-rounded btn-sm my-0" data-target="#removeModal" data-toggle="modal">Remove</button>-->
                         <form method="post" action="#">
-                          <button type="submit" class="btn btn" value="{{@row['adminID']}}" name="removeID">
+                          <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn shadow-sm"
+                                  value="{{@row['adminID']}}" name="removeID">
                             Remove
                           </button>
                         </form>
@@ -1127,6 +1047,7 @@
   </div>
 </div>
 <!-- Central Modal Medium Success-->
+
 
 
 <!-- Bootstrap core JavaScript-->
