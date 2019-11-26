@@ -21,16 +21,19 @@
   "require": {
     "bcosca/fatfree-core": "dev-master",
     "mpdf/mpdf": "7.0",
-    "php": "^7.0"
+    "php": "^7.0",
+    "ext-json": "*"
   },
   "autoload": {
     "classmap": [
       "classes/"
     ],
-    "files": ["model/validation.php",
+    "files": [
+      "model/validation.php",
       "model/officeValidation.php",
-    "model/thereapistValidation.php",
-    "model/database.php",
-    "model/adminLoginValidation.php"]
+      "model/thereapistValidation.php",
+      "model/database.php",
+      "model/adminLoginValidation.php"
+    ]
   }
 }
