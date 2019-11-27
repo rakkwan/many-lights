@@ -10603,13 +10603,13 @@ a:focus {
 }
 
 .bg-addAdmin-image {
-  background: url("../img/adoptive3.PNG");
+  background: url("../image/adoptive3.PNG");
   background-position: center;
   background-size: cover;
 }
 
 .bg-newLogin-image {
-  background: url("../img/adoptive4.PNG");
+  background: url("../image/adoptive4.PNG");
   background-position: center;
   background-size: cover;
 }

@@ -79,6 +79,8 @@ button[type="submit"] {
 
 a.btn {
     background: rgb(135,33,117);
+    color: white;
+    font-family: gotham;
 }
 
 

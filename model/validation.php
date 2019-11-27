@@ -89,7 +89,7 @@ function validCreateAdmin()
  */
 function validName($name)
 {
-    return !empty($name) && ctype_alpha($name);
+    return !empty($name) && !ctype_digit($name);
 }
 
 /**

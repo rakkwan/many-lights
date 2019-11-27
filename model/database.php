@@ -241,14 +241,12 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
 
     /**
      * Get the all admin
-     * @param $adminID - admin
      * @return mixed the ID of the admin
      */
-    function getAllAdmin()//$adminID)
+    function getAllAdmin()
     {
-        $sql = 'SELECT * FROM adminLogin'; //WHERE adminID = :adminID';
+        $sql = 'SELECT * FROM adminLogin';
         $statement = $this->_dbh->prepare($sql);
-//        $statement->bindParam(':adminID', $adminID, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -269,6 +267,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
+
         global $f3;
         $f3->set('adminID', $row['adminID']);
         $f3->set('masterAdmin', $row['masterAdmin']);
@@ -287,6 +286,11 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
+
+        global $f3;
+        $f3->set('adminID', $row['adminID']);
+        $f3->set('masterAdmin', $row['masterAdmin']);
+        return $row;
     }
 
     /**
@@ -336,6 +340,7 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         // assign value
         $email = $admin->getEmail();
         $password = $admin->getPassword();
+        //$hash = password_hash($password, PASSWORD_DEFAULT);
         $masterAdmin = $admin->getAdminType();
         $fname = $admin->getFname();
         $lname = $admin->getLname();

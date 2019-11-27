@@ -196,7 +196,7 @@
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Master Admin</span>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{@SESSION['fname']}}</span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -293,11 +293,11 @@
 
          <!--Pending Requests Card Example -->
           <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-danger shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Resources</div>
+                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Pending Resources</div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{@countPending}}</div>
                   </div>
                   <div class="col-auto">
@@ -336,20 +336,26 @@
                     <td class="pt-3-half" contenteditable="true">{{@row['fname']}}</td>
                     <td class="pt-3-half" contenteditable="true">{{@row['lname']}}</td>
                     <td class="pt-3-half" contenteditable="true">{{@row['email']}}</td>
-                    <td class="pt-3-half" contenteditable="true">{{@row['password']}}</td>
+                    <td class="pt-3-half" contenteditable="true">
+                      <check if="{{@row['password']}}">
+                        <true>
+                          ****************
+                        </true>
+
+                      </check>
+                    </td>
                     <td class="pt-3-half" contenteditable="true">
                       <check if="{{@row['masterAdmin'] == 1}}">
                         <true>
-                          Master Admin
+                          Master
                         </true>
                         <false>
-                          Standard Admin
+                          Standard
                         </false>
                       </check>
                     </td>
                     <td>
                       <span class="table-remove">
-<!--                        <button class="btn btn-danger btn-rounded btn-sm my-0" data-target="#removeModal" data-toggle="modal">Remove</button>-->
                         <form method="post" action="#">
                           <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn shadow-sm"
                                   value="{{@row['adminID']}}" name="removeID">

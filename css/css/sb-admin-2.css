@@ -10602,19 +10602,6 @@ a:focus {
   background-size: cover;
 }
 
-
-.bg-addAdmin-image {
-  background: url("../img/adoptive3.PNG");
-  background-position: center;
-  background-size: cover;
-}
-
-.bg-newLogin-image {
-  background: url("../img/adoptive4.PNG");
-  background-position: center;
-  background-size: cover;
-}
-
 form.user .custom-checkbox.small label {
   line-height: 1.5rem;
 }
