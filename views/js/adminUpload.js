@@ -13,6 +13,8 @@
  */
 $(document).ready(function () {
     bsCustomFileInput.init();
+    fileUpload();
+    getUpload();
 });
 
 captureFile();
@@ -77,6 +79,51 @@ function ajaxCall(input) {
             console.log(result);
             document.getElementById("uploading").innerHTML = "<h4 id=\"uploading\">" +
                 "Excel <i class=\"fas fa-file-excel fa-3x\"></i> Upload</h4>";
+        }
+    });
+}
+
+/**
+ * Function Admin can upload file to the Server directory.
+ * Not the DB
+ */
+function fileUpload() {
+    $("#but_upload").click(function() {
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        fd.append('file', files);
+
+        $.ajax({
+            url: './model/ajax/posts/fileUpload.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                if(response != 0){
+                    alert('file uploaded');
+                }
+                else{
+                    alert('file not uploaded');
+                }
+                console.log(response);
+            },
+        });
+    });
+}
+
+/**
+ * Function Admin can Search files in the Server Upload directory.
+ * Not the DB
+ */
+function getUpload() {
+    $.get( "./model/ajax/gets/getUploadedFiles_ajax.php", function( data ) {
+        console.log(data);
+    });
+
+    $('basicAutoSelect').autoComplete({
+        resolverSettings: {
+            url: "./model/ajax/gets/getUploadedFiles_ajax.php"
         }
     });
 }
