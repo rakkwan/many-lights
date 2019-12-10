@@ -74,19 +74,21 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 
         // check the email
         $adminLogin = $db->checkEmail($adminEmail);
+        $_SESSION['adminName'] = $adminLogin['fname'];
+
         // verify password
-        if (password_verify($adminPassword, $adminLogin['password']))
+        if ($adminPassword == $adminLogin['password'] || password_verify($adminPassword, $adminLogin['password']))
         {
             // if a result is retrieved from the database
             if (!empty($adminLogin['adminID']) && ($adminLogin['masterAdmin']) == 1) {
                 // add the adminID to session and then go to admin page
-                $_SESSION['adminID'] = $f3->get('adminID');
-                $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+                $_SESSION['adminID'] = $adminLogin['adminID'];
+                $_SESSION['masterAdmin'] = $adminLogin['masterAdmin'];
                 $_SESSION['admin'] = true;
                 $f3->reroute('/adminDashboard');
             } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
-                $_SESSION['adminID'] = $f3->get('adminID');
-                $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
+                $_SESSION['adminID'] = $adminLogin['adminID'];
+                $_SESSION['masterAdmin'] = $adminLogin['masterAdmin'];
                 $_SESSION['admin'] = true;
                 $f3->reroute('/admin');
             }
