@@ -22,7 +22,9 @@ $f3->route('GET|POST /adminLogin', function ($f3) {
 
         // try to login - checks if adminEmail and password are in the database
         $admin = $db->adminLogin($_POST['adminEmail'], $_POST['adminPassword']);
-//
+
+        $f3->set('adminName', $f3->get('adminName'));
+
 //        if (password_verify($_POST['adminPassword'], $admin['password']))
 //        {
 //            echo $_POST['adminPassword'];
