@@ -34,23 +34,25 @@ $(document).ready(function () {
 
     });
 
+    //call create pdf function
     downloadResourcePdf();
 
     $("#disclaimerButton").css("display", "none");
 
     $("#disclaimerButton").click();
 
-    //declined
+    //If user declines legal modal
     $("#declineDisclaimer").on("click", function () {
         //reroute home
         window.location.href = "../oneStopWa";
     });
-
+    //if user tries to close the legal modal with the x button
     $("#closeDisclaimer").on("click", function () {
         //reroute home
         window.location.href = "../oneStopWa";
     });
 
+    //if user clicks accept on legal modal
     $("#approveDisclaimer").on("click", function () {
 
         //send Ajax to save session
@@ -73,7 +75,9 @@ $(document).ready(function () {
     });
 });
 
-//Modal information
+/**
+ * populates modal info
+ */
 $('#dtBasicExample').on('click', 'tr', function () {
 
     //get value of resource from the datatable
@@ -90,13 +94,18 @@ $('#dtBasicExample').on('click', 'tr', function () {
 
 // Disclaimer Overlay JS
 /* Open */
+/**
+ * Creates disclaimer
+ */
 function openNav() {
     console.log("load");
     document.getElementById("disclaimer").style.display = "block";
     $("#disclaimer").css("background-color", "yellow");
 }
 
-/* Close */
+/**
+ * close disclaimer
+ */
 function closeNav() {
     document.getElementById("disclaimer").style.display = "none";
 }
@@ -147,7 +156,7 @@ function downloadResourcePdf() {
 
         // event.preventDefault();
 
-
+        //test
         console.log(this);
         refresh = true;
         console.log(window.location.href);
@@ -171,7 +180,7 @@ function downloadResourcePdf() {
 
                 console.log(info);
 
-
+                //create cookies to pass to pdf
                 createCookies(info);
 
                 // createCookie("refresh", refresh, "1");
@@ -184,6 +193,11 @@ function downloadResourcePdf() {
 
 }
 
+/**
+ * redirects user
+ * @param url download pdf
+ * @param method
+ */
 let redirectMe = function (url, method) {
     $('<form>', {
         method: method,
@@ -191,7 +205,12 @@ let redirectMe = function (url, method) {
     }).submit();
 };
 
-// Function to create the cookie
+/**
+ * Creates cookies
+ * @param name of cookie
+ * @param value of cookie
+ * @param days cookie lasts
+ */
 function createCookie(name, value, days) {
     let expires;
 
@@ -207,32 +226,42 @@ function createCookie(name, value, days) {
         escape(value) + expires + "; path=/";
 }
 
-//Accept Button function for the Status of selected resource
+
+/**
+ * Accept Button function for the Status of selected resource
+ */
 $('#approve').click(function () {
     let $res = $('#here').text();
     acceptedStatus($res);
 
 });
 
-//Decline Button function for the Status of selected resource
+/**
+ * Decline Button function for the Status of selected resource
+ */
 $('#decline').click(function () {
     let $res = $('#here').text();
     declinedStatus($res);
     
 });
-
-//Edit Button Function for Admin listing
+/**
+ * Edit Button Function for Admin listing
+ */
 $('#edit').click(function () {
     let $res = $('#here').text();
     completeModal($res);
 });
 
-//Action execute the Admin Edit
+/**
+ * Action execute the Admin Edit
+ */
 $("a[lang='fEdit']").click(function () {
         AdminEditInfo();
 });
 
-//refresh page after edit is complete
+/**
+ * refresh page after edit is complete
+ */
 $("#editedListing").click(function () {
     location.href = self['location'];
 });
