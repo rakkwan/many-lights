@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="./css/datatable.css">
 <div class="container-fluid">
     <div class="row text-center">
-        <div class="col-md-6">
             <!-- This element calls for the XLSX file -->
             <form id="excelForm" action="/admin" method="post" enctype="multipart/form-data"  hidden>
                 <input type="submit" name="submitBtn" />
@@ -36,35 +35,6 @@
                     </div>
                 </div>
             </div>
-            <!-- This element calls for the XLSX file -->
-        </div>
-        <div class="col-md-6">
-            <!-- This element calls for the Document Search -->
-            <form method="post" action="" enctype="multipart/form-data"
-                  id="myform" hidden></form>
-            <div class="container scrollable p-4 mb-4 m-1 text-center mx-auto">
-                <div class="col-12 text-center">
-                    <!-- Search form -->
-                    <div class="md-form mt-0">
-                        <input id="one" class="form-control basicAutoSelect" type="text" placeholder="Search Uploaded Documents" aria-label="Search">
-                    </div>
-                    <!-- Search Form -->
-                </div>
-                <div class="col-12 text-center">
-                    <h5 id="uploadIT">Document <i class="fas fa-upload fa-3x"></i> Upload</h5>
-                </div>
-                <div class="col-12 text-center">
-                    <div class="custom-file">
-                        <div class="input-group mt-3 rounded-lg z-depth-1-half">
-                                <input form="myForm" type="file" id="file" name="file" />
-                                <input form="myForm" type="button" class="button" value="Upload"
-                                       id="but_upload">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- This element calls for the XLSX file -->
-        </div>
     </div>
 </div>
 <hr>
