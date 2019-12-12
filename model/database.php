@@ -286,11 +286,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
-
-        global $f3;
-        $f3->set('adminID', $row['adminID']);
-        $f3->set('masterAdmin', $row['masterAdmin']);
-        return $row;
     }
 
     /**
@@ -340,14 +335,14 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         // assign value
         $email = $admin->getEmail();
         $password = $admin->getPassword();
-        //$hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         $masterAdmin = $admin->getAdminType();
         $fname = $admin->getFname();
         $lname = $admin->getLname();
 
         // bind params
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->bindParam(':password', $hash, PDO::PARAM_STR);
         $statement->bindParam(':masterAdmin', $masterAdmin, PDO::PARAM_BOOL);
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
         $statement->bindParam(':lname', $lname, PDO::PARAM_STR);

@@ -143,8 +143,14 @@ $f3->route('GET /submitted', function ($f3) {
     // Insert county into the database
     $db->updateCounties($_SESSION['countyOne'], $_SESSION['countyTwo'], $_SESSION['countyThree'], $_SESSION['resourceID']);
 
+    $admin = $db->getAllAdmin();
+
+    foreach($admin as $row) {
+        $_SESSION['to'] = implode(', ', $row['email']);
+    }
+
     // Mail to admin someone sent recommendation
-    $to = "sle11@mail.greenriver.edu, jgoodrich4@mail.greenriver.edu";
+    $to = $_SESSION['to'];
     $subject = "Recommendation was submitted";
     $name = $_SESSION['fname'] . " " . $_SESSION['lname'];
     $link = '<a href="https://coderlite.greenriverdev.com/IT355/oneStopWa/adminLogin">Click here</a>';
