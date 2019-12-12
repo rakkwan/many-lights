@@ -10,7 +10,7 @@ ini_set('display_errors', true);
  */
 
 
-require_once '/home/jgoodri1/config.php';
+require_once '/home/laursh/config.php';
 class Databases
 {
 
