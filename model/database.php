@@ -2,110 +2,6 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
-/*
- *
- *
- * create table recommendedInfo
-(
-  recommendedInfoID int         not null auto_increment,
-  primary key (refereeID),
-  fname     varchar(50) not null,
-  lname     varchar(50) not null,
-  email     varchar(50) not null,
-  phone     varchar(50) not null
-);
-
-
-create table statusBrand
-(
-  statusID int not null auto_increment,
-  primary key (statusID),
-  statusLabel   varchar(20)
-);
-
-
-INSERT INTO `status`( `status`) VALUES ("Pending");
-
-
-create table service
-(
-  serviceID int not null auto_increment,
-  primary key (serviceID),
-  service   varchar(40)
-);
-
-INSERT INTO `service` (`service`) VALUES (VAL-1);
-
-
-create table resources
-(
-
-  resourceID  int         not null auto_increment,
-  primary key (resourceID),
-  speciality  varchar(60),
-  days        linestring,
-  office      varchar(50) not null,
-  officeEmail varchar(50) not null,
-  officePhone varchar(15) not null,
-  theraFname  varchar(50),
-  theraLname  varchar(50),
-  theraGender boolean,
-  interpreter varchar(100),
-  insurance   varchar(50),
-  fee         int,
-  age         int,
-  countyOne   varchar(50),
-  countyTwo   varchar(50),
-  countyThree varchar(50),
-  address     varchar(50),
-  city        varchar(25),
-  state       varchar(3),
-  zip         int,
-  website     varchar(40),
-  serviceID   int,
-  recommendedInfoID   int,
-
-  FOREIGN KEY (serviceID) REFERENCES service (serviceID),
-  FOREIGN KEY (refereeID) REFERENCES referee (refereeID)
-
-)
-
-**Table for adminLogin**
-
-CREATE TABLE adminLogin
-(
-	adminID INTEGER NOT NULL AUTO_INCREMENT,
-	email VARCHAR(254) NOT NULL,
-	password VARCHAR(128) NOT NULL,
-    masterAdmin BOOLEAN NOT NULL,
-    fname VARCHAR(50),
-    lname VARCHAR(50),
-	UNIQUE (email),
-	PRIMARY KEY (adminID)
-);
-
-ALTER TABLE adminLogin
-ADD fname VARCHAR(50)
-
-
-ALTER TABLE adminLogin
-ADD masterAdmin BOOLEAN NOT NULL DEFAULT FALSE;
-
-INSERT INTO adminLogin (email, password)
-VALUES ('coderlite@email.com', 'coderLite1');
-
-CREATE TABLE openHours(
-    dayID INT NOT NULL AUTO_INCREMENT,
-    primary key(dayID),
-    day varchar(20),
-    start varchar(20),
-    end varchar(20),
-	FOREIGN KEY (resourceID) REFERENCES resources (resourceID)
-)
-
-------------------------------------------------------------
-*/
-
 /**
  * Robert Hill, Jittima Goodrich, Samantha Desmul
  * 10/22/2019
@@ -857,7 +753,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $resEmail = $info["resEmail"];
         $resPhone = $info["resPhone"];
         $resGender = $info["resGender"];
-//        $resAges = $info["resAges"];
         $resLang = $info["resLang"];
         $resSt = $info["resSt"];
         $resZip = $info["resZip"];
@@ -866,20 +761,6 @@ from resources join service on resources.serviceID = service.serviceID limit 2";
         $refNameL = $info["refNameL"];
         $refEmail = $info["refEmail"];
         $refPhone = $info["refPhone"];
-//        $resOsun = $info["resOsun"];
-//        $resOmon = $info["resOmon"];
-//        $resOtues = $info["resOtues"];
-//        $resOwed = $info["resOwed"];
-//        $resOthurs = $info["resOthurs"];
-//        $resOfri = $info["resOfri"];
-//        $resOsat = $info["resOsat"];
-//        $resEsun = $info["resEsun"];
-//        $resEmon = $info["resEmon"];
-//        $resEtue = $info["resEtue"];
-//        $resEwed = $info["resEwed"];
-//        $resEthur = $info["resEthur"];
-//        $resEfri = $info["resEfri"];
-//        $resEsat = $info["resEsat"];
 
         $sql = '
             SET

@@ -146,7 +146,7 @@ $f3->route('GET /submitted', function ($f3) {
     $admin = $db->getAllAdmin();
 
     foreach($admin as $row) {
-        $_SESSION['to'] = implode(', ', $row['email']);
+        $_SESSION['to'] = $row['email'] . ', ';
     }
 
     // Mail to admin someone sent recommendation

@@ -9,50 +9,6 @@
 global $f3;
 global $db;
 
-
-////Admin Login
-//$f3->route('GET|POST /adminLogin', function ($f3) {
-//
-//    // if admin already logged in then take admin to the admin page
-//    if (!empty($_SESSION['adminID']) && $_SESSION['masterAdmin']) {
-//        $f3->reroute('/admin');
-//    }
-//    if (!empty($_POST)) {
-//        global $db;
-//
-//        // try to login - checks if adminEmail and password are in the database
-//        $admin = $db->adminLogin($_POST['adminEmail'], $_POST['adminPassword']);
-//
-//        $f3->set('adminName', $f3->get('adminName'));
-//
-////        if (password_verify($_POST['adminPassword'], $admin['password']))
-////        {
-////            echo $_POST['adminPassword'];
-////            echo $admin['password'];
-////
-////        }
-//
-//        // if a result is retrieved from the database
-//        if (!empty($admin['adminID']) && ($admin['masterAdmin']) == 1) {
-//            // add the adminID to session and then go to admin page
-//            $_SESSION['adminID'] = $f3->get('adminID');
-//            $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
-//            $_SESSION['admin'] = true;
-//            $f3->reroute('/adminDashboard');
-//        } elseif (!empty($admin['adminID']) && ($admin['masterAdmin']) == 0) {
-//            $_SESSION['adminID'] = $f3->get('adminID');
-//            $_SESSION['masterAdmin'] = $f3->get('masterAdmin');
-//            $_SESSION['admin'] = true;
-//            $f3->reroute('/admin');
-//        }
-//        $f3->set('errors', 'Admin email and password do not match');
-//    }
-//    $view = new Template();
-//    echo $view->render('views/includes/header.html');
-//    echo $view->render("views/adminLogin.html");
-//    echo $view->render('views/includes/footer.html');
-//});
-
 //Admin Login
 $f3->route('GET|POST /adminLogin', function ($f3) {
 
