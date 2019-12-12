@@ -74,16 +74,20 @@ $f3->route('GET|POST /dev', function ($f3) {
 
 });
 
-// controllers
-require_once 'controllers/homeController.php';
-require_once 'controllers/recommendedFormController.php';
-require_once 'controllers/resourceContactController.php';
-require_once 'controllers/locationFormController.php';
-require_once 'controllers/optionalInfoController.php';
-require_once 'controllers/dayHourFormController.php';
-require_once 'controllers/confirmationController.php';
-require_once 'controllers/adminController.php';
-require_once 'controllers/resourcesController.php';
+//// controllers
+foreach (glob("controllers/*.php") as $filename)
+{
+    require_once $filename;
+}
+//require_once 'controllers/homeController.php';
+//require_once 'controllers/recommendedFormController.php';
+//require_once 'controllers/resourceContactController.php';
+//require_once 'controllers/locationFormController.php';
+//require_once 'controllers/optionalInfoController.php';
+//require_once 'controllers/dayHourFormController.php';
+//require_once 'controllers/confirmationController.php';
+//require_once 'controllers/adminController.php';
+//require_once 'controllers/resourcesController.php';
 
 
 

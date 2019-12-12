@@ -334,5 +334,4 @@ $f3->route('GET|POST /admin', function ($f3) {
     else {
         $f3->reroute('/adminLogin');
     }
-
 });
