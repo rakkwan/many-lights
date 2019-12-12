@@ -316,8 +316,7 @@ $f3->route('GET|POST /succeedResetPassword', function ($f3) {
 $f3->route('GET|POST /admin', function ($f3) {
 
     global $db;
-    $_SESSION['adminID'] = 18;
-    var_dump($_SESSION['adminID']);
+
     //Get the info from DB for admin Data Table Listings
     $data = $db->getAdminListingInfo();
 
@@ -326,18 +325,13 @@ $f3->route('GET|POST /admin', function ($f3) {
 
     $view = new Template();
 
-//    // if admin is logged in, load page else reroute to admin login
-//    if($_SESSION['admin'] == true) {
-//        echo $view->render('views/includes/header.html');
-//        echo $view->render("views/admin.html");
-//        echo $view->render('views/includes/footer.html');
-//    }
-//    else {
-//        $f3->reroute('/adminLogin');
-//    }
-
+    // if admin is logged in, load page else reroute to admin login
+    if($_SESSION['admin'] == true) {
         echo $view->render('views/includes/header.html');
         echo $view->render("views/admin.html");
         echo $view->render('views/includes/footer.html');
-
+    }
+    else {
+        $f3->reroute('/adminLogin');
+    }
 });
