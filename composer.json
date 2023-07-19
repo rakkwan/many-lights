@@ -20,7 +20,7 @@
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master",
-    "mpdf/mpdf": "7.0",
+    "mpdf/mpdf": "7.1.8",
     "php": "^7.0",
     "ext-json": "*"
   },
